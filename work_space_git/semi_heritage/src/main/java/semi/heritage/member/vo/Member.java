@@ -12,6 +12,7 @@ public class Member {
 	private String twt;
 	private String insta;
 	private String facebook;
+	private String status;
 
 	public Member() {
 		super();
@@ -19,7 +20,7 @@ public class Member {
 	}
 
 	public Member(int uno, String uemail, String upw, String uname, String upn, String uadr, String uphoto,
-			String introduce, String twt, String insta, String facebook) {
+			String introduce, String twt, String insta, String facebook, String status) {
 		super();
 		this.uno = uno;
 		this.uemail = uemail;
@@ -32,13 +33,14 @@ public class Member {
 		this.twt = twt;
 		this.insta = insta;
 		this.facebook = facebook;
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
 		return "Member [uno=" + uno + ", uemail=" + uemail + ", upw=" + upw + ", uname=" + uname + ", upn=" + upn
 				+ ", uadr=" + uadr + ", uphoto=" + uphoto + ", introduce=" + introduce + ", twt=" + twt + ", insta="
-				+ insta + ", facebook=" + facebook + "]";
+				+ insta + ", facebook=" + facebook + ", status=" + status + "]";
 	}
 
 	public int getUno() {
@@ -127,6 +129,14 @@ public class Member {
 
 	public void setFacebook(String facebook) {
 		this.facebook = facebook;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
