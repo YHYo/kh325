@@ -1,14 +1,12 @@
 package semi.heritage.souvenir.vo;
 
-import java.util.Date;
-
 public class Souvenir_Buy_VO {
-	int orderNum;
-	int uno;
-	int souv_pro_no;
-	String souv_pro_name;
-	int souv_pro_price;
-	int bsb_total_price;
+	private int orderNum;
+	private int uno;
+	private int souv_pro_no;
+	private String souv_pro_name;
+	private int souv_pro_price;
+	private int bsb_total_price;
 
 	public Souvenir_Buy_VO() {
 		super();

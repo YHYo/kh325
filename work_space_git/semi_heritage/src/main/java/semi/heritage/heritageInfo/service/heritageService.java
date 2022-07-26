@@ -5,8 +5,8 @@ import java.util.List;
 
 
 import semi.heritage.heritageInfo.vo.heritageImage;
+import semi.heritage.heritageInfo.vo.heritageVO;
 import semi.heritage.heritageInfo.dao.heritageDao;
-import semi.heritage.heritageInfo.vo.heritageCode;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
 
@@ -20,9 +20,9 @@ public class heritageService {
 			conn = getConnection();
 		}
 
-		public int insert(heritageCode heritagecode) {
+		public int insert(heritageVO heritageVO) {
 			Connection conn2 = getConnection();
-			int result = dao.insertCode(conn2, heritagecode);
+			int result = dao.insert(conn2, heritageVO);
 			if (result > 0) {
 				commit(conn2);
 			} else {

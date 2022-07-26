@@ -1,4 +1,4 @@
-package semi.heritage.member.dao;
+package semi.heritage.member.controller;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.close;
 
@@ -7,9 +7,9 @@ import java.sql.PreparedStatement;
 
 
 
-public class memberDao {
+public class MemberController {
 
-	public int insertMember(Connection conn, Member member) {
+	public int insertMember(Connection conn, Favorite member) {
 		PreparedStatement pstmt = null;
 		String query = "INSERT INTO MEMBER VALUES(SEQ_UNO.NEXTVAL,?,?,DEFAULT,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT)";
 		int result = 0;
@@ -33,7 +33,7 @@ public class memberDao {
 		return result;
 	}
 	
-	public int updateMember(Connection conn, Member member) {
+	public int updateMember(Connection conn, Favorite member) {
 		PreparedStatement pstmt = null;
 		String query = "UPDATE MEMBER SET NAME=?,PHONE=?,EMAIL=?,ADDRESS=?,HOBBY=?,MODIFY_DATE=SYSDATE WHERE NO=?";
 		int result = 0;

@@ -1,7 +1,7 @@
 package semi.heritage.heritageInfo.vo;
 
 public class heritageVO {
-	
+	//insert into heritage VALUES(sn.nextval, 1, '종목', 111, '문화재1','한자이름','','','','','','','','','','','','','','','','','','','','','');
 	private int sn;					// 순번
 	private int no;   				// 고유 키값
 	private String ccmaName;		// 문화재종목

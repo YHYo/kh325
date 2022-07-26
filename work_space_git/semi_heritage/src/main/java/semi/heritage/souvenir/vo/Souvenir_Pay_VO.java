@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class Souvenir_Pay_VO {
 
-	int uno;
-	String uname;
-	String uadr;
-	String upn;
-	String uemail;
-	int souv_pro_no;
-	String souv_pro_name;
-	int souv_pro_price;
-	int total_price;
-	int bsb_total_price;
+	private int uno;
+	private String uname;
+	private String uadr;
+	private String upn;
+	private String uemail;
+	private int souv_pro_no;
+	private String souv_pro_name;
+	private int souv_pro_price;
+	private int total_price;
+	private int bsb_total_price;
 
 	public Souvenir_Pay_VO() {
 		super();

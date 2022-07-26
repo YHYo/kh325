@@ -1,10 +1,10 @@
 package semi.heritage.souvenir.vo;
 
 public class Souvenir_Cart_VO {
-	int uNo;
-	String SOUV_PRO_NAME;
-	String SOUV_PRO_PRICE;
-	String SOUV_PRO_CATEGORY;
+	private int uNo;
+	private String SOUV_PRO_NAME;
+	private String SOUV_PRO_PRICE;
+	private String SOUV_PRO_CATEGORY;
 
 	public Souvenir_Cart_VO() {
 		super();

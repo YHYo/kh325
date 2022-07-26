@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import semi.heritage.heritageInfo.vo.heritageVO;
-import semi.heritage.heritageInfo.vo.heritageCode;
 import semi.heritage.heritageInfo.vo.heritageImage;
 
 
@@ -61,27 +60,6 @@ public class heritageDao {
 		return -1;
 	}
 	
-	public int insertCode(Connection conn, heritageCode heritagecode) {
-		try {
-			String sql = "INSERT INTO heritagePara(no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(?, ?, ?, ?)";
-			
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-
-			int cnt = 1;
-			
-			pstmt.setInt(cnt++, heritagecode.getNo());
-			pstmt.setString(cnt++, heritagecode.getCcbaKdcd());
-			pstmt.setString(cnt++, heritagecode.getCcbaCtcd());
-			pstmt.setString(cnt++, heritagecode.getCcbaAsno());
-		
-			int result = pstmt.executeUpdate();
-			pstmt.close();
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
 	
 	public int insertImage(Connection conn, heritageImage heritageimage) {
 		try {
@@ -107,47 +85,11 @@ public class heritageDao {
 		return -1;
 	}
 	
-	public List<heritageCode> selectCode(Connection conn) {
-		List<heritageCode> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			String sql = "SELECT * FROM heritagePara ORDER BY TO_NUMBER(no) ASC";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int count = 1;
-				int no = rs.getInt(count++);
-				String ccbaKdcd2 = rs.getString(count++);
-				String ccbaCtcd2 = rs.getString(count++);
-				String ccbaAsno2 = rs.getString(count++);
-				heritageCode info = new heritageCode(no, ccbaKdcd2, ccbaCtcd2, ccbaAsno2);
-				list.add(info);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rs);
-		}
-		return list;
-	}
+	
 	
 	public static void main(String[] args) {
 		Connection conn = getConnection();
 		heritageDao dao = new heritageDao();
-		dao.selectCode(conn);
-
-		
-		for(int i=0; i< dao.selectCode(conn).size(); i++) {
-		String ccnbactcd = (dao.selectCode(conn)).get(i).getCcbaCtcd();
-		String ccbaCtcd = (dao.selectCode(conn)).get(i).getCcbaCtcd();
-		String ccbaAsno = (dao.selectCode(conn)).get(i).getCcbaAsno();
-		System.out.println(ccnbactcd + "," + ccbaCtcd + "," + ccbaAsno);
-		}
 		
 	}
 }

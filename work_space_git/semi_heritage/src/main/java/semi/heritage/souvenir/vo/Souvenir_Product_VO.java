@@ -2,10 +2,10 @@ package semi.heritage.souvenir.vo;
 
 public class Souvenir_Product_VO {
 	// SOUVENIR_PRODUCT 상품정보
-	int souv_pro_no;
-	String souv_pro_name;
-	int souv_pro_price;
-	String souv_pro_category;
+	private int souv_pro_no;
+	private String souv_pro_name;
+	private int souv_pro_price;
+	private String souv_pro_category;
 
 	public Souvenir_Product_VO() {
 		super();
