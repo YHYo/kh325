@@ -1,36 +1,28 @@
 package semi.heritage.souvenir.vo;
 
 public class Souvenir_Cart_VO {
-	int souv_cart_no;
 	int uNo;
-	int souv_pro_no;
-	String status;
+	String SOUV_PRO_NAME;
+	String SOUV_PRO_PRICE;
+	String SOUV_PRO_CATEGORY;
 
 	public Souvenir_Cart_VO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Souvenir_Cart_VO(int souv_cart_no, int uNo, int souv_pro_no, String status) {
+	public Souvenir_Cart_VO(int uNo, String sOUV_PRO_NAME, String sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY) {
 		super();
-		this.souv_cart_no = souv_cart_no;
 		this.uNo = uNo;
-		this.souv_pro_no = souv_pro_no;
-		this.status = status;
+		SOUV_PRO_NAME = sOUV_PRO_NAME;
+		SOUV_PRO_PRICE = sOUV_PRO_PRICE;
+		SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
 	}
 
 	@Override
 	public String toString() {
-		return "Souvenir_Cart_VO [souv_cart_no=" + souv_cart_no + ", uNo=" + uNo + ", souv_pro_no=" + souv_pro_no
-				+ ", status=" + status + "]";
-	}
-
-	public int getSouv_cart_no() {
-		return souv_cart_no;
-	}
-
-	public void setSouv_cart_no(int souv_cart_no) {
-		this.souv_cart_no = souv_cart_no;
+		return "Souvenir_Cart_VO [uNo=" + uNo + ", SOUV_PRO_NAME=" + SOUV_PRO_NAME + ", SOUV_PRO_PRICE="
+				+ SOUV_PRO_PRICE + ", SOUV_PRO_CATEGORY=" + SOUV_PRO_CATEGORY + "]";
 	}
 
 	public int getuNo() {
@@ -41,20 +33,28 @@ public class Souvenir_Cart_VO {
 		this.uNo = uNo;
 	}
 
-	public int getSouv_pro_no() {
-		return souv_pro_no;
+	public String getSOUV_PRO_NAME() {
+		return SOUV_PRO_NAME;
 	}
 
-	public void setSouv_pro_no(int souv_pro_no) {
-		this.souv_pro_no = souv_pro_no;
+	public void setSOUV_PRO_NAME(String sOUV_PRO_NAME) {
+		SOUV_PRO_NAME = sOUV_PRO_NAME;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getSOUV_PRO_PRICE() {
+		return SOUV_PRO_PRICE;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSOUV_PRO_PRICE(String sOUV_PRO_PRICE) {
+		SOUV_PRO_PRICE = sOUV_PRO_PRICE;
+	}
+
+	public String getSOUV_PRO_CATEGORY() {
+		return SOUV_PRO_CATEGORY;
+	}
+
+	public void setSOUV_PRO_CATEGORY(String sOUV_PRO_CATEGORY) {
+		SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
 	}
 
 }

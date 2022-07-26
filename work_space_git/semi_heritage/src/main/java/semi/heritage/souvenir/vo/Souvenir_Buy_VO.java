@@ -3,42 +3,42 @@ package semi.heritage.souvenir.vo;
 import java.util.Date;
 
 public class Souvenir_Buy_VO {
-	int souv_buy_no;
+	int orderNum;
 	int uno;
 	int souv_pro_no;
-	int souv_pay_no;
-	int souv_buy_total_price;
-	Date souv_buy_date;
+	String souv_pro_name;
+	int souv_pro_price;
+	int bsb_total_price;
 
 	public Souvenir_Buy_VO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Souvenir_Buy_VO(int souv_buy_no, int uno, int souv_pro_no, int souv_pay_no, int souv_buy_total_price,
-			Date souv_buy_date) {
+	public Souvenir_Buy_VO(int orderNum, int uno, int souv_pro_no, String souv_pro_name, int souv_pro_price,
+			int bsb_total_price) {
 		super();
-		this.souv_buy_no = souv_buy_no;
+		this.orderNum = orderNum;
 		this.uno = uno;
 		this.souv_pro_no = souv_pro_no;
-		this.souv_pay_no = souv_pay_no;
-		this.souv_buy_total_price = souv_buy_total_price;
-		this.souv_buy_date = souv_buy_date;
+		this.souv_pro_name = souv_pro_name;
+		this.souv_pro_price = souv_pro_price;
+		this.bsb_total_price = bsb_total_price;
 	}
 
 	@Override
 	public String toString() {
-		return "Souvenir_Buy_VO [souv_buy_no=" + souv_buy_no + ", uno=" + uno + ", souv_pro_no=" + souv_pro_no
-				+ ", souv_pay_no=" + souv_pay_no + ", souv_buy_total_price=" + souv_buy_total_price + ", souv_buy_date="
-				+ souv_buy_date + "]";
+		return "Souvenir_Buy_VO [orderNum=" + orderNum + ", uno=" + uno + ", souv_pro_no=" + souv_pro_no
+				+ ", souv_pro_name=" + souv_pro_name + ", souv_pro_price=" + souv_pro_price + ", bsb_total_price="
+				+ bsb_total_price + "]";
 	}
 
-	public int getSouv_buy_no() {
-		return souv_buy_no;
+	public int getOrderNum() {
+		return orderNum;
 	}
 
-	public void setSouv_buy_no(int souv_buy_no) {
-		this.souv_buy_no = souv_buy_no;
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
 	}
 
 	public int getUno() {
@@ -57,28 +57,28 @@ public class Souvenir_Buy_VO {
 		this.souv_pro_no = souv_pro_no;
 	}
 
-	public int getSouv_pay_no() {
-		return souv_pay_no;
+	public String getSouv_pro_name() {
+		return souv_pro_name;
 	}
 
-	public void setSouv_pay_no(int souv_pay_no) {
-		this.souv_pay_no = souv_pay_no;
+	public void setSouv_pro_name(String souv_pro_name) {
+		this.souv_pro_name = souv_pro_name;
 	}
 
-	public int getSouv_buy_total_price() {
-		return souv_buy_total_price;
+	public int getSouv_pro_price() {
+		return souv_pro_price;
 	}
 
-	public void setSouv_buy_total_price(int souv_buy_total_price) {
-		this.souv_buy_total_price = souv_buy_total_price;
+	public void setSouv_pro_price(int souv_pro_price) {
+		this.souv_pro_price = souv_pro_price;
 	}
 
-	public Date getSouv_buy_date() {
-		return souv_buy_date;
+	public int getBsb_total_price() {
+		return bsb_total_price;
 	}
 
-	public void setSouv_buy_date(Date souv_buy_date) {
-		this.souv_buy_date = souv_buy_date;
+	public void setBsb_total_price(int bsb_total_price) {
+		this.bsb_total_price = bsb_total_price;
 	}
 
 }
