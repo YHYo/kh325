@@ -46,7 +46,7 @@ public class MemberDao {
 			pstmt.setString(3, member.getUname());
 			pstmt.setString(4, member.getUpn());
 			pstmt.setString(5, member.getUadr());
-			pstmt.setString(6, member.getUphoto());
+			pstmt.setString(6, member.get());
 			pstmt.setString(7, member.getIntroduce());
 			pstmt.setString(8, member.getTwt());
 			pstmt.setString(9, member.getInsta());

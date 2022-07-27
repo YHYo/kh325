@@ -85,7 +85,7 @@ public class heritageImage {
 	@Override
 	public String toString() {
 		return "heritageImage [imageNo=" + imageNo + ", imageUrl=" + imageUrl + ", ccimDesc=" + ccimDesc + ", sn=" + sn
-				+ ", ccbaKdcd=" + ccbaKdcd + ", ccbaCtcd=" + ccbaCtcd + ", ccbaAsno=" + ccbaAsno + "]";
+				+ ", ccbaKdcd=" + ccbaKdcd + ", ccbaCtcd=" + ccbaCtcd + ", ccbaAsno=" + ccbaAsno + "]" + "\n";
 	}
 	
 	

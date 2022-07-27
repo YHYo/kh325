@@ -2,6 +2,7 @@ package semi.heritage.heritageInfo.controller;
 
 import java.util.List;
 
+import semi.heritage.heritageInfo.api.heritageImageApi;
 //import semi.heritage.heritageInfo.api.heritageImageApi;
 import semi.heritage.heritageInfo.api.heritageInfoDetail;
 import semi.heritage.heritageInfo.service.heritageService;
@@ -47,18 +48,18 @@ public class heritageController {
 		}
 	}
 	
-//	public void initHeritageImage() {
-//		
-//		while(true) {
-//			List<heritageImage> list = heritageImageApi.callCurrentHeritageImageByXML();
-//		
-//			if(list == null || list.isEmpty()) {
-//				continue;
-//			}
-//			
-//			for(heritageImage heritageimage : list) {
-//				hService.insertImage(heritageimage);
-//			}
-//		}
-//	}
+	public void initHeritageImage() {
+		
+		while(true) {
+			List<heritageImage> list = heritageImageApi.callCurrentHeritageImageByXML();
+		
+			if(list == null || list.isEmpty()) {
+				continue;
+			}
+			
+			for(heritageImage heritageimage : list) {
+				hService.insertImage(heritageimage);
+			}
+		}
+	}
 }

@@ -23,21 +23,25 @@ public class FestivalService {
 		return dao.selectAll(conn);
 		
 	}
+	
+	public List<Festival> selectByMonth(String eventMonth){
+		return dao.selectByMonth(conn, eventMonth);
+	}
 
 	public int insert(Festival festival) {
-		Connection conn2 = getConnection();
-		int result = dao.insert(conn2, festival);
+		Connection conn = getConnection();
+		int result = dao.insert(conn, festival);
 		if (result > 0) {
-			commit(conn2);
+			commit(conn);
 		} else {
-			rollback(conn2);
+			rollback(conn);
 		}
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		close(conn2);
+		close(conn);
 		return result;
 	}
 }

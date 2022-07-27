@@ -28,7 +28,7 @@ public class Palace_Jongmyo_Sangse_API {
 	public static List<Palace_Jongmyo_Sangse> callPalaceJongmyoSangseListByXML() {
 		List<Palace_Jongmyo_Sangse> list = new ArrayList<>();
 
-		for (int seq = 0; seq < Palace_Jongmyo_API.callPalaceJongmyoListByXML().size(); seq++) {
+		for (int seq = 0; seq < 127; seq++) {
 			palace_Jongmyo_Sangse_XML_URL = Palace_Jongmyo_API.callPalaceJongmyoListByXML().get(seq).getLink();
 
 			try {

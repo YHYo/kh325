@@ -1,5 +1,5 @@
 package semi.heritage.souvenir.service;
 
-public class Souvenir_Cart_Service {
+public enum Souvenir_Cart_Service {
 
 }

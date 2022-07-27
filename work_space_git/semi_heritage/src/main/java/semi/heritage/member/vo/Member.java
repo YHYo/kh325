@@ -7,20 +7,21 @@ public class Member {
 	private String uname;
 	private String upn;
 	private String uadr;
-	private String uphoto;
+	private String originalPhoto;
+	private String renamedPhoto;
 	private String introduce;
 	private String twt;
 	private String insta;
 	private String facebook;
 	private String status;
-
+	
 	public Member() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
-	public Member(int uno, String uemail, String upw, String uname, String upn, String uadr, String uphoto,
-			String introduce, String twt, String insta, String facebook, String status) {
+	public Member(int uno, String uemail, String upw, String uname, String upn, String uadr, String originalPhoto,
+			String renamedPhoto, String introduce, String twt, String insta, String facebook, String status) {
 		super();
 		this.uno = uno;
 		this.uemail = uemail;
@@ -28,19 +29,13 @@ public class Member {
 		this.uname = uname;
 		this.upn = upn;
 		this.uadr = uadr;
-		this.uphoto = uphoto;
+		this.originalPhoto = originalPhoto;
+		this.renamedPhoto = renamedPhoto;
 		this.introduce = introduce;
 		this.twt = twt;
 		this.insta = insta;
 		this.facebook = facebook;
 		this.status = status;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [uno=" + uno + ", uemail=" + uemail + ", upw=" + upw + ", uname=" + uname + ", upn=" + upn
-				+ ", uadr=" + uadr + ", uphoto=" + uphoto + ", introduce=" + introduce + ", twt=" + twt + ", insta="
-				+ insta + ", facebook=" + facebook + ", status=" + status + "]";
 	}
 
 	public int getUno() {
@@ -91,12 +86,20 @@ public class Member {
 		this.uadr = uadr;
 	}
 
-	public String getUphoto() {
-		return uphoto;
+	public String getOriginalPhoto() {
+		return originalPhoto;
 	}
 
-	public void setUphoto(String uphoto) {
-		this.uphoto = uphoto;
+	public void setOriginalPhoto(String originalPhoto) {
+		this.originalPhoto = originalPhoto;
+	}
+
+	public String getRenamedPhoto() {
+		return renamedPhoto;
+	}
+
+	public void setRenamedPhoto(String renamedPhoto) {
+		this.renamedPhoto = renamedPhoto;
 	}
 
 	public String getIntroduce() {
@@ -139,4 +142,15 @@ public class Member {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "Member [uno=" + uno + ", uemail=" + uemail + ", upw=" + upw + ", uname=" + uname + ", upn=" + upn
+				+ ", uadr=" + uadr + ", originalPhoto=" + originalPhoto + ", renamedPhoto=" + renamedPhoto
+				+ ", introduce=" + introduce + ", twt=" + twt + ", insta=" + insta + ", facebook=" + facebook
+				+ ", status=" + status + "]";
+	}
+	
+	
 }
+
+	

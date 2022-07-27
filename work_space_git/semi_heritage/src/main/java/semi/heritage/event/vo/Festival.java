@@ -17,10 +17,8 @@ public class Festival {
 	private String sido;
 	private String gugun;
 	private String subDate;
-	
-//	private String fileNm;
-//	private String filePath;
-	
+	private String eventName;
+
 	public Festival() {
 		super();
 	}
@@ -45,8 +43,44 @@ public class Festival {
 		this.sido = sido;
 		this.gugun = gugun;
 		this.subDate = subDate;
-//		this.fileNm = fileNm;
-//		this.filePath = filePath;
+	}
+
+
+
+	public Festival(int seqNo, String siteCode, String subTitle, String subContent, String sDate, String eDate,
+			String groupName, String contact, String subDesc, String subPath, String subDesc_2, String subDesc_3,
+			String mainImageT, String sido, String gugun, String subDate, String eventName) {
+		super();
+		this.seqNo = seqNo;
+		this.siteCode = siteCode;
+		this.subTitle = subTitle;
+		this.subContent = subContent;
+		this.sDate = sDate;
+		this.eDate = eDate;
+		this.groupName = groupName;
+		this.contact = contact;
+		this.subDesc = subDesc;
+		this.subPath = subPath;
+		this.subDesc_2 = subDesc_2;
+		this.subDesc_3 = subDesc_3;
+		this.mainImageT = mainImageT;
+		this.sido = sido;
+		this.gugun = gugun;
+		this.subDate = subDate;
+		this.eventName = eventName;
+	}
+
+	public Festival(String eventName, String subTitle, String sido, String gugun, String subDesc, String sDate,
+			String EDate, String subPath) {
+		super();
+		this.eventName = eventName;
+		this.subTitle = subTitle;
+		this.sido = sido;
+		this.gugun = gugun;
+		this.subDesc = subDesc;
+		this.sDate = sDate;
+		this.eDate = EDate;
+		this.subPath = subPath;
 	}
 
 	public int getSeqNo() {
@@ -177,16 +211,22 @@ public class Festival {
 		this.subDate = subDate;
 	}
 
+	public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
 	@Override
 	public String toString() {
 		return "Festival [seqNo=" + seqNo + ", siteCode=" + siteCode + ", subTitle=" + subTitle + ", subContent="
 				+ subContent + ", sDate=" + sDate + ", eDate=" + eDate + ", groupName=" + groupName + ", contact="
 				+ contact + ", subDesc=" + subDesc + ", subPath=" + subPath + ", subDesc_2=" + subDesc_2
 				+ ", subDesc_3=" + subDesc_3 + ", mainImageT=" + mainImageT + ", sido=" + sido + ", gugun=" + gugun
-				+ ", subDate=" + subDate + "]";
+				+ ", subDate=" + subDate + ", eventName=" + eventName + "]";
 	}
 
-	
-	
 	
 }
