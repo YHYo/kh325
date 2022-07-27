@@ -15,7 +15,8 @@ public class MemberDao {
 	// 회원가입
 	public int insertMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO USERINFO VALUES(uNo.NEXTVAL, ?, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 'Y' )";
+		String query = "INSERT INTO USERINFO VALUES(SEQ_UNO.NEXTVAL,?, ?, ?, "
+				+ "DEFAULT, DEFAULT,DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)";
 		int result = 0;
 
 		try {
@@ -36,7 +37,8 @@ public class MemberDao {
 	// 회원정보 수정
 	public int updateMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE USERINFO SET uemail=?, upw=?, uname=?, upn=?, uadr=?, uphoto=?, introduce=?,"
+		String query = "UPDATE USERINFO SET uemail=?, upw=?, uname=?, upn=?, uadr=?, "
+				+ "originalPhoto=?, renamedPhoto=?, introduce=?,"
 				+ " twt=?, insta=?, facebook=? WHERE UNO=?";
 		int result = 0;
 		try {
@@ -46,7 +48,8 @@ public class MemberDao {
 			pstmt.setString(3, member.getUname());
 			pstmt.setString(4, member.getUpn());
 			pstmt.setString(5, member.getUadr());
-			pstmt.setString(6, member.get());
+			pstmt.setString(6, member.getOriginalPhoto());
+			pstmt.setString(6, member.getRenamedPhoto());
 			pstmt.setString(7, member.getIntroduce());
 			pstmt.setString(8, member.getTwt());
 			pstmt.setString(9, member.getInsta());
@@ -63,7 +66,7 @@ public class MemberDao {
 	}
 
 	// 탈퇴하기
-	public int updateStatus(Connection conn, int no, String status) {
+	public int updateStatus(Connection conn, int uNo, String status) {
 		PreparedStatement pstmt = null;
 		String query = "UPDATE USERINFO SET STATUS=? WHERE uNO=?";
 		int result = 0;
@@ -71,7 +74,7 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, status); // Y,N (STATUS IN ('Y', 'N'))
-			pstmt.setInt(2, no);
+			pstmt.setInt(2, uNo);
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -101,7 +104,8 @@ public class MemberDao {
 				m.setUname(rs.getString("uname"));
 				m.setUpn(rs.getString("upn"));
 				m.setUadr(rs.getString("uadr"));
-				m.setUphoto(rs.getString("uphoto"));
+				m.setOriginalPhoto(rs.getString("originalPhoto"));
+				m.setRenamedPhoto(rs.getString("renamedPhoto"));
 				m.setIntroduce(rs.getString("introduce"));
 				m.setTwt(rs.getString("twt"));
 				m.setInsta(rs.getString("insta"));
