@@ -36,7 +36,7 @@ public class heritageInfoDetail {
 				urlBuilder.append(CURRENT_HERITAGE_INFO_URL);
 				urlBuilder.append("?" + "pageUnit=" + 100); // 첫 번째만 물음표로 설정
 				urlBuilder.append("&" + "pageIndex=" + j);
-				System.out.println(urlBuilder);
+//				System.out.println(urlBuilder);
 
 				URL url = new URL(urlBuilder.toString());
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -44,7 +44,7 @@ public class heritageInfoDetail {
 				conn.setRequestProperty("Accept", "application/xml");
 
 				int code = conn.getResponseCode(); // 실제 호출하는 부
-				System.out.println("ResponseCode : " + code);
+//				System.out.println("ResponseCode : " + code);
 				if (code < 200 || code >= 300) {
 					System.out.println("페이지가 잘못되었습니다.");
 					return null;
@@ -92,7 +92,7 @@ public class heritageInfoDetail {
 						conn2.setRequestProperty("Accept", "application/xml");
 
 						int code2 = conn2.getResponseCode(); // 실제 호출하는 부
-						System.out.println("ResponseCode2 : " + code2);
+//						System.out.println("ResponseCode2 : " + code2);
 						if (code2 < 200 || code2 >= 300) {
 							System.out.println("페이지가 잘못되었습니다.");
 							return null;
@@ -106,7 +106,7 @@ public class heritageInfoDetail {
 						NodeList nList2 = doc2.getElementsByTagName("item");
 						Node node2 = nList2.item(0);
 						
-						System.out.println("\nCurrent Element2 : " + node.getNodeName());
+//						System.out.println("\nCurrent Element2 : " + node.getNodeName());
 						if (node2.getNodeType() == Node.ELEMENT_NODE) {
 							Element eElement2 = (Element) node2;
 							
@@ -126,7 +126,7 @@ public class heritageInfoDetail {
 									longitude, latitude, gcodeName, bcodeName, mcodeName, scodeName, ccbaQuan, ccbaAsdt, 
 									ccbaLcad, ccceName, ccbaPoss, imageUrl, content);
 							list.add(heritage);
-//							System.out.println(list.toString());
+							System.out.println(list.toString());
 						}
 						
 					}
