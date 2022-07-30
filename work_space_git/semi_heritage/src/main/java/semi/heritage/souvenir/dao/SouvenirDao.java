@@ -111,7 +111,7 @@ public class SouvenirDao {
 
 		try {
 			// uNo번의 회원이 가진 장바구니의 제품명, 제품가격, 제품카테고리 출력 (구매 / 삭제한 품목 제외. 구매/삭제시 STATUS들이 Y로 변경)
-			String sql = "SELECT SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, STATUS "
+			String sql = "SELECT SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY "
 					+ "FROM SOUV_CART WHERE UNO=?  AND BUY_STATUS='N' AND DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + uNo + "%");
@@ -122,11 +122,12 @@ public class SouvenirDao {
 				String SOUV_PRO_NAME = rs.getString(count++);
 				int SOUV_PRO_PRICE = rs.getInt(count++);
 				String SOUV_PRO_CATEGORY = rs.getString(count++);
-				String BUY_STATUS = rs.getString(count++);
-				String DELETE_STATUS = rs.getString(count++);
+//				String BUY_STATUS = rs.getString(count++);
+//				String DELETE_STATUS = rs.getString(count++);
 
-				Souvenir_Cart_VO info = new Souvenir_Cart_VO(uNo, SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY,
-						BUY_STATUS, DELETE_STATUS);
+				Souvenir_Cart_VO info = new Souvenir_Cart_VO(uNo, SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY
+//						,BUY_STATUS, DELETE_STATUS
+						);
 				list.add(info);
 			}
 		} catch (Exception e) {
@@ -168,8 +169,15 @@ public class SouvenirDao {
 		try {
 			// 카트랑 회원정보에서 정보 끌어오기(회원번호 300인사람의 장바구니, 상품 회원정보 끌어오기)
 			// 회원번호, 이름, 주소, 전번, 이메일 / 상품번호, 상품이름, 상품별 각각 가격, 총가격, 배송비포함가격
-			String sql = "SELECT UI.uno,ui.uname,ui.uadr, ui.upn, ui.uemail, sc.souv_pro_no, sc.souv_pro_name, sc.souv_pro_price, SUM(sc.souv_pro_price)OVER() AS \"총가격\", SUM(sc.souv_pro_price)OVER()+3000 AS \"배송비포함\" "
-					+ "FROM SOUV_CART SC, USERINFO UI\r\n" + "WHERE UI.uNo=sc.uno AND sc.uno=?";
+//			String sql = "SELECT UI.uno,ui.uname,ui.uadr, ui.upn, ui.uemail, sc.souv_pro_no, sc.souv_pro_name, sc.souv_pro_price, SUM(sc.souv_pro_price)OVER() AS \"총가격\", SUM(sc.souv_pro_price)OVER()+3000 AS \"배송비포함\" "
+//					+ "FROM SOUV_CART SC, USERINFO UI " 
+//					+ "WHERE UI.uNo=sc.uno AND sc.uno=?";
+			
+			String sql = "SELECT UI.uno, ui.uname, ui.uadr, ui.upn, ui.uemail, "
+					+ "sc.souv_pro_no, sc.souv_pro_name, sc.souv_pro_price, "
+					+ "SUM(sc.souv_pro_price)OVER() AS \"총가격\", SUM(sc.souv_pro_price)OVER()+3000 AS \"배송비포함\" "
+					+ "FROM SOUV_CART SC, USERINFO UI "
+					+ "WHERE UI.uNo=sc.uno AND sc.uno=2 AND sc.BUY_STATUS='N' AND sc.DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + uNo + "%");
 			rs = pstmt.executeQuery();
@@ -207,9 +215,15 @@ public class SouvenirDao {
 
 		try {
 			// 회원번호 uNo번인 사람이 결제완료한 구매 정보
-			// 주문번호, 회원번호, 상품번호, 상품이름, 상품가격, 결제가격(상품총가격+배송비)
-			String sql = "SELECT SOUV_CART_NO||uno AS \"주문번호\", uno, souv_pro_no, souv_pro_name, souv_pro_price, SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  "
-					+ "FROM souv_cart SC\r\n" + "WHERE  status = 'Y' AND uno=? ";
+			// 주문번호, 순번, 상품번호, 상품이름, 상품가격, 결제가격(상품총가격+배송비)
+//			String sql = "SELECT SOUV_CART_NO||uno AS \"주문번호\", uno, souv_pro_no, souv_pro_name, souv_pro_price, SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  "
+//					+ "FROM souv_cart SC\r\n" + "WHERE  status = 'Y' AND uno=? ";
+			
+			String sql = "SELECT SOUV_CART_NO||uno AS \"주문번호\", rownum, souv_pro_no, souv_pro_name, souv_pro_price, "
+					+ "SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  "
+					+ "FROM souv_cart SC\r\n"
+					+ "WHERE BUY_STATUS='Y' AND uno=? ";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + uNo + "%");
 			rs = pstmt.executeQuery();
@@ -221,9 +235,9 @@ public class SouvenirDao {
 				String souv_pro_name = rs.getString(count++);
 				int souv_pro_price = rs.getInt(count++);
 				int bsb_total_price = rs.getInt(count++);
+				int rownum = rs.getInt(count++);
 
-				Souvenir_Buy_VO info = new Souvenir_Buy_VO(orderNum, uNo, souv_pro_no, souv_pro_name, souv_pro_price,
-						bsb_total_price);
+				Souvenir_Buy_VO info = new Souvenir_Buy_VO(orderNum, uNo, souv_pro_no, souv_pro_name, souv_pro_price, bsb_total_price, rownum);
 				list.add(info);
 			}
 		} catch (Exception e) {

@@ -7,6 +7,7 @@ public class Souvenir_Buy_VO {
 	private String souv_pro_name;
 	private int souv_pro_price;
 	private int bsb_total_price;
+	private int rownum;
 
 	public Souvenir_Buy_VO() {
 		super();
@@ -14,7 +15,7 @@ public class Souvenir_Buy_VO {
 	}
 
 	public Souvenir_Buy_VO(int orderNum, int uno, int souv_pro_no, String souv_pro_name, int souv_pro_price,
-			int bsb_total_price) {
+			int bsb_total_price, int rownum) {
 		super();
 		this.orderNum = orderNum;
 		this.uno = uno;
@@ -22,13 +23,14 @@ public class Souvenir_Buy_VO {
 		this.souv_pro_name = souv_pro_name;
 		this.souv_pro_price = souv_pro_price;
 		this.bsb_total_price = bsb_total_price;
+		this.rownum = rownum;
 	}
 
 	@Override
 	public String toString() {
 		return "Souvenir_Buy_VO [orderNum=" + orderNum + ", uno=" + uno + ", souv_pro_no=" + souv_pro_no
 				+ ", souv_pro_name=" + souv_pro_name + ", souv_pro_price=" + souv_pro_price + ", bsb_total_price="
-				+ bsb_total_price + "]";
+				+ bsb_total_price + ", rownum=" + rownum + "]";
 	}
 
 	public int getOrderNum() {
@@ -78,5 +80,15 @@ public class Souvenir_Buy_VO {
 	public void setBsb_total_price(int bsb_total_price) {
 		this.bsb_total_price = bsb_total_price;
 	}
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+
+	
 
 }

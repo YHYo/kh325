@@ -11,7 +11,7 @@ import com.kh.common.util.MyHttpServlet;
 import com.kh.mvc.board.model.service.BoardService;
 import com.kh.mvc.board.model.vo.Board;
 import com.kh.mvc.member.model.vo.Member;
-
+// 안녕 나는 하영이
 //@WebServlet("/board/delete")
 public class BoardDeleteServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
