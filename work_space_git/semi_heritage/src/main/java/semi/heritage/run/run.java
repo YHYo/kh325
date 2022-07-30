@@ -1,10 +1,11 @@
 package semi.heritage.run;
 
+
 import semi.heritage.event.controller.FestivalController;
 import semi.heritage.heritageInfo.controller.heritageController;
-import semi.heritage.palace.controller.Palace_Jongmyo_Sangse_Controller;
-import semi.heritage.palace.controller.Palace_Jongmyo_Sangse_Image_Controller;
-import semi.heritage.palace.controller.Palace_Jongmyo_Sangse_Movie_Controller;
+import semi.heritage.palace.controller.PalaceController;
+import semi.heritage.palace.controller.PalaceImageController;
+import semi.heritage.palace.controller.PalaceMovieController;
 
 public class run {
 
