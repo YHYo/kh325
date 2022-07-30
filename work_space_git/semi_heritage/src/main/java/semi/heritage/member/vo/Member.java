@@ -1,6 +1,7 @@
 package semi.heritage.member.vo;
 
 
+
 public class 
 Member {
 	private int uno;
