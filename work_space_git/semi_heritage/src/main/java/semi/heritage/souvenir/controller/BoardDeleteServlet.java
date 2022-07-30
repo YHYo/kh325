@@ -3,14 +3,14 @@ package semi.heritage.souvenir.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.util.MyHttpServlet;
-import com.kh.mvc.board.model.service.BoardService;
 import com.kh.mvc.board.model.vo.Board;
-import com.kh.mvc.member.model.vo.Member;
+
+import semi.heritage.common.util.MyHttpServlet;
+import semi.heritage.member.vo.Member;
+import semi.heritage.souvenir.service.BoardService;
 
 //@WebServlet("/board/delete")
 public class BoardDeleteServlet extends MyHttpServlet {
