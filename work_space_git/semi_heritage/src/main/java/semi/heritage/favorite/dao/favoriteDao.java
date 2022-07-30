@@ -15,7 +15,6 @@ public class favoriteDao {
 
 	public int insert(Connection conn, int uNo, int no) {
 		
-		
 		// 일반 문화재 찜 추가
 		try {
 			String sql = "INSERT INTO hFavorite VALUES(SEQ_hfavNum.NEXTVAL, ?, ?)";
