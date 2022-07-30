@@ -9,9 +9,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import semi.heritage.common.util.PageInfo;
+
 import semi.heritage.heritageInfo.vo.heritageVO;
 import semi.heritage.heritageInfo.vo.heritageVideo;
+import semi.heritage.favorite.vo.favoriteVO;
 import semi.heritage.heritageInfo.vo.heritageImage;
+import semi.heritage.heritageInfo.vo.heritageMainVO;
 
 
 
@@ -109,6 +113,107 @@ public class heritageDao {
 		return -1;
 	}
 	
+	// 메인 페이지 인기 문화재 명소 출력용 (이미지, 이름, 주소, 찜 개수, 리뷰 개수를 찜 개수가 많은 열개를 순서대로 정렬)
+	public List<heritageMainVO> mainByFavorite(Connection conn) {
+		List<heritageMainVO> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT "
+					+ "ROWNUM, HFV.*, H.ccbaMnm1, H.ccbaCtcdNm, H.ccsiName, H.content, H.IMAGEURL, HR.* "
+					+ "FROM"
+					+ "(SELECT no, COUNT(uno) from hFavorite group by no order by COUNT(uno) desc) HFV, "
+					+ "HERITAGE H, "
+					+ "(SELECT NO, COUNT(revNo) FROM HertiageReview group by no order by COUNT(revNo) desc) HR "
+					+ "WHERE "
+					+ "H.no = HFV.no AND "
+					+ "H.no = HR.no AND "
+					+ "ROWNUM BETWEEN 1 AND 10";
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int count = 1;
+				int rowNum = rs.getInt(count++);
+				int no = rs.getInt(count++);
+				int countHfavorite = rs.getInt(count++);
+				String ccbaMnm1 = rs.getString(count++);
+				String ccbaCtcdNm = rs.getString(count++);
+				String ccsiName = rs.getString(count++);
+				String content = rs.getString(count++);
+				String imageUrl = rs.getString(count++);
+				int rNo = rs.getInt(count++);
+				int countHreview = rs.getInt(count++);
+
+				heritageMainVO mainByFv = new heritageMainVO(rowNum, no, countHfavorite, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, rNo, countHreview);
+				list.add(mainByFv);
+			}
+			System.out.println(list.toString());
+			return list;
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return null;
+	}
+	
+	
+	// 메인페이지에서 이름 키워드로 전체검색시 출력용(이미지, 이름, 주소, 찜 개수를 순번대로 정렬) 
+	public List<heritageMainVO> selectByHeritageName(Connection conn, String ccbaMnm, PageInfo pageInfo) {
+		List<heritageMainVO> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT ROWNUM, SCH.* "
+					+ "FROM "
+					+ "(SELECT H.sn, H.ccbaMnm1, H.ccbaCtcdNm, H.ccsiName, H.content, H.IMAGEURL, HFV.* "
+					+ "FROM "
+					+ "HERITAGE H, "
+					+ "(SELECT no, COUNT(uno) from hFavorite group by no) HFV "
+					+ "WHERE "
+					+ "H.no = HFV.no AND "
+					+ "H.ccbaMnm1 like ? "
+					+ "ORDER BY H.sn) SCH "
+					+ "WHERE "
+					+ "ROWNUM BETWEEN ? AND ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + ccbaMnm + "%");
+			pstmt.setInt(2, pageInfo.getStartList());
+			pstmt.setInt(3, pageInfo.getEndList());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int count = 1;
+				int rowNum = rs.getInt(count++);
+				int sn = rs.getInt(count++);
+				String ccbaMnm1 = rs.getString(count++);
+				String ccbaCtcdNm = rs.getString(count++);
+				String ccsiName = rs.getString(count++);
+				String content = rs.getString(count++);
+				String imageUrl = rs.getString(count++);
+				int no = rs.getInt(count++);
+				int countHfavorite = rs.getInt(count++);
+		
+				heritageMainVO info = new heritageMainVO(rowNum, sn, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, no, countHfavorite);
+				list.add(info);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		System.out.println(list.toString());
+		return list;
+	}
 	
 	
 	public static void main(String[] args) {
