@@ -26,12 +26,13 @@ public class heritageMainFavoriteServlet extends  MyHttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("doget 호출 ");
 		List<heritageMainVO> list = null;
 		
 		
 		
 		list = service.mainByFavorite();
-
+		System.out.println(list);
 		
 		
 		req.setAttribute("list", list);

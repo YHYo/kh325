@@ -9,7 +9,7 @@
    
    <%
    
-   List<heritageMainVO> list = (List<heritageMainVO>)req.getAttribute("list");
+   List<heritageMainVO> list = (List<heritageMainVO>)request.getAttribute("list");
    
    
    %>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="mx-auto px-0" style="margin-bottom: -3%">
                         <!-- 검색 Form-->
-                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%path%>/index" method="get">
+                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/index" method="get">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
                                 <input class="form-control p03" type="text" name="searchValue" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
@@ -63,7 +63,7 @@
                             <div class="position-relative mb-3">
                                 <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
                             </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html"><%= list.get(i).getCcmaName() %></a></h3>
+                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html"><%= list.get(i).getCcbaMnm1() %></a></h3>
                             <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html"><%= list.get(i).getCcbaCtcdNm() + list.get(i).getCcsiName() %></a></h3>
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b><%= list.get(i).getCountHfavorite() %></b></li>
