@@ -6,7 +6,6 @@
     
 <%@include file="/views/common/headerLight.jsp"%>
    
-   
    <%
    
    List<heritageMainVO> list = (List<heritageMainVO>)request.getAttribute("list");
