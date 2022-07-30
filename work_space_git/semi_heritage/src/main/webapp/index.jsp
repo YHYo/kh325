@@ -4,6 +4,8 @@
     
 <%@include file="/views/common/headerLight.jsp"%>
    
+   
+   
  <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-5 image-bg-cover"></span>
             <div class="jarallax-img container image-bg-cover" style="background-image: url(<%=path%>/resources/img/semi-img/mainPic2.jpg);"></div>
             <div class="content-overlay container ">
