@@ -18,6 +18,7 @@ import semi.heritage.heritageInfo.vo.heritageImage;
 import semi.heritage.heritageInfo.vo.heritageMainVO;
 
 나임아 열심히해라 
+서울에 오지마라 !
 
 
 public class heritageDao {
