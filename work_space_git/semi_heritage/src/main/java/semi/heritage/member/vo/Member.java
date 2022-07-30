@@ -1,8 +1,8 @@
 package semi.heritage.member.vo;
 
 
-
-public class Member {
+public class 
+Member {
 	private int uno;
 	private String uemail;
 	private String upw;
