@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<% String path = request.getContextPath(); %>    
+ 
     
 <!DOCTYPE html>
 <html lang="en">
@@ -15,9 +16,9 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%=path %>/resources/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%=path %>/resources/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%=path %>/resources/icon/favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
@@ -110,9 +111,9 @@
         })();
     </script>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="/resource/vendor/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="<%=path %>/resources/vendor/simplebar/dist/simplebar.min.css" />
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="/resource/css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="<%=path %>/resources/css/theme.min.css">
 </head>
 <!-- Body-->
 
@@ -133,8 +134,8 @@
                             <p style="color: grey; font-size: 20px; margin-top: 3%;">다시 만나 반가워요 :)</p>
                         </h2>
 
-                        <img class="d-block mx-auto" src="img/naim/00.signin.main.png" width="344" alt="Illustartion">
-                        <div class="mt-4 mt-sm-5">계정이 없으신가요? <a href="00.signup.html" style="color: #8957BD;"><b>회원가입</b></a></div>
+                        <img class="d-block mx-auto" src="<%=path %>/resources/img/naim/00.signin.main.png" width="344" alt="Illustartion">
+                        <div class="mt-4 mt-sm-5">계정이 없으신가요? <a href="00.signUp.jsp" style="color: #8957BD;"><b>회원가입</b></a></div>
                     </div>
                     <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
                         <div class="d-flex align-items-center py-3 mb-3">
@@ -142,7 +143,7 @@
                             <div class="px-3">Or</div>
                             <hr class="w-100">
                         </div>
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" novalidate id="loginFrm" action="<%=path%>/login" method="post">
                             <div class="mb-4">
                                 <label class="form-label mb-2" for="signin-email">이메일</label>
                                 <input class="form-control" type="email" id="signin-email" name="userId" placeholder="이메일" required>
@@ -167,11 +168,11 @@
     </main>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="<%=path %>/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%=path %>/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="<%=path %>/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script src="<%=path %>/resources/js/theme.min.js"></script>
 </body>
 
 </html>

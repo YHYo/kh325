@@ -1,5 +1,11 @@
+<%@page import="semi.heritage.souvenir.vo.Souvenir_Cart_VO;"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% 
+String path = request.getContextPath();
+Souvenir_Cart_VO scv = (Souvenir_Cart_VO)request.getAttribute("scv");
+%>
 
 
 <!DOCTYPE html>
@@ -15,9 +21,9 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%=path %>/resources/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%=path %>/resources/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%=path %>/resources/icon/favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
@@ -110,9 +116,9 @@
         })();
     </script>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/resources/vendor/simplebar/dist/simplebar.min.css" />
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/resources/css/theme.min.css">
 </head>
 <!-- Body-->
 
@@ -127,12 +133,12 @@
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
             <div class="container">
-                <a class="navbar-brand me-3 me-xl-4" href="real-estate-home-v1.html"><img class="d-block" src="img/logo/logo-dark.svg" width="116" alt="Finder"></a>
+                <a class="navbar-brand me-3 me-xl-4" href="real-estate-home-v1.html"><img class="d-block" src="<%=path %>/resources/img/logo/logo-dark.svg" width="116" alt="Finder"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="dropdown d-none d-lg-block order-lg-3 my-n2 me-3">
-                    <a class="d-block py-2" href="real-estate-account-info.html"><img class="rounded-circle" src="img/naim/01.info.default.photo.png" width="40" alt="Annette Black"></a>
+                    <a class="d-block py-2" href="real-estate-account-info.html"><img class="rounded-circle" src="<%=path %>/resources/img/naim/01.info.default.photo.png" width="40" alt="Annette Black"></a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="img/avatars/03.jpg" width="48" alt="Annette Black">
+                        <div class="d-flex align-items-start border-bottom px-3 py-1 mb-2" style="width: 16rem;"><img class="rounded-circle" src="<%=path %>/resources/img/avatars/03.jpg" width="48" alt="Annette Black">
                             <div class="ps-2">
                                 <h6 class="fs-base mb-0">Annette Black</h6>
                                 <span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
@@ -215,7 +221,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown d-lg-none">
-                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="img/avatars/30.jpg" width="30" alt="Annette Black">Annette Black</a>
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img class="rounded-circle me-2" src="<%=path %>/resources/img/avatars/30.jpg" width="30" alt="Annette Black">Annette Black</a>
                             <div class="dropdown-menu">
                                 <div class="ps-3"><span class="star-rating star-rating-sm"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
                                     <div class="fs-xs py-2">(302) 555-0107<br>annette_black@email.com</div>
@@ -246,7 +252,7 @@
                 <aside class="col-lg-4 col-md-5 pe-xl-4 mb-5">
                     <!-- 프로필 & 카테고리 시작 -->
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="img/naim/01.info.default.photo.png" width="48" alt="Annette Black">
+                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/naim/01.info.default.photo.png" width="48" alt="Annette Black">
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                                 <h2 class="fs-lg mb-0">Annette Black</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
@@ -276,7 +282,7 @@
                 <!-- Content-->
                 <div class="col-lg-8 col-md-7 mb-5">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h1 class="h2 mb-0">장바구니</h1><a class="fw-bold text-decoration-none" href="#" style="color: #8957BD;"><i class="fi-trash mt-n1 me-2"></i>전체 비우기</a>
+                        <h1 class="h2 mb-0">장바구니</h1><a class="fw-bold text-decoration-none" href="#" onclick="allDelete" style="color: #8957BD;"><i class="fi-trash mt-n1 me-2"></i>전체 비우기</a>
                     </div>
                     <p class="pt-1 mb-4">사뿐몰에서 담은 상품들을 확인 해보세요</p>
                     <!-- Nav tabs-->
@@ -287,7 +293,7 @@
                     </ul> -->
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(img/naim/02.cart.product1.png);">
+                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/naim/02.cart.product1.png);">
                             <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div> -->
                         </a>
                         <div class="card-body position-relative pb-3">
@@ -320,9 +326,11 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!--  
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(img/naim/02.cart.product2.png);">
+                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/naim/02.cart.product2.png);">
                             <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success">Verified</span></div> -->
                         </a>
                         <div class="card-body position-relative pb-3">
@@ -356,7 +364,7 @@
                     </div>
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm">
-                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(img/naim/02.cart.product3.png);">
+                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/naim/02.cart.product3.png);">
                             <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-success">Verified</span></div> -->
                         </a>
                         <div class="card-body position-relative pb-3">
@@ -388,6 +396,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
@@ -400,7 +409,7 @@
                 <div class="col-lg-6 mb-lg-0 mb-4">
                     <div class="d-flex flex-sm-row flex-column justify-content-between mx-n2">
                         <div class="mb-sm-0 mb-4 px-2">
-                            <a class="d-inline-block mb-4" href="real-estate-home-v1.html"><img src="img/logo/logo-dark.svg" width="116" alt="logo"></a>
+                            <a class="d-inline-block mb-4" href="real-estate-home-v1.html"><img src="<%=path %>/resources/img/logo/logo-dark.svg" width="116" alt="logo"></a>
                             <ul class="nav flex-column mb-sm-4 mb-2">
                                 <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="mailto:example@email.com"><i class="fi-mail mt-n1 me-2 align-middle opacity-70"></i>example@email.com</a></li>
                                 <li class="nav-item"><a class="nav-link p-0 fw-normal" href="tel:4065550120"><i class="fi-device-mobile mt-n1 me-2 align-middle opacity-70"></i>(406) 555-0120</a></li>
@@ -434,7 +443,7 @@
                 <div class="col-xl-5 col-lg-6 offset-xl-1">
                     <h4 class="h5">Recent Posts</h4>
                     <article class="d-flex align-items-start" style="max-width: 640px;">
-                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="img/real-estate/blog/th01.jpg" width="100" alt="Blog post"></a>
+                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="<%=path %>/resources/img/real-estate/blog/th01.jpg" width="100" alt="Blog post"></a>
                         <div>
                             <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Home improvement</h6>
                             <h5 class="mb-2 fs-base"><a class="nav-link" href="real-estate-blog-single.html">Your Guide to a Smart Apartment Searching</a></h5>
@@ -444,7 +453,7 @@
                     </article>
                     <hr class="text-dark opacity-10 my-4">
                     <article class="d-flex align-items-start" style="max-width: 640px;">
-                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="img/real-estate/blog/th02.jpg" width="100" alt="Blog post"></a>
+                        <a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="<%=path %>/resources/img/real-estate/blog/th02.jpg" width="100" alt="Blog post"></a>
                         <div>
                             <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Tips &amp; advice</h6>
                             <h5 class="mb-2 fs-base"><a class="nav-link" href="real-estate-blog-single.html">Top 10 Ways to Refresh Your Space</a></h5>
@@ -456,7 +465,7 @@
             </div>
             <!-- Banner-->
             <div class="bg-dark rounded-3">
-                <div class="col-xxl-10 col-md-11 col-10 d-flex flex-md-row flex-column-reverse align-items-md-end align-items-center mx-auto px-0"><img class="flex-shrink-0 mt-md-n5 me-md-5" src="img/real-estate/illustrations/mobile.svg" width="240" alt="Finder mobile app">
+                <div class="col-xxl-10 col-md-11 col-10 d-flex flex-md-row flex-column-reverse align-items-md-end align-items-center mx-auto px-0"><img class="flex-shrink-0 mt-md-n5 me-md-5" src="<%=path %>/resources/img/real-estate/illustrations/mobile.svg" width="240" alt="Finder mobile app">
                     <div class="align-self-center d-flex flex-lg-row flex-column align-items-lg-center pt-md-3 pt-5 ps-xxl-4 text-md-start text-center">
                         <div class="me-md-5">
                             <h4 class="text-light">Download Our App</h4>
@@ -475,11 +484,23 @@
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="<%=path %>/resources/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%=path %>/resources/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="<%=path %>/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script src="<%=path %>/resources/js/theme.min.js"></script>
+    
+    <!-- 
+    <script type="text/javascript">
+    $(document).ready(() => {
+		$("#btnDelete").on("click", (e) => {
+				location.replace("<%= request.getContextPath() %>/cart/delete?cartUNo=<%= Souvenir_Cart_VO.getuNo()%>&cart_souv_pro_name=<%=Souvenir_Cart_VO.getSOUV_PRO_NAME() %>");
+		});
+		
+	});
+    </script>
+     -->
+    
 </body>
 
 </html>
