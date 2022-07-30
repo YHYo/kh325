@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-// 하영 테슷뜨~~
+
 
 	 <!-- Footer-->
     <footer class="footer pt-lg-5 pt-4 bg-secondary">
