@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import semi.heritage.member.service.MemberService;
 import semi.heritage.member.vo.Member;
 
-@WebServlet(name="login", urlPatterns = "/login")
+//@WebServlet(name="login", urlPatterns = "/login")
 public class MemberSignInServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 

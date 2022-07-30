@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.common.util.MyHttpServlet;
 import com.kh.mvc.board.model.service.BoardService;
 
-@WebServlet("/board/replydel")
+//@WebServlet("/board/replydel")
 public class BoardReplyDeleteServlet extends MyHttpServlet{
 	private static final long serialVersionUID = 1L;
 

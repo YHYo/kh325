@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.member.service.MemberService;
 
-@WebServlet("/member/checkId")
+//@WebServlet("/member/checkId")
 public class MemberCheckIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

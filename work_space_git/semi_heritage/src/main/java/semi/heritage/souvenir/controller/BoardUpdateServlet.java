@@ -16,7 +16,7 @@ import com.kh.mvc.member.model.vo.Member;
 import com.oreilly.servlet.MultipartRequest;
 
 
-@WebServlet("/board/update")
+//@WebServlet("/board/update")
 public class BoardUpdateServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 

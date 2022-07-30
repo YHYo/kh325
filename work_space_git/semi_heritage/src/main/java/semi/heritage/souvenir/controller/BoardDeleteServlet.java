@@ -12,7 +12,7 @@ import com.kh.mvc.board.model.service.BoardService;
 import com.kh.mvc.board.model.vo.Board;
 import com.kh.mvc.member.model.vo.Member;
 
-@WebServlet("/board/delete")
+//@WebServlet("/board/delete")
 public class BoardDeleteServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 	

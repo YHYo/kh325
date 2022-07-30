@@ -18,7 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
  * 파일 첨부 없이 일반적인 게시글 등록 용도
  */
 
-@WebServlet("/board/write")
+//@WebServlet("/board/write")
 public class BoardWriteServlet extends MyHttpServlet{
 	private static final long serialVersionUID = 1L;
 	private BoardService service = new BoardService();

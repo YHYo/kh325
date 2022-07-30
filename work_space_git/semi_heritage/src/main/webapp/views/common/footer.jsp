@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 	 <!-- Footer-->
     <footer class="footer pt-lg-5 pt-4 bg-secondary">
         <div class="container mb-4 py-4 pb-lg-5 ">

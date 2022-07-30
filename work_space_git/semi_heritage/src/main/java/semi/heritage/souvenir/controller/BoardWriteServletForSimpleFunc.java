@@ -16,7 +16,7 @@ import com.kh.mvc.member.model.vo.Member;
  * 파일 첨부 없이 일반적인 게시글 등록 용도
  */
 
-@WebServlet("/board/write2")
+//@WebServlet("/board/write2")
 public class BoardWriteServletForSimpleFunc extends MyHttpServlet{
 	private static final long serialVersionUID = 1L;
 

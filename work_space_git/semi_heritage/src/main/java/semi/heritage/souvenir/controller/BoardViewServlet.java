@@ -12,7 +12,7 @@ import com.kh.mvc.board.model.service.BoardService;
 import com.kh.mvc.board.model.vo.Board;
 
 
-@WebServlet("/board/view")
+//@WebServlet("/board/view")
 public class BoardViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

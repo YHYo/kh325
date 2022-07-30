@@ -11,7 +11,7 @@ import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.member.service.MemberService;
 import semi.heritage.member.vo.Member;
 
-@WebServlet("/member/delete")
+//@WebServlet("/member/delete")
 public class MemberDeleteServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 

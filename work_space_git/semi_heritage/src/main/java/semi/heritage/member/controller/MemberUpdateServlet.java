@@ -14,7 +14,7 @@ import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.member.service.MemberService;
 import semi.heritage.member.vo.Member;
 
-@WebServlet("/member/update")
+//@WebServlet("/member/update")
 public class MemberUpdateServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 

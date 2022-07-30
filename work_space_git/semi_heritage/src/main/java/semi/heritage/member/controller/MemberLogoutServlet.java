@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * 로그아웃 기능 : 세션을 없애고 초기화 하는 과정
  */
-@WebServlet(name="logout", urlPatterns = "/logout")
+//@WebServlet(name="logout", urlPatterns = "/logout")
 public class MemberLogoutServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 

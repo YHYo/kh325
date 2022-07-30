@@ -15,7 +15,7 @@ import com.kh.common.util.PageInfo;
 import com.kh.mvc.board.model.service.BoardService;
 import com.kh.mvc.board.model.vo.Board;
 
-@WebServlet("/board/list")
+//@WebServlet("/board/list")
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

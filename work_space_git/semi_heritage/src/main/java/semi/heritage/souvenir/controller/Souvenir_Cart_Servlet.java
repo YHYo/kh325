@@ -20,7 +20,7 @@ import semi.heritage.souvenir.vo.Souvenir_Cart_VO;
 
 
 
-	@WebServlet("/board/list")
+//	@WebServlet("/board/list")
 	public class Souvenir_Cart_Servlet extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 
