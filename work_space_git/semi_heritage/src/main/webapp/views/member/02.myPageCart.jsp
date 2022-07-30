@@ -282,7 +282,7 @@ Souvenir_Cart_VO scv = (Souvenir_Cart_VO)request.getAttribute("scv");
                 <!-- Content-->
                 <div class="col-lg-8 col-md-7 mb-5">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h1 class="h2 mb-0">장바구니</h1><a class="fw-bold text-decoration-none" href="#" onclick="allDelete" style="color: #8957BD;"><i class="fi-trash mt-n1 me-2"></i>전체 비우기</a>
+                        <h1 class="h2 mb-0">장바구니</h1><a class="fw-bold text-decoration-none" href="#"  style="color: #8957BD;"><i class="fi-trash mt-n1 me-2"></i>전체 비우기</a>
                     </div>
                     <p class="pt-1 mb-4">사뿐몰에서 담은 상품들을 확인 해보세요</p>
                     <!-- Nav tabs-->
@@ -494,7 +494,7 @@ Souvenir_Cart_VO scv = (Souvenir_Cart_VO)request.getAttribute("scv");
     <script type="text/javascript">
     $(document).ready(() => {
 		$("#btnDelete").on("click", (e) => {
-				location.replace("<%= request.getContextPath() %>/cart/delete?cartUNo=<%= Souvenir_Cart_VO.getuNo()%>&cart_souv_pro_name=<%=Souvenir_Cart_VO.getSOUV_PRO_NAME() %>");
+				location.replace("<%= request.getContextPath() %>/cart/delete?cartUNo=<%= //Souvenir_Cart_VO.getuNo()%>&cart_souv_pro_name=<%=//Souvenir_Cart_VO.getSOUV_PRO_NAME() %>");
 		});
 		
 	});

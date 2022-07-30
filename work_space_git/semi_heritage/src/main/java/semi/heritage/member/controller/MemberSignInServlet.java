@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import semi.heritage.member.service.MemberService;
 import semi.heritage.member.vo.Member;
 
-//@WebServlet(name="login", urlPatterns = "/login")
+@WebServlet(name="login", urlPatterns = "/login")
 public class MemberSignInServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -38,12 +38,12 @@ public class MemberSignInServlet extends HttpServlet{
 			// 세션에 로그인 결과를 남기고, 브라우저가 종료 될때까지 로그인 상태를 유지
 			HttpSession session = req.getSession();
 			session.setAttribute("loginMember", loginMember); // 로그인 정보를 세션에 저장
-			resp.sendRedirect(req.getContextPath() + "/"); // 처음 페이지로 리다이렉트 시킴
+			resp.sendRedirect(req.getContextPath() + "/index.jsp"); // 처음 페이지로 리다이렉트 시킴
 			// 이래야 기존 로그인폼을 로그인 성공 폼으로 변경 시킴
 		}else{ // 로그인 실패한 경우
 			// 로그인이 실패하면, 실패 결과를 알려주고 시작페이지로 이동한다.
 			req.setAttribute("msg", "사용자 아이디나 비밀번호가 맞지 않습니다!!");
-			req.setAttribute("location", "/");
+			req.setAttribute("location", "/views/member/00.signIn.jsp");
 			
 			// 공통페이지로 이동하여 실패 결과 알리고 처음페이지로 돌아가는 코드
 			// 메세지를 넘겨야함으로 forward로 넘겨야함

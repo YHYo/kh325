@@ -89,7 +89,7 @@ public class MemberDao {
 	public Member findMemberById(Connection conn, String uemail) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * FROM USERINFO WHERE uemail=? AND STATUS='Y'";
+		String query = " SELECT * FROM USERINFO WHERE uemail=? AND STATUS='Y' ";
 
 		try {
 			pstmt = conn.prepareStatement(query); // 기본 쿼리 셋팅
@@ -98,19 +98,19 @@ public class MemberDao {
 
 			if (rs.next()) { // 결과가 있는 경우
 				Member m = new Member();
-				m.setUno(rs.getInt("uno"));
-				m.setUemail(rs.getString("uemail"));
-				m.setUpw(rs.getString("upw"));
-				m.setUname(rs.getString("uname"));
-				m.setUpn(rs.getString("upn"));
-				m.setUadr(rs.getString("uadr"));
-				m.setOriginalPhoto(rs.getString("originalPhoto"));
-				m.setRenamedPhoto(rs.getString("renamedPhoto"));
+				m.setUno(rs.getInt("uNo"));
+				m.setUemail(rs.getString("uEmail"));
+				m.setUpw(rs.getString("uPW"));
+				m.setUname(rs.getString("uName"));
+				m.setUpn(rs.getString("uPN"));
+				m.setUadr(rs.getString("uAdr"));
+				m.setOriginalPhoto(rs.getString("ORIGINAL_PHOTO"));
+				m.setRenamedPhoto(rs.getString("RENAMED_PHOTO"));
 				m.setIntroduce(rs.getString("introduce"));
 				m.setTwt(rs.getString("twt"));
 				m.setInsta(rs.getString("insta"));
 				m.setFacebook(rs.getString("facebook"));
-				m.setStatus(rs.getString("status"));
+				m.setStatus(rs.getString("STATUS"));
 
 				return m;
 			}
