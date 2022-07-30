@@ -17,6 +17,7 @@ import semi.heritage.favorite.vo.favoriteVO;
 import semi.heritage.heritageInfo.vo.heritageImage;
 import semi.heritage.heritageInfo.vo.heritageMainVO;
 
+나임아 열심히해라 
 
 
 public class heritageDao {
