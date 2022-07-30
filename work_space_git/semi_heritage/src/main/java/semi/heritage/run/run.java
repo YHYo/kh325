@@ -7,7 +7,6 @@ import semi.heritage.palace.controller.PalaceController;
 import semi.heritage.palace.controller.PalaceImageController;
 import semi.heritage.palace.controller.PalaceMovieController;
 
-
 public class run {
 
 		public static void main(String[] args) {
