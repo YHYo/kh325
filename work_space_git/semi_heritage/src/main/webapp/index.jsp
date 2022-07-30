@@ -1,9 +1,17 @@
+<%@page import="semi.heritage.heritageInfo.vo.heritageMainVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     
 <%@include file="/views/common/headerLight.jsp"%>
    
+   <%
+   
+   List<heritageMainVO> list = (List<heritageMainVO>)request.getAttribute("list");
+   
+   
+   %>
    
    
  <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-5 image-bg-cover"></span>
@@ -13,22 +21,24 @@
                     <div class="mb-sm-5 mb-4 px-0 text-left pt-1 p02">
                         <br><br><br><br><br><br><br><br><br><br><br><br><br>
                         <b>
-                        <h1 class="display-3 text-light mt-sm-5"><b>한 걸음씩  <span style="color: #ffc000;">사뿐사뿐</span></span> 다가가는
-        </h1>
-        <h1 class="display-1 text-white text-left "><span class="p01" style="color: #ffc000;">역사이야기</span></h1>
-        </b>
+                        <h1> class="display-3 text-light mt-sm-5"><b>한 걸음씩  <span style="color: #ffc000;">사뿐사뿐</span> 다가가는
+        				</h1>
+        				<h1> class="display-1 text-white text-left "><span class="p01" style="color: #ffc000;">역사이야기</span></h1>
+        				</b>
                     </div>
                     <div class="mx-auto px-0" style="margin-bottom: -3%">
-                        <!-- Search form-->
-                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01">
+                        <!-- 검색 Form-->
+                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/index" method="get">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
-                                <input class="form-control p03" type="text" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
+                                <input class="form-control p03" type="text" name="searchValue" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
                             <hr class="d-md-none my-2">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-10" style="background-color: #D97793; font-size: 22px;" type="button">&nbsp;&nbsp;검&nbsp;&nbsp;색&nbsp;&nbsp;</button>&nbsp;
                         </form>
                     </div>
+              </div>
+           </div>
                     <br><br><br><br>
         </section>
         <!-- Categories-->
@@ -46,91 +56,23 @@
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 5, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4},&quot;992&quot;:{&quot;items&quot;:5}}}">
-                    <!-- 문화재 1-->
+                    <% for (int i = 0; i < list.size(); i++){ %>
                     <div>
                         <div class="position-relative">
                             <div class="position-relative mb-3">
                                 <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
                             </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">문화재1</a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">경북 경주시 동작구 흑석동</a></h3>
+                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html"><%= list.get(i).getCcbaMnm1() %></a></h3>
+                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html"><%= list.get(i).getCcbaCtcdNm() + list.get(i).getCcsiName() %></a></h3>
                             <ul class="list-inline mb-0">
-                                <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>48</b></li>
-                                <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i>22</li>
+                                <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b><%= list.get(i).getCountHfavorite() %></b></li>
+                                <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i><%= list.get(i).getCountHreview() %></li>
                             </ul>
                         </div>
                     </div>
-                    <!-- 문화재 2-->
-                    <div>
-                        <div class="position-relative">
-                            <div class="position-relative mb-3">
-                                <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
-                            </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">문화재2</a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">경북 경주시 동작구 흑석동</a></h3>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>48</b></li>
-                                <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i>552</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- 문화재 3-->
-                    <div>
-                        <div class="position-relative">
-                            <div class="position-relative mb-3">
-                                <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
-                            </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">문화재3</a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">경북 경주시 동작구 흑석동</a></h3>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>48</b></li>
-                                <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i>453</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- 문화재 4-->
-                    <div>
-                        <div class="position-relative">
-                            <div class="position-relative mb-3">
-                                <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
-                            </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">문화재4</a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">경북 경주시 동작구 흑석동</a></h3>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>48</b></li>
-                                <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i>156</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- 문화재 5-->
-                    <div>
-                        <div class="position-relative">
-                            <div class="position-relative mb-3">
-                                <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
-                            </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">문화재5</a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">경북 경주시 동작구 흑석동</a></h3>
-                            <ul class="list-inline mb-md-0">
-                                <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>48</b></li>
-                                <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i>156</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- 문화재 6-->
-                    <div>
-                        <div class="position-relative">
-                            <div class="position-relative mb-3">
-                                <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
-                            </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html">문화재6</a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html">경북 경주시 동작구 흑석동</a></h3>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b>48</b></li>
-                                <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i>156</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                        <%} %>
+              </div>
+            </div>          
         </section>
         <!-- 문화재 명소 끝 -->
         <!-- 행사일정, 커뮤니티 시작 -->
