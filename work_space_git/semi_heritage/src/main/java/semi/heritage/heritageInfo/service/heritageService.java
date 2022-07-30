@@ -5,8 +5,10 @@ import java.util.List;
 
 
 import semi.heritage.heritageInfo.vo.heritageImage;
+import semi.heritage.heritageInfo.vo.heritageMainVO;
 import semi.heritage.heritageInfo.vo.heritageVO;
 import semi.heritage.heritageInfo.vo.heritageVideo;
+import semi.heritage.common.util.PageInfo;
 import semi.heritage.heritageInfo.dao.heritageDao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
@@ -70,5 +72,15 @@ public class heritageService {
 			}
 			close(conn2);
 			return result;
+		}
+		
+		// 메인 인기문화명소
+		public List<heritageMainVO> mainByFavorite() {
+			return dao.mainByFavorite(conn);
+		}
+		
+		// 메인 검색
+		public List<heritageMainVO> selectByHeritageName(String ccbaMnm, PageInfo pageInfo) {
+			return dao.selectByHeritageName(conn, ccbaMnm, pageInfo);
 		}
 }
