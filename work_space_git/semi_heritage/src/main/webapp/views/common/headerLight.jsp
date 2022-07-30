@@ -179,13 +179,14 @@ String saveId = "";
         })();
     </script>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="<%=path%>/vendor/simplebar/dist/simplebar.min.css" />
-    <link rel="stylesheet" media="screen" href="<%=path%>/vendor/tiny-slider/dist/tiny-slider.css" />
-    <link rel="stylesheet" media="screen" href="<%=path%>/vendor/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/tiny-slider/dist/tiny-slider.css" />
+    <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/flatpickr/dist/flatpickr.min.css" />
+    
     <!-- Main Theme Styles + Bootstrap-->
    <!--  <link rel="stylesheet" media="screen" href="css/theme.min.css"> -->
-<%--     <link rel="stylesheet" href="<%=path%>/resources/css/theme.min.css" > --%>
-    <link rel="stylesheet" href="<%=path%>/resources/css/theme.css">
+   <link rel="stylesheet" href="<%=path%>/resources/css/theme.min.css" >
+   <%--  <link rel="stylesheet" href="<%=path%>/resources/css/theme.css"> --%>
 </head>
 <!-- Body-->
 
@@ -201,7 +202,7 @@ String saveId = "";
         <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
             <div class="container ">
                 <!--container-fluid 이거 내가 지웠음-->
-                <a class="navbar-brand me-3 me-xl-4" href="real-estate-home-v1.html"><img class="d-block" src="<%=path%>/resources/images/logo_spsp_1.png" width="110" alt="spsp"></a>
+                <a class="navbar-brand me-3 me-xl-4" href="real-estate-home-v1.html"><img class="d-block" src="<%=path%>/resources/img/semi-img/logo_spsp_1.png" width="110" alt="spsp"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <a class="btn btn-sm  d-none d-lg-block order-lg-3 p05" href="#signin-modal" data-bs-toggle="modal" style="font-size: 22px; color: #D97793;"><i class="fi-user me-2"></i>로그인</a>
                 <a class="btn btn-primary rounded-pill ms-2 order-lg-3 p05" href="job-board-post-resume-1.html" style="background-color: #D97793; font-size: 22px;">About Us</a>

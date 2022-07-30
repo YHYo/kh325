@@ -8,11 +8,11 @@
             <div class="row gy-4 ">
                 <div class="col-lg-3 col-md-6 col-sm-4 ">
                     <div class="mb-4">
-                        <a class="d-inline-block " href="city-guide-home-v1.html "><img src="<%=path%>/resources/images/logo_spsp_1.png" width="116 " alt="Logo "></a>
+                        <a class="d-inline-block " href="city-guide-home-v1.html "><img src="<%=path%>/resources/img/semi-img/logo_spsp_1.png" width="116 " alt="Logo "></a>
                     </div>
                     <ul class="nav nav-light flex-column ">
                         <li class="nav-item mb-2 ">
-                            <a class="d-inline-block "><img src="<%=path%>/resources/images/whoWeAre.png" width="1000px;" alt="Logo "></a>
+                            <a class="d-inline-block "><img src="<%=path%>/resources/img/semi-img/whoWeAre.png" width="1000px;" alt="Logo "></a>
                         </li>
                     </ul>
                 </div>
@@ -102,6 +102,8 @@
     <script src="<%=path%>/resources/vendor/tiny-slider/dist/min/tiny-slider.js "></script>
     <script src="<%=path%>/resources/vendor/flatpickr/dist/flatpickr.min.js "></script>
     <script src="<%=path%>/resources/vendor/jarallax/dist/jarallax.min.js "></script>
+    <script src="<%=path%>/resources/vendor/nouislider/dist/nouislider.min.js"></script>
+    <script src="<%=path%>/resources/vendor/leaflet/dist/leaflet.js"></script>
     <!-- Main theme script-->
     <script src="<%=path%>/resources/js/jquery-3.6.0.min.js"></script>
     <script src="<%=path%>/resources/js/theme.min.js"></script>
