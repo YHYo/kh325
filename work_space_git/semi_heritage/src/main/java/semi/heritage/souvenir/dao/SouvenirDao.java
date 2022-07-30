@@ -9,17 +9,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import semi.heritage.souvenir.vo.Souvenir_Buy_VO;
+import semi.heritage.souvenir.vo.SouvenirBuyVO;
 import semi.heritage.souvenir.vo.Souvenir_Cart_VO;
-import semi.heritage.souvenir.vo.Souvenir_Pay_VO;
-import semi.heritage.souvenir.vo.Souvenir_Product_VO;
+import semi.heritage.souvenir.vo.SouvenirPayVO;
+import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 public class SouvenirDao {
 
 	// 상품 정보
 	// 전체 출력
-	public List<Souvenir_Product_VO> selectProductAll(Connection conn) {
-		List<Souvenir_Product_VO> list = new ArrayList<>();
+	public List<SouvenirProductVO> selectProductAll(Connection conn) {
+		List<SouvenirProductVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -36,7 +36,7 @@ public class SouvenirDao {
 				int souv_pro_price = rs.getInt(count++);
 				String souv_pro_category = rs.getString(count++);
 
-				Souvenir_Product_VO info = new Souvenir_Product_VO(souv_pro_no, souv_pro_name, souv_pro_price,
+				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
 						souv_pro_category);
 				list.add(info);
 			}
@@ -50,8 +50,8 @@ public class SouvenirDao {
 	}
 
 	// 카테고리 클릭시 클릭한 버튼의 매개변수값을 받아와 넣어준다
-	public List<Souvenir_Product_VO> selectByCategory(Connection conn, String souv_pro_category) {
-		List<Souvenir_Product_VO> list = new ArrayList<>();
+	public List<SouvenirProductVO> selectByCategory(Connection conn, String souv_pro_category) {
+		List<SouvenirProductVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -67,7 +67,7 @@ public class SouvenirDao {
 				String souv_pro_name = rs.getString(count++);
 				int souv_pro_price = rs.getInt(count++);
 
-				Souvenir_Product_VO info = new Souvenir_Product_VO(souv_pro_no, souv_pro_name, souv_pro_price,
+				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
 						souv_pro_category);
 				list.add(info);
 			}
@@ -103,7 +103,7 @@ public class SouvenirDao {
 		return result;
 	}
 
-	// 장바구니 검색
+	// 장바구니 출력
 	public List<Souvenir_Cart_VO> selectCartByUNO(Connection conn, int uNo) {
 		List<Souvenir_Cart_VO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -161,8 +161,8 @@ public class SouvenirDao {
 	}
 
 	// 결제정보 출력
-	public List<Souvenir_Pay_VO> selectPayByUNO(Connection conn, int uNo) {
-		List<Souvenir_Pay_VO> list = new ArrayList<>();
+	public List<SouvenirPayVO> selectPayByUNO(Connection conn, int uNo) {
+		List<SouvenirPayVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -194,7 +194,7 @@ public class SouvenirDao {
 				int total_price = rs.getInt(count++);
 				int bsb_total_price = rs.getInt(count++);
 
-				Souvenir_Pay_VO info = new Souvenir_Pay_VO(uNo, uname, uadr, upn, uemail, souv_pro_no, souv_pro_name,
+				SouvenirPayVO info = new SouvenirPayVO(uNo, uname, uadr, upn, uemail, souv_pro_no, souv_pro_name,
 						souv_pro_price, total_price, bsb_total_price);
 				list.add(info);
 			}
@@ -208,8 +208,8 @@ public class SouvenirDao {
 	}
 
 	// 구매정보(결제 후 구매 이력 출력)
-	public List<Souvenir_Buy_VO> selectBuyByUNO(Connection conn, int uNo) {
-		List<Souvenir_Buy_VO> list = new ArrayList<>();
+	public List<SouvenirBuyVO> selectBuyByUNO(Connection conn, int uNo) {
+		List<SouvenirBuyVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -237,7 +237,7 @@ public class SouvenirDao {
 				int bsb_total_price = rs.getInt(count++);
 				int rownum = rs.getInt(count++);
 
-				Souvenir_Buy_VO info = new Souvenir_Buy_VO(orderNum, uNo, souv_pro_no, souv_pro_name, souv_pro_price, bsb_total_price, rownum);
+				SouvenirBuyVO info = new SouvenirBuyVO(orderNum, uNo, souv_pro_no, souv_pro_name, souv_pro_price, bsb_total_price, rownum);
 				list.add(info);
 			}
 		} catch (Exception e) {
