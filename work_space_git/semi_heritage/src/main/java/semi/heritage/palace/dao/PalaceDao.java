@@ -10,6 +10,7 @@ import java.util.List;
 
 import semi.heritage.palace.vo.Palace;
 
+
 public class PalaceDao {
 
 	// result

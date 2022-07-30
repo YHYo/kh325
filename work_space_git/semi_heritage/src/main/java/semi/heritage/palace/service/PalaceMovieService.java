@@ -9,6 +9,7 @@ import semi.heritage.palace.dao.PalaceMovieDao;
 import semi.heritage.palace.vo.PalaceMovie;
 
 
+
 public class PalaceMovieService {
 	private PalaceMovieDao pjsm_dao = new PalaceMovieDao();
 	private Connection conn = null;

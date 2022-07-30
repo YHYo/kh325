@@ -10,7 +10,6 @@ import semi.heritage.palace.dao.PalaceImageDao;
 import semi.heritage.palace.vo.PalaceImage;
 
 
-
 public class PalaceImageService {
 	private PalaceImageDao pjsi_dao = new PalaceImageDao();
 	private Connection conn = null;

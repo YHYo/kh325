@@ -2,6 +2,7 @@ package semi.heritage.palace.vo;
 
 public class Palace {
 
+
 	private int seq_pj_ss; // 순번(키값)
 
 	// result 밑에.

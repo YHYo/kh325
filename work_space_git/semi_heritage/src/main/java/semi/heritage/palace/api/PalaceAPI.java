@@ -15,7 +15,6 @@ import org.w3c.dom.NodeList;
 
 import semi.heritage.palace.vo.Palace;
 
-
 public class PalaceAPI {
 	public static String palace_Jongmyo_Sangse_XML_URL = "";
 	// ?serial_number=0&detail_code=0&gung_number=3

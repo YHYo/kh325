@@ -11,6 +11,7 @@ import java.util.List;
 import semi.heritage.palace.vo.PalaceMovie;
 
 
+
 public class PalaceMovieDao {
 
 	// result

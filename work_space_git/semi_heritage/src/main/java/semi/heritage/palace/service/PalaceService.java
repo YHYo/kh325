@@ -9,7 +9,6 @@ import java.util.List;
 import semi.heritage.palace.dao.PalaceDao;
 import semi.heritage.palace.vo.Palace;
 
-
 public class PalaceService {
 	private PalaceDao sdao1 = new PalaceDao();
 	private Connection conn = null;

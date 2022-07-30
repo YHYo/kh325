@@ -7,6 +7,7 @@ import semi.heritage.palace.service.PalaceImageService;
 import semi.heritage.palace.vo.PalaceImage;
 
 
+
 public class PalaceImageController {
 	private PalaceImageService pjsi_service = new PalaceImageService();
 	

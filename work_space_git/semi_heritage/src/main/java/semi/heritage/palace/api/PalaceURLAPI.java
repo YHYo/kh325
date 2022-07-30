@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 
 import semi.heritage.palace.vo.PalaceURL;
 
+
 public class PalaceURLAPI {
 	public static String palace_Jongmyo_XML_URL = "http://www.heritage.go.kr/heri/gungDetail/gogungListOpenApi.do";
 

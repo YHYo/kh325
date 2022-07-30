@@ -6,6 +6,7 @@ import semi.heritage.palace.api.PalaceAPI;
 import semi.heritage.palace.service.PalaceService;
 import semi.heritage.palace.vo.Palace;
 
+
 public class PalaceController {
 	private PalaceService pjss = new PalaceService();
 	

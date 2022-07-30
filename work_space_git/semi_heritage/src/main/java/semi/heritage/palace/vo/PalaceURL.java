@@ -2,6 +2,7 @@ package semi.heritage.palace.vo;
 
 public class PalaceURL {
 
+	
 	private String link;
 
 	public PalaceURL() {

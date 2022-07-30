@@ -16,7 +16,6 @@ import org.w3c.dom.NodeList;
 import semi.heritage.palace.vo.PalaceImage;
 
 
-
 public class PalaceImageAPI {
 	public static String palace_Jongmyo_Sangse_Image_XML_URL = "";
 

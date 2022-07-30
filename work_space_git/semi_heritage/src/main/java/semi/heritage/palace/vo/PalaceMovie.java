@@ -2,6 +2,7 @@ package semi.heritage.palace.vo;
 
 public class PalaceMovie {
 
+	
 	private int serial_number; // 순번
 	private int gung_number; // 궁 번호
 	private int detail_code; // 세부코드

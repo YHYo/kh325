@@ -7,6 +7,7 @@ import semi.heritage.palace.service.PalaceMovieService;
 import semi.heritage.palace.vo.PalaceMovie;
 
 
+
 public class PalaceMovieController {
 	private PalaceMovieService pjsm_service = new PalaceMovieService();
 	

@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 
 import semi.heritage.palace.vo.PalaceMovie;
 
+
 public class PalaceMovieAPI {
 	public static String palace_Jongmyo_Sangse_Movie_XML_URL = "";
 
