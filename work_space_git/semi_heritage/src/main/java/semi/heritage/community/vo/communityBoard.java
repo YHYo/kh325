@@ -175,4 +175,5 @@ public class communityBoard {
 		this.replies = replies;
 	}
 	
+	
 }

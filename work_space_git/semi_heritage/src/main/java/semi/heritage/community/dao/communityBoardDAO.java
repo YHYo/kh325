@@ -16,13 +16,22 @@ import semi.heritage.community.vo.communityReply;
 public class communityBoardDAO {
 	
 	// 게시물의 갯수를 가져오는 쿼리문
-	public int getBoardCount(Connection conn) {
+	public int getBoardCount(Connection conn, String type) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT COUNT(*) FROM FREE_BOARD WHERE STATUS='Y'";
+		String query = "SELECT COUNT(*) FROM ? WHERE STATUS='Y'";
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(query);
+			if(type.equals("F")) {
+				pstmt.setString(1, "FREE_BOARD");
+			}
+			if(type.equals("T")) {
+				pstmt.setString(1, "TO_BOARD");
+			}
+			if(type.equals("H")) {
+				pstmt.setString(1, "HIS_BOARD");
+			}
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = rs.getInt(1);

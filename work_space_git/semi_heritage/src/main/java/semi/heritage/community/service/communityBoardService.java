@@ -12,6 +12,7 @@ import semi.heritage.community.vo.communityReply;
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
 
 public class communityBoardService {
+	
 	private communityBoardDAO dao = new communityBoardDAO();
 	
 	public int getBoardCount(Map<String, String> searchMap, String type) {

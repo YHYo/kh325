@@ -101,5 +101,4 @@ public class communityReply {
 		this.modify_date = modify_date;
 	}
 	
-	
 }
