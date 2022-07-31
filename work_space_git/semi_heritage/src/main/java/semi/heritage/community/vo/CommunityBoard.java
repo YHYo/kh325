@@ -3,7 +3,7 @@ package semi.heritage.community.vo;
 import java.util.Date;
 import java.util.List;
 
-public class communityBoard {
+public class CommunityBoard {
 	private int No;                  // 게시글 번호
 	private int rowNum;     
 	private int uNo;                 // 회원 번호
@@ -18,16 +18,16 @@ public class communityBoard {
 	private Date create_date;        // 게시글 올린 날짜
 	private Date modify_date;        // 게시글 수정 날짜
 	private int reply_count;         // 게시물에 달린 리플 개수 
-	private List<communityReply> replies;
+	private List<CommunityReply> replies;
 	
 	
-	public communityBoard() {
+	public CommunityBoard() {
 		super();
 	}
 
-	public communityBoard(int no, int rowNum, int uNo, String uName, String title, String content, String type,
+	public CommunityBoard(int no, int rowNum, int uNo, String uName, String title, String content, String type,
 			String original_file, String renamed_file, int readCount, String status, Date create_date, Date modify_date,
-			int reply_count, List<communityReply> replies) {
+			int reply_count, List<CommunityReply> replies) {
 		super();
 		No = no;
 		this.rowNum = rowNum;
@@ -167,11 +167,11 @@ public class communityBoard {
 		this.reply_count = reply_count;
 	}
 
-	public List<communityReply> getReplies() {
+	public List<CommunityReply> getReplies() {
 		return replies;
 	}
 
-	public void setReplies(List<communityReply> replies) {
+	public void setReplies(List<CommunityReply> replies) {
 		this.replies = replies;
 	}
 	

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/community/view")
-public class communityBoardView extends HttpServlet {
+public class CommunityBoardView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override

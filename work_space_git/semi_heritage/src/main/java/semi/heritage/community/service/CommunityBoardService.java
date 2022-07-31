@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import semi.heritage.common.util.PageInfo;
-import semi.heritage.community.dao.communityBoardDAO;
-import semi.heritage.community.vo.communityBoard;
-import semi.heritage.community.vo.communityReply;
+import semi.heritage.community.dao.CommunityBoardDAO;
+import semi.heritage.community.vo.CommunityBoard;
+import semi.heritage.community.vo.CommunityReply;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
 
-public class communityBoardService {
+public class CommunityBoardService {
 	
-	private communityBoardDAO dao = new communityBoardDAO();
+	private CommunityBoardDAO dao = new CommunityBoardDAO();
 	
 	public int getBoardCount(Map<String, String> searchMap, String type) {  
 		Connection conn = getConnection();
@@ -23,16 +23,16 @@ public class communityBoardService {
 	}
 	
 
-	public List<communityBoard> getBoardList(PageInfo pageinfo, Map<String, String> searchMap, String type) {
+	public List<CommunityBoard> getBoardList(PageInfo pageinfo, Map<String, String> searchMap, String type) {
 		Connection conn = getConnection();
 		
-		List<communityBoard> list = dao.findAll(conn, pageinfo, searchMap);
+		List<CommunityBoard> list = dao.findAll(conn, pageinfo, searchMap);
 		close(conn);
 		return list;
 	}
 	
 
-	public int save(communityBoard board) {
+	public int save(CommunityBoard board) {
 		Connection conn = getConnection();
 		int result = 0;
 		
@@ -51,9 +51,9 @@ public class communityBoardService {
 		return result;
 	}
 	
-	public communityBoard findBoardByNo(int no, boolean hasRead, String type) {
+	public CommunityBoard findBoardByNo(int no, boolean hasRead, String type) {
 		Connection conn = getConnection();
-		communityBoard board = dao.findBoardByNo(conn, no, type);
+		CommunityBoard board = dao.findBoardByNo(conn, no, type);
 		
 		// 조회수 증가 로직
 		if(hasRead == true && board != null) {
@@ -82,7 +82,7 @@ public class communityBoardService {
 		return result;
 	}
 
-	public int saveReply(communityReply reply) {
+	public int saveReply(CommunityReply reply) {
 		Connection conn = getConnection();
 		int result = dao.insertReply(conn, reply);
 		

@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.common.util.PageInfo;
-import semi.heritage.community.service.communityBoardService;
-import semi.heritage.community.vo.communityBoard;
+import semi.heritage.community.service.CommunityBoardService;
+import semi.heritage.community.vo.CommunityBoard;
 
 @WebServlet("/community/list")
-public class communityBoardList extends HttpServlet {
+public class CommunityBoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private communityBoardService service = new communityBoardService();
+	private CommunityBoardService service = new CommunityBoardService();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int page = 1;
 		int boardCount = 0;
 		PageInfo pageInfo = null;
-		List<communityBoard> list = null;
+		List<CommunityBoard> list = null;
 		String type = "F";
 		Map<String, String> searchMap = new HashMap<>();
 		

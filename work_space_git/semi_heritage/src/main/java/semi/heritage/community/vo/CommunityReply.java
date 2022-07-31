@@ -2,7 +2,7 @@ package semi.heritage.community.vo;
 
 import java.util.Date;
 
-public class communityReply {
+public class CommunityReply {
 	private int No;           // 댓글 번호
 	private int board_no;     // 댓글이 작성된 게시글 번호
 	private int uNo;          // 댓글 작성자 회원 번호
@@ -13,11 +13,11 @@ public class communityReply {
 	private Date modify_date; // 댓글 수정 날짜
 	
 	
-	public communityReply() {
+	public CommunityReply() {
 		super();
 	}
 
-	public communityReply(int no, int board_no, int uNo, String uName, String content, String status, Date create_date,
+	public CommunityReply(int no, int board_no, int uNo, String uName, String content, String status, Date create_date,
 			Date modify_date) {
 		super();
 		No = no;
