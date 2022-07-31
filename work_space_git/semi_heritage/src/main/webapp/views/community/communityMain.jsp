@@ -14,6 +14,21 @@
 
 %>
 
+<style>
+	div.left {
+         width: 48%;
+         float: left;
+         position: relative;
+     }
+
+    div.right {
+        width: 48%;
+        float: right;
+        position: relative;
+    }
+
+</style>
+
  <!-- Hero-->
     <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-80" style="background-image: linear-gradient(0deg, rgba(31, 27, 45, .7), rgba(31, 27, 45, .7));"></span>
         <div class="jarallax-img" style="background-image: url(<%=path%>/resources/img/semi-img/community.jpg);"></div>
@@ -217,7 +232,7 @@
         </div>
         <div class="right table-responsive">
             <div class="d-sm-flex align-items-center justify-content-between ">
-                <h1 class="h2 mb-2"><i class="fi-chat-right"></i> 자유게시판</h1><a class="btn btn-link fw-normal p-0" href="1boardMainFree.html">더보기<i class="fi-arrow-long-right ms-2"></i></a>
+                <h1 class="h2 mb-2"><i class="fi-chat-right"></i> 자유게시판</h1><a class="btn btn-link fw-normal p-0" href="<%=path %>/community/list">더보기<i class="fi-arrow-long-right ms-2"></i></a>
             </div>
             <hr>
             <table class="table">
