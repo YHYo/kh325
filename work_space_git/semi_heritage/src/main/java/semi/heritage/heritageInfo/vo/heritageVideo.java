@@ -5,6 +5,7 @@ public class heritageVideo {
 	private int videoNo;
 	private String videoUrl;
 	private int sn;
+	private int no;
 	private String ccbaKdcd;
 	private String ccbaCtcd;
 	private String ccbaAsno;
@@ -13,14 +14,25 @@ public class heritageVideo {
 		super();
 	}
 
-	public heritageVideo(int videoNo, String videoUrl, int sn, String ccbaKdcd, String ccbaCtcd, String ccbaAsno) {
+	public heritageVideo(int videoNo, String videoUrl, int sn, int no, String ccbaKdcd, String ccbaCtcd, String ccbaAsno) {
 		super();
 		this.videoNo = videoNo;
 		this.videoUrl = videoUrl;
 		this.sn = sn;
+		this.no = no;
 		this.ccbaKdcd = ccbaKdcd;
 		this.ccbaCtcd = ccbaCtcd;
 		this.ccbaAsno = ccbaAsno;
+	}
+
+	
+	
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public int getVideoNo() {
@@ -73,10 +85,10 @@ public class heritageVideo {
 
 	@Override
 	public String toString() {
-		return "heritageVideo [videoNo=" + videoNo + ", videoUrl=" + videoUrl + ", sn=" + sn + ", ccbaKdcd=" + ccbaKdcd
-				+ ", ccbaCtcd=" + ccbaCtcd + ", ccbaAsno=" + ccbaAsno + "]";
+		return "heritageVideo [videoNo=" + videoNo + ", videoUrl=" + videoUrl + ", sn=" + sn + ", no=" + no
+				+ ", ccbaKdcd=" + ccbaKdcd + ", ccbaCtcd=" + ccbaCtcd + ", ccbaAsno=" + ccbaAsno + "]";
 	}
-	
+
 	
 	
 }

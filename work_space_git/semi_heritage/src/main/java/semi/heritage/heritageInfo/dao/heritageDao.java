@@ -68,7 +68,7 @@ public class heritageDao {
 	
 	public int insertImage(Connection conn, heritageImage heritageimage) {
 		try {
-			String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -77,6 +77,7 @@ public class heritageDao {
 			pstmt.setString(cnt++, heritageimage.getImageUrl());
 			pstmt.setString(cnt++, heritageimage.getCcimDesc());
 			pstmt.setInt(cnt++, heritageimage.getSn());
+			pstmt.setInt(cnt, heritageimage.getNo());
 			pstmt.setString(cnt++, heritageimage.getCcbaKdcd());
 			pstmt.setString(cnt++, heritageimage.getCcbaCtcd());
 			pstmt.setString(cnt++, heritageimage.getCcbaAsno());
@@ -92,7 +93,7 @@ public class heritageDao {
 	
 	public int insertVideo(Connection conn, heritageVideo heritagevideo) {
 		try {
-			String sql = "INSERT INTO heritageVideo(videoNo, videoUrl, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO heritageVideo(videoNo, videoUrl, sn, no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -100,6 +101,7 @@ public class heritageDao {
 			
 			pstmt.setString(cnt++, heritagevideo.getVideoUrl());
 			pstmt.setInt(cnt++, heritagevideo.getSn());
+			pstmt.setInt(cnt++, heritagevideo.getVideoNo());
 			pstmt.setString(cnt++, heritagevideo.getCcbaKdcd());
 			pstmt.setString(cnt++, heritagevideo.getCcbaCtcd());
 			pstmt.setString(cnt++, heritagevideo.getCcbaAsno());

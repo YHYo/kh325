@@ -68,7 +68,8 @@ public class heritageVideoApi {
 					if (node.getNodeType() == Node.ELEMENT_NODE) {
 
 						Element eElement = (Element) node;
-
+						
+						int no = getIntData(eElement, "no");
 						String ccbaKdcd = getStrData(eElement, "ccbaKdcd");
 						String ccbaCtcd = getStrData(eElement, "ccbaCtcd");
 						String ccbaAsno = getStrData(eElement, "ccbaAsno");
@@ -102,7 +103,7 @@ public class heritageVideoApi {
 							int sn = k + 1;
 							String videoUrl = ((Element) videoUrlList.item(k)).getTextContent();
 
-							heritageVideo heritagevideo = new heritageVideo(0, videoUrl, sn, ccbaKdcd, ccbaCtcd,
+							heritageVideo heritagevideo = new heritageVideo(0, videoUrl, sn, no, ccbaKdcd, ccbaCtcd,
 									ccbaAsno);
 							list.add(heritagevideo);
 							System.out.println(heritagevideo.toString());

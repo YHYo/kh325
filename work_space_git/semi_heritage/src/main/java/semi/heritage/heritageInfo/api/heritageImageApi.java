@@ -67,7 +67,8 @@ public class heritageImageApi {
 					if (node.getNodeType() == Node.ELEMENT_NODE) {
 
 						Element eElement = (Element) node;
-
+						
+						int no = getIntData(eElement, "no");
 						String ccbaKdcd = getStrData(eElement, "ccbaKdcd");
 						String ccbaCtcd = getStrData(eElement, "ccbaCtcd");
 						String ccbaAsno = getStrData(eElement, "ccbaAsno");
@@ -105,7 +106,7 @@ public class heritageImageApi {
 							String imageUrl = ((Element)imageUrlList.item(k)).getTextContent();
 							String ccimDesc = ((Element)ccimDescList.item(k)).getTextContent();
 							
-							heritageImage heritageimage = new heritageImage(0, imageUrl, ccimDesc, sn, ccbaKdcd,
+							heritageImage heritageimage = new heritageImage(0, imageUrl, ccimDesc, sn, no, ccbaKdcd,
 									ccbaCtcd, ccbaAsno);
 							list.add(heritageimage);
 							System.out.println(heritageimage.toString());
