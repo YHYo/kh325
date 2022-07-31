@@ -24,7 +24,6 @@ public class heritageVideo {
 		this.ccbaCtcd = ccbaCtcd;
 		this.ccbaAsno = ccbaAsno;
 	}
-
 	
 	public int getNo() {
 		return no;

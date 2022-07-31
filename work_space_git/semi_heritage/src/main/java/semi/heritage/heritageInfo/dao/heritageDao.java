@@ -71,7 +71,6 @@ public class heritageDao {
 			String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-
 			int cnt = 1;
 			
 			pstmt.setString(cnt++, heritageimage.getImageUrl());
