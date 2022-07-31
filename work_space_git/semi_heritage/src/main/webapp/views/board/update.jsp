@@ -5,8 +5,11 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <%
-	// 수정 게시물에 뿌려줄 내용
+	// 수정 게시물에 뿌려줄 내용.
 	Board board = (Board)request.getAttribute("board");
+
+
+
 %>
 
 
