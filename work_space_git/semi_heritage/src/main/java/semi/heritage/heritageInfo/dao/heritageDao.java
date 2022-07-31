@@ -101,7 +101,7 @@ public class heritageDao {
 			
 			pstmt.setString(cnt++, heritagevideo.getVideoUrl());
 			pstmt.setInt(cnt++, heritagevideo.getSn());
-			pstmt.setInt(cnt++, heritagevideo.getVideoNo());
+			pstmt.setInt(cnt++, heritagevideo.getNo());
 			pstmt.setString(cnt++, heritagevideo.getCcbaKdcd());
 			pstmt.setString(cnt++, heritagevideo.getCcbaCtcd());
 			pstmt.setString(cnt++, heritagevideo.getCcbaAsno());
