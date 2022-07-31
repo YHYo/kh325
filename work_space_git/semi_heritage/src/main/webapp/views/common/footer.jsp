@@ -103,6 +103,10 @@
     <script src="<%=path%>/resources/vendor/jarallax/dist/jarallax.min.js "></script>
     <script src="<%=path%>/resources/vendor/nouislider/dist/nouislider.min.js"></script>
     <script src="<%=path%>/resources/vendor/leaflet/dist/leaflet.js"></script>
+    <script src="<%=path%>/resources/vendor/lightgallery/lightgallery.min.js"></script>
+    <script src="<%=path%>/resources/vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
+    <script src="<%=path%>/resources/vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="<%=path%>/resources/vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script>
     <!-- Main theme script-->
     <script src="<%=path%>/resources/js/jquery-3.6.0.min.js"></script>
     <script src="<%=path%>/resources/js/theme.min.js"></script>

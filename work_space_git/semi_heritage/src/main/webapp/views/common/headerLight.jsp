@@ -27,7 +27,7 @@ String saveId = "";
 
 <head>
     <meta charset="utf-8">
-    <title>메인페이지</title>
+    <title>0</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
@@ -167,7 +167,7 @@ String saveId = "";
         }
     </style>
     <!-- Page loading scripts-->
-    <script>
+    <!-- <script>
         (function() {
             window.onload = function() {
                 var preloader = document.querySelector('.page-loading');
@@ -177,26 +177,27 @@ String saveId = "";
                 }, 2000);
             };
         })();
-    </script>
+    </script> -->
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/simplebar/dist/simplebar.min.css" />
     <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/tiny-slider/dist/tiny-slider.css" />
     <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/lightgallery/css/lightgallery-bundle.min.css" />
     
     <!-- Main Theme Styles + Bootstrap-->
    <!--  <link rel="stylesheet" media="screen" href="css/theme.min.css"> -->
-   <link rel="stylesheet" href="<%=path%>/resources/css/theme.min.css" >
+   <link rel="stylesheet" media="screen" href="<%=path%>/resources/css/theme.min.css" >
    <%--  <link rel="stylesheet" href="<%=path%>/resources/css/theme.css"> --%>
 </head>
 <!-- Body-->
 
 <body class="main_body">
     <!-- Page loading spinner-->
-    <div class="page-loading active">
+    <!-- <div class="page-loading active">
         <div class="page-loading-inner">
             <div class="page-spinner"></div><span>Loading...</span>
         </div>
-    </div>
+    </div> -->
     <main class="page-wrapper">
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
@@ -241,6 +242,7 @@ String saveId = "";
                             </ul>
                         </li>
                       </ul>
+                      
                 </div>
             </div>
         </header>
