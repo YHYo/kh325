@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.common.util.PageInfo;
-import semi.heritage.heritageInfo.service.heritageService;
-import semi.heritage.heritageInfo.vo.heritageMainVO;
+import semi.heritage.heritageInfo.service.HeritageService;
+import semi.heritage.heritageInfo.vo.HeritageMainVO;
 
 //@WebServlet()
-public class heritageListServlet extends HttpServlet {
+public class HeritageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private heritageService service = new heritageService();
+	private HeritageService service = new HeritageService();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int page = 1;
 		int boardCount = 0;
 		PageInfo pageInfo = null;
-		List<heritageMainVO> list = null;
+		List<HeritageMainVO> list = null;
 
 		String ccbaMnm = req.getParameter("ccbaMnm");
 		page = Integer.parseInt(req.getParameter("page"));

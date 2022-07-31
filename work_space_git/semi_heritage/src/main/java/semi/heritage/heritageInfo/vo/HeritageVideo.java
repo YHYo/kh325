@@ -1,27 +1,23 @@
 package semi.heritage.heritageInfo.vo;
 
-public class heritageImage {
+public class HeritageVideo {
 
-	private int imageNo;
-	private String imageUrl;
-	private String ccimDesc;
+	private int videoNo;
+	private String videoUrl;
 	private int sn;
 	private int no;
 	private String ccbaKdcd;
 	private String ccbaCtcd;
 	private String ccbaAsno;
 	
-	public heritageImage() {
+	public HeritageVideo() {
 		super();
 	}
 
-	public heritageImage(int imageNo, String imageUrl, String ccimDesc, int sn, int no, String ccbaKdcd, String ccbaCtcd,
-			String ccbaAsno) {
+	public HeritageVideo(int videoNo, String videoUrl, int sn, int no, String ccbaKdcd, String ccbaCtcd, String ccbaAsno) {
 		super();
-		
-		this.imageNo = imageNo;
-		this.imageUrl = imageUrl;
-		this.ccimDesc = ccimDesc;
+		this.videoNo = videoNo;
+		this.videoUrl = videoUrl;
 		this.sn = sn;
 		this.no = no;
 		this.ccbaKdcd = ccbaKdcd;
@@ -39,28 +35,20 @@ public class heritageImage {
 		this.no = no;
 	}
 
-	public int getImageNo() {
-		return imageNo;
+	public int getVideoNo() {
+		return videoNo;
 	}
 
-	public void setImageNo(int imageNo) {
-		this.imageNo = imageNo;
+	public void setVideoNo(int videoNo) {
+		this.videoNo = videoNo;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getVideoUrl() {
+		return videoUrl;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-	public String getCcimDesc() {
-		return ccimDesc;
-	}
-
-	public void setCcimDesc(String ccimDesc) {
-		this.ccimDesc = ccimDesc;
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 
 	public int getSn() {
@@ -97,12 +85,10 @@ public class heritageImage {
 
 	@Override
 	public String toString() {
-		return "heritageImage [imageNo=" + imageNo + ", imageUrl=" + imageUrl + ", ccimDesc=" + ccimDesc + ", sn=" + sn
-				+ ", no=" + no + ", ccbaKdcd=" + ccbaKdcd + ", ccbaCtcd=" + ccbaCtcd + ", ccbaAsno=" + ccbaAsno + "]";
+		return "heritageVideo [videoNo=" + videoNo + ", videoUrl=" + videoUrl + ", sn=" + sn + ", no=" + no
+				+ ", ccbaKdcd=" + ccbaKdcd + ", ccbaCtcd=" + ccbaCtcd + ", ccbaAsno=" + ccbaAsno + "]";
 	}
 
 	
 	
 }
-	
-	

@@ -3,13 +3,12 @@ package semi.heritage.board.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.mvc.board.model.service.BoardService;
-import com.kh.mvc.board.model.vo.Board;
+import semi.heritage.board.vo.Board;
+import semi.heritage.souvenir.service.BoardService;
 
 
 

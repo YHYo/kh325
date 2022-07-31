@@ -1,7 +1,5 @@
-<%@page import="semi.heritage.heritageInfo.controller.heritageMainFavoriteServlet"%>
-<%@page import="semi.heritage.heritageInfo.service.heritageService"%>
+<%@page import="semi.heritage.heritageInfo.vo.HeritageMainVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="semi.heritage.heritageInfo.vo.heritageMainVO"%>
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,10 +10,7 @@
    
    
    <%
-   heritageMainFavoriteServlet ser = new heritageMainFavoriteServlet();
-   
-   ArrayList<heritageMainVO> list = (ArrayList<heritageMainVO>)ser.mainByFavorite();
-   
+	   List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
    %>
    
    

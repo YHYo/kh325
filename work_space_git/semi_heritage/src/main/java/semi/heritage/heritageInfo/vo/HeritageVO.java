@@ -1,6 +1,6 @@
 package semi.heritage.heritageInfo.vo;
 
-public class heritageVO {
+public class HeritageVO {
 	
 	private int sn;					// 순번
 	private int no;   				// 고유 키값
@@ -30,18 +30,18 @@ public class heritageVO {
 	private String imageUrl;		// 메인노출이미지URL
 	private String content;			// 내용
 	
-	public heritageVO() {
+	public HeritageVO() {
 		super();
 	}
 	
-	public heritageVO(String ccbaKdcd, String ccbaCtcd, String ccbaAsno) {
+	public HeritageVO(String ccbaKdcd, String ccbaCtcd, String ccbaAsno) {
 		super();
 		this.ccbaKdcd = ccbaKdcd;
 		this.ccbaCtcd = ccbaCtcd;
 		this.ccbaAsno = ccbaAsno;
 	}
 
-	public heritageVO(int sn, int no, String ccmaName, int crltsnoNm, String ccbaMnm1, String ccbaMnm2,
+	public HeritageVO(int sn, int no, String ccmaName, int crltsnoNm, String ccbaMnm1, String ccbaMnm2,
 			String ccbaCtcdNm, String ccsiName, String ccbaAdmin, String ccbaKdcd, String ccbaCtcd, String ccbaAsno,
 			String ccbaCncl, String ccbaCpno, String longitude, String latitude, String gcodeName, String bcodeName,
 			String mcodeName, String scodeName, String ccbaQuan, String ccbaAsdt, String ccbaLcad, String ccceName,
@@ -78,7 +78,7 @@ public class heritageVO {
 
 
 
-	public heritageVO(int sn, int no, String ccmaName, int crltsnoNm, String ccbaMnm1, String ccbaMnm2,
+	public HeritageVO(int sn, int no, String ccmaName, int crltsnoNm, String ccbaMnm1, String ccbaMnm2,
 			String ccbaCtcdNm, String ccsiName, String ccbaAdmin, String ccbaKdcd, String ccbaCtcd, String ccbaAsno,
 			String ccbaCncl, String ccbaCpno, String longitude, String latitude) {
 		super();
@@ -101,7 +101,7 @@ public class heritageVO {
 	}
 
 
-	public heritageVO(String gcodeName, String bcodeName, String mcodeName, String scodeName, String ccbaQuan,
+	public HeritageVO(String gcodeName, String bcodeName, String mcodeName, String scodeName, String ccbaQuan,
 			String ccbaAsdt, String ccbaLcad, String ccceName, String ccbaPoss, String imageUrl, String content) {
 		super();
 		this.gcodeName = gcodeName;

@@ -1,6 +1,6 @@
 package semi.heritage.heritageInfo.vo;
 
-public class heritageMainVO {
+public class HeritageMainVO {
 	
 	private int sn;
 	private int rowNum;
@@ -14,11 +14,11 @@ public class heritageMainVO {
 	private int rNo;
 	private int countHreview;
 	
-	public heritageMainVO() {
+	public HeritageMainVO() {
 		super();
 	}
 
-	public heritageMainVO(int rowNum, int no, int countHfavorite, String ccbaMnm1, String ccbaCtcdNm, String ccsiName,
+	public HeritageMainVO(int rowNum, int no, int countHfavorite, String ccbaMnm1, String ccbaCtcdNm, String ccsiName,
 			String content, String imageUrl, int rNo, int countHreview) {
 		super();
 		this.rowNum = rowNum;
@@ -33,7 +33,7 @@ public class heritageMainVO {
 		this.countHreview = countHreview;
 	}
 	
-	public heritageMainVO(int rowNum, int sn, String ccbaMnm1, String ccbaCtcdNm, String ccsiName, String content, String imageUrl, int no, int countHfavorite) {
+	public HeritageMainVO(int rowNum, int sn, String ccbaMnm1, String ccbaCtcdNm, String ccsiName, String content, String imageUrl, int no, int countHfavorite) {
 		super();
 		this.rowNum = rowNum;
 		this.sn = sn;

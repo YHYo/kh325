@@ -10,16 +10,16 @@ import java.util.List;
 
 import semi.heritage.common.util.PageInfo;
 
-import semi.heritage.heritageInfo.vo.heritageVO;
-import semi.heritage.heritageInfo.vo.heritageVideo;
-import semi.heritage.heritageInfo.vo.heritageImage;
-import semi.heritage.heritageInfo.vo.heritageMainVO;
+import semi.heritage.heritageInfo.vo.HeritageVO;
+import semi.heritage.heritageInfo.vo.HeritageVideo;
+import semi.heritage.heritageInfo.vo.HeritageImage;
+import semi.heritage.heritageInfo.vo.HeritageMainVO;
 
 
 
-public class heritageDao {
+public class HeritageDao {
 
-	public int insert(Connection conn, heritageVO heritagevo) {
+	public int insert(Connection conn, HeritageVO heritagevo) {
 		try {
 			String sql = "INSERT INTO HERITAGE(sn, no, ccmaName, crltsnoNm, ccbaMnm1, ccbaMnm2, ccbaCtcdNm, ccsiName, ccbaAdmin, ccbaKdcd, ccbaCtcd, ccbaAsno, ccbaCncl, ccbaCpno, longitude, latitude, gcodeName, bcodeName, mcodeName, scodeName, ccbaQuan, ccbaAsdt, ccbaLcad, ccceName, ccbaPoss, imageUrl, content) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
@@ -64,7 +64,7 @@ public class heritageDao {
 	}
 	
 	
-	public int insertImage(Connection conn, heritageImage heritageimage) {
+	public int insertImage(Connection conn, HeritageImage heritageimage) {
 		try {
 			String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 			
@@ -88,7 +88,7 @@ public class heritageDao {
 		return -1;
 	}
 	
-	public int insertVideo(Connection conn, heritageVideo heritagevideo) {
+	public int insertVideo(Connection conn, HeritageVideo heritagevideo) {
 		try {
 			String sql = "INSERT INTO heritageVideo(videoNo, videoUrl, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?)";
 			
@@ -112,8 +112,8 @@ public class heritageDao {
 	}
 	
 	// 메인 페이지 인기 문화재 명소 출력용 (이미지, 이름, 주소, 찜 개수, 리뷰 개수를 찜 개수가 많은 열개를 순서대로 정렬)
-	public List<heritageMainVO> mainByFavorite(Connection conn) {
-		List<heritageMainVO> list = new ArrayList<>();
+	public List<HeritageMainVO> mainByFavorite(Connection conn) {
+		List<HeritageMainVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -145,7 +145,7 @@ public class heritageDao {
 				int rNo = rs.getInt(count++);
 				int countHreview = rs.getInt(count++);
 
-				heritageMainVO mainByFv = new heritageMainVO(rowNum, no, countHfavorite, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, rNo, countHreview);
+				HeritageMainVO mainByFv = new HeritageMainVO(rowNum, no, countHfavorite, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, rNo, countHreview);
 				list.add(mainByFv);
 			}
 			System.out.println(list.toString());
@@ -189,8 +189,8 @@ public class heritageDao {
 		}
 	
 	// 메인페이지에서 이름 키워드로 전체검색시 출력용(이미지, 이름, 주소, 찜 개수를 순번대로 정렬) 
-	public List<heritageMainVO> selectByHeritageName(Connection conn, String ccbaMnm, PageInfo pageInfo) {
-		List<heritageMainVO> list = new ArrayList<>();
+	public List<HeritageMainVO> selectByHeritageName(Connection conn, String ccbaMnm, PageInfo pageInfo) {
+		List<HeritageMainVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -226,7 +226,7 @@ public class heritageDao {
 				int no = rs.getInt(count++);
 				int countHfavorite = rs.getInt(count++);
 		
-				heritageMainVO info = new heritageMainVO(rowNum, sn, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, no, countHfavorite);
+				HeritageMainVO info = new HeritageMainVO(rowNum, sn, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, no, countHfavorite);
 				list.add(info);
 			}
 
@@ -245,10 +245,10 @@ public class heritageDao {
 	// 문화재 테이블에서 no로 상세조회
 	//ccbaMnm1 -문화재명(국문) / ccbaMnm2 -문화재명(한자) / ccbaCtcdNm -시도명/ccsiName-시군구명/content-내용/ ccbaKdcd-종목코드/ ccbaQuan-수량/ccbaAsdt-지정(등록일)/ccbaLcad -소재지 상세/
 	//ccceName-시대/ccbaPoss-소유자/imageUrl-메인노출이미지URL
-		public heritageVO findHertiageByNo(Connection conn, int hertiageNo) {
+		public HeritageVO findHertiageByNo(Connection conn, int hertiageNo) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			heritageVO hv = null;
+			HeritageVO hv = null;
 			String query = "SELECT  H.ccbaMnm1, H.ccbaMnm2, H.ccbaCtcdNm, H.ccsiName, H.content, H.ccbaKdcd, H.ccbaQuan, H.ccbaAsdt, H.ccbaLcad, H.ccceName, H.ccbaPoss, H.imageUrl "
 					+ "FROM HERITAGE H"
 					+ "WHERE H.no = ?";
@@ -257,7 +257,7 @@ public class heritageDao {
 				pstmt.setInt(1, hertiageNo);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
-					hv = new heritageVO();
+					hv = new HeritageVO();
 					hv.setCcbaMnm1(rs.getString("ccbaMnm1"));
 					hv.setCcbaMnm2(rs.getString("ccbaMnm2"));
 					hv.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
@@ -284,10 +284,10 @@ public class heritageDao {
 		// 문화재 이미지 테이블에서 no로 상세조회
 		//ccbaMnm1 -문화재명(국문) / ccbaMnm2 -문화재명(한자) / ccbaCtcdNm -시도명/ccsiName-시군구명/content-내용/ ccbaKdcd-종목코드/ ccbaQuan-수량/ccbaAsdt-지정(등록일)/ccbaLcad -소재지 상세/
 		//ccceName-시대/ccbaPoss-소유자/imageUrl-메인노출이미지URL
-		public heritageVO findheritageImageByNo(Connection conn, int imageNo) {
+		public HeritageVO findheritageImageByNo(Connection conn, int imageNo) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			heritageVO hv = null;
+			HeritageVO hv = null;
 			String query = "SELECT HI.imageUrl FROM heritageImage HI, HERITAGE H\r\n"
 					+ "WHERE H.no = HI.no and HI.no = ? ";
 			try {
@@ -295,7 +295,7 @@ public class heritageDao {
 				pstmt.setInt(1, imageNo);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
-					hv = new heritageVO();
+					hv = new HeritageVO();
 					hv.setCcbaMnm1(rs.getString("ccbaMnm1"));
 					hv.setCcbaMnm2(rs.getString("ccbaMnm2"));
 					hv.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
@@ -321,7 +321,7 @@ public class heritageDao {
 	
 	public static void main(String[] args) {
 		Connection conn = getConnection();
-		heritageDao dao = new heritageDao();
+		HeritageDao dao = new HeritageDao();
 		
 	}
 }

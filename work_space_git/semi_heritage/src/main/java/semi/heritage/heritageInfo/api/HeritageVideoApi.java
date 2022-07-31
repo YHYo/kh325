@@ -17,22 +17,22 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import semi.heritage.heritageInfo.dao.heritageDao;
-import semi.heritage.heritageInfo.vo.heritageVideo;
+import semi.heritage.heritageInfo.dao.HeritageDao;
+import semi.heritage.heritageInfo.vo.HeritageVideo;
 
-public class heritageVideoApi {
+public class HeritageVideoApi {
 
 	public static String CURRENT_HERITAGE_INFO_URL = "http://www.cha.go.kr/cha/SearchKindOpenapiList.do";
 	public static String CURRENT_HERITAGE_VIDEO = "http://www.cha.go.kr/cha/SearchVideoOpenapi.do";
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
 	public static void main(String[] args) {
-		heritageVideoApi.callCurrentHeritageVideoByXML();
+		HeritageVideoApi.callCurrentHeritageVideoByXML();
 	}
 
-	public static List<heritageVideo> callCurrentHeritageVideoByXML() {
+	public static List<HeritageVideo> callCurrentHeritageVideoByXML() {
 
-		List<heritageVideo> list = new ArrayList<>();
+		List<HeritageVideo> list = new ArrayList<>();
 
 		for (int j = 1; j < 167; j++) {
 
@@ -75,7 +75,7 @@ public class heritageVideoApi {
 						String ccbaAsno = getStrData(eElement, "ccbaAsno");
 //--------------------------------------------------------------------------------------------------------
 
-						URL url2 = new URL(heritageVideoApi.heritageVideo_Url(ccbaKdcd, ccbaAsno, ccbaCtcd).toString());
+						URL url2 = new URL(HeritageVideoApi.heritageVideo_Url(ccbaKdcd, ccbaAsno, ccbaCtcd).toString());
 
 						HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
 						conn2.setRequestMethod("GET");
@@ -103,7 +103,7 @@ public class heritageVideoApi {
 							int sn = k + 1;
 							String videoUrl = ((Element) videoUrlList.item(k)).getTextContent();
 
-							heritageVideo heritagevideo = new heritageVideo(0, videoUrl, sn, no, ccbaKdcd, ccbaCtcd,
+							HeritageVideo heritagevideo = new HeritageVideo(0, videoUrl, sn, no, ccbaKdcd, ccbaCtcd,
 									ccbaAsno);
 							list.add(heritagevideo);
 							System.out.println(heritagevideo.toString());

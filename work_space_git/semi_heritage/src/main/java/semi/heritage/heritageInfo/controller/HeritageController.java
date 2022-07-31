@@ -3,19 +3,19 @@ package semi.heritage.heritageInfo.controller;
 import java.util.List;
 
 import semi.heritage.common.util.PageInfo;
-import semi.heritage.heritageInfo.api.heritageImageApi;
+import semi.heritage.heritageInfo.api.HeritageImageApi;
 //import semi.heritage.heritageInfo.api.heritageImageApi;
-import semi.heritage.heritageInfo.api.heritageInfoDetail;
-import semi.heritage.heritageInfo.api.heritageVideoApi;
-import semi.heritage.heritageInfo.service.heritageService;
-import semi.heritage.heritageInfo.vo.heritageImage;
-import semi.heritage.heritageInfo.vo.heritageMainVO;
-import semi.heritage.heritageInfo.vo.heritageVO;
-import semi.heritage.heritageInfo.vo.heritageVideo;
+import semi.heritage.heritageInfo.api.HeritageInfoDetail;
+import semi.heritage.heritageInfo.api.HeritageVideoApi;
+import semi.heritage.heritageInfo.service.HeritageService;
+import semi.heritage.heritageInfo.vo.HeritageImage;
+import semi.heritage.heritageInfo.vo.HeritageMainVO;
+import semi.heritage.heritageInfo.vo.HeritageVO;
+import semi.heritage.heritageInfo.vo.HeritageVideo;
 
-public class heritageController {
+public class HeritageController {
 
-	private heritageService hService = new heritageService();
+	private HeritageService hService = new HeritageService();
 
 	int threadCount = 0;
 	int threadMaxCount = 10;
@@ -33,13 +33,13 @@ public class heritageController {
 				@Override
 				public void run() {
 					threadCount++;
-					List<heritageVO> list = heritageInfoDetail.callCurrentHeritageListByXML();
+					List<HeritageVO> list = HeritageInfoDetail.callCurrentHeritageListByXML();
 
 					if (list == null || list.isEmpty()) {
 						return;
 					}
 
-					for (heritageVO heritagevo : list) {
+					for (HeritageVO heritagevo : list) {
 						hService.insert(heritagevo);
 					}
 					threadCount--;
@@ -58,13 +58,13 @@ public class heritageController {
 	public void initHeritageImage() {
 
 		while (true) {
-			List<heritageImage> list = heritageImageApi.callCurrentHeritageImageByXML();
+			List<HeritageImage> list = HeritageImageApi.callCurrentHeritageImageByXML();
 
 			if (list == null || list.isEmpty()) {
 				continue;
 			}
 
-			for (heritageImage heritageimage : list) {
+			for (HeritageImage heritageimage : list) {
 				hService.insertImage(heritageimage);
 			}
 		}
@@ -74,25 +74,25 @@ public class heritageController {
 	public void initHeritageVideo() {
 
 		while (true) {
-			List<heritageVideo> list = heritageVideoApi.callCurrentHeritageVideoByXML();
+			List<HeritageVideo> list = HeritageVideoApi.callCurrentHeritageVideoByXML();
 
 			if (list == null || list.isEmpty()) {
 				continue;
 			}
 
-			for (heritageVideo heritagevideo : list) {
+			for (HeritageVideo heritagevideo : list) {
 				hService.insertVideo(heritagevideo);
 			}
 		}
 	}
 	
 	// 메인 검색
-	public List<heritageMainVO> selectByHeritageName(String ccbaMnm, PageInfo pageInfo){
+	public List<HeritageMainVO> selectByHeritageName(String ccbaMnm, PageInfo pageInfo){
 		return hService.selectByHeritageName(ccbaMnm, pageInfo);
 	}
 	
 	// 메인 인기문화명소
-	public List<heritageMainVO> mainByFavorite(){
+	public List<HeritageMainVO> mainByFavorite(){
 		return hService.mainByFavorite();
 	}
 }

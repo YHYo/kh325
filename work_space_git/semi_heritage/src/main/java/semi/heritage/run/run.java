@@ -2,7 +2,7 @@ package semi.heritage.run;
 
 
 import semi.heritage.event.controller.FestivalController;
-import semi.heritage.heritageInfo.controller.heritageController;
+import semi.heritage.heritageInfo.controller.HeritageController;
 import semi.heritage.palace.controller.PalaceController;
 import semi.heritage.palace.controller.PalaceImageController;
 import semi.heritage.palace.controller.PalaceMovieController;
@@ -34,7 +34,7 @@ public class run {
 			
 			
 //=========================================== 문화재 파싱 ====================================================
-			heritageController hc = new heritageController();
+			HeritageController hc = new HeritageController();
 			hc.initHeritage();
 //			hc.initHeritageImage();
 //=======================================================================================================

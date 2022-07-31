@@ -1,7 +1,5 @@
 package semi.heritage.heritageInfo.api;
 
-import static semi.heritage.common.jdbc.JDBCTemplate.*;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -16,23 +14,21 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import semi.heritage.heritageInfo.vo.heritageImage;
+import semi.heritage.heritageInfo.vo.HeritageVO;
 
-public class heritageImageApi {
+public class HeritageInfoDetail {
 	public static String CURRENT_HERITAGE_INFO_URL = "http://www.cha.go.kr/cha/SearchKindOpenapiList.do";
-	public static String CURRENT_HERITAGE_IMAGE = "http://www.cha.go.kr/cha/SearchImageOpenapi.do";
+	public static String CURRENT_HERITAGE_INFO_DETAIL_URL = "http://www.cha.go.kr/cha/SearchKindOpenapiDt.do";
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
 	public static void main(String[] args) {
 //		practice4.heritageInfo_Url("1", "2", "3");
-		heritageImageApi.callCurrentHeritageImageByXML();
+		HeritageInfoDetail.callCurrentHeritageListByXML();
 	}
 	
-	
-	public static List<heritageImage> callCurrentHeritageImageByXML() {
-
-		List<heritageImage> list = new ArrayList<>();
-
+	public static List<HeritageVO> callCurrentHeritageListByXML() {
+		List<HeritageVO> list = new ArrayList<>();
+		
 		for (int j = 1; j < 167; j++) {
 
 			try {
@@ -40,7 +36,7 @@ public class heritageImageApi {
 				urlBuilder.append(CURRENT_HERITAGE_INFO_URL);
 				urlBuilder.append("?" + "pageUnit=" + 100); // 첫 번째만 물음표로 설정
 				urlBuilder.append("&" + "pageIndex=" + j);
-				System.out.println(urlBuilder);
+//				System.out.println(urlBuilder);
 
 				URL url = new URL(urlBuilder.toString());
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -48,7 +44,7 @@ public class heritageImageApi {
 				conn.setRequestProperty("Accept", "application/xml");
 
 				int code = conn.getResponseCode(); // 실제 호출하는 부
-				System.out.println("ResponseCode : " + code);
+//				System.out.println("ResponseCode : " + code);
 				if (code < 200 || code >= 300) {
 					System.out.println("페이지가 잘못되었습니다.");
 					return null;
@@ -67,49 +63,70 @@ public class heritageImageApi {
 					if (node.getNodeType() == Node.ELEMENT_NODE) {
 
 						Element eElement = (Element) node;
-						
+
+						int sn = getIntData(eElement, "sn");
 						int no = getIntData(eElement, "no");
+						String ccmaName = getStrData(eElement, "ccmaName");
+						int crltsnoNm = getIntData(eElement, "crltsnoNm");
+						String ccbaMnm1 = getStrData(eElement, "ccbaMnm1");
+						String ccbaMnm2 = getStrData(eElement, "ccbaMnm2");
+						String ccbaCtcdNm = getStrData(eElement, "ccbaCtcdNm");
+						String ccsiName = getStrData(eElement, "ccsiName");
+						String ccbaAdmin = getStrData(eElement, "ccbaAdmin");
 						String ccbaKdcd = getStrData(eElement, "ccbaKdcd");
 						String ccbaCtcd = getStrData(eElement, "ccbaCtcd");
 						String ccbaAsno = getStrData(eElement, "ccbaAsno");
-// ----------------------------------------------------------------------------------------------------------------------------
-					
-						
-						URL url2 = new URL(heritageImageApi.heritageImage_Url(ccbaKdcd, ccbaAsno, ccbaCtcd).toString());
+						String ccbaCncl = getStrData(eElement, "ccbaCncl");
+						String ccbaCpno = getStrData(eElement, "ccbaCpno");
+						String longitude = getStrData(eElement, "longitude");
+						String latitude = getStrData(eElement, "latitude");
 
+						//-------------------------------------------------info 시작
+						
+						URL url2 = new URL(HeritageInfoDetail.heritageInfo_Url(ccbaKdcd, ccbaAsno, ccbaCtcd).toString());
+						
+//						System.out.println("url : " + url2);
+						
 						HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
-						conn2.setRequestMethod("GET");
+//						conn2.setRequestProperty("Content-type", "application/json");
 						conn2.setRequestProperty("Accept", "application/xml");
-						int code2 = conn.getResponseCode(); // 실제 호출하는 부
-						System.out.println("ResponseCode : " + code2);
-						System.out.println(url2.toString());
-						if (code2 < 200 || code2 > 300) {
+
+						int code2 = conn2.getResponseCode(); // 실제 호출하는 부
+//						System.out.println("ResponseCode2 : " + code2);
+						if (code2 < 200 || code2 >= 300) {
 							System.out.println("페이지가 잘못되었습니다.");
 							return null;
 						}
-
+						
 						DocumentBuilderFactory dbf2 = DocumentBuilderFactory.newInstance();
 						DocumentBuilder db2 = dbf2.newDocumentBuilder();
 						Document doc2 = db2.parse(conn2.getInputStream()); //
 						doc2.normalizeDocument();
-						
-						NodeList items =  doc2.getElementsByTagName("item");
-						Element item = (Element) items.item(0);
 
-						NodeList snList = item.getElementsByTagName("sn");
-						NodeList imageUrlList = item.getElementsByTagName("imageUrl");
-						NodeList ccimDescList = item.getElementsByTagName("ccimDesc");
-
+						NodeList nList2 = doc2.getElementsByTagName("item");
+						Node node2 = nList2.item(0);
 						
-						for(int k = 0; k <snList.getLength(); k++) {
-							int sn = 		k+1;
-							String imageUrl = ((Element)imageUrlList.item(k)).getTextContent();
-							String ccimDesc = ((Element)ccimDescList.item(k)).getTextContent();
+//						System.out.println("\nCurrent Element2 : " + node.getNodeName());
+						if (node2.getNodeType() == Node.ELEMENT_NODE) {
+							Element eElement2 = (Element) node2;
 							
-							heritageImage heritageimage = new heritageImage(0, imageUrl, ccimDesc, sn, no, ccbaKdcd,
-									ccbaCtcd, ccbaAsno);
-							list.add(heritageimage);
-							System.out.println(heritageimage.toString());
+							String gcodeName = getStrData(eElement2, "gcodeName");
+							String bcodeName = getStrData(eElement2, "bcodeName");
+							String mcodeName = getStrData(eElement2, "mcodeName");
+							String scodeName = getStrData(eElement2, "scodeName");
+							String ccbaQuan = getStrData(eElement2, "ccbaQuan");
+							String ccbaAsdt = getStrData(eElement2, "ccbaAsdt");
+							String ccbaLcad = getStrData(eElement2, "ccbaLcad").trim();
+							String ccceName = getStrData(eElement2, "ccceName");
+							String ccbaPoss = getStrData(eElement2, "ccbaPoss").trim();
+							String imageUrl = getStrData(eElement2, "imageUrl");
+							String content = getStrData(eElement2, "content");
+							HeritageVO heritage = new HeritageVO(sn, no, ccmaName, crltsnoNm, ccbaMnm1, ccbaMnm2, 
+									ccbaCtcdNm, ccsiName, ccbaAdmin, ccbaKdcd, ccbaCtcd, ccbaAsno, ccbaCncl, ccbaCpno, 
+									longitude, latitude, gcodeName, bcodeName, mcodeName, scodeName, ccbaQuan, ccbaAsdt, 
+									ccbaLcad, ccceName, ccbaPoss, imageUrl, content);
+							list.add(heritage);
+							System.out.println(list.toString());
 						}
 						
 					}
@@ -118,10 +135,13 @@ public class heritageImageApi {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
+		
 		return list;
-
 	}
-
+	
 	private static String getStrData(Element eElement, String tagName) {
 		try {
 			return eElement.getElementsByTagName(tagName).item(0).getTextContent();
@@ -137,16 +157,24 @@ public class heritageImageApi {
 			return 0;
 		}
 	}
-
-	// 정보페이지 url만들어서 넘김
-	public static StringBuffer heritageImage_Url(String ccbaKdcd, String ccbaAsno, String ccbaCtcd) {
+	
+	
+	// 정보페이지 url만들어서 넘김 
+	public static StringBuffer heritageInfo_Url(String ccbaKdcd, String ccbaAsno, String ccbaCtcd) {
 		StringBuffer infoUrl = new StringBuffer();
-		infoUrl.append(CURRENT_HERITAGE_IMAGE);
+		infoUrl.append(CURRENT_HERITAGE_INFO_DETAIL_URL);
 		infoUrl.append("?" + "ccbaKdcd=" + ccbaKdcd);
 		infoUrl.append("&" + "ccbaAsno=" + ccbaAsno);
 		infoUrl.append("&" + "ccbaCtcd=" + ccbaCtcd);
-//				System.out.println(infoUrl);
-
+//			System.out.println(infoUrl);
+		
+		
 		return infoUrl;
+		
 	}
+	
+	
+	
+	
+	
 }

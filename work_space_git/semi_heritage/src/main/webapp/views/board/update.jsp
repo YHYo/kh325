@@ -1,4 +1,4 @@
-<%@page import="com.kh.mvc.board.model.vo.Board"%>
+<%@page import="semi.heritage.board.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
