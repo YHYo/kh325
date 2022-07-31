@@ -15,7 +15,7 @@ public class communityBoardService {
 	
 	private communityBoardDAO dao = new communityBoardDAO();
 	
-	public int getBoardCount(Map<String, String> searchMap, String type) {
+	public int getBoardCount(Map<String, String> searchMap, String type) {  
 		Connection conn = getConnection();
 		int result = dao.getBoardCount(conn, searchMap, type);
 		close(conn);
