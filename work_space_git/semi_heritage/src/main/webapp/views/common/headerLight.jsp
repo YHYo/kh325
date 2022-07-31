@@ -1,4 +1,4 @@
-<%--@page import="com.kh.mvc.member.model.vo.Member"--%>
+<%@page import="semi.heritage.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -8,7 +8,7 @@
 
 <%
  	String path = request.getContextPath();
-/*	
+
 String saveId = "";
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	Cookie[] cookies = request.getCookies();
@@ -20,7 +20,7 @@ String saveId = "";
 				break;
 			}
 		}
-	} */
+	} 
 %>
 <!DOCTYPE html>
 <html lang="en">

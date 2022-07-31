@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-%>
-
+	
+	<%@ include file="/views/common/headerLight.jsp" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -433,6 +431,8 @@ keyframes spinner { 100% {
 
 				<!-- Content-->
 				<div class="col-lg-8 col-md-7 mb-5">
+				<form name="memberInfoFrm" action="<%=request.getContextPath()%>/member/update" method="POST">
+
 					<h1 class="h2">마이페이지</h1>
 					<div class="mb-2 pt-1">회원정보를 수정 해주세요</div>
 					<div class="progress mb-4" style="height: .25rem;">
@@ -445,8 +445,11 @@ keyframes spinner { 100% {
 					<div class="row pb-2">
 						<div class="col-lg-9 col-sm-8 mb-4">
 							<textarea class="form-control" id="account-bio" name="introduce"
-								rows="6" placeholder="사뿐사뿐에 멋진 소개를 남겨주세요"></textarea>
+								rows="6" placeholder="사뿐사뿐에 멋진 소개를 남겨주세요">
+								<%= loginMember.getIntroduce() %>
+								</textarea>
 						</div>
+						
 						<div class="col-lg-3 col-sm-4 mb-4">
 							<input class="file-uploader bg-secondary" type="file"
 								accept="image/png, image/jpeg"
@@ -465,7 +468,7 @@ keyframes spinner { 100% {
 							<div class="d-flex align-items-center justify-content-between">
 								<div class="pe-2">
 									<label class="form-label fw-bold">이름</label>
-									<div id="name-value">김나임</div>
+									<div id="name-value"><%= loginMember.getUname() %></div>
 								</div>
 								<div class="me-n3" data-bs-toggle="tooltip" title="Edit">
 									<a class="nav-link py-0" href="#name-collapse"
@@ -485,7 +488,7 @@ keyframes spinner { 100% {
 							<div class="d-flex align-items-center justify-content-between">
 								<div class="pe-2">
 									<label class="form-label fw-bold">연락처</label>
-									<div id="phone-value">010-1234-5678</div>
+									<div id="phone-value"><%= loginMember.getUpn() %></div>
 								</div>
 								<div class="me-n3" data-bs-toggle="tooltip" title="Edit">
 									<a class="nav-link py-0" href="#phone-collapse"
@@ -505,7 +508,7 @@ keyframes spinner { 100% {
 							<div class="d-flex align-items-center justify-content-between">
 								<div class="pe-2">
 									<label class="form-label fw-bold">Email</label>
-									<div id="email-value">Geoje@email.com</div>
+									<div id="email-value"><%= loginMember.getUemail() %></div>
 								</div>
 								<!-- <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div> -->
 							</div>
@@ -537,7 +540,7 @@ keyframes spinner { 100% {
 							<div class="d-flex align-items-center justify-content-between">
 								<div class="pe-2">
 									<label class="form-label fw-bold">주소</label>
-									<div id="address-value">경상남도 거제시 아주먼동</div>
+									<div id="address-value"><%= loginMember.getUadr() %></div>
 								</div>
 								<div class="me-n3" data-bs-toggle="tooltip" title="Edit">
 									<a class="nav-link py-0" href="#address-collapse"
@@ -563,7 +566,7 @@ keyframes spinner { 100% {
 							<i class="fi-facebook text-body"></i>
 						</div>
 						<input class="form-control" type="text"
-							placeholder="Your Facebook account">
+							placeholder="Your Facebook account"  value="<%= loginMember.getFacebook() %>">
 					</div>
 					<!-- <div class="d-flex align-items-center mb-3">
                         <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-linkedin text-body"></i></div>
@@ -575,7 +578,8 @@ keyframes spinner { 100% {
 							<i class="fi-twitter text-body"></i>
 						</div>
 						<input class="form-control" type="text"
-							placeholder="Your Twitter account">
+							placeholder="Your Twitter account" value="<%= loginMember.getTwt() %>">
+							
 					</div>
 					<div class="collapse" id="showMoreSocials">
 						<div class="d-flex align-items-center mb-3">
@@ -584,7 +588,7 @@ keyframes spinner { 100% {
 								<i class="fi-instagram text-body"></i>
 							</div>
 							<input class="form-control" type="text"
-								placeholder="Your Instagram account">
+								placeholder="Your Instagram account" value="<%= loginMember.getInsta() %>">
 						</div>
 						<!-- <div class="d-flex align-items-center mb-3">
                             <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-pinterest text-body"></i></div>
@@ -609,6 +613,7 @@ keyframes spinner { 100% {
 							<i class="fi-trash me-2"></i>회원탈퇴
 						</button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
