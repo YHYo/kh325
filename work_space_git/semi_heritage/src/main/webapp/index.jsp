@@ -1,15 +1,19 @@
+<%@page import="semi.heritage.heritageInfo.controller.heritageMainFavoriteServlet"%>
+<%@page import="semi.heritage.heritageInfo.service.heritageService"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="semi.heritage.heritageInfo.vo.heritageMainVO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     
 <%@include file="/views/common/headerLight.jsp"%>
    
+   
    <%
+   heritageMainFavoriteServlet ser = new heritageMainFavoriteServlet();
    
-   List<heritageMainVO> list = (List<heritageMainVO>)request.getAttribute("list");
-   
+   ArrayList<heritageMainVO> list = (ArrayList<heritageMainVO>)ser.mainByFavorite();
    
    %>
    
@@ -21,14 +25,14 @@
                     <div class="mb-sm-5 mb-4 px-0 text-left pt-1 p02">
                         <br><br><br><br><br><br><br><br><br><br><br><br><br>
                         <b>
-                        <h1> class="display-3 text-light mt-sm-5"><b>한 걸음씩  <span style="color: #ffc000;">사뿐사뿐</span> 다가가는
+                        <h1 class="display-3 text-light mt-sm-5">한 걸음씩  <span style="color: #ffc000;">사뿐사뿐</span> 다가가는
         				</h1>
-        				<h1> class="display-1 text-white text-left "><span class="p01" style="color: #ffc000;">역사이야기</span></h1>
+        				<h1 class="display-1 text-white text-left"><span class="p01" style="color: #ffc000;">역사이야기</span></h1>
         				</b>
                     </div>
                     <div class="mx-auto px-0" style="margin-bottom: -3%">
                         <!-- 검색 Form-->
-                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/index" method="get">
+                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/index" method="post">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
                                 <input class="form-control p03" type="text" name="searchValue" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
@@ -60,10 +64,10 @@
                     <div>
                         <div class="position-relative">
                             <div class="position-relative mb-3">
-                                <img class="rounded-3" src="<%=path%>/resources/img/semi-img/whoWeAre.png" style="width: 250px; height: 300px;" alt="Image">
+                                <img class="rounded-3" src="<%=list.get(i).getImageUrl()%>" style="width: 250px; height: 300px;" alt="Image">
                             </div>
                             <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html"><%= list.get(i).getCcbaMnm1() %></a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html"><%= list.get(i).getCcbaCtcdNm() + list.get(i).getCcsiName() %></a></h3>
+                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html"><%= list.get(i).getCcbaCtcdNm() + " " +list.get(i).getCcsiName() %></a></h3>
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b><%= list.get(i).getCountHfavorite() %></b></li>
                                 <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i><%= list.get(i).getCountHreview() %></li>
@@ -82,7 +86,6 @@
                     <div class="row mb-0">
                         <div class="col-md-8">
                             <p class="subtitle text-primary" style="font-size: 15px; margin-bottom: 1%;"><b>E V E N T &nbsp S C H E D U L E</b></p>
-                            <h1 style="font-size: 45px;">
                                 <h1 style="font-size: 45px;"><span class="p01">행사일정</span></h1>
                         </div>
                         <div class=" col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="city-guide-catalog.html ">
@@ -234,8 +237,6 @@
             </div>
         </section>
         <!-- 사뿐코스 끝 -->
-
-
         <br><br>
         <!-- 기념품 시작 -->
         <div class="container mb-5 pb-lg-4 ">
