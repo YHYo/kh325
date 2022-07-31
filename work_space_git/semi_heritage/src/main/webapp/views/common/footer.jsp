@@ -107,6 +107,12 @@
     <script src="<%=path%>/resources/vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
     <script src="<%=path%>/resources/vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
     <script src="<%=path%>/resources/vendor/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    <script src="<%=path%>/resources/vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+	<script src="<%=path%>/resources/vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+	<script src="<%=path%>/resources/vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
+	<script src="<%=path%>/resources/vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
+	<script src="<%=path%>/resources/vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
+	<script src="<%=path%>/resources/vendor/filepond/dist/filepond.min.js"></script>
     <!-- Main theme script-->
     <script src="<%=path%>/resources/js/jquery-3.6.0.min.js"></script>
     <script src="<%=path%>/resources/js/theme.min.js"></script>
