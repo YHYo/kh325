@@ -1,18 +1,16 @@
-<%@page import="semi.heritage.community.vo.communityBoard"%>
+<%@page import="semi.heritage.board.vo.FreeBoard"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/headerLight.jsp" %>
+<!-- 헤더 -->
 
 <%
-
-	List<communityBoard> list = (List<communityBoard>)request.getAttribute("list");
-
+	List<FreeBoard> list = (List<FreeBoard>)request.getAttribute("list");
+	
 %>
-
-
 
  <!-- Hero-->
     <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-80" style="background-image: linear-gradient(0deg, rgba(31, 27, 45, .7), rgba(31, 27, 45, .7));"></span>
@@ -96,7 +94,7 @@
                 		</tr>
                 	<%} else {%>
                 		<%-- 게시글 리스트 시작 --%>
-                		<%for(communityBoard b : list) {%>
+                		<%for(FreeBoard b : list) {%>
                 			<tr>
                 				<td>
                 					<!-- <a href="<%=path+"/board/view?type=F&boardNo="+b.getNo()%>"><%=b.getTitle() %></a> -->
@@ -260,36 +258,6 @@
     </section>
     <selection> </selection>
 
-<<<<<<< HEAD
-
-<style>
-	div#board-write-container{
-		width:600px;
-		margin:0 auto;
-		text-align:center;}
-	div#board-write-container h2{ margin:10px 0;}
-	table#tbl-board
-	{
-		width:500px;
-		margin:0 auto;
-		border:1px solid black;
-		border-collapse:collapse;
-	}
-	table#tbl-board th
-	{
-		width:125px;
-		border:1px solid;
-		padding:5px 0;
-		text-align:center;
-	}
-	table#tbl-board td
-	{
-		border:1px solid;
-		padding:5px 0 5px 10px;
-		text-align:left;
-	}
-</style>
-=======
 </main>
 <br><br><br><br> 
 
@@ -309,10 +277,9 @@
 <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
 <!-- Main theme script-->
 <script src="js/theme.min.js"></script>
->>>>>>> refs/remotes/origin/master
 
 
 
 
-<!-- 푸터 -->
-<%@ include file="/views/common/footer.jsp" %>
+<!-- 푸터 - 자꾸 에러남ㅜㅜ -->
+<%-- <%@ include file="/views/common/footer.jsp" %> --%>
