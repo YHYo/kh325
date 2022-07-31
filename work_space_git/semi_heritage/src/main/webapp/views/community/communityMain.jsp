@@ -9,7 +9,6 @@
 	Board board = (Board)request.getAttribute("board");
 
 
-
 %>
 
 
