@@ -1,6 +1,7 @@
 package semi.heritage.heritageInfo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,27 +23,31 @@ public class heritageMainFavoriteServlet extends  MyHttpServlet{
 	public String getServletName() {
 		return "heritageMainFavoriteServlet";
 	}
-
+	
+	public List<heritageMainVO> mainByFavorite(){
+		return service.mainByFavorite();
+	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("doget 호출 ");
-		List<heritageMainVO> list = null;
+		System.out.println("doget 호출");
+		doPost(req, resp);
+		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setCharacterEncoding("UTF-8");	
+		
+		ArrayList<heritageMainVO> list = null;
 		
 		
 		
-		list = service.mainByFavorite();
+		list = (ArrayList<heritageMainVO>) service.mainByFavorite();
 		System.out.println(list);
 		
 		
 		req.setAttribute("list", list);
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
-		
-	
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
 	}
 }
