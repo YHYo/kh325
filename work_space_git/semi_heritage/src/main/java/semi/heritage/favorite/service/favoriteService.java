@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
 import semi.heritage.favorite.dao.favoriteDao;
+import semi.heritage.favorite.vo.favoriteMyPageVO;
 import semi.heritage.favorite.vo.favoritePalaceVO;
 import semi.heritage.favorite.vo.favoriteVO;
 
@@ -15,12 +16,35 @@ public class favoriteService {
 	public favoriteService() {
 		conn = getConnection();
 	}
-
-	// 찜이 많이 된 일반 문화재순 정렬
-	public List<favoriteVO> sortedByFavorite() {
-		return dao.sortedByFavorite(conn);
+	
+	// 문화재 찜 insert
+	public int insert(int uNo, int no) {
+		int result = dao.insert(conn, uNo, no);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
 	}
 
+	// 문화재 찜 delete
+	public int delete(int uNo, int no) {
+		int result = dao.delete(conn, uNo, no);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
+	// 마이페이지 문화재 찜목록 출력
+	public List<favoriteMyPageVO> selectAll(int uNo) {
+		return dao.selectAll(conn, uNo);
+	}
+	
+	// 문화재 번호로 찜 개수 구하기
 	public List<favoriteVO> CountFavoriteByNo(int no){
 		return dao.CountFavoriteByNo(conn, no);
 	}

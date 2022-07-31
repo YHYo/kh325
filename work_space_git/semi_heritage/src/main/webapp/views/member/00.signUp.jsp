@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <% String path = request.getContextPath(); %>
+  
 
     
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -180,7 +181,7 @@
                                 <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
                                 <label class="form-check-label" for="agree-to-terms">사뿐사뿐 <a href='#' style="color: #8957BD;">이용약관</a> 및 <a href='#'  style="color: #8957BD;">개인정보보호정책</a>에<br>동의합니다.</label>
                             </div>
-                            <button class="btn btn-lg w-100" style="background-color: #8957BD; color: #fff;" type="submit">Sign up         </button>
+                            <button class="btn btn-lg w-100" style="background-color: #8957BD; color: #fff;" type="submit" herf="index.jsp">Sign up         </button>
                         </form>
                     </div>
                 </div>

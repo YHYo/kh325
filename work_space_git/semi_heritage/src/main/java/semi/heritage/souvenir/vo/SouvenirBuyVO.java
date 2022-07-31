@@ -1,6 +1,6 @@
 package semi.heritage.souvenir.vo;
 
-public class Souvenir_Buy_VO {
+public class SouvenirBuyVO {
 	private int orderNum;
 	private int uno;
 	private int souv_pro_no;
@@ -9,12 +9,12 @@ public class Souvenir_Buy_VO {
 	private int bsb_total_price;
 	private int rownum;
 
-	public Souvenir_Buy_VO() {
+	public SouvenirBuyVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Souvenir_Buy_VO(int orderNum, int uno, int souv_pro_no, String souv_pro_name, int souv_pro_price,
+	public SouvenirBuyVO(int orderNum, int uno, int souv_pro_no, String souv_pro_name, int souv_pro_price,
 			int bsb_total_price, int rownum) {
 		super();
 		this.orderNum = orderNum;

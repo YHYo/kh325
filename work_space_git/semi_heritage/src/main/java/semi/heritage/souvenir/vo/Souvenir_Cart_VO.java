@@ -16,6 +16,7 @@ public class Souvenir_Cart_VO {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	// 전체
 	public Souvenir_Cart_VO(String sOUV_CART_NO, int uNo, int sOUV_PRO_NO, String sOUV_PRO_NAME, int sOUV_PRO_PRICE,
 			String sOUV_PRO_CATEGORY, String bUY_STATUS, String dELETE_STATUS) {
@@ -30,7 +31,7 @@ public class Souvenir_Cart_VO {
 		this.DELETE_STATUS = dELETE_STATUS;
 	}
 
-	// 회원별 장바구니
+	// 회원별 장바구니 (status들 있는거)
 	public Souvenir_Cart_VO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY,
 			String bUY_STATUS, String dELETE_STATUS) {
 		super();
@@ -40,6 +41,15 @@ public class Souvenir_Cart_VO {
 		this.SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
 		this.BUY_STATUS = bUY_STATUS;
 		this.DELETE_STATUS = dELETE_STATUS;
+	}
+	
+	// 회원별 장바구니
+	public Souvenir_Cart_VO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY) {
+		super();
+		this.uNo = uNo;
+		this.SOUV_PRO_NAME = sOUV_PRO_NAME;
+		this.SOUV_PRO_PRICE = sOUV_PRO_PRICE;
+		this.SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
 	}
 
 	@Override

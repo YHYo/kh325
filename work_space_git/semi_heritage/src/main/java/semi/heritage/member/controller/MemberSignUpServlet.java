@@ -16,7 +16,7 @@ import semi.heritage.member.vo.Member;
  * 1. get 요청이 올 경우 -> 회원가입 페이지로 이동
  * 2. post 요청이 올 경우 -> 회원가입 기능 동작
  */
-//@WebServlet(name="enroll", urlPatterns = "/member/enroll")
+@WebServlet(name="enroll", urlPatterns = "/member/enroll")
 public class MemberSignUpServlet extends MyHttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -41,7 +41,7 @@ public class MemberSignUpServlet extends MyHttpServlet{
 			
 			if(result > 0) {
 				req.setAttribute("msg", "회원가입에 성공하였습니다!");
-				req.setAttribute("location", "/");
+				req.setAttribute("location", "/index.jsp");
 			}else {
 				req.setAttribute("msg", "회원가입 실패!! (code:101=DB이슈)");
 				req.setAttribute("location", "/");
