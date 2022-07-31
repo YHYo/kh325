@@ -77,7 +77,7 @@ public class heritageDao {
 			pstmt.setString(cnt++, heritageimage.getImageUrl());
 			pstmt.setString(cnt++, heritageimage.getCcimDesc());
 			pstmt.setInt(cnt++, heritageimage.getSn());
-			pstmt.setInt(cnt, heritageimage.getNo());
+			pstmt.setInt(cnt++, heritageimage.getNo());
 			pstmt.setString(cnt++, heritageimage.getCcbaKdcd());
 			pstmt.setString(cnt++, heritageimage.getCcbaCtcd());
 			pstmt.setString(cnt++, heritageimage.getCcbaAsno());

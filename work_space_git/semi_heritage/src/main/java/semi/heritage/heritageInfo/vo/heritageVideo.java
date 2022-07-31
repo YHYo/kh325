@@ -26,7 +26,6 @@ public class heritageVideo {
 	}
 
 	
-	
 	public int getNo() {
 		return no;
 	}
