@@ -165,6 +165,7 @@ String saveId = "";
                 transform: rotate(360deg);
             }
         }
+        
     </style>
     <!-- Page loading scripts-->
     <!-- <script>
