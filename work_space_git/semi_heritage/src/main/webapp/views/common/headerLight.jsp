@@ -27,7 +27,7 @@ String saveId = "";
 
 <head>
     <meta charset="utf-8">
-    <title>0</title>
+    <title>史뿐史뿐</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
