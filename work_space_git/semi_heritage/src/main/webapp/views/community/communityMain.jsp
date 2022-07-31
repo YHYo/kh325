@@ -10,10 +10,9 @@
 
 	List<communityBoard> list = (List<communityBoard>)request.getAttribute("list");
 
-
-
 %>
 
+<<<<<<< HEAD
 <style>
 	div.left {
          width: 48%;
@@ -28,6 +27,9 @@
     }
 
 </style>
+=======
+
+>>>>>>> branch 'master' of https://github.com/YHYo/kh325.git
 
  <!-- Hero-->
     <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-80" style="background-image: linear-gradient(0deg, rgba(31, 27, 45, .7), rgba(31, 27, 45, .7));"></span>
@@ -275,6 +277,36 @@
     </section>
     <selection> </selection>
 
+<<<<<<< HEAD
+
+<style>
+	div#board-write-container{
+		width:600px;
+		margin:0 auto;
+		text-align:center;}
+	div#board-write-container h2{ margin:10px 0;}
+	table#tbl-board
+	{
+		width:500px;
+		margin:0 auto;
+		border:1px solid black;
+		border-collapse:collapse;
+	}
+	table#tbl-board th
+	{
+		width:125px;
+		border:1px solid;
+		padding:5px 0;
+		text-align:center;
+	}
+	table#tbl-board td
+	{
+		border:1px solid;
+		padding:5px 0 5px 10px;
+		text-align:left;
+	}
+</style>
+=======
 </main>
 <br><br><br><br> 
 
@@ -294,6 +326,7 @@
 <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
 <!-- Main theme script-->
 <script src="js/theme.min.js"></script>
+>>>>>>> refs/remotes/origin/master
 
 
 
