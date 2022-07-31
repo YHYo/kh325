@@ -2,18 +2,16 @@ package semi.heritage.heritageInfo.dao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 
 import semi.heritage.common.util.PageInfo;
 
 import semi.heritage.heritageInfo.vo.heritageVO;
 import semi.heritage.heritageInfo.vo.heritageVideo;
-import semi.heritage.favorite.vo.favoriteVO;
 import semi.heritage.heritageInfo.vo.heritageImage;
 import semi.heritage.heritageInfo.vo.heritageMainVO;
 
@@ -68,7 +66,7 @@ public class heritageDao {
 	
 	public int insertImage(Connection conn, heritageImage heritageimage) {
 		try {
-			String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -77,7 +75,6 @@ public class heritageDao {
 			pstmt.setString(cnt++, heritageimage.getImageUrl());
 			pstmt.setString(cnt++, heritageimage.getCcimDesc());
 			pstmt.setInt(cnt++, heritageimage.getSn());
-			pstmt.setInt(cnt, heritageimage.getNo());
 			pstmt.setString(cnt++, heritageimage.getCcbaKdcd());
 			pstmt.setString(cnt++, heritageimage.getCcbaCtcd());
 			pstmt.setString(cnt++, heritageimage.getCcbaAsno());
@@ -93,7 +90,7 @@ public class heritageDao {
 	
 	public int insertVideo(Connection conn, heritageVideo heritagevideo) {
 		try {
-			String sql = "INSERT INTO heritageVideo(videoNo, videoUrl, sn, no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO heritageVideo(videoNo, videoUrl, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -101,7 +98,6 @@ public class heritageDao {
 			
 			pstmt.setString(cnt++, heritagevideo.getVideoUrl());
 			pstmt.setInt(cnt++, heritagevideo.getSn());
-			pstmt.setInt(cnt++, heritagevideo.getVideoNo());
 			pstmt.setString(cnt++, heritagevideo.getCcbaKdcd());
 			pstmt.setString(cnt++, heritagevideo.getCcbaCtcd());
 			pstmt.setString(cnt++, heritagevideo.getCcbaAsno());
@@ -163,7 +159,34 @@ public class heritageDao {
 		}
 		return null;
 	}
-	
+		
+
+		// 이름으로 검색한 문화재 전체 갯수를 가져오는 쿼리문
+		public int getheritageMainVOCount(Connection conn,String ccbaMnm) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String query = "SELECT count(ROWNUM) FROM("
+					+ "SELECT ROWNUM, H.NO, H.sn, H.ccbaMnm1, H.ccbaCtcdNm, H.ccsiName, H.content, H.IMAGEURL, HFV.* "
+					+ "FROM HERITAGE H,"
+					+ "(SELECT NO,COUNT(uno) from hFavorite group by no) HFV "
+					+ "WHERE H.no = HFV.no AND H.ccbaMnm1 like ? "
+					+ "ORDER BY H.sn) SCH";
+			int result = 0;
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, "%" + ccbaMnm + "%");
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					result = rs.getInt(1);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return result;
+		}
 	
 	// 메인페이지에서 이름 키워드로 전체검색시 출력용(이미지, 이름, 주소, 찜 개수를 순번대로 정렬) 
 	public List<heritageMainVO> selectByHeritageName(Connection conn, String ccbaMnm, PageInfo pageInfo) {
@@ -216,6 +239,84 @@ public class heritageDao {
 		System.out.println(list.toString());
 		return list;
 	}
+	
+
+
+	// 문화재 테이블에서 no로 상세조회
+	//ccbaMnm1 -문화재명(국문) / ccbaMnm2 -문화재명(한자) / ccbaCtcdNm -시도명/ccsiName-시군구명/content-내용/ ccbaKdcd-종목코드/ ccbaQuan-수량/ccbaAsdt-지정(등록일)/ccbaLcad -소재지 상세/
+	//ccceName-시대/ccbaPoss-소유자/imageUrl-메인노출이미지URL
+		public heritageVO findHertiageByNo(Connection conn, int hertiageNo) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			heritageVO hv = null;
+			String query = "SELECT  H.ccbaMnm1, H.ccbaMnm2, H.ccbaCtcdNm, H.ccsiName, H.content, H.ccbaKdcd, H.ccbaQuan, H.ccbaAsdt, H.ccbaLcad, H.ccceName, H.ccbaPoss, H.imageUrl "
+					+ "FROM HERITAGE H"
+					+ "WHERE H.no = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, hertiageNo);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					hv = new heritageVO();
+					hv.setCcbaMnm1(rs.getString("ccbaMnm1"));
+					hv.setCcbaMnm2(rs.getString("ccbaMnm2"));
+					hv.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
+					hv.setCcsiName(rs.getString("ccsiName"));
+					hv.setContent(rs.getString("content"));
+					hv.setCcbaKdcd(rs.getString("ccbaKdcd"));
+					hv.setCcbaQuan(rs.getString("ccbaQuan"));
+					hv.setCcbaAsdt(rs.getString("ccbaAsdt"));
+					hv.setCcbaLcad(rs.getString("ccbaLcad"));
+					hv.setCcceName(rs.getString("ccceName"));
+					hv.setCcbaPoss(rs.getString("ccbaPoss"));;
+					hv.setImageUrl(rs.getString("imageUrl"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return hv;
+		}
+		
+		
+		// 문화재 이미지 테이블에서 no로 상세조회
+		//ccbaMnm1 -문화재명(국문) / ccbaMnm2 -문화재명(한자) / ccbaCtcdNm -시도명/ccsiName-시군구명/content-내용/ ccbaKdcd-종목코드/ ccbaQuan-수량/ccbaAsdt-지정(등록일)/ccbaLcad -소재지 상세/
+		//ccceName-시대/ccbaPoss-소유자/imageUrl-메인노출이미지URL
+		public heritageVO findheritageImageByNo(Connection conn, int imageNo) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			heritageVO hv = null;
+			String query = "SELECT HI.imageUrl FROM heritageImage HI, HERITAGE H\r\n"
+					+ "WHERE H.no = HI.no and HI.no = ? ";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, imageNo);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					hv = new heritageVO();
+					hv.setCcbaMnm1(rs.getString("ccbaMnm1"));
+					hv.setCcbaMnm2(rs.getString("ccbaMnm2"));
+					hv.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
+					hv.setCcsiName(rs.getString("ccsiName"));
+					hv.setContent(rs.getString("content"));
+					hv.setCcbaKdcd(rs.getString("ccbaKdcd"));
+					hv.setCcbaQuan(rs.getString("ccbaQuan"));
+					hv.setCcbaAsdt(rs.getString("ccbaAsdt"));
+					hv.setCcbaLcad(rs.getString("ccbaLcad"));
+					hv.setCcceName(rs.getString("ccceName"));
+					hv.setCcbaPoss(rs.getString("ccbaPoss"));
+					hv.setImageUrl(rs.getString("imageUrl"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return hv;
+		}
 	
 	
 	public static void main(String[] args) {
