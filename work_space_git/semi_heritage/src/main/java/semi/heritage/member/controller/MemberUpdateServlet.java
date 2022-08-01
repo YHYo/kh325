@@ -28,7 +28,6 @@ public class MemberUpdateServlet extends MyHttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-
 			// 1. 저장 경로 지정
 			String path = getServletContext().getRealPath("/resources/upload/photo");
 			// 2. 파일사이즈 지정
