@@ -1,6 +1,6 @@
 package semi.heritage.souvenir.vo;
 
-public class Souvenir_Cart_VO {
+public class SouvenirCartVO {
 
 	private String SOUV_CART_NO;
 	private int uNo;
@@ -11,14 +11,14 @@ public class Souvenir_Cart_VO {
 	private String BUY_STATUS; // Y : 결제완료 / N : 결제안함
 	private String DELETE_STATUS; // Y : 장바구니 담김 / N : 삭제
 
-	public Souvenir_Cart_VO() {
+	public SouvenirCartVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
 	// 전체
-	public Souvenir_Cart_VO(String sOUV_CART_NO, int uNo, int sOUV_PRO_NO, String sOUV_PRO_NAME, int sOUV_PRO_PRICE,
+	public SouvenirCartVO(String sOUV_CART_NO, int uNo, int sOUV_PRO_NO, String sOUV_PRO_NAME, int sOUV_PRO_PRICE,
 			String sOUV_PRO_CATEGORY, String bUY_STATUS, String dELETE_STATUS) {
 		super();
 		this.SOUV_CART_NO = sOUV_CART_NO;
@@ -32,7 +32,7 @@ public class Souvenir_Cart_VO {
 	}
 
 	// 회원별 장바구니 (status들 있는거)
-	public Souvenir_Cart_VO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY,
+	public SouvenirCartVO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY,
 			String bUY_STATUS, String dELETE_STATUS) {
 		super();
 		this.uNo = uNo;
@@ -44,7 +44,7 @@ public class Souvenir_Cart_VO {
 	}
 	
 	// 회원별 장바구니
-	public Souvenir_Cart_VO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY) {
+	public SouvenirCartVO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY) {
 		super();
 		this.uNo = uNo;
 		this.SOUV_PRO_NAME = sOUV_PRO_NAME;

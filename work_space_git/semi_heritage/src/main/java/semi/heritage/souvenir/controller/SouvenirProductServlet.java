@@ -1,32 +1,51 @@
 package semi.heritage.souvenir.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.heritage.board.vo.Board;
 import semi.heritage.common.util.PageInfo;
+import semi.heritage.heritageInfo.vo.HeritageMainVO;
 import semi.heritage.souvenir.service.SouvenirService;
 
 
-//@WebServlet("/product/list")
+@WebServlet("/product/list")
 public class SouvenirProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private SouvenirService service = new SouvenirService();
 	
 	@Override
+	public String getServletName() {
+		return "SouvenirProductServlet";
+	}
+	
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int page = 1;
-		int boardCount = 0;
-		PageInfo pageInfo = null;
-		List<Board> list = null;
-		Map<String, String> searchMap = new HashMap<>();
+		
+		System.out.println("doget 호출 ");
+		List<HeritageMainVO> list = null;
+		
+		list = service.mainByFavorite();
+		System.out.println("list");
+		System.out.println(list);
+		if(list == null) {
+			list = new ArrayList<HeritageMainVO>();
+		}
+		
+		
+		req.setAttribute("list", list);
+		req.getRequestDispatcher("/views/main/index.jsp").forward(req, resp);
+		
 		
 		try {
 			String searchValue = req.getParameter("searchValue");
