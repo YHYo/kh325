@@ -10,7 +10,6 @@
 <%
 	List<CommunityBoard> list1 = (List<CommunityBoard>)request.getAttribute("list1");
 
-	
 %>
 
 <style>
