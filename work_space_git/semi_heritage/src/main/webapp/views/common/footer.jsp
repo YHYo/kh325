@@ -7,11 +7,11 @@
             <div class="row gy-4 ">
                 <div class="col-md-4">
                     <div class="mb-4">
-                        <a class="d-inline-block " href="city-guide-home-v1.html "><img src="img/semi-img/logo_spsp_1.png" width="116 " alt="Logo "></a>
+                        <a class="d-inline-block " href="city-guide-home-v1.html "><img src="<%=path%>/resources/img/semi-img/logo_spsp_1.png" width="116 " alt="Logo "></a>
                     </div>
                     <ul class="nav nav-light flex-column ">
                         <li class="nav-item mb-2 ">
-                            <a class="d-inline-block "><img src="img/semi-img/whoWeAre_orig.png" width="180px;" alt="Logo "></a>
+                            <a class="d-inline-block "><img src="<%=path%>/resources/img/semi-img/whoWeAre_orig.png" width="180px;" alt="Logo "></a>
                         </li>
                         <li><a class="nav-link-light text-dark p06">사뿐사뿐은 문화재와 문화유산에 대한 정보를 토대로 </a></li>
                         <li><a class="nav-link-light text-dark p06">다양한 이벤트 및 활동을 제공함으로써</a></li>
