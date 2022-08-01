@@ -1,9 +1,14 @@
-<%@page import="semi.heritage.souvenir.vo.Souvenir_Cart_VO"%>
+<%@page import="semi.heritage.souvenir.vo.SouvenirCartVO"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@include file="/views/common/headerDark.jsp"%>
+
+ <%
+	   List<SouvenirCartVO> list = (List<SouvenirCartVO>)request.getAttribute("list");
+   %>
 
 <script type ="text/javascript">
 <%
@@ -12,18 +17,18 @@ String name = request.getParameter("souvenirName");
 String category = request.getParameter("souvenirCategory");
 String price = request.getParameter("souvenirPrice"); 
 
-ArrayList<Souvenir_Cart_VO> cart = null;
+ArrayList<SouvenirCartVO> cart = null;
 Object obj = session.getAttribute("");	//세션 객체에서 cart 값을 가져온다. 
 %>
 
 function fnCart(name, price) {
 	if(confirm("장바구니에 담으시겠습니까?")) {
 		if(obj != souvenirName) {	//세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
-			cart = new ArrayList<Souvenir_Cart_VO>();
+			cart = new ArrayList<SouvenirCartVO>();
 			
 		} else {        
 	        alert("이미 존재하는 상품 입니다");
-	        cart = (ArrayList<Souvenir_Cart_VO>) obj;
+	        cart = (ArrayList<SouvenirCartVO>) obj;
 	}
 }
  
