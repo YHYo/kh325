@@ -12,6 +12,7 @@ import semi.heritage.common.util.PageInfo;
 import semi.heritage.heritageInfo.service.HeritageService;
 import semi.heritage.heritageInfo.vo.HeritageMainVO;
 
+
 //@WebServlet()
 public class HeritageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

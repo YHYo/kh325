@@ -1,18 +1,14 @@
 package semi.heritage.souvenir.service;
 
-import static com.kh.common.jdbc.JDBCTemplate.close;
-import static com.kh.common.jdbc.JDBCTemplate.commit;
-import static com.kh.common.jdbc.JDBCTemplate.getConnection;
-import static com.kh.common.jdbc.JDBCTemplate.rollback;
-
+import static semi.heritage.common.jdbc.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
-import com.kh.common.util.PageInfo;
-import com.kh.mvc.board.model.dao.BoardDAO;
-import com.kh.mvc.board.model.vo.Board;
-import com.kh.mvc.board.model.vo.Reply;
+import semi.heritage.board.dao.BoardDAO;
+import semi.heritage.board.vo.Board;
+import semi.heritage.board.vo.Reply;
+import semi.heritage.common.util.PageInfo;
 
 public class BoardService {
 	private BoardDAO dao = new BoardDAO();

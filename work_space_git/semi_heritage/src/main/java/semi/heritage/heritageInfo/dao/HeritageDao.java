@@ -17,6 +17,7 @@ import semi.heritage.heritageInfo.vo.HeritageVideo;
 
 
 
+
 public class HeritageDao {
 
 	public int insert(Connection conn, HeritageVO heritagevo) {
