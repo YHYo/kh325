@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import semi.heritage.heritageInfo.vo.HeritageVO;
 import semi.heritage.souvenir.vo.SouvenirBuyVO;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
 import semi.heritage.souvenir.vo.SouvenirPayVO;
@@ -36,7 +37,8 @@ public class SouvenirDao {
 				String souv_pro_category = rs.getString(count++);
 				String souv_pro_url = rs.getString(count++);
 
-				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price, souv_pro_category, souv_pro_url);
+				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
+						souv_pro_category, souv_pro_url);
 				list.add(info);
 			}
 		} catch (Exception e) {
@@ -67,7 +69,8 @@ public class SouvenirDao {
 				int souv_pro_price = rs.getInt(count++);
 				String souv_pro_url = rs.getString(count++);
 
-				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price, souv_pro_category, souv_pro_url);
+				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
+						souv_pro_category, souv_pro_url);
 				list.add(info);
 			}
 		} catch (Exception e) {
@@ -77,6 +80,34 @@ public class SouvenirDao {
 			close(rs);
 		}
 		return list;
+	}
+
+	// 제품번호로 찾기(장바구니 넣을때, 상세보기할때 사용)
+	public SouvenirProductVO findProductByNo(Connection conn, int productNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SouvenirProductVO sp = null;
+		try {
+			String sql = "select * from SOUV_PRODUCT where SOUV_PRO_NO=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + productNo + "%");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				int count = 1;
+				sp = new SouvenirProductVO();
+				sp.setSouv_pro_no(rs.getInt(count++));
+				sp.setSouv_pro_name(rs.getString(count++));
+				sp.setSouv_pro_price(rs.getInt(count++));
+				sp.setSouv_pro_url(rs.getString(count++));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return sp;
 	}
 
 	// 장바구니 추가
@@ -110,7 +141,8 @@ public class SouvenirDao {
 		ResultSet rs = null;
 
 		try {
-			// uNo번의 회원이 가진 장바구니의 제품명, 제품가격, 제품카테고리 출력 (구매 / 삭제한 품목 제외. 구매/삭제시 STATUS들이 Y로 변경)
+			// uNo번의 회원이 가진 장바구니의 제품명, 제품가격, 제품카테고리 출력 (구매 / 삭제한 품목 제외. 구매/삭제시 STATUS들이 Y로
+			// 변경)
 			String sql = "SELECT SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
 					+ "FROM SOUV_CART WHERE UNO=?  AND BUY_STATUS='N' AND DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
@@ -124,8 +156,9 @@ public class SouvenirDao {
 				String souv_pro_category = rs.getString(count++);
 				String souv_pro_url = rs.getString(count++);
 
-				SouvenirCartVO info = new SouvenirCartVO(uNo, souv_pro_name, souv_pro_price, souv_pro_category, souv_pro_url);
-						list.add(info);
+				SouvenirCartVO info = new SouvenirCartVO(uNo, souv_pro_name, souv_pro_price, souv_pro_category,
+						souv_pro_url);
+				list.add(info);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,6 +169,36 @@ public class SouvenirDao {
 		return list;
 	}
 
+	// 장바구니 일련번호(seqNo)를 가져온다. 장바구니 삭제할때 사용
+	
+	public SouvenirCartVO findCartBySeqNo(Connection conn, int seqNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SouvenirCartVO sc = null;
+		try {
+			String sql = "SELECT SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
+					+ "	FROM SOUV_CART WHERE UNO=?  AND BUY_STATUS='N' AND DELETE_STATUS='N' ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + seqNo + "%");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				int count = 1;
+				sc = new SouvenirCartVO();
+				sc.setSouv_pro_name(rs.getString(count++));
+				sc.setSouv_pro_price(rs.getInt(count++));
+				sc.setSouv_pro_category(rs.getString(count++));
+				sc.setSouv_pro_url(rs.getString(count++));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return sc;
+	}
+	
 	// 장바구니 삭제
 	public int deleteCart(Connection conn, int uNo, String status) {
 		PreparedStatement pstmt = null;
@@ -169,7 +232,7 @@ public class SouvenirDao {
 //			String sql = "SELECT UI.uno,ui.uname,ui.uadr, ui.upn, ui.uemail, sc.souv_pro_no, sc.souv_pro_name, sc.souv_pro_price, SUM(sc.souv_pro_price)OVER() AS \"총가격\", SUM(sc.souv_pro_price)OVER()+3000 AS \"배송비포함\" "
 //					+ "FROM SOUV_CART SC, USERINFO UI " 
 //					+ "WHERE UI.uNo=sc.uno AND sc.uno=?";
-			
+
 			String sql = "SELECT UI.uno, ui.uname, ui.uadr, ui.upn, ui.uemail, "
 					+ "sc.souv_pro_no, sc.souv_pro_name, sc.souv_pro_price,  sc.SOUV_PRO_URL, "
 					+ "SUM(sc.souv_pro_price)OVER() AS \"총가격\", SUM(sc.souv_pro_price)OVER()+3000 AS \"배송비포함\" "
@@ -192,7 +255,8 @@ public class SouvenirDao {
 				int total_price = rs.getInt(count++);
 				int bsb_total_price = rs.getInt(count++);
 
-				SouvenirPayVO info = new SouvenirPayVO(uNo, uname, uadr, upn, uemail, souv_pro_no, souv_pro_name, souv_pro_price, total_price, bsb_total_price, souv_pro_url);
+				SouvenirPayVO info = new SouvenirPayVO(uNo, uname, uadr, upn, uemail, souv_pro_no, souv_pro_name,
+						souv_pro_price, total_price, bsb_total_price, souv_pro_url);
 				list.add(info);
 			}
 		} catch (Exception e) {
@@ -215,12 +279,11 @@ public class SouvenirDao {
 			// 주문번호, 순번, 상품번호, 상품이름, 상품가격, 결제가격(상품총가격+배송비)
 //			String sql = "SELECT SOUV_CART_NO||uno AS \"주문번호\", uno, souv_pro_no, souv_pro_name, souv_pro_price, SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  "
 //					+ "FROM souv_cart SC\r\n" + "WHERE  status = 'Y' AND uno=? ";
-			
+
 			String sql = "SELECT SOUV_CART_NO||uno AS \"주문번호\", rownum, souv_pro_no, souv_pro_name, souv_pro_price,  SOUV_PRO_URL, "
-					+ "SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  "
-					+ "FROM souv_cart SC\r\n"
+					+ "SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  " + "FROM souv_cart SC\r\n"
 					+ "WHERE BUY_STATUS='Y' AND uno=? ";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + uNo + "%");
 			rs = pstmt.executeQuery();
@@ -235,7 +298,8 @@ public class SouvenirDao {
 				int bsb_total_price = rs.getInt(count++);
 				int rownum = rs.getInt(count++);
 
-				SouvenirBuyVO info = new SouvenirBuyVO(orderNum, uNo, souv_pro_no, souv_pro_name, souv_pro_price, bsb_total_price, rownum, souv_pro_url);
+				SouvenirBuyVO info = new SouvenirBuyVO(orderNum, uNo, souv_pro_no, souv_pro_name, souv_pro_price,
+						bsb_total_price, rownum, souv_pro_url);
 				list.add(info);
 			}
 		} catch (Exception e) {

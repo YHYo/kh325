@@ -29,18 +29,10 @@ public class SouvenirProductDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		List<SouvenirProductVO> list = null;
-		int pNo = Integer.parseInt(req.getParameter("pNo"));
-		SouvenirProductVO p = service.findProductByNo(pNo);		//만들어야함
+		int productNo = Integer.parseInt(req.getParameter("productNo"));
+		SouvenirProductVO p = service.findProductByNo(productNo);		//만들어야함
 		
-		list = service.getProductDetail();		// 만들어야함
-		
-		System.out.println("list");
-		System.out.println(list);
-		
-//		if(list == null) {
-//			list = new ArrayList<SouvenirProductVO>();
-//		}
-		
+
 		
 		req.setAttribute("product", p);
 		req.getRequestDispatcher("/views/souvenir/souvenirProductsDetail.jsp").forward(req, resp);

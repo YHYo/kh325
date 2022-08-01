@@ -31,6 +31,18 @@ public class SouvenirService {
 		close(conn);
 		return list;
 	}
+	
+	public SouvenirProductVO findProductByNo(int productNo) {
+		Connection conn = getConnection();
+		SouvenirProductVO sp = dao.findProductByNo(conn, productNo);
+		return sp;
+	}
+	
+	public SouvenirCartVO findCartByNo(int seqNo) {
+		Connection conn = getConnection();
+		SouvenirCartVO sc = dao.findCartBySeqNo(conn, seqNo);
+		return sc;
+	}
 
 	// cart
 	public List<SouvenirCartVO> getCartList(int uNo) {
