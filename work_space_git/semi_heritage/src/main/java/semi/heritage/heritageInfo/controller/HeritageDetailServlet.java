@@ -46,18 +46,6 @@ public class HeritageDetailServlet extends HttpServlet{
 			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
 			return;
 		}
-//		if() {
-//			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
-//			return;
-//		}
-//		if() {
-//			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
-//			return;
-//		}
-//		if() {
-//			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
-//			return;
-//		}
 		if(HertiageReview_Count < 0 ) {
 			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
 			return;
@@ -73,7 +61,8 @@ public class HeritageDetailServlet extends HttpServlet{
 		req.setAttribute("list", list);
 		req.setAttribute("HertiageReview_Count", HertiageReview_Count);
 		req.setAttribute("CountFavoriteByNo", CountFavoriteByNo);
-		req.getRequestDispatcher("/views/heritage/heritageDeatil.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/heritage/heritageDetail.jsp").forward(req, resp); 
+	
 	}
 	
 	
