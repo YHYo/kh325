@@ -14,33 +14,36 @@ import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 
-@WebServlet("/product/main")
-public class SouvenirProductServlet extends HttpServlet {
+@WebServlet("/product/detail")
+public class SouvenirProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private SouvenirService service = new SouvenirService();
 	
 	@Override
 	public String getServletName() {
-		return "SouvenirProductServlet";
+		return "SouvenirProductDetailServlet";
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("doget 호출 ");
 		List<SouvenirProductVO> list = null;
+		int pNo = Integer.parseInt(req.getParameter("pNo"));
+		SouvenirProductVO p = service.findProductByNo(pNo);		//만들어야함
 		
-		list = service.getProductList();
+		list = service.getProductDetail();		// 만들어야함
+		
 		System.out.println("list");
 		System.out.println(list);
-		if(list == null) {
-			list = new ArrayList<SouvenirProductVO>();
-		}
+		
+//		if(list == null) {
+//			list = new ArrayList<SouvenirProductVO>();
+//		}
 		
 		
-		req.setAttribute("list", list);
-		req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);
+		req.setAttribute("product", p);
+		req.getRequestDispatcher("/views/souvenir/souvenirProductsDetail.jsp").forward(req, resp);
 		
 		
 		
