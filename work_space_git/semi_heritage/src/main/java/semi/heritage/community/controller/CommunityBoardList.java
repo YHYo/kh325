@@ -48,7 +48,7 @@ public class CommunityBoardList extends HttpServlet {
 		
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
-		req.getRequestDispatcher("/views/board/freeBoard.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/community/freeBoard.jsp").forward(req, resp);
 	}
 	
 	@Override

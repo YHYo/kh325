@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-<%@page import="semi.heritage.board.vo.FreeBoard"%>
+<%@page import="semi.heritage.community.vo.CommunityBoard"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,7 +9,7 @@
 <!-- 헤더 -->
 
 <%
-	List<FreeBoard> list = (List<FreeBoard>)request.getAttribute("list");
+	List<CommunityBoard> list = (List<CommunityBoard>)request.getAttribute("list");
 	
 %>
 
@@ -95,7 +95,7 @@
                 		</tr>
                 	<%} else {%>
                 		<%-- 게시글 리스트 시작 --%>
-                		<%for(FreeBoard b : list) {%>
+                		<%for(CommunityBoard b : list) {%>
                 			<tr>
                 				<td>
                 					<!-- <a href="<%=path+"/board/view?type=F&boardNo="+b.getNo()%>"><%=b.getTitle() %></a> -->

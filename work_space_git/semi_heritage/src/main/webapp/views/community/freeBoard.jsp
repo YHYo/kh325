@@ -1,5 +1,5 @@
+<%@page import="semi.heritage.community.vo.CommunityBoard"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
-<%@page import="semi.heritage.community.vo.communityBoard"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,7 +8,7 @@
 <%@ include file="/views/common/headerLight.jsp" %>
 
 <%
-	List<communityBoard> list = (List<communityBoard>)request.getAttribute("list");
+	List<CommunityBoard> list = (List<CommunityBoard>)request.getAttribute("list");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	String searchType = "title";
 	String searchValue = "";
@@ -106,7 +106,7 @@
            			</tr> 
            		<%} else {%>
            			<%-- 게시글 리스트 시작 --%>
-           			<%for(communityBoard b : list) {%>
+           			<%for(CommunityBoard b : list) {%>
            				<tr>
            					<td><%=b.getNo() %></td>
            					<td>
