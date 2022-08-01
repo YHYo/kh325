@@ -189,6 +189,7 @@ String saveId = "";
 	<link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/nouislider/dist/nouislider.min.css" />
     
     
+    
     <!-- Main Theme Styles + Bootstrap-->
    <!--  <link rel="stylesheet" media="screen" href="css/theme.min.css"> -->
    <link rel="stylesheet" media="screen" href="<%=path%>/resources/css/theme.min.css" >
