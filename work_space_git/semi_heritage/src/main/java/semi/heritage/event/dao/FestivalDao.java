@@ -69,11 +69,11 @@ public class FestivalDao {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT en.eventname, EI.subtitle, EI.sido ,EI.gugun, EI.subDesc ,EI.sDate, EI.EDate, EI.subPath\r\n"
-					+ "FROM EVENT_INFO EI,  EVENT_NAME EN\r\n"
-					+ "WHERE EI.siteCode = EN.siteCode \r\n"
-					+ "AND EI.sDate Like ? \r\n"
-					+ "ORDER BY EI.sDate";
+			String sql = "SELECT en.eventname, EI.subtitle, EI.sido ,EI.gugun, EI.subDesc ,EI.sDate, EI.EDate, EI.subPath "
+					+ " FROM EVENT_INFO EI,  EVENT_NAME EN "
+					+ " WHERE EI.siteCode = EN.siteCode "
+					+ " AND EI.sDate Like ? "
+					+ " ORDER BY EI.sDate ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, eventMonth + "%");
 			rs = pstmt.executeQuery();

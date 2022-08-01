@@ -1,3 +1,4 @@
+<%@page import="semi.heritage.event.vo.Festival"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
 <%@page import="semi.heritage.community.vo.CommunityBoard"%>
 <%@page import="java.util.List"%>
@@ -7,6 +8,15 @@
 
 <!-- Header -->
 <%@ include file="/views/common/headerLight.jsp" %>
+
+
+<%
+	List<Festival> list = (List<Festival>)request.getAttribute("list");
+%>	
+
+		<%for(Festival f : list){%>
+			<%= f.toString() +"<br>" %>
+		<% }%>
 
         <!-- Page content-->
         <!-- 상단배경 Hero-->

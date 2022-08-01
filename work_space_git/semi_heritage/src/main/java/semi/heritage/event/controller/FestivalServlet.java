@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi.heritage.event.service.FestivalService;
 import semi.heritage.event.vo.Festival;
 
-@WebServlet("/trtrrr")
+@WebServlet("/event/main.do")
 public class FestivalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FestivalService service = new FestivalService();
@@ -20,13 +20,16 @@ public class FestivalServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String eventMonth = null;
-		List<Festival> list = null;
+		String eventMonth = req.getParameter("eventMonth");
+		if(eventMonth == null || eventMonth.length() < 1) {
+			eventMonth = "202208";
+		}
+									// 202202
+		List<Festival> list = service.selectByMonth(eventMonth);
 
-		list = service.selectByMonth(eventMonth);
-
+		System.out.println(list);
 		req.setAttribute("list", list);
-		req.getRequestDispatcher("/views/main/index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/event/eventSchedule.jsp").forward(req, resp);
 
 	}
 
