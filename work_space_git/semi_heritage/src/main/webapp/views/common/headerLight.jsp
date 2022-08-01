@@ -44,6 +44,25 @@ String saveId = "";
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
     <style>
+    
+    	.img-contain {
+            width: 300px;
+            height: 170px;
+            object-fit: cover;
+        }
+        
+        .img-contain2 {
+            width: 421px;
+            height: 280px;
+            object-fit: cover;
+        }
+        
+        .img-contain3 {
+            width: 858px;
+            height: 572px;
+            object-fit: cover;
+        }
+        
         .p01 {
             line-height: -10px;
             letter-spacing: -7px;
