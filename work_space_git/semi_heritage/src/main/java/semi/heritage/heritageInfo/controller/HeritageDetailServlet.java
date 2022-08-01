@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.heritageInfo.service.HeritageService;
+import semi.heritage.heritageInfo.vo.HeritageImage;
 import semi.heritage.heritageInfo.vo.HeritageVO;
+import semi.heritage.heritageInfo.vo.HeritageVideo;
 
 
 
@@ -23,21 +25,27 @@ public class HeritageDetailServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int hertiageNo = Integer.parseInt(req.getParameter("hertiageNo"));
 
-		HeritageVO hertiage = service.findHertiageByNo(hertiageNo);
+		HeritageVO h = service.findHertiageByNo(hertiageNo);
+		HeritageImage hi = service.findheritageImageByNo(hertiageNo);
+		HeritageVideo hv = service.findheritageVideoByNo(hertiageNo);
 
-		if(hertiage == null) {
+		if(h == null) {
 			resp.sendRedirect(req.getContextPath() + "/");
 			return;
 		}
-		req.setAttribute("hertiage", hertiage);
-		req.getRequestDispatcher("/views/board/view.jsp").forward(req, resp);
+		if(hi == null) {
+			resp.sendRedirect(req.getContextPath() + "/");
+			return;
+		}
+		if(hv == null) {
+			resp.sendRedirect(req.getContextPath() + "/");
+			return;
+		}
+		req.setAttribute("hertiage", h);
+		req.setAttribute("heritageImage", hi);
+		req.setAttribute("heritageVideo", hv);
+		req.getRequestDispatcher("/views/heritage/heritageDeatil.jsp").forward(req, resp);
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	

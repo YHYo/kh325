@@ -1,19 +1,19 @@
 package semi.heritage.heritageInfo.dao;
 
-import static semi.heritage.common.jdbc.JDBCTemplate.*;
+import static semi.heritage.common.jdbc.JDBCTemplate.close;
+import static semi.heritage.common.jdbc.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import semi.heritage.common.util.PageInfo;
-
-import semi.heritage.heritageInfo.vo.HeritageVO;
-import semi.heritage.heritageInfo.vo.HeritageVideo;
 import semi.heritage.heritageInfo.vo.HeritageImage;
 import semi.heritage.heritageInfo.vo.HeritageMainVO;
+import semi.heritage.heritageInfo.vo.HeritageVO;
+import semi.heritage.heritageInfo.vo.HeritageVideo;
 
 
 
@@ -162,7 +162,7 @@ public class HeritageDao {
 		
 
 		// 이름으로 검색한 문화재 전체 갯수를 가져오는 쿼리문
-		public int getheritageMainVOCount(Connection conn,String ccbaMnm) {
+		public int getHeritageMainVOCount(Connection conn,String ccbaMnm) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			String query = "SELECT count(ROWNUM) FROM("
@@ -282,32 +282,19 @@ public class HeritageDao {
 		
 		
 		// 문화재 이미지 테이블에서 no로 상세조회
-		//ccbaMnm1 -문화재명(국문) / ccbaMnm2 -문화재명(한자) / ccbaCtcdNm -시도명/ccsiName-시군구명/content-내용/ ccbaKdcd-종목코드/ ccbaQuan-수량/ccbaAsdt-지정(등록일)/ccbaLcad -소재지 상세/
-		//ccceName-시대/ccbaPoss-소유자/imageUrl-메인노출이미지URL
-		public HeritageVO findheritageImageByNo(Connection conn, int imageNo) {
+		public HeritageImage findHeritageImageByNo(Connection conn, int imageNo) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			HeritageVO hv = null;
-			String query = "SELECT HI.imageUrl FROM heritageImage HI, HERITAGE H\r\n"
-					+ "WHERE H.no = HI.no and HI.no = ? ";
+			HeritageImage hi = null;
+			String query = "SELECT HI.imageUrl FROM heritageImage HI"
+					+ "WHERE HI.no = ? ";
 			try {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, imageNo);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
-					hv = new HeritageVO();
-					hv.setCcbaMnm1(rs.getString("ccbaMnm1"));
-					hv.setCcbaMnm2(rs.getString("ccbaMnm2"));
-					hv.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
-					hv.setCcsiName(rs.getString("ccsiName"));
-					hv.setContent(rs.getString("content"));
-					hv.setCcbaKdcd(rs.getString("ccbaKdcd"));
-					hv.setCcbaQuan(rs.getString("ccbaQuan"));
-					hv.setCcbaAsdt(rs.getString("ccbaAsdt"));
-					hv.setCcbaLcad(rs.getString("ccbaLcad"));
-					hv.setCcceName(rs.getString("ccceName"));
-					hv.setCcbaPoss(rs.getString("ccbaPoss"));
-					hv.setImageUrl(rs.getString("imageUrl"));
+					hi = new HeritageImage();
+					hi.setImageUrl(rs.getString("imageUrl"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -315,9 +302,32 @@ public class HeritageDao {
 				close(pstmt);
 				close(rs);
 			}
-			return hv;
+			return hi;
 		}
 	
+		// 문화재 비디오 테이블에서 no로 상세조회
+				public HeritageVideo findHeritageVideoByNo(Connection conn, int videoNo) {
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					HeritageVideo hv = null;
+					String query = "SELECT HV.videoUrl FROM heritageVideo HV"
+							+ "WHERE  HV.no = ? ";
+					try {
+						pstmt = conn.prepareStatement(query);
+						pstmt.setInt(1, videoNo);
+						rs = pstmt.executeQuery();
+						if (rs.next()) {
+							hv = new HeritageVideo();
+							hv.setVideoUrl(rs.getString("videoNo"));
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						close(pstmt);
+						close(rs);
+					}
+					return hv;
+				}
 	
 	public static void main(String[] args) {
 		Connection conn = getConnection();

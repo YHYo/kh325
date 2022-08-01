@@ -35,8 +35,7 @@ public class HeritageListServlet extends HttpServlet {
 
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
-		req.getRequestDispatcher("").forward(req, resp);
-//		req.getRequestDispatcher("/views/board/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("").forward(req, resp);// 문화재 리스트 보여주는 페이지주소 넣어야함
 	}
 
 	@Override
