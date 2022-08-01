@@ -14,6 +14,7 @@ public class SouvenirPayVO {
 	private int souv_pro_price;
 	private int total_price;
 	private int bsb_total_price;
+	private String souv_pro_url;
 
 	public SouvenirPayVO() {
 		super();
@@ -21,7 +22,7 @@ public class SouvenirPayVO {
 	}
 
 	public SouvenirPayVO(int uno, String uname, String uadr, String upn, String uemail, int souv_pro_no,
-			String souv_pro_name, int souv_pro_price, int total_price, int bsb_total_price) {
+			String souv_pro_name, int souv_pro_price, int total_price, int bsb_total_price, String souv_pro_url) {
 		super();
 		this.uno = uno;
 		this.uname = uname;
@@ -33,13 +34,15 @@ public class SouvenirPayVO {
 		this.souv_pro_price = souv_pro_price;
 		this.total_price = total_price;
 		this.bsb_total_price = bsb_total_price;
+		this.souv_pro_url = souv_pro_url;
 	}
 
 	@Override
 	public String toString() {
-		return "Souvenir_Pay_VO [uno=" + uno + ", uname=" + uname + ", uadr=" + uadr + ", upn=" + upn + ", uemail="
+		return "SouvenirPayVO [uno=" + uno + ", uname=" + uname + ", uadr=" + uadr + ", upn=" + upn + ", uemail="
 				+ uemail + ", souv_pro_no=" + souv_pro_no + ", souv_pro_name=" + souv_pro_name + ", souv_pro_price="
-				+ souv_pro_price + ", total_price=" + total_price + ", bsb_total_price=" + bsb_total_price + "]";
+				+ souv_pro_price + ", total_price=" + total_price + ", bsb_total_price=" + bsb_total_price
+				+ ", souv_pro_url=" + souv_pro_url + "]";
 	}
 
 	public int getUno() {
@@ -120,6 +123,14 @@ public class SouvenirPayVO {
 
 	public void setBsb_total_price(int bsb_total_price) {
 		this.bsb_total_price = bsb_total_price;
+	}
+
+	public String getSouv_pro_url() {
+		return souv_pro_url;
+	}
+
+	public void setSouv_pro_url(String souv_pro_url) {
+		this.souv_pro_url = souv_pro_url;
 	}
 
 }

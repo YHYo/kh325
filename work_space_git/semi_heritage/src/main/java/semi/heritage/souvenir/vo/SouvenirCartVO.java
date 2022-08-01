@@ -2,125 +2,136 @@ package semi.heritage.souvenir.vo;
 
 public class SouvenirCartVO {
 
-	private String SOUV_CART_NO;
-	private int uNo;
-	private int SOUV_PRO_NO;
-	private String SOUV_PRO_NAME;
-	private int SOUV_PRO_PRICE;
-	private String SOUV_PRO_CATEGORY;
-	private String BUY_STATUS; // Y : 결제완료 / N : 결제안함
-	private String DELETE_STATUS; // Y : 장바구니 담김 / N : 삭제
+	private String souv_cart_no;
+	private int uno;
+	private int souv_pro_no;
+	private String souv_pro_name;
+	private int souv_pro_price;
+	private String souv_pro_category;
+	private String buy_status; // Y : 결제완료 / N : 결제안함
+	private String delete_status; // Y : 장바구니 담김 / N : 삭제
+	private String souv_pro_url;
 
 	public SouvenirCartVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	public SouvenirCartVO(String souv_pro_url) {
+		super();
+		this.souv_pro_url = souv_pro_url;
+	}
+
+	public SouvenirCartVO(int uno) {
+		super();
+		this.uno = uno;
+	}
+
+	// 회원별 장바구니 (주문번호, 회원번호 제품명, 가격, 카테고리, 이미지주소)
+	public SouvenirCartVO( int uno, String souv_pro_name, int souv_pro_price, String souv_pro_category,
+			String souv_pro_url) {
+		super();
+//		this.souv_cart_no = souv_cart_no;
+		this.uno = uno;
+		this.souv_pro_name = souv_pro_name;
+		this.souv_pro_price = souv_pro_price;
+		this.souv_pro_category = souv_pro_category;
+		this.souv_pro_url = souv_pro_url;
+	}
 
 	// 전체
-	public SouvenirCartVO(String sOUV_CART_NO, int uNo, int sOUV_PRO_NO, String sOUV_PRO_NAME, int sOUV_PRO_PRICE,
-			String sOUV_PRO_CATEGORY, String bUY_STATUS, String dELETE_STATUS) {
+	public SouvenirCartVO(String souv_cart_no, int uno, int souv_pro_no, String souv_pro_name, int souv_pro_price,
+			String souv_pro_category, String buy_status, String delete_status, String souv_pro_url) {
 		super();
-		this.SOUV_CART_NO = sOUV_CART_NO;
-		this.uNo = uNo;
-		this.SOUV_PRO_NO = sOUV_PRO_NO;
-		this.SOUV_PRO_NAME = sOUV_PRO_NAME;
-		this.SOUV_PRO_PRICE = sOUV_PRO_PRICE;
-		this.SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
-		this.BUY_STATUS = bUY_STATUS;
-		this.DELETE_STATUS = dELETE_STATUS;
-	}
-
-	// 회원별 장바구니 (status들 있는거)
-	public SouvenirCartVO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY,
-			String bUY_STATUS, String dELETE_STATUS) {
-		super();
-		this.uNo = uNo;
-		this.SOUV_PRO_NAME = sOUV_PRO_NAME;
-		this.SOUV_PRO_PRICE = sOUV_PRO_PRICE;
-		this.SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
-		this.BUY_STATUS = bUY_STATUS;
-		this.DELETE_STATUS = dELETE_STATUS;
-	}
-	
-	// 회원별 장바구니
-	public SouvenirCartVO(int uNo, String sOUV_PRO_NAME, int sOUV_PRO_PRICE, String sOUV_PRO_CATEGORY) {
-		super();
-		this.uNo = uNo;
-		this.SOUV_PRO_NAME = sOUV_PRO_NAME;
-		this.SOUV_PRO_PRICE = sOUV_PRO_PRICE;
-		this.SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
+		this.souv_cart_no = souv_cart_no;
+		this.uno = uno;
+		this.souv_pro_no = souv_pro_no;
+		this.souv_pro_name = souv_pro_name;
+		this.souv_pro_price = souv_pro_price;
+		this.souv_pro_category = souv_pro_category;
+		this.buy_status = buy_status;
+		this.delete_status = delete_status;
+		this.souv_pro_url = souv_pro_url;
 	}
 
 	@Override
 	public String toString() {
-		return "Souvenir_Cart_VO [SOUV_CART_NO=" + SOUV_CART_NO + ", uNo=" + uNo + ", SOUV_PRO_NO=" + SOUV_PRO_NO
-				+ ", SOUV_PRO_NAME=" + SOUV_PRO_NAME + ", SOUV_PRO_PRICE=" + SOUV_PRO_PRICE + ", SOUV_PRO_CATEGORY="
-				+ SOUV_PRO_CATEGORY + ", BUY_STATUS=" + BUY_STATUS + ", DELETE_STATUS=" + DELETE_STATUS + "]";
+		return "SouvenirCartVO [souv_cart_no=" + souv_cart_no + ", uno=" + uno + ", souv_pro_no=" + souv_pro_no
+				+ ", souv_pro_name=" + souv_pro_name + ", souv_pro_price=" + souv_pro_price + ", souv_pro_category="
+				+ souv_pro_category + ", buy_status=" + buy_status + ", delete_status=" + delete_status
+				+ ", souv_pro_url=" + souv_pro_url + "]";
 	}
 
-	public String getSOUV_CART_NO() {
-		return SOUV_CART_NO;
+	public String getSouv_cart_no() {
+		return souv_cart_no;
 	}
 
-	public void setSOUV_CART_NO(String sOUV_CART_NO) {
-		SOUV_CART_NO = sOUV_CART_NO;
+	public void setSouv_cart_no(String souv_cart_no) {
+		this.souv_cart_no = souv_cart_no;
 	}
 
-	public int getuNo() {
-		return uNo;
+	public int getUno() {
+		return uno;
 	}
 
-	public void setuNo(int uNo) {
-		this.uNo = uNo;
+	public void setUno(int uno) {
+		this.uno = uno;
 	}
 
-	public int getSOUV_PRO_NO() {
-		return SOUV_PRO_NO;
+	public int getSouv_pro_no() {
+		return souv_pro_no;
 	}
 
-	public void setSOUV_PRO_NO(int sOUV_PRO_NO) {
-		SOUV_PRO_NO = sOUV_PRO_NO;
+	public void setSouv_pro_no(int souv_pro_no) {
+		this.souv_pro_no = souv_pro_no;
 	}
 
-	public String getSOUV_PRO_NAME() {
-		return SOUV_PRO_NAME;
+	public String getSouv_pro_name() {
+		return souv_pro_name;
 	}
 
-	public void setSOUV_PRO_NAME(String sOUV_PRO_NAME) {
-		SOUV_PRO_NAME = sOUV_PRO_NAME;
+	public void setSouv_pro_name(String souv_pro_name) {
+		this.souv_pro_name = souv_pro_name;
 	}
 
-	public int getSOUV_PRO_PRICE() {
-		return SOUV_PRO_PRICE;
+	public int getSouv_pro_price() {
+		return souv_pro_price;
 	}
 
-	public void setSOUV_PRO_PRICE(int sOUV_PRO_PRICE) {
-		SOUV_PRO_PRICE = sOUV_PRO_PRICE;
+	public void setSouv_pro_price(int souv_pro_price) {
+		this.souv_pro_price = souv_pro_price;
 	}
 
-	public String getSOUV_PRO_CATEGORY() {
-		return SOUV_PRO_CATEGORY;
+	public String getSouv_pro_category() {
+		return souv_pro_category;
 	}
 
-	public void setSOUV_PRO_CATEGORY(String sOUV_PRO_CATEGORY) {
-		SOUV_PRO_CATEGORY = sOUV_PRO_CATEGORY;
+	public void setSouv_pro_category(String souv_pro_category) {
+		this.souv_pro_category = souv_pro_category;
 	}
 
-	public String getBUY_STATUS() {
-		return BUY_STATUS;
+	public String getBuy_status() {
+		return buy_status;
 	}
 
-	public void setBUY_STATUS(String bUY_STATUS) {
-		BUY_STATUS = bUY_STATUS;
+	public void setBuy_status(String buy_status) {
+		this.buy_status = buy_status;
 	}
 
-	public String getDELETE_STATUS() {
-		return DELETE_STATUS;
+	public String getDelete_status() {
+		return delete_status;
 	}
 
-	public void setDELETE_STATUS(String dELETE_STATUS) {
-		DELETE_STATUS = dELETE_STATUS;
+	public void setDelete_status(String delete_status) {
+		this.delete_status = delete_status;
+	}
+
+	public String getSouv_pro_url() {
+		return souv_pro_url;
+	}
+
+	public void setSouv_pro_url(String souv_pro_url) {
+		this.souv_pro_url = souv_pro_url;
 	}
 
 }
