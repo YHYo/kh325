@@ -459,6 +459,7 @@ public class CommunityBoardDAO {
 	            CommunityBoard mainBoard = new CommunityBoard(no, UNAME, title);
 	            list.add(mainBoard);
 	         }
+	         System.out.println(list);
 	         return list;
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -474,6 +475,7 @@ public class CommunityBoardDAO {
 		CommunityBoardDAO dao = new CommunityBoardDAO();
 		CommunityBoard board = new CommunityBoard();
 		
+//		dao.findToMain(conn);
 //		findBoardByNo(Connection conn, int boardNo, String type)
 //
 //

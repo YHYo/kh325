@@ -205,5 +205,11 @@ public class CommunityBoardService {
 		close(conn);
 		return list;
 	}
+	
+	public static void main(String[] args) {
+		CommunityBoardService s = new CommunityBoardService();
+		
+		s.findToMain();
+	}
 
 }

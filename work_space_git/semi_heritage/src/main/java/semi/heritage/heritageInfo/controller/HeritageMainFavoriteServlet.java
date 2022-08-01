@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.common.util.MyHttpServlet;
+import semi.heritage.community.service.CommunityBoardService;
+import semi.heritage.community.vo.CommunityBoard;
 import semi.heritage.heritageInfo.service.HeritageService;
 import semi.heritage.heritageInfo.vo.HeritageMainVO;
 
@@ -18,6 +20,7 @@ public class HeritageMainFavoriteServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private HeritageService service = new HeritageService();
+	private CommunityBoardService bservice = new CommunityBoardService();
 
 	@Override
 	public String getServletName() {
@@ -28,15 +31,19 @@ public class HeritageMainFavoriteServlet extends MyHttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("doget 호출 ");
 		List<HeritageMainVO> list = null;
+		List<CommunityBoard> blist = null;
 
 		list = service.mainByFavorite();
-		System.out.println("list");
-		System.out.println(list);
+		blist = bservice.findToMain();
 		if (list == null) {
 			list = new ArrayList<HeritageMainVO>();
 		}
+		if (blist == null) {
+			blist = new ArrayList<CommunityBoard>();
+		}
 
 		req.setAttribute("list", list);
+		req.setAttribute("blist", blist);
 		req.getRequestDispatcher("/views/main/index.jsp").forward(req, resp);
 
 	}

@@ -7,7 +7,6 @@
     
     
     
-    
 <%@include file="/views/common/headerLight.jsp"%>
    
    
@@ -163,10 +162,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            
                              <% for (int j = 0; j < 7; j++){ %>
                                 <tr>
                                     <!-- <th scope="row ">7</th> -->
-                                    <td><%=blist.get(j).getTitle()%></td>
+                                    <td style="width: 500px; text-overflow: ellipsis"><%=blist.get(j).getTitle()%></td>
                                     <td><%=blist.get(j).getuName()%></td>
                                     <!-- <td>2022/07/17</td> -->
                                 </tr>  
