@@ -12,6 +12,7 @@ import semi.heritage.common.util.PageInfo;
 import semi.heritage.heritageInfo.service.HeritageService;
 import semi.heritage.heritageInfo.vo.HeritageMainVO;
 
+
 //@WebServlet()
 public class HeritageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,14 +30,13 @@ public class HeritageListServlet extends HttpServlet {
 		page = Integer.parseInt(req.getParameter("page"));
 //		String hrName = req.getParameter("ccbaMnm1"); // jsp에서 검색창에 검색시 어떤 name으로 할건지 정해야함
 
-		boardCount = service.getheritageMainVOCount("ccbaMnm"); // 이름입력해서 게시글 갯수 몇개인지 가져옴
+		boardCount = service.getHeritageMainVOCount("ccbaMnm"); // 이름입력해서 게시글 갯수 몇개인지 가져옴
 		pageInfo = new PageInfo(page, 8, boardCount, 9); // 하단버튼 8개 , 게시글 9개 보임
 		list = service.selectByHeritageName(ccbaMnm, pageInfo);
 
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
-		req.getRequestDispatcher("").forward(req, resp);
-//		req.getRequestDispatcher("/views/board/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("").forward(req, resp);// 문화재 리스트 보여주는 페이지주소 넣어야함
 	}
 
 	@Override

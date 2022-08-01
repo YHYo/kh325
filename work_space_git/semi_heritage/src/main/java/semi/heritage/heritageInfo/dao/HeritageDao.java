@@ -1,19 +1,21 @@
 package semi.heritage.heritageInfo.dao;
 
-import static semi.heritage.common.jdbc.JDBCTemplate.*;
+import static semi.heritage.common.jdbc.JDBCTemplate.close;
+import static semi.heritage.common.jdbc.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import semi.heritage.common.util.PageInfo;
-
-import semi.heritage.heritageInfo.vo.HeritageVO;
-import semi.heritage.heritageInfo.vo.HeritageVideo;
 import semi.heritage.heritageInfo.vo.HeritageImage;
 import semi.heritage.heritageInfo.vo.HeritageMainVO;
+import semi.heritage.heritageInfo.vo.HeritageVO;
+import semi.heritage.heritageInfo.vo.HeritageVideo;
+
+
 
 
 
@@ -162,15 +164,13 @@ public class HeritageDao {
 		
 
 		// 이름으로 검색한 문화재 전체 갯수를 가져오는 쿼리문
-		public int getheritageMainVOCount(Connection conn,String ccbaMnm) {
+		public int getHeritageMainVOCount(Connection conn,String ccbaMnm) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			String query = "SELECT count(ROWNUM) FROM("
-					+ "SELECT ROWNUM, H.NO, H.sn, H.ccbaMnm1, H.ccbaCtcdNm, H.ccsiName, H.content, H.IMAGEURL, HFV.* "
-					+ "FROM HERITAGE H,"
-					+ "(SELECT NO,COUNT(uno) from hFavorite group by no) HFV "
-					+ "WHERE H.no = HFV.no AND H.ccbaMnm1 like ? "
-					+ "ORDER BY H.sn) SCH";
+					+ "SELECT ROWNUM, H.* "
+					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H"
+					+ "where H.ccbaMnm1 like ? ) SCH ";
 			int result = 0;
 			try {
 				pstmt = conn.prepareStatement(query);
@@ -195,18 +195,9 @@ public class HeritageDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT ROWNUM, SCH.* "
-					+ "FROM "
-					+ "(SELECT H.sn, H.ccbaMnm1, H.ccbaCtcdNm, H.ccsiName, H.content, H.IMAGEURL, HFV.* "
-					+ "FROM "
-					+ "HERITAGE H, "
-					+ "(SELECT no, COUNT(uno) from hFavorite group by no) HFV "
-					+ "WHERE "
-					+ "H.no = HFV.no AND "
-					+ "H.ccbaMnm1 like ? "
-					+ "ORDER BY H.sn) SCH "
-					+ "WHERE "
-					+ "ROWNUM BETWEEN ? AND ?";
+			String sql = "SELECT ROWNUM, H.* "
+					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H"
+					+ "where H.ccbaMnm1 like ? and ROWNUM between ? and ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + ccbaMnm + "%");
@@ -218,15 +209,14 @@ public class HeritageDao {
 				int count = 1;
 				int rowNum = rs.getInt(count++);
 				int sn = rs.getInt(count++);
+				int no = rs.getInt(count++);
 				String ccbaMnm1 = rs.getString(count++);
 				String ccbaCtcdNm = rs.getString(count++);
 				String ccsiName = rs.getString(count++);
 				String content = rs.getString(count++);
 				String imageUrl = rs.getString(count++);
-				int no = rs.getInt(count++);
-				int countHfavorite = rs.getInt(count++);
 		
-				HeritageMainVO info = new HeritageMainVO(rowNum, sn, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, no, countHfavorite);
+				HeritageMainVO info = new HeritageMainVO(rowNum, sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl);
 				list.add(info);
 			}
 
@@ -282,32 +272,19 @@ public class HeritageDao {
 		
 		
 		// 문화재 이미지 테이블에서 no로 상세조회
-		//ccbaMnm1 -문화재명(국문) / ccbaMnm2 -문화재명(한자) / ccbaCtcdNm -시도명/ccsiName-시군구명/content-내용/ ccbaKdcd-종목코드/ ccbaQuan-수량/ccbaAsdt-지정(등록일)/ccbaLcad -소재지 상세/
-		//ccceName-시대/ccbaPoss-소유자/imageUrl-메인노출이미지URL
-		public HeritageVO findheritageImageByNo(Connection conn, int imageNo) {
+		public HeritageImage findHeritageImageByNo(Connection conn, int imageNo) {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			HeritageVO hv = null;
-			String query = "SELECT HI.imageUrl FROM heritageImage HI, HERITAGE H\r\n"
-					+ "WHERE H.no = HI.no and HI.no = ? ";
+			HeritageImage hi = null;
+			String query = "SELECT HI.imageUrl FROM heritageImage HI"
+					+ "WHERE HI.no = ? ";
 			try {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, imageNo);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
-					hv = new HeritageVO();
-					hv.setCcbaMnm1(rs.getString("ccbaMnm1"));
-					hv.setCcbaMnm2(rs.getString("ccbaMnm2"));
-					hv.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
-					hv.setCcsiName(rs.getString("ccsiName"));
-					hv.setContent(rs.getString("content"));
-					hv.setCcbaKdcd(rs.getString("ccbaKdcd"));
-					hv.setCcbaQuan(rs.getString("ccbaQuan"));
-					hv.setCcbaAsdt(rs.getString("ccbaAsdt"));
-					hv.setCcbaLcad(rs.getString("ccbaLcad"));
-					hv.setCcceName(rs.getString("ccceName"));
-					hv.setCcbaPoss(rs.getString("ccbaPoss"));
-					hv.setImageUrl(rs.getString("imageUrl"));
+					hi = new HeritageImage();
+					hi.setImageUrl(rs.getString("imageUrl"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -315,9 +292,32 @@ public class HeritageDao {
 				close(pstmt);
 				close(rs);
 			}
-			return hv;
+			return hi;
 		}
 	
+		// 문화재 비디오 테이블에서 no로 상세조회
+				public HeritageVideo findHeritageVideoByNo(Connection conn, int videoNo) {
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					HeritageVideo hv = null;
+					String query = "SELECT HV.videoUrl FROM heritageVideo HV"
+							+ "WHERE  HV.no = ? ";
+					try {
+						pstmt = conn.prepareStatement(query);
+						pstmt.setInt(1, videoNo);
+						rs = pstmt.executeQuery();
+						if (rs.next()) {
+							hv = new HeritageVideo();
+							hv.setVideoUrl(rs.getString("videoNo"));
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						close(pstmt);
+						close(rs);
+					}
+					return hv;
+				}
 	
 	public static void main(String[] args) {
 		Connection conn = getConnection();
