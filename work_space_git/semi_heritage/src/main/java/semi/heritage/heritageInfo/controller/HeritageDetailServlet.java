@@ -63,10 +63,9 @@ public class HeritageDetailServlet extends HttpServlet{
 		req.setAttribute("CountFavoriteByNo", CountFavoriteByNo);
 		req.getRequestDispatcher("/views/heritage/heritageDetail.jsp").forward(req, resp); 
 	
+		
 	}
-	
-	
-	
+	 
 	
 	
 	
