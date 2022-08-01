@@ -239,7 +239,7 @@ public class HeritageDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			HeritageVO hv = null;
-			String query = "SELECT   ccbaMnm1,  ccbaMnm2,  ccbaCtcdNm,  ccsiName,  content,  ccbaKdcd,  ccbaQuan,  ccbaAsdt,  ccbaLcad,  ccceName,  ccbaPoss,  imageUrl "
+			String query = "SELECT   ccbaMnm1,  ccbaMnm2,  ccbaCtcdNm,  ccsiName,  content,  ccbaKdcd,  ccbaQuan,  ccbaAsdt,  ccbaLcad,  ccceName,  ccbaPoss,  imageUrl, ccmaName, ccbaAdmin "
 					+ "FROM HERITAGE WHERE no = ? ";
 			try {
 				pstmt = conn.prepareStatement(query);
@@ -259,6 +259,9 @@ public class HeritageDao {
 					hv.setCcceName(rs.getString("ccceName"));
 					hv.setCcbaPoss(rs.getString("ccbaPoss"));;
 					hv.setImageUrl(rs.getString("imageUrl"));
+					hv.setCcmaName(rs.getString("ccmaName"));
+					hv.setCcbaAdmin(rs.getString("ccbaAdmin"));
+			
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
