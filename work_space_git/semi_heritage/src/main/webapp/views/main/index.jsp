@@ -58,6 +58,7 @@
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 5, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4},&quot;992&quot;:{&quot;items&quot;:5}}}">
                     <% for (int i = 0; i < list.size(); i++){ %>
+                    
                     <div>
                         <div class="position-relative">
                             <div class="position-relative mb-3">
