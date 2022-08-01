@@ -2,22 +2,25 @@
     pageEncoding="UTF-8"%>
 
 	 <!-- Footer-->
-    <footer class="footer pt-lg-5 pt-4 bg-secondary">
+    <footer class="footer pt-lg-4 pt-4 bg-secondary">
         <div class="container mb-4 py-4 pb-lg-5 ">
             <div class="row gy-4 ">
-                <div class="col-lg-3 col-md-6 col-sm-4 ">
+                <div class="col-md-4">
                     <div class="mb-4">
-                        <a class="d-inline-block " href="city-guide-home-v1.html "><img src="<%=path%>/resources/img/semi-img/logo_spsp_1.png" width="116 " alt="Logo "></a>
+                        <a class="d-inline-block " href="city-guide-home-v1.html "><img src="img/semi-img/logo_spsp_1.png" width="116 " alt="Logo "></a>
                     </div>
                     <ul class="nav nav-light flex-column ">
                         <li class="nav-item mb-2 ">
-                            <a class="d-inline-block "><img src="<%=path%>/resources/img/semi-img/whoWeAre.png" width="1000px;" alt="Logo "></a>
+                            <a class="d-inline-block "><img src="img/semi-img/whoWeAre_orig.png" width="180px;" alt="Logo "></a>
                         </li>
+                        <li><a class="nav-link-light text-dark p06">사뿐사뿐은 문화재와 문화유산에 대한 정보를 토대로 </a></li>
+                        <li><a class="nav-link-light text-dark p06">다양한 이벤트 및 활동을 제공함으로써</a></li>
+                        <li><a class="nav-link-light text-dark p06">현대인들이 보다 쉽게 역사에 다가갈 수 있도록 합니다.</a></li>
                     </ul>
                 </div>
                 <!-- Links-->
                 <div class="col-lg-1 text-dark ">
-                    <h3 class="h6 mb-2 pb-1 fs-base text-dark">소개</h3>
+                    <h3 class="h6 mb-2 pb-1 fs-base text-dark p05">소개</h3>
                     <ul class="list-unstyled fs-sm ">
                         <li><a class="nav-link-light text-dark " href="# ">About us</a></li>
                         <li><a class="nav-link-light text-dark " href="# ">News</a></li>
@@ -26,7 +29,7 @@
                 </div>
                 <!-- Links-->
                 <div class="col-1  text-dark ">
-                    <h3 class="h6 mb-2 pb-1 fs-base text-dark">채용</h3>
+                    <h3 class="h6 mb-2 pb-1 fs-base text-dark p05">채용</h3>
                     <ul class="list-unstyled fs-sm ">
                         <li><a class="nav-link-light text-dark " href="# ">홍보/마케팅</a></li>
                         <li><a class="nav-link-light text-dark " href="# ">개발/관리</a></li>
@@ -34,7 +37,7 @@
                     </ul>
                 </div>
                 <div class="col-lg   text-dark ">
-                    <h3 class="h6 mb-2 pb-1 fs-base text-dark">제공</h3>
+                    <h3 class="h6 mb-2 pb-1 fs-base text-dark p05">제공</h3>
                     <ul class="list-unstyled fs-sm">
                         <li><a class="nav-link p-0 fw-normal" href="#">문화재청</a></li>
                         <li><a class="nav-link p-0 fw-normal" href="#">국가문화유산</a></li>
@@ -43,9 +46,9 @@
                     </ul>
                 </div>
                 <!-- Subscription form-->
-                <div class="  col-md-4  text-dark ">
+                <div class="col-md-4  text-dark p06">
                     <h3 class="h4 text-dark">사뿐사뿐의 소식을 구독해보세요!</h3>
-                    <p class="fs-sm mb-4 opacity-60">매일 새로 업데이트되는 문화재 소식을 놓치지 마세요!</p>
+                    <p class="fs-sm mb-4 opacity-60 p06">매일 새로 업데이트되는 문화재 소식을 놓치지 마세요!</p>
                     <form class="form-group form-group-dark rounded-pill " style="max-width: 500px; ">
                         <div class="input-group input-group-sm "><span class="input-group-text text-muted "><i class="fi-mail "></i></span>
                             <input class="form-control " type="email " placeholder="Your email ">
