@@ -30,7 +30,7 @@ public class SouvenirProductDetailServlet extends HttpServlet {
 		
 		List<SouvenirProductVO> list = null;
 		int productNo = Integer.parseInt(req.getParameter("productNo"));
-		SouvenirProductVO p = service.findProductByNo(productNo);		//만들어야함
+		SouvenirProductVO p = service.findProductByNo(productNo);
 		
 
 		

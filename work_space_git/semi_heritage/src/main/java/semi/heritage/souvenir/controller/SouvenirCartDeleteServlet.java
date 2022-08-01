@@ -30,7 +30,7 @@ public class SouvenirCartDeleteServlet extends MyHttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			int cartNo = Integer.parseInt(req.getParameter("cartNo"));
-			SouvenirCartVO cart = service.findCartByNo(cartNo);	// 만들어야함
+			SouvenirCartVO cart = service.findCartByNo(cartNo);
 			Member loginMember = getSessionMember(req);
 			
 			
