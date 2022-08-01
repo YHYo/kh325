@@ -76,7 +76,7 @@ public class HeritageService {
 	}
 
 	// 이름으로 검색한 문화재 갯수
-	public int getheritageMainVOCount(String ccbaMnm) {
+	public int getHeritageMainVOCount(String ccbaMnm) {
 		Connection conn = getConnection();
 		int result = dao.getHeritageMainVOCount(conn, ccbaMnm);
 		close(conn);
@@ -107,14 +107,14 @@ public class HeritageService {
 	}
 
 	// 문화재 이미지에서 no로 상세조회
-	public HeritageImage findheritageImageByNo(int imageNo) {
+	public HeritageImage findHeritageImageByNo(int imageNo) {
 		Connection conn = getConnection();
 		HeritageImage hi = dao.findHeritageImageByNo(conn, imageNo);
 		return hi;
 	}
 
 	// 문화재 비디오에서 no로 상세조회
-	public HeritageVideo findheritageVideoByNo(int videoNo) {
+	public HeritageVideo findHeritageVideoByNo(int videoNo) {
 		Connection conn = getConnection();
 		HeritageVideo hv = dao.findHeritageVideoByNo(conn, videoNo);
 		return hv;

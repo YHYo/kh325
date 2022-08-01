@@ -27,8 +27,8 @@ public class HeritageDetailServlet extends HttpServlet{
 		int hertiageNo = Integer.parseInt(req.getParameter("hertiageNo"));
 
 		HeritageVO h = service.findHertiageByNo(hertiageNo);
-		HeritageImage hi = service.findheritageImageByNo(hertiageNo);
-		HeritageVideo hv = service.findheritageVideoByNo(hertiageNo);
+		HeritageImage hi = service.findHeritageImageByNo(hertiageNo);
+		HeritageVideo hv = service.findHeritageVideoByNo(hertiageNo);
 
 		if(h == null) {
 			resp.sendRedirect(req.getContextPath() + "/");

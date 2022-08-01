@@ -18,6 +18,7 @@ import semi.heritage.heritageInfo.vo.HeritageVideo;
 
 
 
+
 public class HeritageDao {
 
 	public int insert(Connection conn, HeritageVO heritagevo) {
@@ -167,11 +168,9 @@ public class HeritageDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			String query = "SELECT count(ROWNUM) FROM("
-					+ "SELECT ROWNUM, H.NO, H.sn, H.ccbaMnm1, H.ccbaCtcdNm, H.ccsiName, H.content, H.IMAGEURL, HFV.* "
-					+ "FROM HERITAGE H,"
-					+ "(SELECT NO,COUNT(uno) from hFavorite group by no) HFV "
-					+ "WHERE H.no = HFV.no AND H.ccbaMnm1 like ? "
-					+ "ORDER BY H.sn) SCH";
+					+ "SELECT ROWNUM, H.* "
+					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H"
+					+ "where H.ccbaMnm1 like ? ) SCH ";
 			int result = 0;
 			try {
 				pstmt = conn.prepareStatement(query);
@@ -196,18 +195,9 @@ public class HeritageDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT ROWNUM, SCH.* "
-					+ "FROM "
-					+ "(SELECT H.sn, H.ccbaMnm1, H.ccbaCtcdNm, H.ccsiName, H.content, H.IMAGEURL, HFV.* "
-					+ "FROM "
-					+ "HERITAGE H, "
-					+ "(SELECT no, COUNT(uno) from hFavorite group by no) HFV "
-					+ "WHERE "
-					+ "H.no = HFV.no AND "
-					+ "H.ccbaMnm1 like ? "
-					+ "ORDER BY H.sn) SCH "
-					+ "WHERE "
-					+ "ROWNUM BETWEEN ? AND ?";
+			String sql = "SELECT ROWNUM, H.* "
+					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H"
+					+ "where H.ccbaMnm1 like ? and ROWNUM between ? and ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + ccbaMnm + "%");
@@ -219,15 +209,14 @@ public class HeritageDao {
 				int count = 1;
 				int rowNum = rs.getInt(count++);
 				int sn = rs.getInt(count++);
+				int no = rs.getInt(count++);
 				String ccbaMnm1 = rs.getString(count++);
 				String ccbaCtcdNm = rs.getString(count++);
 				String ccsiName = rs.getString(count++);
 				String content = rs.getString(count++);
 				String imageUrl = rs.getString(count++);
-				int no = rs.getInt(count++);
-				int countHfavorite = rs.getInt(count++);
 		
-				HeritageMainVO info = new HeritageMainVO(rowNum, sn, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl, no, countHfavorite);
+				HeritageMainVO info = new HeritageMainVO(rowNum, sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, imageUrl);
 				list.add(info);
 			}
 

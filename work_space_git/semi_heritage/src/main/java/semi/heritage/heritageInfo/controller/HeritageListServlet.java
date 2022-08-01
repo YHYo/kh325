@@ -30,7 +30,7 @@ public class HeritageListServlet extends HttpServlet {
 		page = Integer.parseInt(req.getParameter("page"));
 //		String hrName = req.getParameter("ccbaMnm1"); // jsp에서 검색창에 검색시 어떤 name으로 할건지 정해야함
 
-		boardCount = service.getheritageMainVOCount("ccbaMnm"); // 이름입력해서 게시글 갯수 몇개인지 가져옴
+		boardCount = service.getHeritageMainVOCount("ccbaMnm"); // 이름입력해서 게시글 갯수 몇개인지 가져옴
 		pageInfo = new PageInfo(page, 8, boardCount, 9); // 하단버튼 8개 , 게시글 9개 보임
 		list = service.selectByHeritageName(ccbaMnm, pageInfo);
 
