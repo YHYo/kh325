@@ -199,5 +199,11 @@ public class CommunityBoardService {
 		close(conn);
 		return result;
 	}
+	public List<CommunityBoard> findToMain() {
+		Connection conn = getConnection();
+		List<CommunityBoard> list = dao.findToMain(conn);
+		close(conn);
+		return list;
+	}
 
 }

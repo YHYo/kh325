@@ -440,6 +440,34 @@ public class CommunityBoardDAO {
 		}
 		return result;
 	}
+	public List<CommunityBoard> findToMain(Connection conn) {
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      List<CommunityBoard> list = new ArrayList<CommunityBoard>();
+	      String query = "SELECT HB.NO, UI.UNAME, HB.TITLE FROM USERINFO UI, HIS_BOARD HB WHERE UI.UNO = HB.UNO ORDER BY HB.NO DESC";
+
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         rs = pstmt.executeQuery();
+	      
+	         while (rs.next()) {
+	            int count = 1;
+	            int no = rs.getInt(count++);
+	            String UNAME = rs.getString(count++);
+	            String title = rs.getString(count++);
+
+	            CommunityBoard mainBoard = new CommunityBoard(no, UNAME, title);
+	            list.add(mainBoard);
+	         }
+	         return list;
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	         close(rs);
+	      }
+	      return null;
+	   }
 
 	public static void main(String[] args) {
 		Connection conn = getConnection();

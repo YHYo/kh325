@@ -1,3 +1,4 @@
+<%@page import="semi.heritage.community.vo.CommunityBoard"%>
 <%@page import="semi.heritage.heritageInfo.vo.HeritageMainVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -12,6 +13,8 @@
    
    <%
 	   List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
+	   List<CommunityBoard> blist = (List<CommunityBoard>)request.getAttribute("blist");
+   
    %>
    
    
@@ -58,7 +61,6 @@
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 5, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:4},&quot;992&quot;:{&quot;items&quot;:5}}}">
                     <% for (int i = 0; i < list.size(); i++){ %>
-                    
                     <div>
                         <div class="position-relative">
                             <div class="position-relative mb-3">
@@ -161,49 +163,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                             <% for (int j = 0; j < 7; j++){ %>
                                 <tr>
                                     <!-- <th scope="row ">7</th> -->
-                                    <td>안양->파주 / 1박 2일 함께 가실분?!</td>
-                                    <td>하영윤</td>
+                                    <td><%=blist.get(j).getTitle()%></td>
+                                    <td><%=blist.get(j).getuName()%></td>
                                     <!-- <td>2022/07/17</td> -->
-                                </tr>
-                                <tr>
-                                    <!-- <th scope="row ">6</th> -->
-                                    <td>[16th] 소피의 사뿐사뿐 투어 모집합니다.</td>
-                                    <td>전솝히</td>
-                                    <!-- <td>2022/07/17</td> -->
-                                </tr>
-                                <tr>
-                                    <!-- <th scope="row ">5</th> -->
-                                    <td>고구려 벽화와 일본벽화 특징</td>
-                                    <td>이먕</td>
-                                    <!-- <td>2022/07/17</td> -->
-                                </tr>
-                                <tr>
-                                    <!-- <th scope="row ">4</th> -->
-                                    <td>귀여운 달팽이 분양받으실 분?</td>
-                                    <td>나는나임</td>
-                                    <!-- <td>2022/07/17</td> -->
-                                </tr>
-                                <tr>
-                                    <!-- <th scope="row ">3</th> -->
-                                    <td>마한의 왕족과 귀족들은 사실 고구려로 많이 향했지. </td>
-                                    <td>형채군</td>
-                                    <!-- <td>2022/07/17</td> -->
-                                </tr>
-                                <tr>
-                                    <!-- <th scope="row ">2</th> -->
-                                    <td>영화 타짜1이 진짜 명대사 잔치 아닙니까?</td>
-                                    <td>정솨아</td>
-                                    <!-- <td>2022/07/16</td> -->
-                                </tr>
-                                <tr>
-                                    <!-- <th scope="row ">1</th> -->
-                                    <td>(男마감)안동하회마을 게스트하우스 벙개(25세-37세)</td>
-                                    <td>정온리원</td>
-                                    <!-- <td>2022/07/15</td> -->
-                                </tr>
-
+                                </tr>  
+                     <% } %>
                             </tbody>
                         </table>
                     </div>

@@ -45,6 +45,14 @@ public class CommunityBoard {
 		this.reply_count = reply_count;
 		this.replies = replies;
 	}
+	
+	public CommunityBoard(int no, String uName, String title) {
+		super();
+		No = no;
+		this.uName = uName;
+		this.title = title;
+	}
+	
 
 	@Override
 	public String toString() {
