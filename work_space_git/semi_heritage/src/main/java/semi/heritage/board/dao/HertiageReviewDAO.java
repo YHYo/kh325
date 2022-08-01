@@ -17,7 +17,7 @@ public class HertiageReviewDAO {
 	public int getHertiageReview_Count(Connection conn , int heritageNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT HR.NO, COUNT(revNo) FROM HertiageReview HR group by ? order by COUNT(revNo) desc";
+		String query = "SELECT no, COUNT(revNo) FROM HertiageReview group by no having no = ? order by COUNT(revNo) desc ";
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(query);

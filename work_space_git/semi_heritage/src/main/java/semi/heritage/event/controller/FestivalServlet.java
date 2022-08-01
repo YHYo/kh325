@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi.heritage.event.service.FestivalService;
 import semi.heritage.event.vo.Festival;
 
-@WebServlet("")
+@WebServlet("/trtrrr")
 public class FestivalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FestivalService service = new FestivalService();
@@ -26,7 +26,7 @@ public class FestivalServlet extends HttpServlet {
 		list = service.selectByMonth(eventMonth);
 
 		req.setAttribute("list", list);
-		req.getRequestDispatcher("/views/board/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/main/index.jsp").forward(req, resp);
 
 	}
 

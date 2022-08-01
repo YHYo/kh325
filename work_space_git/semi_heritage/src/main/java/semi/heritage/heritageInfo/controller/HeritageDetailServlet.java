@@ -32,6 +32,7 @@ public class HeritageDetailServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		int hertiageNo = Integer.parseInt(req.getParameter("hertiageNo"));
+		System.out.println("!!!!");
 		int hertiageNo = 1;
 
 		HeritageVO h = service.findHertiageByNo(hertiageNo);
@@ -41,28 +42,28 @@ public class HeritageDetailServlet extends HttpServlet{
 		int HertiageReview_Count = rservice.getHertiageReview_Count(hertiageNo);
 		int CountFavoriteByNo = fservice.CountFavoriteByNo(hertiageNo);
 
-		if(h == null) {
-			resp.sendRedirect(req.getContextPath() + "/");
+		if(h == null || hi == null || hv == null || list == null) {
+			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
 			return;
 		}
-		if(hi == null) {
-			resp.sendRedirect(req.getContextPath() + "/");
-			return;
-		}
-		if(hv == null) {
-			resp.sendRedirect(req.getContextPath() + "/");
-			return;
-		}
-		if(list == null) {
-			resp.sendRedirect(req.getContextPath() + "/");
-			return;
-		}
+//		if() {
+//			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
+//			return;
+//		}
+//		if() {
+//			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
+//			return;
+//		}
+//		if() {
+//			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
+//			return;
+//		}
 		if(HertiageReview_Count < 0 ) {
-			resp.sendRedirect(req.getContextPath() + "/");
+			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
 			return;
 		}
 		if(CountFavoriteByNo < 0 ) {
-			resp.sendRedirect(req.getContextPath() + "/");
+			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
 			return;
 		}
 		

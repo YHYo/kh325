@@ -239,9 +239,8 @@ public class HeritageDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			HeritageVO hv = null;
-			String query = "SELECT  H.ccbaMnm1, H.ccbaMnm2, H.ccbaCtcdNm, H.ccsiName, H.content, H.ccbaKdcd, H.ccbaQuan, H.ccbaAsdt, H.ccbaLcad, H.ccceName, H.ccbaPoss, H.imageUrl "
-					+ "FROM HERITAGE H"
-					+ "WHERE H.no = ?";
+			String query = "SELECT   ccbaMnm1,  ccbaMnm2,  ccbaCtcdNm,  ccsiName,  content,  ccbaKdcd,  ccbaQuan,  ccbaAsdt,  ccbaLcad,  ccceName,  ccbaPoss,  imageUrl "
+					+ "FROM HERITAGE WHERE no = ? ";
 			try {
 				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, hertiageNo);
@@ -304,15 +303,15 @@ public class HeritageDao {
 					PreparedStatement pstmt = null;
 					ResultSet rs = null;
 					HeritageVideo hv = null;
-					String query = "SELECT HV.videoUrl FROM heritageVideo HV"
-							+ "WHERE  HV.no = ? ";
+					String query = "SELECT videoUrl FROM heritageVideo "
+							+ "WHERE no = ? ";
 					try {
 						pstmt = conn.prepareStatement(query);
 						pstmt.setInt(1, videoNo);
 						rs = pstmt.executeQuery();
 						if (rs.next()) {
 							hv = new HeritageVideo();
-							hv.setVideoUrl(rs.getString("videoNo"));
+							hv.setVideoUrl(rs.getString("videoUrl"));
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -320,6 +319,7 @@ public class HeritageDao {
 						close(pstmt);
 						close(rs);
 					}
+					System.out.println(hv);
 					return hv;
 				}
 	

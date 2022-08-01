@@ -8,7 +8,7 @@
 
 <%@include file="/views/common/headerLight.jsp"%>
 
-<%
+<% 
 HeritageVO h = (HeritageVO)request.getAttribute("hertiage");
 List<HeritageImage> hi = (List<HeritageImage>)request.getAttribute("heritageImage");
 HeritageVideo hv = (HeritageVideo)request.getAttribute("heritageVideo");
@@ -283,7 +283,7 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         <br><br><br><br>
                         <div class="position-relative mb-2">
                             <div class="d-flex w-100 h-100 align-items-center justify-content-center position-absolute top-0 start-0">
-                                <video src="<%=hv.getVideoUrl()%>>" controls width="400" height="350">
+                                <video src="<%=hv.getVideoUrl()%>" controls width="400" height="350">
                                     <a class="btn btn-primary stretched-link"
                                         href="http://uci.k-heritage.tv/resolver/I801:1605002-014-V00006@N2R:1"
                                         data-iframe="true" data-bs-toggle="lightbox"><i class="fi-route me-2"></i>Get
