@@ -67,35 +67,41 @@ String saveId = "";
             line-height: -10px;
             letter-spacing: -7px;
             word-spacing: 10px;
-            font-weight: bolder;
+            /* font-weight: bolder; */
         }
         
         .p02 {
             line-height: 20px;
             letter-spacing: -10px;
             word-spacing: 10px;
-            font-weight: bolder;
+            /* font-weight: bolder; */
         }
         
         .p03 {
             line-height: 10%;
             letter-spacing: -3px;
             word-spacing: 10px;
-            font-weight: bolder;
+            /* font-weight: bolder; */
         }
         
         .p04 {
             letter-spacing: -3px;
             word-spacing: 5px;
-            font-weight: bolder;
+            /* font-weight: bolder; */
         }
         
         .p05 {
             letter-spacing: -1px;
             word-spacing: 5px;
-            font-weight: bolder;
+            /* font-weight: bolder; */
         }
         
+        .p06 {
+            line-height: 50%;
+            letter-spacing: -1px;
+            word-spacing: 3px;
+            font-size: 15px;
+        }
         .image-bg-cover {
             width: 50px;
             height: 50px;
@@ -259,15 +265,13 @@ String saveId = "";
                             <a class="nav-link dropdown-toggle align-items-center pe-sm-1" href="#" data-bs-toggle="dropdown" role="button" aria-expanded="false" style="font-size: 22px;">
                                 <b>커뮤니티</b><span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y " style="width: 1px; height: 30px;"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="real-estate-home-v1.html"><i class="fi-list fs-base opacity-50 me-2"></i><b>함께 해요</b></a></li>
+                                <li><a class="dropdown-item" href="real-estate-home-v1.html" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>함께해요</b></a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="car-finder-home.html"><i class="fi-list fs-base opacity-50 me-2"></i><b>역사 연구소</b></a></li>
+                                <li><a class="dropdown-item" href="car-finder-home.html" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>역사연구소</b></a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="job-board-home-v1.html"><i class="fi-list fs-base opacity-50 me-2"></i><b>자유게시판</b></a></li>
+                                <li><a class="dropdown-item" href="job-board-home-v1.html" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>자유게시판</b></a></li>
                             </ul>
                         </li>
-                      </ul>
-                      
                 </div>
             </div>
         </header>
