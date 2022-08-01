@@ -26,10 +26,11 @@ public class CommunityBoardList extends HttpServlet {
 		int boardCount = 0;
 		PageInfo pageInfo = null;
 		List<CommunityBoard> list = null;
-		String type = "F";
+		String type = "";
 		Map<String, String> searchMap = new HashMap<>();
 		
 		try {
+			type = req.getParameter("type");
 			String searchValue = req.getParameter("searchValue");
 			if(searchValue != null && searchValue.length() > 0) {
 				String searchType = req.getParameter("searchType");
@@ -48,7 +49,17 @@ public class CommunityBoardList extends HttpServlet {
 		
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
-		req.getRequestDispatcher("/views/community/freeBoard.jsp").forward(req, resp);
+		
+		if(type.equals("T")) {
+			req.getRequestDispatcher("/views/community/togetherBoard.jsp").forward(req, resp);
+		}
+		if(type.equals("F")) {
+			req.getRequestDispatcher("/views/community/freeBoard.jsp").forward(req, resp);
+		}
+		if(type.equals("H")) {
+			req.getRequestDispatcher("/views/community/studyBoard.jsp").forward(req, resp);
+		}
+		
 	}
 	
 	@Override

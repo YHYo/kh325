@@ -20,19 +20,11 @@ public class CommunityBoardDAO {
 	public int getBoardCount(Connection conn, String type) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT COUNT(*) FROM ? WHERE STATUS='Y'";
+		String query = "SELECT COUNT(*) FROM " + type + " WHERE STATUS='Y'";
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(query);
-			if(type.equals("F")) {
-				pstmt.setString(1, "FREE_BOARD");
-			}
-			if(type.equals("T")) {
-				pstmt.setString(1, "TO_BOARD");
-			}
-			if(type.equals("H")) {
-				pstmt.setString(1, "HIS_BOARD");
-			}
+			
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = rs.getInt(1);
@@ -47,7 +39,7 @@ public class CommunityBoardDAO {
 	}
 
 	// 게시물의 리스트를 가져오는 메소드(게시물 목록)
-	public List<CommunityBoard> findAll(Connection conn, PageInfo pageInfo) {
+	public List<CommunityBoard> findAll(Connection conn, PageInfo pageInfo, String type) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<CommunityBoard> list = new ArrayList<CommunityBoard>();
@@ -56,7 +48,7 @@ public class CommunityBoardDAO {
 				+ "    SELECT ROWNUM AS RNUM, NO, TITLE, uName, CREATE_DATE, ORIGINAL_FILE, READCOUNT, STATUS "
 				+ "    FROM ( "
 				+ "        SELECT FB.NO, FB.TITLE, U.uName, FB.CREATE_DATE, FB.ORIGINAL_FILE, FB.READCOUNT, FB.STATUS "
-				+ "        FROM FREE_BOARD FB JOIN UserInfo U ON(FB.UNO = U.uNo) "
+				+ "        FROM " + type + " FB JOIN UserInfo U ON(FB.UNO = U.uNo) "
 				+ "        WHERE FB.STATUS = 'Y' ORDER BY FB.NO DESC " + "    )" + ") "
 				+ "WHERE RNUM BETWEEN ? and ?";
 
@@ -93,7 +85,7 @@ public class CommunityBoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = "SELECT COUNT(*) "
-				+ "FROM ? B "
+				+ "FROM " + type + " B "
 				+ "JOIN USERINFO U ON(B.UNO = U.UNO) "
 				+ "WHERE 1=1 AND B.STATUS = 'Y' ";
 
@@ -111,15 +103,6 @@ public class CommunityBoardDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			int count = 1;
-			if(type.equals("F")) {
-				pstmt.setString(count++, "FREE_BOARD");
-			}
-			if(type.equals("T")) {
-				pstmt.setString(count++, "TO_BOARD");
-			}
-			if(type.equals("H")) {
-				pstmt.setString(count++, "HIS_BOARD");
-			}
 
 			if (searchMap.containsKey("title&writer")) {
 				pstmt.setString(count++, "%" + searchMap.get("title&writer") + "%");
@@ -145,7 +128,7 @@ public class CommunityBoardDAO {
 	}
 
 	// 게시물의 리스트를 가져오는 메소드
-	public List<CommunityBoard> findAll(Connection conn, PageInfo pageInfo, Map<String, String> searchMap) {
+	public List<CommunityBoard> findAll(Connection conn, PageInfo pageInfo, Map<String, String> searchMap, String type) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<CommunityBoard> list = new ArrayList<CommunityBoard>();
@@ -154,7 +137,7 @@ public class CommunityBoardDAO {
 				+ "    SELECT ROWNUM AS RNUM, NO, TITLE, UNAME, CREATE_DATE, ORIGINAL_FILE, READCOUNT, STATUS "
 				+ "    FROM ( "
 				+ "      SELECT  FB.NO, FB.TITLE, U.UNAME, FB.CREATE_DATE, FB.ORIGINAL_FILE, FB.READCOUNT, FB.STATUS "
-				+ "        FROM FREE_BOARD FB JOIN USERINFO U ON(FB.UNO = U.UNO) "
+				+ "        FROM " + type + " FB JOIN USERINFO U ON(FB.UNO = U.UNO) "
 				+ "        WHERE 1 = 1 "
 				+ "        AND FB.STATUS = 'Y'";
 
@@ -213,9 +196,9 @@ public class CommunityBoardDAO {
 	}
 
 	// 글쓰기 기능
-	public int insertBoard(Connection conn, CommunityBoard board) {
+	public int insertBoard(Connection conn, CommunityBoard board, String type) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO FREE_BOARD VALUES(SEQ_FREE_NO.NEXTVAL,?,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,DEFAULT)";
+		String query = "INSERT INTO " + type + " VALUES(SEQ_FREE_NO.NEXTVAL,?,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,DEFAULT)";
 		int result = 0;
 
 		try {
@@ -242,22 +225,14 @@ public class CommunityBoardDAO {
 		ResultSet rs = null;
 		CommunityBoard board = null;
 		String query = "SELECT B.NO, B.TITLE, U.UNAME, B.READCOUNT, B.ORIGINAL_FILE, B.RENAMED_FILE, "
-				+ "B.CONTENT, B.CREATE_DATE, B.MODIFY_DATE B.REPLY_COUNT "
-				+ "FROM ? B "
+				+ "B.CONTENT, B.CREATE_DATE, B.MODIFY_DATE, B.REPLY_COUNT "
+				+ "FROM " + type + " B "
 				+ "JOIN USERINFO U ON(B.UNO = U.UNO) "
 				+ "WHERE B.STATUS = 'Y' AND B.NO=?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			if(type.equals("F")) {
-				pstmt.setString(1, "FREE_BOARD");
-			}
-			if(type.equals("T")) {
-				pstmt.setString(1, "TO_BOARD");
-			}
-			if(type.equals("H")) {
-				pstmt.setString(1, "HIS_BOARD");
-			}
-			pstmt.setInt(2, boardNo);
+			
+			pstmt.setInt(1, boardNo);
 			System.out.println(query);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -268,7 +243,7 @@ public class CommunityBoardDAO {
 				board.setReadCount(rs.getInt("READCOUNT"));
 				board.setOriginal_file(rs.getString("ORIGINAL_FILE"));
 				board.setRenamed_file(rs.getString("RENAMED_FILE"));
-				board.setContent(rs.getString("FREE_CONTENT"));
+				board.setContent(rs.getString("CONTENT"));
 				board.setCreate_date(rs.getDate("CREATE_DATE"));
 				board.setModify_date(rs.getDate("MODIFY_DATE"));
 				board.setReply_count(getReplyCount(conn, boardNo));
@@ -286,22 +261,14 @@ public class CommunityBoardDAO {
 	// 게시글 조회수 올려주는 쿼리
 	public int updateReadCount(Connection conn, CommunityBoard board, String type) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE ? SET READCOUNT=? WHERE NO=?";
+		String query = "UPDATE " + type + " SET READCOUNT=? WHERE NO=?";
 		int result = 0;
 
 		try {
 			pstmt = conn.prepareStatement(query);
-			if(type.equals("F")) {
-				pstmt.setString(1, "FREE_BOARD");
-			}
-			if(type.equals("T")) {
-				pstmt.setString(1, "TO_BOARD");
-			}
-			if(type.equals("H")) {
-				pstmt.setString(1, "HIS_BOARD");
-			}
-			pstmt.setInt(2, board.getReadCount() + 1);
-			pstmt.setInt(3, board.getNo());
+			
+			pstmt.setInt(1, board.getReadCount() + 1);
+			pstmt.setInt(2, board.getNo());
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -313,9 +280,9 @@ public class CommunityBoardDAO {
 	}
 
 	// 게시글 삭제(실제로는 안보여주기 기능) 를 위한 쿼리
-	public int updateStatus(Connection conn, int boardNo, String status) {
+	public int updateStatus(Connection conn, int boardNo, String status, String type) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE FREE_BOARD SET STATUS=? WHERE NO=?";
+		String query = "UPDATE " + type + " SET STATUS=? WHERE NO=?";
 		int result = 0;
 
 		try {
@@ -334,9 +301,9 @@ public class CommunityBoardDAO {
 	}
 
 	// - 게시글 수정
-	public int updateBoard(Connection conn, CommunityBoard board) {
+	public int updateBoard(Connection conn, CommunityBoard board, String type) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE FREE_BOARD SET TITLE=?,CONTENT=?,ORIGINAL_FILE=?,RENAMED_FILE=?,MODIFY_DATE=SYSDATE WHERE NO=?";
+		String query = "UPDATE " + type + "  SET TITLE=?,CONTENT=?,ORIGINAL_FILE=?,RENAMED_FILE=?,MODIFY_DATE=SYSDATE WHERE NO=?";
 		int result = 0;
 
 		try {
@@ -413,10 +380,10 @@ public class CommunityBoardDAO {
 	}
 
 	// - 리플 삭제 기능
-	public int deleteReply(Connection conn, int replyNo) {
+	public int deleteReply(Connection conn, int replyNo, String type) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "DELETE FREE_REPLY WHERE NO=?";
+		String query = "DELETE " + type + " WHERE NO=?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, replyNo);
