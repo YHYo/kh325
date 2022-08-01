@@ -1,9 +1,11 @@
-<%@page import="semi.heritage.community.vo.CommunityBoard"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
+<%@page import="semi.heritage.community.vo.CommunityBoard"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
+    
+    
 <!-- Header -->
 <%@ include file="/views/common/headerLight.jsp" %>
 
@@ -22,7 +24,7 @@
 
 <!-- Hero-->
 <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-80" style="background-image: linear-gradient(0deg, rgba(31, 27, 45, .7), rgba(31, 27, 45, .7));"></span>
-    <div class="jarallax-img" style="background-image: url(img/spsp/community.jpg);"></div>
+    <div class="jarallax-img" style="background-image: url(<%=path%>/resources/img/semi-img/community.jpg);"></div>
     <div class="content-overlay container py-md-5">
         <div class="mt-5 mb-md-5 py-5">
             <div class="col-xl-6 col-lg-8 col-md-10 mx-auto mb-sm-5 mb-4 px-0 text-center">
@@ -30,9 +32,9 @@
                             class="dropdown-toggle text-decoration-none" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="1boardMain.html">커뮤니티</a><span
                             class="dropdown-menu dropdown-menu-end my-1"><a
-                                class="dropdown-item fs-base fw-bold" href="1boardMainTogether.html">함께해요</a><a
-                                class="dropdown-item fs-base fw-bold" href="1boardMainStudy.html">역사연구소</a><a
-                                class="dropdown-item fs-base fw-bold" href="1boardMainFree.html">자유게시판</a></span></span>
+                                class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=T">함께해요</a><a
+                                class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=H">역사연구소</a><a
+                                class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=F">자유게시판</a></span></span>
                 </h1>
                 <p class="fs-lg text-white">문화재 관람 및 행사를 함께하고, 우리의 역사를 함께 연구하고,
                     <br>함께 자유로이 소통하는 공간</p>
@@ -110,7 +112,7 @@
            				<tr>
            					<td><%=b.getNo() %></td>
            					<td>
-           						<a href="<%=path+"board/view?boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
+           						<a href="<%=path+"/community/view?type=F&boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
            					</td>
            					<td><%=b.getuName() %></td>
            					<td><%=b.getCreate_date() %></td>
@@ -121,127 +123,48 @@
            			<%-- 게시글 리스트 끝 --%>
            		<%} %>
            		
-            	
-                <!-- <tr>
-                    <td>10</td>
-                    <td style="text-align:left">귀여운 달팽이 분양받으실 분?</td>
-                    <td>형채군</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td style="text-align:left">횐님덜,, 거제에서 올라왔읍니다,,,인사박겠읍니다,,,</td>
-                    <td>길라임</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td style="text-align:left">저희집 고양이 좀 보고가세요. </td>
-                    <td>소피</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td style="text-align:left">코딩 참 쉽지 않나요? </td>
-                    <td>빛해성</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td style="text-align:left">신입생활 질문드립니다.. </td>
-                    <td>미향</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td style="text-align:left">귀여운 달팽이 분양받으실 분?</td>
-                    <td>형채군</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td style="text-align:left">횐님덜,, 거제에서 올라왔읍니다,,,인사박겠읍니다,,,</td>
-                    <td>길라임</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="text-align:left">저희집 고양이 좀 보고가세요. </td>
-                    <td>소피</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td style="text-align:left">코딩 참 쉽지 않나요? </td>
-                    <td>빛해성</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td style="text-align:left">신입생활 질문드립니다.. </td>
-                    <td>미향</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr> -->
             </tbody>
         </table>
-        
-        <%-- 페이지부 시작 --%>
-		<div id="pageBar">
-			<%-- 처음으로 가기 --%>
-			<button onclick="movePage('<%=path%>/board/list?page=<%=pageInfo.getStartPage()%>');">&lt;&lt;</button>
-	
-			<%-- 이전으로 가기 --%>
-			<button onclick="movePage('<%=path%>/board/list?page=<%=pageInfo.getPrvePage()%>');">&lt;</button>
-			
-			<%-- 10개 목록 출력하기 --%>
-			<% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++) {%>
-				<%if(i == pageInfo.getCurrentPage()) {%>		
-					<button disabled><%=i %></button>
-				<%} else {%>		
-					<button onclick="movePage('<%=path%>/board/list?page=<%=i%>');"><%=i %></button>
-				
-				<%} %>		
-			<%} %>		
-			
-			<%-- 다음으로 가기 --%>
-			<button onclick="movePage('<%=path%>/board/list?page=<%=pageInfo.getNextPage()%>');">&gt;</button>
-	
-			<%-- 마지막으로 가기 --%>
-			<button onclick="movePage('<%=path%>/board/list?page=<%=pageInfo.getEndPage()%>');">&gt;&gt;</button>
-			
-			
-		</div>
-		
-		
-		<%-- 페이지부 종료 --%>
+   
 	</div>
-    </div>
+
     <div>
         <!-- 페이지 번호 Pagination-->
         <nav class="mt-2 mb-4" aria-label="Reviews pagination">
             <ul class="pagination">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
+                
+                <%-- 처음으로 가기 --%>
+                <li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getStartPage()%>" aria-label="Next"><i
+                            class="fi-chevrons-left"></i></a>
+                </li>
+                
+                <%-- 이전으로 가기 --%>
+                <li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getPrvePage()%>" aria-label="Next"><i
+                            class="fi-chevron-left"></i></a>
+                </li>
+                
+                <%-- 10개 목록 출력하기 --%>
+                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++) {%>
+					<%if(i == pageInfo.getCurrentPage()) {%>		
+		                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><%=i %><span class="visually-hidden">(current)</span></span>
+		                </li>
+					<%} else {%>		
+						<li class="page-item d-none d-sm-block"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=i%>"><%=i %></a></li>
+					<%} %>		
+				<%} %>		
+				
+				<%-- 다음으로 가기 --%>
+				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getNextPage()%>" aria-label="Next"><i
+                            class="fi-chevron-right"></i></a>
+                </li>
+                
+				<%-- 마지막으로 가기 --%>
+				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getEndPage()%>" aria-label="Next"><i
+                            class="fi-chevrons-right"></i></a>
+                </li>
+                
+                <!-- <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
                 </li>
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
@@ -249,7 +172,7 @@
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
                 <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i
                             class="fi-chevron-right"></i></a>
-                </li>
+                </li> -->
             </ul>
         </nav>
     </div>
