@@ -6,37 +6,26 @@
 
 <%@include file="/views/common/headerDark.jsp"%>
 
- <%
-	   List<SouvenirCartVO> list = (List<SouvenirCartVO>)request.getAttribute("list");
-   %>
 
 <script type ="text/javascript">
-<%
-request.setCharacterEncoding("UTF-8");
-String name = request.getParameter("souvenirName");
-String category = request.getParameter("souvenirCategory");
-String price = request.getParameter("souvenirPrice"); 
 
-ArrayList<SouvenirCartVO> cart = null;
-Object obj = session.getAttribute("");	//세션 객체에서 cart 값을 가져온다. 
-%>
-
-function fnCart(name, price) {
-	if(confirm("장바구니에 담으시겠습니까?")) {
+function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
+	alert('장바구니에 담으시겠습니까?');
+	if(confirm("장바구니를 확인하시겠습니까?")) {
+		location.href = "views/member/02.myPageCart.jsp";
+		
 		if(obj != souvenirName) {	//세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
-			cart = new ArrayList<SouvenirCartVO>();
 			
 		} else {        
 	        alert("이미 존재하는 상품 입니다");
-	        cart = (ArrayList<SouvenirCartVO>) obj;
+		}
 	}
 }
- 
-function fnView() {
-	if(confirm("장바구니를 보시겠습니까?")){
-		location.href = "views/member/02.myPageCart.jsp";
+
+
+function prView() {
+	location.href = "souvenirProductsDetail2.jsp?SOUV_PRO_NO=souvenirName";
 	}
-}
 
 </script>
     
@@ -158,14 +147,15 @@ function fnView() {
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" onclick="fnCart()" href="<%=path%>02.myPageCart.jsp">
-                                            장바구니</span></a>
+                                            <span class="fs-xs text-light nav-link-light" onclick="fnCart('이곳에 인자도 없고 ㅠㅠ');"> 
+                                            	장바구니222	
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>12.souvenirProductsDetail1.jsp">상세보기</a></span></div>
+                                            <span class="fs-xs text-light"><a class="nav-link-light" onclick="prView();" href="<%=path%>12.souvenirProductsDetail1.jsp">상세보기</a></span></div>
                                     </div>
                                     
                                 </div>
@@ -202,14 +192,14 @@ function fnView() {
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>02.myPageCart.jsp">
+                                            <span class="fs-xs text-light"><a class="nav-link-light" onclick="fnCart();" href="<%=path%>02.myPageCart.jsp">
                                                 장바구니</span></a>
                                         </div>
                                     </div>
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>12.souvenirProductsDetail2.jsp">상세보기</a></span></div>
+                                            <span class="fs-xs text-light"><a class="nav-link-light" onclick="prView();" href="<%=path%>12.souvenirProductsDetail2.jsp">상세보기</a></span></div>
                                     </div>
                                     
                                 </div>
@@ -245,14 +235,14 @@ function fnView() {
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>02.myPageCart.jsp">
+                                            <span class="fs-xs text-light"><a class="nav-link-light"  onclick="fnCart();" href="<%=path%>02.myPageCart.jsp">
                                                 장바구니</span></a>
                                         </div>
                                     </div>
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>path%>12.souvenirProductsDetail3.jsp">상세보기</a></span></div>
+                                            <span class="fs-xs text-light"><a class="nav-link-light" onclick="prView();" href="<%=path%>path%>12.souvenirProductsDetail3.jsp">상세보기</a></span></div>
                                     </div>
                                     
                                 </div>
