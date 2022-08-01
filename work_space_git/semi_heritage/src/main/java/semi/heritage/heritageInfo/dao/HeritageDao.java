@@ -271,29 +271,33 @@ public class HeritageDao {
 		}
 		
 		
-		// 문화재 이미지 테이블에서 no로 상세조회
-		public HeritageImage findHeritageImageByNo(Connection conn, int imageNo) {
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			HeritageImage hi = null;
-			String query = "SELECT HI.imageUrl FROM heritageImage HI"
-					+ "WHERE HI.no = ? ";
-			try {
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, imageNo);
-				rs = pstmt.executeQuery();
-				if (rs.next()) {
-					hi = new HeritageImage();
-					hi.setImageUrl(rs.getString("imageUrl"));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-				close(rs);
-			}
-			return hi;
-		}
+		 // 문화재 이미지 테이블에서 no로 이미지 가져오기
+		   public List<HeritageImage> findHeritageImageByNo(Connection conn, int no) {
+		      List<HeritageImage> list = new ArrayList<>();
+		      PreparedStatement pstmt = null;
+		      ResultSet rs = null;
+		      String query = "SELECT no, IMAGEURL FROM HERITAGEIMAGE WHERE no = ? ";
+		      try {
+		         pstmt = conn.prepareStatement(query);
+		         pstmt.setInt(1, no);
+		         rs = pstmt.executeQuery();
+		         
+		         while (rs.next()) {
+		            int count = 1;
+		            int hno = rs.getInt(count++);
+		            String imageUrl = rs.getString(count++);
+		            HeritageImage imageInfo = new HeritageImage(hno, imageUrl);
+		            list.add(imageInfo);
+		         }
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      } finally {
+		         close(pstmt);
+		         close(rs);
+		      }
+		      System.out.println(list.toString());
+		      return list;
+		   }
 	
 		// 문화재 비디오 테이블에서 no로 상세조회
 				public HeritageVideo findHeritageVideoByNo(Connection conn, int videoNo) {

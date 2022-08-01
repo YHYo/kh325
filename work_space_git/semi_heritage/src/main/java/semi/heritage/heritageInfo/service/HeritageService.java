@@ -107,9 +107,9 @@ public class HeritageService {
 	}
 
 	// 문화재 이미지에서 no로 상세조회
-	public HeritageImage findHeritageImageByNo(int imageNo) {
+	public List<HeritageImage> findHeritageImageByNo(int imageNo) {
 		Connection conn = getConnection();
-		HeritageImage hi = dao.findHeritageImageByNo(conn, imageNo);
+		List<HeritageImage> hi = dao.findHeritageImageByNo(conn, imageNo);
 		return hi;
 	}
 

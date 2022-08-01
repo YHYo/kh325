@@ -45,7 +45,7 @@ public class favoriteService {
 	}
 	
 	// 문화재 번호로 찜 개수 구하기
-	public List<favoriteVO> CountFavoriteByNo(int no){
+	public int CountFavoriteByNo(int no){
 		return dao.CountFavoriteByNo(conn, no);
 	}
 

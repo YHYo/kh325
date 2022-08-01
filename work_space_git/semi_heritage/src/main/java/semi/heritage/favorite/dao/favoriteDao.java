@@ -14,11 +14,11 @@ import semi.heritage.favorite.vo.favoriteVO;
 public class favoriteDao {
 
 	public int insert(Connection conn, int uNo, int no) {
-		
+
 		// 일반 문화재 찜 추가
 		try {
 			String sql = "INSERT INTO hFavorite VALUES(SEQ_hfavNum.NEXTVAL, ?, ?)";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, uNo);
@@ -49,7 +49,7 @@ public class favoriteDao {
 		}
 		return -1;
 	}
-	
+
 	// 마이페이지에서 찜목록 출력
 	public List<favoriteMyPageVO> selectAll(Connection conn, int uNo) {
 		List<favoriteMyPageVO> list = new ArrayList<>();
@@ -57,15 +57,10 @@ public class favoriteDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT "
-					+ "HFV.hfavNum, H.CCMANAME, H.CCBAMNM1, H.CCBALCAD, H.IMAGEURL, H.CONTENT "
-					+ "FROM "
-					+ "heritage H, hFavorite HFV "
-					+ "WHERE "
-					+ "H.no = HFV.no AND "
-					+ "HFV.uNO = ? "
-					+ "order by hfavNum desc"; 
-																														
+			String sql = "SELECT " + "HFV.hfavNum, H.CCMANAME, H.CCBAMNM1, H.CCBALCAD, H.IMAGEURL, H.CONTENT " + "FROM "
+					+ "heritage H, hFavorite HFV " + "WHERE " + "H.no = HFV.no AND " + "HFV.uNO = ? "
+					+ "order by hfavNum desc";
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, uNo);
 			rs = pstmt.executeQuery();
@@ -77,7 +72,8 @@ public class favoriteDao {
 				String ccbaLcad = rs.getString("ccbaLcad");
 				String imageUrl = rs.getString("imageUrl");
 				String content = rs.getString("content");
-				favoriteMyPageVO mypage = new favoriteMyPageVO(hfavNum, ccmaName, ccbaMnm1, ccbaLcad, imageUrl, content);
+				favoriteMyPageVO mypage = new favoriteMyPageVO(hfavNum, ccmaName, ccbaMnm1, ccbaLcad, imageUrl,
+						content);
 				list.add(mypage);
 			}
 			return list;
@@ -89,35 +85,29 @@ public class favoriteDao {
 		}
 		return null;
 	}
-	
+
 	// 문화재 번호로 해당 찜 개수 구하기
-	public List<favoriteVO> CountFavoriteByNo(Connection conn, int no) {
-		List<favoriteVO> list = new ArrayList<>();
+	public int CountFavoriteByNo(Connection conn, int no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-	
+		String sql = "SELECT COUNT(uno) from favorite group by no having no = ?";
+		int result = 0;
 		try {
-			String sql = "SELECT COUNT(uno) from favorite group by no having no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				int count = 1;
-				int countNum = rs.getInt(count++);
-
-				favoriteVO info = new favoriteVO(countNum);
-				list.add(info);
+				result = rs.getInt(1);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rs);
 		}
-		System.out.println(list);
-		return list;
+		return result;
 	}
-	
+
 }
