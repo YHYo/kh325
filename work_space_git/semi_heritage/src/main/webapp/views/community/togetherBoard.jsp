@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <!-- Header -->
 <%@ include file="/views/common/headerLight.jsp" %>
 
@@ -78,7 +77,7 @@
     <nav class="mb-2 pt-md-2" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="real-estate-home-v1.html"><i class="fi-home"></i> Home</a></li>
-            <li class="breadcrumb-item"><a href="1boardMain.html">커뮤니티</a></li>
+            <li class="breadcrumb-item"><a href="<%=path%>/community/main">커뮤니티</a></li>
             <li class="breadcrumb-item active" aria-current="page">함께해요</li>
         </ol>
     </nav>
@@ -112,7 +111,7 @@
            				<tr>
            					<td><%=b.getNo() %></td>
            					<td>
-           						<a href="<%=path+"board/view?type=T&boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
+           						<a href="<%=path+"/community/view?type=T&boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
            					</td>
            					<td><%=b.getuName() %></td>
            					<td><%=b.getCreate_date() %></td>

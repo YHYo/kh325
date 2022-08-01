@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <!-- Header -->
 <%@ include file="/views/common/headerLight.jsp" %>
 
@@ -78,7 +77,7 @@
     <nav class="mb-2 pt-md-2" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="real-estate-home-v1.html"><i class="fi-home"></i> Home</a></li>
-            <li class="breadcrumb-item"><a href="1boardMain.html">커뮤니티</a></li>
+            <li class="breadcrumb-item"><a href="<%=path%>/community/main">커뮤니티</a></li>
             <li class="breadcrumb-item active" aria-current="page">역사연구소</li>
         </ol>
     </nav>
@@ -112,7 +111,7 @@
            				<tr>
            					<td><%=b.getNo() %></td>
            					<td>
-           						<a href="<%=path+"board/view?boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
+           						<a href="<%=path+"/community/view?type=H&boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
            					</td>
            					<td><%=b.getuName() %></td>
            					<td><%=b.getCreate_date() %></td>
@@ -122,86 +121,6 @@
            			<%} %>
            			<%-- 게시글 리스트 끝 --%>
            		<%} %>
-                <!-- <tr>
-                    <td>10</td>
-                    <td style="text-align:left">고구려 벽화와 일본벽화 특징</td>
-                    <td>하영쓰</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td style="text-align:left">한국사 1급의 가치에 대해서</td>
-                    <td>정온리원</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td style="text-align:left">美 뉴욕에서 최초로 선보인 신라금관</td>
-                    <td>William</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td style="text-align:left">마한의 왕족과 귀족들은 사실 고구려로 많이 향했지.</td>
-                    <td>서녕채</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td style="text-align:left">독도가 한국땅인 이유</td>
-                    <td>수아 정</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td style="text-align:left">고구려 벽화와 일본벽화 특징</td>
-                    <td>하영쓰</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td style="text-align:left">한국사 1급의 가치에 대해서</td>
-                    <td>정온리원</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td style="text-align:left">美 뉴욕에서 최초로 선보인 신라금관</td>
-                    <td>William</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td style="text-align:left">마한의 왕족과 귀족들은 사실 고구려로 많이 향했지.</td>
-                    <td>서녕채</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td style="text-align:left">독도가 한국땅인 이유</td>
-                    <td>수아 정</td>
-                    <td>22/07/18</td>
-                    <td><em class="fi-eye-on"></em>&nbsp;20</td>
-                    <td><em class="fi-chat-right"></em>&nbsp;5</td>
-                </tr> -->
             </tbody>
         </table>
     </div>

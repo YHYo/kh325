@@ -103,7 +103,7 @@ public class CommunityBoardService {
 		
 		// 조회수 증가 로직
 		if(hasRead == true && board != null) {
-			int result = dao.updateReadCount(conn, board, type);
+			int result = dao.updateReadCount(conn, board, boardType);
 			if(result > 0) {
 				commit(conn);
 			} else {
@@ -128,7 +128,7 @@ public class CommunityBoardService {
 			boardType = "HIS_BOARD";
 		}
 		
-		int result = dao.updateStatus(conn, no, "N", type);
+		int result = dao.updateStatus(conn, no, "N", boardType);
 		
 		if(result > 0 ) {
 			commit(conn);
@@ -140,12 +140,32 @@ public class CommunityBoardService {
 		return result;
 	}
 
-	public int saveReply(CommunityReply reply) {
+	public int saveReply(CommunityBoard board, CommunityReply reply, String type) {
 		Connection conn = getConnection();
-		int result = dao.insertReply(conn, reply);
+		String boardType = "";
+		String replyType = "";
+		
+		if(type.equals("F")) {
+			boardType = "FREE_BOARD";
+			replyType = "FREE_REPLY";
+		}
+		if(type.equals("T")) {
+			boardType = "TO_BOARD";
+			replyType = "TO_REPLY";
+		}
+		if(type.equals("H")) {
+			boardType = "HIS_BOARD";
+			replyType = "HIS_REPLY";
+		}
+		
+		int result = dao.insertReply(conn, reply, replyType);
 		
 		if(result > 0 ) {
-			commit(conn);
+			int replyResult = dao.replyCount(conn, boardType, replyType, board);
+			if(replyResult > 0) {
+				commit(conn);
+			}
+			System.out.println("리플 갯수 오류");
 		}else {
 			rollback(conn);
 		}

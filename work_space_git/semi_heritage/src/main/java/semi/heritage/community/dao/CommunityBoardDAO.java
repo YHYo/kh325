@@ -359,9 +359,9 @@ public class CommunityBoardDAO {
 	}
 
 	// 리플 쓰기 기능
-	public int insertReply(Connection conn, CommunityReply reply) {
+	public int insertReply(Connection conn, CommunityReply reply, String type) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO FREE_REPLY VALUES(SEQ_FREE_RNO.NEXTVAL, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT)";
+		String query = "INSERT INTO " + type + " VALUES(SEQ_FREE_RNO.NEXTVAL, ?, ?, ?, DEFAULT, DEFAULT, DEFAULT)";
 		int result = 0;
 
 		try {
@@ -398,10 +398,10 @@ public class CommunityBoardDAO {
 	}
 	
 	// 리플 개수 올려주는 쿼리
-	public int replyCount(Connection conn, String type, CommunityBoard board) {
+	public int replyCount(Connection conn, String boardType, String replyType, CommunityBoard board) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE FREE_BOARD B"
-				+ "SET B.REPLY_COUNT = (SELECT COUNT(NO) FROM FREE_REPLY WHERE BOARD_NO = ?) "
+		String query = "UPDATE " + boardType + " B"
+				+ "SET B.REPLY_COUNT = (SELECT COUNT(NO) FROM " + replyType + " WHERE BOARD_NO = ?) "
 				+ "WHERE B.NO = ?";
 		int result = 0;
 		
