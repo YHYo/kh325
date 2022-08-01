@@ -186,6 +186,8 @@ String saveId = "";
     <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/lightgallery/css/lightgallery-bundle.min.css" />
     <link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" />
 	<link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/filepond/dist/filepond.min.css" />
+	<link rel="stylesheet" media="screen" href="<%=path%>/resources/vendor/nouislider/dist/nouislider.min.css" />
+    
     
     <!-- Main Theme Styles + Bootstrap-->
    <!--  <link rel="stylesheet" media="screen" href="css/theme.min.css"> -->
