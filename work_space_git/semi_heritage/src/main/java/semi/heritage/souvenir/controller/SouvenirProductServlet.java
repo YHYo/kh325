@@ -39,7 +39,7 @@ public class SouvenirProductServlet extends HttpServlet {
 		}
 		
 		
-		req.setAttribute("list", list);
+		req.setAttribute("listIngi", list);
 		req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);
 		
 		

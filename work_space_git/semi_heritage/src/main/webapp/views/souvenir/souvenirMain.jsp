@@ -1,4 +1,6 @@
 <%@page import="semi.heritage.souvenir.vo.SouvenirCategoryVO"%>
+<%@page import="semi.heritage.souvenir.vo.SouvenirProductVO"%>
+<%@page import= "java.text.DecimalFormat" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,8 +8,9 @@
 
 <%@include file="/views/common/headerDark.jsp"%>
    <%
-	   List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
-   		
+   	DecimalFormat df = new DecimalFormat("###,###");
+	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
+   	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    %>
    
 
@@ -79,8 +82,22 @@
 	</div>
 	<div
 		class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2 g-md-4">
+		<!-- 카테고리 버튼 -->
+		<% for (int i = 0; i < listCat.size(); i++){ %>
+		<div class="col">
 		
-		
+			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center"> 
+			<img class="d-block mx-auto mb-3"
+					src="<%=listCat.get(i).getcPath() %>" width="160"
+					alt="Coupe">
+				 <a class="nav-link-light stretched-link fw-bold"
+					href="<%=path%>/views/souvenir/souvenirProductsList.jsp"
+					style="font-size: 18px;"><%=listCat.get(i).getcName() %>></a> 
+					<a style="color: grey; font-size: 16px;"><%=listCat.get(i).getcSebu() %></a>
+			</div>
+			
+		</div>
+		 <%} %>
 	
 		 
 	</div>
@@ -115,26 +132,22 @@
 						<!-- <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button> -->
 					</div>
 					<div class="tns-carousel-inner">
-						<img src="<%=path%>/resources/img/naim/10.souvir.best1.png"
+						<img src="<%=listIngi.get(0).getSouv_pro_url() %>"
 							alt="Image"> <img
-							src="<%=path%>/resources/img/naim/10.souvir.best1.png"
+							src="<%=listIngi.get(0).getSouv_pro_url() %>"
 							alt="Image">
 					</div>
 				</div>
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between pb-1">
 						<span class="fs-sm text-light me-3">사뿐몰 제 1호 상품</span>
-						<!-- <div class="form-check form-check-light">
-                                    <input class="form-check-input" type="checkbox" id="compare1">
-                                    <label class="form-check-label fs-sm" for="compare1">Compare</label>
-                                </div> -->
 					</div>
 					<h3 class="h6 mb-1">
 						<a class="nav-link-light"
 							href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"
-							style="color: #A08DB4;">전통그림부채</a>
+							style="color: #A08DB4;"><%=listIngi.get(0).getSouv_pro_name() %></a>
 					</h3>
-					<div class="text-primary fw-bold mb-1">25,800원</div>
+					<div class="text-primary fw-bold mb-1"><%=df.format(listIngi.get(0).getSouv_pro_price()) %>원</div>
 					<!-- <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>New York</div> -->
 				</div>
 				<div class="card-footer border-0 pt-0">
@@ -163,8 +176,8 @@
 		</div>
 		<div class="col-lg-6">
 
-			<!-- 기념품 제2호 시작 -->
-			<% for (int i = 0; i < 2; i++){ %>
+			<!-- 기념품 제2호 시작 for문으로 2, 3호 출력-->
+			<% for (int i = 1; i < 3; i++){ %>
 			<div class="card card-light card-hover card-horizontal mb-4">
 				<div class="tns-carousel-wrapper card-img-top card-img-hover">
 					<a class="img-overlay"
@@ -177,22 +190,22 @@
 					</div>
 					<div class="tns-carousel-inner position-absolute top-0 h-100">
 						<div class="bg-size-cover bg-position-center w-100 h-100"
-							style="background-image: url(<%=path%>/resources/img/naim/10.souvir.best2.png);"></div>
+							style="background-image: url(<%=listIngi.get(i).getSouv_pro_url() %>);"></div>
 						<div class="bg-size-cover bg-position-center w-100 h-100"
 							style="background-image: url(<%=path%>/resources/img/naim/10.souvir.best22.png);"></div>
 					</div>
 				</div>
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between pb-1">
-						<span class="fs-sm text-light me-3">사뿐몰 제 2호 상품</span>
+						<span class="fs-sm text-light me-3">사뿐몰 제 <%=i %>호 상품</span>
 
 					</div>
 					<h3 class="h6 mb-1">
 						<a class="nav-link-light"
-							href="<%=path%>12.souvenirProductsDetail2.jsp"
-							style="color: #A08DB4;">일월오봉도 한지조명</a>
+							href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"
+							style="color: #A08DB4;"><%=listIngi.get(i).getSouv_pro_name() %></a>
 					</h3>
-					<div class="text-primary fw-bold mb-1">110,000원</div>
+					<div class="text-primary fw-bold mb-1"><%=df.format(listIngi.get(i).getSouv_pro_price()) %>원</div>
 
 					<div class="border-top border-light mt-3 pt-3">
 						<div class="row g-2">
