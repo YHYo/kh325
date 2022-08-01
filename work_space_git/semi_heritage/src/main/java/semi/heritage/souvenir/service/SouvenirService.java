@@ -10,9 +10,9 @@ import java.util.List;
 
 import semi.heritage.souvenir.dao.SouvenirDao;
 import semi.heritage.souvenir.vo.SouvenirBuyVO;
+import semi.heritage.souvenir.vo.SouvenirCartVO;
 import semi.heritage.souvenir.vo.SouvenirPayVO;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
-import semi.heritage.souvenir.vo.Souvenir_Cart_VO;
 
 public class SouvenirService {
 	SouvenirDao dao = new SouvenirDao();
@@ -33,14 +33,14 @@ public class SouvenirService {
 	}
 
 	// cart
-	public List<Souvenir_Cart_VO> getCartList(int uNo) {
+	public List<SouvenirCartVO> getCartList(int uNo) {
 		Connection conn = getConnection();
-		List<Souvenir_Cart_VO> list = dao.selectCartByUNO(conn, uNo);
+		List<SouvenirCartVO> list = dao.selectCartByUNO(conn, uNo);
 		close(conn);
 		return list;
 	}
 
-	public int insertCart(Souvenir_Cart_VO cart) {
+	public int insertCart(SouvenirCartVO cart) {
 		Connection conn = getConnection();
 		int result = dao.insertCart(conn, cart);
 

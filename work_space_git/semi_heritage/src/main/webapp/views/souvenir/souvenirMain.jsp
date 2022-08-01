@@ -1,134 +1,51 @@
+<%@page import="semi.heritage.souvenir.vo.SouvenirCartVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="/views/common/headerLight.jsp"%>
+<%@include file="/views/common/headerDark.jsp"%>
+
+ <%
+	   List<SouvenirCartVO> list = (List<SouvenirCartVO>)request.getAttribute("list");
+   %>
+
+<script type ="text/javascript">
+<%
+request.setCharacterEncoding("UTF-8");
+String name = request.getParameter("souvenirName");
+String category = request.getParameter("souvenirCategory");
+String price = request.getParameter("souvenirPrice"); 
+
+ArrayList<SouvenirCartVO> cart = null;
+Object obj = session.getAttribute("");	//세션 객체에서 cart 값을 가져온다. 
+%>
+
+function fnCart(name, price) {
+	if(confirm("장바구니에 담으시겠습니까?")) {
+		if(obj != souvenirName) {	//세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
+			cart = new ArrayList<SouvenirCartVO>();
+			
+		} else {        
+	        alert("이미 존재하는 상품 입니다");
+	        cart = (ArrayList<SouvenirCartVO>) obj;
+	}
+}
+ 
+function fnView() {
+	if(confirm("장바구니를 보시겠습니까?")){
+		location.href = "views/member/02.myPageCart.jsp";
+	}
+}
+
+</script>
     
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>기념품</title>
-    <!-- SEO Meta Tags-->
-    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
-    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
-    <meta name="author" content="Createx Studio">
-    <!-- Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
-    <meta name="msapplication-TileColor" content="#766df4">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Page loading styles-->
-    <style>
-        .page-loading {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            -webkit-transition: all .4s .2s ease-in-out;
-            transition: all .4s .2s ease-in-out;
-            background-color: #1f1b2d;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 9999;
-        }
-        
-        .page-loading.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .page-loading-inner {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-            -webkit-transition: opacity .2s ease-in-out;
-            transition: opacity .2s ease-in-out;
-            opacity: 0;
-        }
-        
-        .page-loading.active>.page-loading-inner {
-            opacity: 1;
-        }
-        
-        .page-loading-inner>span {
-            display: block;
-            font-size: 1rem;
-            font-weight: normal;
-            color: #fff;
-            ;
-        }
-        
-        .page-spinner {
-            display: inline-block;
-            width: 2.75rem;
-            height: 2.75rem;
-            margin-bottom: .75rem;
-            vertical-align: text-bottom;
-            border: .15em solid #9691a4;
-            border-right-color: transparent;
-            border-radius: 50%;
-            -webkit-animation: spinner .75s linear infinite;
-            animation: spinner .75s linear infinite;
-        }
-        
-        @-webkit-keyframes spinner {
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-        
-        @keyframes spinner {
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-    </style>
-    <!-- Page loading scripts-->
-    <script>
-        (function() {
-            window.onload = function() {
-                var preloader = document.querySelector('.page-loading');
-                preloader.classList.remove('active');
-                setTimeout(function() {
-                    preloader.remove();
-                }, 2000);
-            };
-        })();
-    </script>
-    <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
-    <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css" />
-    <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
-</head>
+    
 <!-- Body-->
-
-<body class="bg-dark">
     <!-- Page loading spinner-->
-    <div class="page-loading active">
-        <div class="page-loading-inner">
-            <div class="page-spinner"></div><span>Loading...</span>
-        </div>
-    </div>
-    <main class="page-wrapper">
-
         <!-- Page content-->
         <!-- Hero + Search form-->
-        <section class="bg-position-top-center bg-repeat-0 pt-5" style="background-image: url(img/car-finder/home/hero-bg.png); background-size: 1920px 630px;">
+        <section class="bg-position-top-center bg-repeat-0 pt-5" style="background-image: url(<%=path%>/resources/img/car-finder/home/hero-bg.png); background-size: 1920px 630px;">
             <div class="container pt-5">
                 <div class="row pt-lg-4 pt-xl-5">
                     <div class="col-lg-6 col-md-5 pt-3 pt-md-4 pt-lg-5">
@@ -136,7 +53,7 @@
                         <h4 class="display-3 pb-1 mb-2 me-md-n5" style="color: #fff; padding-left:2%; font-size: x-large;">전통과 현대를 아우르다</h4>
                         <p class="fs-lg text-light opacity-70" style="padding-left:2%;">사뿐사뿐이 엄선한 전통 문화 상품들을 지금 바로 만나보세요</p>
                     </div>
-                    <div class="col-lg-6 col-md-6 pt-md-5"><img class="d-block mt-4 ms-auto" src="img/naim/10.souvir.main.png" width="700" alt="Car" style="position:relative ;"></div>
+                    <div class="col-lg-6 col-md-6 pt-md-5"><img class="d-block mt-4 ms-auto" src="<%=path%>/resources/img/naim/10.souvir.main.png" width="700" alt="Car" style="position:relative ;"></div>
                 </div>
             </div>
             <div class="container mt-4 mt-sm-3 mt-lg-n3 pb-5 mb-md-4">
@@ -152,49 +69,49 @@
                     <h2 class="h3 text-light mb-2 mb-sm-0">카테고리</h3>
                 </div>
                 <div class="col-md-4 d-lg-flex align-items-center justify-content-end">
-                    <a class="btn btn-link fw-normal ms-sm-3 p-0" href="11.souvenirProductsListAll.jsp">더보기<i class="fi-arrow-long-right ms-2"></i></a></div>
+                    <a class="btn btn-link fw-normal ms-sm-3 p-0" href="<%=path%>11.souvenirProductsListAll.jsp">더보기<i class="fi-arrow-long-right ms-2"></i></a></div>
             </div>
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2 g-md-4">
                 
                 <div class="col">
                     <div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
-                        <img class="d-block mx-auto mb-3" src="img/naim/10.souvir.cate.1.png" width="160" alt="Coupe">
-                        <a class="nav-link-light stretched-link fw-bold" href="11.souvenirProductsListBaby.jsp" style="font-size: 18px;">유아/DIY</a>
+                        <img class="d-block mx-auto mb-3" src="<%=path%>/resources/img/naim/10.souvir.cate.1.png" width="160" alt="Coupe">
+                        <a class="nav-link-light stretched-link fw-bold" href="<%=path%>11.souvenirProductsListBaby.jsp" style="font-size: 18px;">유아/DIY</a>
                         <a style="color:grey; font-size: 16px;">장난감, 인형, DIY</a></div>
                 </div>
                 <!-- Item-->
                 <div class="col">
                     <div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
-                        <img class="d-block mx-auto mb-3" src="img/naim/10.souvir.cate.2.png" width="160" alt="Pickup">
-                        <a class="nav-link-light stretched-link fw-bold" href="11.souvenirProductsListOffice.jsp" style="font-size: 18px;">사무/문구</a>
+                        <img class="d-block mx-auto mb-3" src="<%=path%>/resources/img/naim/10.souvir.cate.2.png" width="160" alt="Pickup">
+                        <a class="nav-link-light stretched-link fw-bold" href="<%=path%>11.souvenirProductsListOffice.jsp" style="font-size: 18px;">사무/문구</a>
                         <a style="color:grey; font-size: 16px;">필기도구, 카드</a></div>
                 </div>
                 <!-- Item-->
                 <div class="col">
                     <div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
-                        <img class="d-block mx-auto mb-3" src="img/naim/10.souvir.cate.3.png" width="160" alt="Sport Coupe">
-                        <a class="nav-link-light stretched-link fw-bold" href="11.souvenirProductsListAll.jsp" style="font-size: 18px;">뷰티/미용</a>
+                        <img class="d-block mx-auto mb-3" src="<%=path%>/resources/img/naim/10.souvir.cate.3.png" width="160" alt="Sport Coupe">
+                        <a class="nav-link-light stretched-link fw-bold" href="<%=path%>11.souvenirProductsListAll.jsp" style="font-size: 18px;">뷰티/미용</a>
                         <a style="color:grey; font-size: 16px;">비누, 향수</a></div>
                 </div>
                 <!-- Item-->
                 <div class="col">
                     <div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
-                        <img class="d-block mx-auto mb-3" src="img/naim/10.souvir.cate.4.png" width="160" alt="Compact">
-                        <a class="nav-link-light stretched-link fw-bold" href="11.souvenirProductsListAll.jsp" style="font-size: 18px;">패션/잡화</a>
+                        <img class="d-block mx-auto mb-3" src="<%=path%>/resources/img/naim/10.souvir.cate.4.png" width="160" alt="Compact">
+                        <a class="nav-link-light stretched-link fw-bold" href="<%=path%>11.souvenirProductsListAll.jsp" style="font-size: 18px;">패션/잡화</a>
                         <a style="color:grey; font-size: 16px;">가방, 우산</a></div>
                 </div>
                 <!-- Item-->
                 <div class="col">
                     <div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
-                        <img class="d-block mx-auto mb-3" src="img/naim/10.souvir.cate.5.png" width="160" alt="Convertible">
-                        <a class="nav-link-light stretched-link fw-bold" href="11.souvenirProductsListAll.jsp" style="font-size: 18px;">생활/데코</a>
+                        <img class="d-block mx-auto mb-3" src="<%=path%>/resources/img/naim/10.souvir.cate.5.png" width="160" alt="Convertible">
+                        <a class="nav-link-light stretched-link fw-bold" href="<%=path%>11.souvenirProductsListAll.jsp" style="font-size: 18px;">생활/데코</a>
                         <a style="color:grey; font-size: 16px;">홈데코, 인테리어</a></div>
                 </div>
                 <!-- Item-->
                 <div class="col">
                     <div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
-                        <img class="d-block mx-auto mb-3" src="img/naim/10.souvir.cate.6.png" width="160" alt="Family MPV">
-                        <a class="nav-link-light stretched-link fw-bold" href="11.souvenirProductsListAll.html" style="font-size: 18px;">전자/IT</a>
+                        <img class="d-block mx-auto mb-3" src="<%=path%>/resources/img/naim/10.souvir.cate.6.png" width="160" alt="Family MPV">
+                        <a class="nav-link-light stretched-link fw-bold" href="<%=path%>11.souvenirProductsListAll.jsp" style="font-size: 18px;">전자/IT</a>
                         <a style="color:grey; font-size: 16px;">폰케이스, 그립톡</a></div>
                 </div>
             </div>
@@ -213,7 +130,7 @@
                     <!-- Item-->
                     <div class="card card-light card-hover h-lg-100 mb-4 mb-lg-0">
                         <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                            <a class="img-overlay" href="12.souvenirProductsDetail1.jsp"></a>
+                            <a class="img-overlay" href="<%=path%>12.souvenirProductsDetail1.jsp"></a>
                             <div class="position-absolute start-0 top-0 pt-3 ps-3">
                                 <!-- <span class="d-table badge bg-info mb-1">New</span>
                                 <span class="d-table badge bg-success" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex&quot;&gt;&lt;i class=&quot;fi-award mt-1 me-2&quot;&gt;&lt;/i&gt;&lt;div&gt;This car is checked and&lt;br&gt;certified by Finder.&lt;/div&gt;&lt;/div&gt;">Certified</span> -->
@@ -221,8 +138,8 @@
                             <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                 <!-- <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button> -->
                             </div>
-                            <div class="tns-carousel-inner"><img src="img/naim/10.souvir.best1.png" alt="Image">
-                                <img src="img/naim/10.souvir.best1.png" alt="Image"></div>
+                            <div class="tns-carousel-inner"><img src="<%=path%>/resources/img/naim/10.souvir.best1.png" alt="Image">
+                                <img src="<%=path%>/resources/img/naim/10.souvir.best1.png" alt="Image"></div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">사뿐몰 제 1호 상품</span>
@@ -231,7 +148,7 @@
                                     <label class="form-check-label fs-sm" for="compare1">Compare</label>
                                 </div> -->
                             </div>
-                            <h3 class="h6 mb-1"><a class="nav-link-light" href="12.souvenirProductsDetail1.html" style="color: #A08DB4;">전통그림부채</a></h3>
+                            <h3 class="h6 mb-1"><a class="nav-link-light" href="<%=path%>12.souvenirProductsDetail1.jsp" style="color: #A08DB4;">전통그림부채</a></h3>
                             <div class="text-primary fw-bold mb-1">25,800원</div>
                             <!-- <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>New York</div> -->
                         </div>
@@ -241,20 +158,16 @@
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="02.myPageCart.jsp">
+                                            <span class="fs-xs text-light"><a class="nav-link-light" onclick="fnCart()" href="<%=path%>02.myPageCart.jsp">
                                             장바구니</span></a>
                                         </div>
                                     </div>
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="12.souvenirProductsDetail1.jsp">상세보기</a></span></div>
+                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>12.souvenirProductsDetail1.jsp">상세보기</a></span></div>
                                     </div>
-                                    <!-- <div class="col">
-                                        <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                                            <i class="fi-petrol d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light">Gasoline</span></div>
-                                    </div> -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -265,7 +178,7 @@
                     <!-- 기념품 제2호 시작 -->
                     <div class="card card-light card-hover card-horizontal mb-4">
                         <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                            <a class="img-overlay" href="12.souvenirProductsDetail2.jsp"></a>
+                            <a class="img-overlay" href="<%=path%>12.souvenirProductsDetail2.jsp"></a>
                             <div class="position-absolute start-0 top-0 pt-3 ps-3">
                                 <!-- <span class="d-table badge bg-info">Used</span> -->
                             </div>
@@ -273,15 +186,15 @@
                                 <!-- <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button> -->
                             </div>
                             <div class="tns-carousel-inner position-absolute top-0 h-100">
-                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(img/naim/10.souvir.best2.png);"></div>
-                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(img/naim/10.souvir.best22.png);"></div>
+                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(<%=path%>/resources/img/naim/10.souvir.best2.png);"></div>
+                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(<%=path%>/resources/img/naim/10.souvir.best22.png);"></div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">사뿐몰 제 2호 상품</span>
                                 
                             </div>
-                            <h3 class="h6 mb-1"><a class="nav-link-light" href="12.souvenirProductsDetail2.html" style="color: #A08DB4;">일월오봉도 한지조명</a></h3>
+                            <h3 class="h6 mb-1"><a class="nav-link-light" href="<%=path%>12.souvenirProductsDetail2.jsp" style="color: #A08DB4;">일월오봉도 한지조명</a></h3>
                             <div class="text-primary fw-bold mb-1">110,000원</div>
                             
                             <div class="border-top border-light mt-3 pt-3">
@@ -289,20 +202,16 @@
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="02.myPageCart.jsp">
+                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>02.myPageCart.jsp">
                                                 장바구니</span></a>
                                         </div>
                                     </div>
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="12.souvenirProductsDetail2.jsp">상세보기</a></span></div>
+                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>12.souvenirProductsDetail2.jsp">상세보기</a></span></div>
                                     </div>
-                                    <!-- <div class="col">
-                                        <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                                            <i class="fi-petrol d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light">Diesel</span></div>
-                                    </div> -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -312,7 +221,7 @@
                     <!-- 기념품 제3호 시작-->
                     <div class="card card-light card-hover card-horizontal">
                         <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                            <a class="img-overlay" href="12.souvenirProductsDetail3.jsp"></a>
+                            <a class="img-overlay" href="<%=path%>12.souvenirProductsDetail3.jsp"></a>
                             <div class="position-absolute start-0 top-0 pt-3 ps-3">
                                 <!-- <span class="d-table badge bg-danger">New</span> -->
                             </div>
@@ -320,39 +229,32 @@
                                 <!-- <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button> -->
                             </div>
                             <div class="tns-carousel-inner position-absolute top-0 h-100">
-                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(img/naim/10.souvir.best3.png);"></div>
-                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(img/naim/10.souvir.best3.png);"></div>
+                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(<%=path%>/resources/img/naim/10.souvir.best3.png);"></div>
+                                <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url(<%=path%>/resources/img/naim/10.souvir.best3.png);"></div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">사뿐몰 제 3호 상품</span>
-                                <!-- <div class="form-check form-check-light">
-                                    <input class="form-check-input" type="checkbox" id="compare3">
-                                    <label class="form-check-label fs-sm" for="compare3">Compare</label>
-                                </div> -->
+                               
                             </div>
-                            <h3 class="h6 mb-1"><a class="nav-link-light" href="12.souvenirProductsDetail3.html" style="color: #A08DB4;">일월오봉도 부채</a></h3>
+                            <h3 class="h6 mb-1"><a class="nav-link-light" href="<%=path%>12.souvenirProductsDetail3.jsp" style="color: #A08DB4;">일월오봉도 부채</a></h3>
                             <div class="text-primary fw-bold mb-1">6,500원</div>
-                            <!-- <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>San Francisco</div> -->
+                           
                             <div class="border-top border-light mt-3 pt-3">
                                 <div class="row g-2">
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="02.myPageCart.jsp">
+                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>02.myPageCart.jsp">
                                                 장바구니</span></a>
                                         </div>
                                     </div>
                                     <div class="col me-sm-1">
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light"><a class="nav-link-light" href="12.souvenirProductsDetail3.jsp">상세보기</a></span></div>
+                                            <span class="fs-xs text-light"><a class="nav-link-light" href="<%=path%>path%>12.souvenirProductsDetail3.jsp">상세보기</a></span></div>
                                     </div>
-                                    <!-- <div class="col">
-                                        <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                                            <i class="fi-petrol d-block h4 text-light mb-0 mx-center"></i>
-                                            <span class="fs-xs text-light">Gasoline</span></div>
-                                    </div> -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -364,7 +266,7 @@
         </section>
         <section class="container">
             <div>
-                <img src="img/naim/10.souvir.main.mid.deco.png"></img>
+                <img src="<%=path%>/resources/img/naim/10.souvir.main.mid.deco.png"></img>
             </div>
         </section>
 
@@ -407,9 +309,9 @@
                 <div class="col-md-2 d-none d-md-block">
                     <div class="position-relative mx-auto h-100" style="max-width: 5rem; min-height: 26rem;">
                         <div class="rellax content-overlay pt-3" data-rellax-percentage="0.7">
-                            <img class="pt-5 mt-5" src="img/naim/10.souvir.main.deco.png"></div>
+                            <img class="pt-5 mt-5" src="<%=path%>/resources/img/naim/10.souvir.main.deco.png"></div>
                         <div class="position-absolute top-0 start-50 translate-middle-x h-30 overflow-visible">
-                            <img src="img/naim/10.souvir.main.line.png" height="580px"></div>
+                            <img src="<%=path%>/resources/img/naim/10.souvir.main.line.png" height="580px"></div>
                     </div>
                 </div>
                 <!-- 노리개 끝 -->
@@ -463,28 +365,9 @@
 </svg></a>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-6"><img class="d-block mx-auto" src="img/naim/10.souvir.main.app.png" width="460" alt="Mobile App"></div>
+                <div class="col-md-5 col-lg-6"><img class="d-block mx-auto" src="<%=path%>/resources/img/naim/10.souvir.main.app.png" width="460" alt="Mobile App"></div>
             </div>
         </section>
 
-    </main>
     <!-- Footer -->
     <%@include file="/views/common/footer.jsp"%>
-    
-    <!-- Back to top button-->
-    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-light fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
-    <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
-    <script src="vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
-    <script src="vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
-    <script src="vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
-    <script src="vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
-    <script src="vendor/filepond/dist/filepond.min.js"></script>
-    <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
-</body>
-
-</html>

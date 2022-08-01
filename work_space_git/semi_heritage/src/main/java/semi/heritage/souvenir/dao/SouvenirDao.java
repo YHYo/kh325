@@ -1,7 +1,6 @@
 package semi.heritage.souvenir.dao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.close;
-import static semi.heritage.common.jdbc.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import semi.heritage.souvenir.vo.SouvenirBuyVO;
-import semi.heritage.souvenir.vo.Souvenir_Cart_VO;
+import semi.heritage.souvenir.vo.SouvenirCartVO;
 import semi.heritage.souvenir.vo.SouvenirPayVO;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
@@ -81,7 +80,7 @@ public class SouvenirDao {
 	}
 
 	// 장바구니 추가
-	public int insertCart(Connection conn, Souvenir_Cart_VO cart) {
+	public int insertCart(Connection conn, SouvenirCartVO cart) {
 		PreparedStatement pstmt = null;
 		String query = "INSERT INTO SOUV_CART VALUES(to_char(SYSDATE,'YYYYMMDDHH24'),?,?,?,?,?,DEFAULT, DEFAULT)";
 		int result = 0;
@@ -104,8 +103,8 @@ public class SouvenirDao {
 	}
 
 	// 장바구니 출력
-	public List<Souvenir_Cart_VO> selectCartByUNO(Connection conn, int uNo) {
-		List<Souvenir_Cart_VO> list = new ArrayList<>();
+	public List<SouvenirCartVO> selectCartByUNO(Connection conn, int uNo) {
+		List<SouvenirCartVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
@@ -125,7 +124,7 @@ public class SouvenirDao {
 //				String BUY_STATUS = rs.getString(count++);
 //				String DELETE_STATUS = rs.getString(count++);
 
-				Souvenir_Cart_VO info = new Souvenir_Cart_VO(uNo, SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY
+				SouvenirCartVO info = new SouvenirCartVO(uNo, SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY
 //						,BUY_STATUS, DELETE_STATUS
 						);
 				list.add(info);
