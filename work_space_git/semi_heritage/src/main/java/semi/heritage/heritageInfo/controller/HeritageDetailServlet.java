@@ -19,7 +19,6 @@ import semi.heritage.heritageInfo.vo.HeritageVideo;
 
 
 
-
 @WebServlet("/heritageDeatil.do")
 public class HeritageDetailServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
