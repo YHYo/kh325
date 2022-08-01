@@ -148,7 +148,7 @@ function prView() {
                                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                             <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
                                             <span class="fs-xs text-light nav-link-light" onclick="fnCart('이곳에 인자도 없고 ㅠㅠ');"> 
-                                            	장바구니222	
+                                            	장바구니	
                                             </span>
                                         </div>
                                     </div>
