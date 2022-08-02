@@ -1,9 +1,15 @@
+<%@page import="semi.heritage.common.util.PageInfo"%>
+<%@page import="semi.heritage.heritageInfo.vo.HeritageMainVO"%>
+<%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file="/views/common/headerLight.jsp"%>
        
-
+<% 
+List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
+PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
+%>
 
 
         <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-5 image-bg-cover"></span>
@@ -482,6 +488,7 @@
                         </div>
                     </div>
                     <!-- 필터링기능 끝-->
+                    
                 </div>
                 <!-- Sorting-->
                 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
@@ -499,20 +506,20 @@
                 <!-- Catalog grid-->
                 <div class="row g-4 py-4">
                     <!-- Item-->
+                    <%for(int i = 0; i < list.size(); i++ ) {%>
                     <div class="col-sm-6 col-xl-4">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="tns-carousel-wrapper card-img-top card-img-hover">
                                 <a class="img-overlay" href="real-estate-single-v1.html"></a>
 
 
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
+                                <div class="tns-carousel-inner"><img src="<%=list.get(i).getImageUrl()%>g" alt="Image" style="height: 300px; width: 405px;"></div>
                             </div>
                             <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html"><%=list.get(i).getCcbaMnm1()%></a>
+                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i><%=list.get(i).getCcbaCtcdNm() + " " + list.get(i).getCcsiName()%></div>
                                 </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
+                                <h2 class="mb-1 fs-xs fw-normal"><%=list.get(i).getContent()%></h2>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
                                 <span class="d-inline-block mx-1 px-2 fs-sm">
@@ -521,251 +528,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Item-->
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                            <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="card shadow-sm card-hover border-0 h-100">
-                            <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="img/semi-img/둘.jpg" alt="Image" style="height: 300px; width: 405px;"></div>
-                            </div>
-                            <div class="card-body position-relative pb-3">
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html">석굴암</a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i>경북 경주시</div>
-                                </h3>
-                                <h2 class="mb-1 fs-xs fw-normal">석굴암은 신라 경덕왕 10년(751)에 당시...</h2>
-
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
-                                <span class="d-inline-block mx-1 px-2 fs-sm">
-                                <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     <% }%>
                 <!-- Pagination-->
                 <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
                     <ul class="pagination mb-1">
