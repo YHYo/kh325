@@ -44,6 +44,51 @@ String saveId = "";
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
     <style>
+    
+        .img-sovnir-main-1 {
+        	width : 633px;
+        	height : 262px;
+        	object-fit : cover;
+        }
+        
+        .img-souvnir-main-23 {
+        	width : 247px;
+        	height : 233px;
+        	object-fit : cover;
+        }
+        
+        .img-souvnir-list {
+        	width : 343px;
+        	height : 214px;
+        	object-fit : cover;
+        }
+        
+        .img-souvnir-db {
+        	width : 725px;
+        	height : 407px;
+        	object-fit : cover;
+        }
+        
+        
+        .img-souvnir-ds {
+        	width : 133px;
+        	height : 76px;
+        	object-fit : cover;
+        }
+        
+        .img-souvnir-dl {
+        	width : 402px;
+        	height : 205px;
+        	object-fit : cover;
+        }
+        
+        .img-souvnir-co {
+        	width : 132px;
+        	height : 83px;
+        	object-fit : cover;
+        }
+        
+    
     .p01 {
             line-height: -10px;
             letter-spacing: -7px;

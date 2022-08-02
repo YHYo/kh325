@@ -32,13 +32,13 @@ public class SouvenirProductServlet extends HttpServlet {
 //		System.out.println("doget 호출 ");
 		List<SouvenirProductVO> Plist = null;
 		
-		List<SouvenirCategoryVO> Clist = new ArrayList<SouvenirCategoryVO>();
-		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.1.png","유아/DIY","장난감, 인형, DIY"));
-		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.2.png","사무/문구","필기도구, 카드"));
-		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.3.png","뷰티/미용","비누, 향수"));
-		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.4.png","패션/잡화","가방, 우산"));
-		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.5.png","생활/데코","홈데코, 인테리어"));
-		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.6.png","전자/IT","폰케이스, 그립톡"));
+//		List<SouvenirCategoryVO> Clist = new ArrayList<SouvenirCategoryVO>();
+//		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.1.png","유아/DIY","장난감, 인형, DIY"));
+//		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.2.png","사무/문구","필기도구, 카드"));
+//		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.3.png","뷰티/미용","비누, 향수"));
+//		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.4.png","패션/잡화","가방, 우산"));
+//		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.5.png","생활/데코","홈데코, 인테리어"));
+//		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.6.png","전자/IT","폰케이스, 그립톡"));
 		
 		
 		
@@ -50,8 +50,8 @@ public class SouvenirProductServlet extends HttpServlet {
 		}
 		
 		
-		req.setAttribute("listCat", Clist);
-		req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
+//		req.setAttribute("listCat", Clist);
+//		req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);
 		
 		req.setAttribute("listIngi", Plist);
 		req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);

@@ -289,6 +289,24 @@
             </div>
         </div>
     </main>
+    
+<script type="text/javascript">
+	function movePage(pageUrl){
+	var productNo = document.getElementById("productNo"); 
+	var searchTypes = document.getElementsByName("searchType"); // title
+	var searchType = 'title';
+	if(searchValue.value.length > 0){
+		for(var i = 0; i <searchTypes.length; i++){
+			if(searchTypes[i].checked == true){
+				searchType = searchTypes[i].value;
+			}
+		}
+		pageUrl = pageUrl + '&searchType=' + searchType + '&searchValue=' + searchValue.value; 
+	}
+	location.href = encodeURI(pageUrl);	
+}
+</script>
+    
     <!-- Footer-->
     <%@include file="/views/common/footer.jsp"%>
     

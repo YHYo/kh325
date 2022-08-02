@@ -9,6 +9,7 @@
 
 <%
    	DecimalFormat df = new DecimalFormat("###,###");
+	
    %>
 
 <script type ="text/javascript">
@@ -100,6 +101,7 @@ function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
                         <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb5.png" alt="Thumbnail"></li>
                         
                     </ul>
+                    <% } %>
                     
 
                     <!-- 배송 및 교환환불 시작-->
@@ -374,6 +376,7 @@ function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
                 </div>
         </div>
     </main>
+    
     <!-- Footer-->
     <%@include file="/views/common/footer.jsp"%>
     
