@@ -23,9 +23,21 @@
        
 <% 
 List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
+List<Integer> nolist = (List<Integer>)request.getAttribute("nolist");
+List<Integer> favlist = (List<Integer>)request.getAttribute("favlist");
+// List<Integer> nolist = new ArrayList<Integer>();
+// for(int j = 0; j < list.size(); j++){
+// 	nolist.add(list.get(j).getNo());
+// }
+
+
 PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
 String searchValue = request.getParameter("searchValue");
 int boardCount = (Integer)request.getAttribute("boardCount");
+int favoriteNum = (Integer)request.getAttribute("no");
+int uNo = (Integer)request.getAttribute("uNo");
+// int no = (Integer)request.getAttribute("no");
+
 // String searchType = "reigon";
 // String regions[] = request.getParameterValues("region");
 
@@ -561,7 +573,7 @@ int boardCount = (Integer)request.getAttribute("boardCount");
                             <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
                                 <span class="d-inline-block mx-1 px-2 fs-sm">
                                 <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a>3</a>
+                                <a><%=favlist.get(i)%></a>
                             </div>
                         </div>
                     </div>

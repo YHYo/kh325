@@ -1,9 +1,9 @@
 package semi.heritage.heritageInfo.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.common.util.PageInfo;
+import semi.heritage.favorite.service.favoriteService;
 import semi.heritage.heritageInfo.service.HeritageService;
 import semi.heritage.heritageInfo.vo.HeritageMainVO;
 
@@ -25,6 +26,7 @@ public class HeritageListServlet extends MyHttpServlet {
 	}
 
 	private HeritageService service = new HeritageService();
+	private favoriteService fservice = new favoriteService();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,34 +35,51 @@ public class HeritageListServlet extends MyHttpServlet {
 		PageInfo pageInfo = null;
 		List<HeritageMainVO> list = null;
 		String ccbaMnm = req.getParameter("searchValue");
+		int favoriteNum = 0; //찜개수
+		int no = 0; //문화재 고유번호
+		int uNo = 0;
 		
-//		Map<String, String> searchMap = new HashMap<>();
-//		try {
-//			String searchValue = req.getParameter("searchValue");
-//			if(searchValue != null && searchValue.length() > 0) {
-//				String searchType = req.getParameter("searchType");
-//				searchMap.put(searchType, searchValue);
-//			}
-//			page = Integer.parseInt(req.getParameter("page"));
-//		} catch (Exception e) {}
-	
-		
+
 		try {
-		page = Integer.parseInt(req.getParameter("page"));
-		} catch (Exception e) {}
-		
+			page = Integer.parseInt(req.getParameter("page"));
+		} catch (Exception e) {
+		}
+
 		boardCount = service.getHeritageMainVOCount(ccbaMnm); // 이름입력해서 게시글 갯수 몇개인지 가져옴
 		pageInfo = new PageInfo(page, 8, boardCount, 9); // 하단버튼 8개 , 게시글 9개 보임
 		list = service.selectByHeritageName(ccbaMnm, pageInfo);
+		
+		
+		 List<Integer> nolist = new ArrayList<Integer>();
+		 for(int i = 0; i < list.size(); i++){
+		 	nolist.add(list.get(i).getNo());
+		 }
+		 List<Integer> favlist = new ArrayList<Integer>();
+		 for(int j = 0; j < nolist.size(); j++){
+			 favoriteNum = fservice.CountFavoriteByNo(nolist.get(j));
+			 favlist.add(favoriteNum);
+		 }
+		System.out.println(nolist); //list에 i번쨰의 문화재고유번호들의 리스트
+		System.out.println(favoriteNum);//찜갯수 리스트
+		
+	
+		
+//		uNo = fservice.insert(uNo, no);
+//		uNo = fservice.delete(uNo, no);
 
 		if (list == null) {
 			sendCommonPage("검색 결과가 없습니다", "/index.do", req, resp);
 		}
-		
+
 		System.out.println(list);
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
 		req.setAttribute("boardCount", boardCount);
+		req.setAttribute("favoriteNum", favoriteNum);
+		req.setAttribute("favlist", favlist);
+		req.setAttribute("nolist", nolist);
+		req.setAttribute("no", no);
+//		req.setAttribute("uNo", uNo);
 		req.getRequestDispatcher("/views/heritage/heritageSearch.jsp").forward(req, resp);// 문화재 리스트 보여주는 페이지주소 넣어야함
 	}
 

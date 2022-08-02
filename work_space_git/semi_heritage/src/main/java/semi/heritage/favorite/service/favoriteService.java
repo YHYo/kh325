@@ -1,12 +1,16 @@
 package semi.heritage.favorite.service;
 
+import static semi.heritage.common.jdbc.JDBCTemplate.commit;
+import static semi.heritage.common.jdbc.JDBCTemplate.getConnection;
+import static semi.heritage.common.jdbc.JDBCTemplate.rollback;
+
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
-import static semi.heritage.common.jdbc.JDBCTemplate.*;
+
 import semi.heritage.favorite.dao.favoriteDao;
 import semi.heritage.favorite.vo.favoriteMyPageVO;
-import semi.heritage.favorite.vo.favoritePalaceVO;
-import semi.heritage.favorite.vo.favoriteVO;
+import semi.heritage.heritageInfo.vo.HeritageMainVO;
 
 public class favoriteService {
 
@@ -49,4 +53,13 @@ public class favoriteService {
 		return dao.CountFavoriteByNo(conn, no);
 	}
 
+	public static void main(String[] args) {
+		List<HeritageMainVO> list = new ArrayList<HeritageMainVO>();
+		int no = 0;
+		favoriteDao d = new favoriteDao();
+		Connection conn = getConnection();
+		for (int j = 0; j < list.size(); j++) {
+			no = d.CountFavoriteByNo(conn, list.get(j).getNo());
+		}
+	}
 }
