@@ -242,7 +242,7 @@ public class SouvenirDao {
 
 			String sql = "SELECT UI.uno, ui.uname, ui.uadr, ui.upn, ui.uemail, "
 					+ "sc.souv_pro_no, sc.souv_pro_name, sc.souv_pro_price,  sc.SOUV_PRO_URL, "
-					+ "SUM(sc.souv_pro_price)OVER() AS \"총가격\", SUM(sc.souv_pro_price)OVER()+3000 AS \"배송비포함\" "
+					+ "SUM(sc.souv_pro_price)OVER() AS '총가격', SUM(sc.souv_pro_price)OVER()+3000 AS \"배송비포함\" "
 					+ "FROM SOUV_CART SC, USERINFO UI "
 					+ "WHERE UI.uNo=sc.uno AND sc.uno=? AND sc.BUY_STATUS='N' AND sc.DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
@@ -331,11 +331,11 @@ public class SouvenirDao {
 //			System.out.println(p.toString().replace(",", ",\n"));
 //		}
 		
-//		List<SouvenirProductVO> productCate = dao.selectByCategory(conn, "패션/잡화"); //됨
-//		System.out.println("=============카테고리로 검색===========");
-//		for (SouvenirProductVO p : productCate) {
-//			System.out.println(p.toString().replace(",", ",\n"));
-//		}
+		List<SouvenirProductVO> productCate = dao.selectByCategory(conn, "패션/잡화"); //됨
+		System.out.println("=============카테고리로 검색===========");
+		for (SouvenirProductVO p : productCate) {
+			System.out.println(p.toString().replace(",", ",\n"));
+		}
 		
 //		SouvenirCartVO ic = new SouvenirCartVO(); // 장바구니 추가.. 안됨
 //		ic.setUno(100);
@@ -358,10 +358,10 @@ public class SouvenirDao {
 			System.out.println(sc.toString().replace(",", ",\n"));
 		}
 		
-//		SouvenirCartVO cart = dao.findCartBySeqNo(conn, 11);		// 안됨 왜지?
-//		System.out.println(cart.toString().replace(",",",\n"));
+		SouvenirCartVO cart = dao.findCartBySeqNo(conn, 11);		// 안됨 왜지?
+		System.out.println(cart.toString().replace(",",",\n"));
 
-			
+//			
 //		int deleteCart = dao.deleteCart(conn, 10, "Y");			// 이것도,,, ㅗㅗㅗㅗㅗㅗ
 //		System.out.println("삭제 결과 : " + deleteCart );
 //		if(deleteCart == 1) {
@@ -377,7 +377,7 @@ public class SouvenirDao {
 //		for (SouvenirPayVO p : selectPayByUNO) {
 //			System.out.println(p.toString().replace(",", ",\n"));
 //		}
-	
+//	
 		
 		
 		

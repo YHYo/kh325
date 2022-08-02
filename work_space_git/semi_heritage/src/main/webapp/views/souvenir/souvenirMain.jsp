@@ -9,7 +9,7 @@
 <%@include file="/views/common/headerDark.jsp"%>
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
-// 	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
+ 	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
    	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    %>
    
@@ -83,21 +83,21 @@
 	<div
 		class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2 g-md-4">
 		<!-- 카테고리 버튼 -->
-<%-- 		<% for (int i = 0; i < listCat.size(); i++){ %> --%>
-<!-- 		<div class="col"> -->
+ 		<% for (int i = 0; i < listCat.size(); i++){ %> 
+ 		<div class="col"> 
+ 		<%--  <%=listCat.get(i).getcName() --%>
 		
-<!-- 			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">  -->
-<!-- 			<img class="d-block mx-auto mb-3" -->
-<%-- 					src="<%=listCat.get(i).getcPath() %>" width="160" --%>
-<!-- 					alt="Coupe"> -->
-<!-- 				 <a class="nav-link-light stretched-link fw-bold" -->
-<%-- 					href="<%=path%>/views/souvenir/souvenirProductsList.jsp" --%>
-<%-- 					style="font-size: 18px;"><%=listCat.get(i).getcName() %>></a>  --%>
-<%-- 					<a style="color: grey; font-size: 16px;"><%=listCat.get(i).getcSebu() %></a> --%>
-<!-- 			</div> -->
+ 			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
+ 			<img class="d-block mx-auto mb-3"
+ 					src="<%=path%><%=listCat.get(i).getcPath()%>" width="160" alt="Coupe">
+ 				 <a class="nav-link-light stretched-link fw-bold"
+ 					href="<%=path%>/views/souvenir/souvenirProductsList.jsp" 
+ 					style="font-size: 18px;"><%=listCat.get(i).getcName() %></a>  
+ 					<a style="color: grey; font-size: 16px;"><%=listCat.get(i).getcSebu() %></a>
+ 			</div>
 			
-<!-- 		</div> -->
-<%-- 		 <%} %> --%>
+ 		</div> 
+ 		 <%} %> 
 	
 		 
 	</div>

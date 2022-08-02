@@ -1,7 +1,19 @@
+<%@page import="semi.heritage.souvenir.vo.SouvenirCategoryVO"%>
+<%@page import="semi.heritage.souvenir.vo.SouvenirProductVO"%>
+<%@page import= "java.text.DecimalFormat" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
 <%@include file="/views/common/headerDark.jsp"%>
+
+   <%
+   	DecimalFormat df = new DecimalFormat("###,###");
+ 	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
+   	// List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
+   %>
 
 <!-- Body-->
 
