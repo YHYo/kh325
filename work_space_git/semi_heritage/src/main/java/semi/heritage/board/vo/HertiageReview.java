@@ -27,6 +27,17 @@ public class HertiageReview {
 		this.rev_no = rev_no;
 	}
 	
+	public HertiageReview(int rev_no, String rev_userEmail, String revContents, Date revDate) {
+		super();
+		this.rev_no = rev_no;
+		this.rev_userEmail = rev_userEmail;
+		this.revContents = revContents;
+		this.revDate = revDate;
+	
+	
+		
+	}
+	
 	public int getRevNo() {
 		return revNo;
 	}

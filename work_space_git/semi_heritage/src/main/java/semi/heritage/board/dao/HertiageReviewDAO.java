@@ -2,13 +2,16 @@ package semi.heritage.board.dao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
 
+import java.awt.image.DataBufferInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import semi.heritage.board.vo.HertiageReview;
+import semi.heritage.heritageInfo.vo.HeritageImage;
 
 
 public class HertiageReviewDAO {
@@ -17,7 +20,7 @@ public class HertiageReviewDAO {
 	public int getHertiageReview_Count(Connection conn , int heritageNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT no, COUNT(revNo) FROM HertiageReview group by no having no = ? order by COUNT(revNo) desc ";
+		String query = "SELECT COUNT(revNo) FROM HertiageReview group by no having no = ? order by COUNT(revNo) desc";
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -32,6 +35,7 @@ public class HertiageReviewDAO {
 			close(pstmt);
 			close(rs);
 		}
+		System.out.println(result);
 		return result;
 	}
 
@@ -39,35 +43,34 @@ public class HertiageReviewDAO {
 	public List<HertiageReview> getHertiageReview_ByNo(Connection conn, int heritageNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<HertiageReview> list = new ArrayList<HertiageReview>();
-		String query = "select  U.uEmail , HR.revContents, HR.revDate\r\n"
-				+ "			FROM HertiageReview HR, USERINFO U ,HERITAGE H\r\n"
-				+ "			WHERE HR.uNo = U.uNo AND  HR.no = H.no\r\n"
-				+ "			AND HR.STATUS = 'Y' AND HR.no= ? \r\n" 
-				+ "			ORDER BY HR.revNo DESC";
+		List<HertiageReview> list = new ArrayList<>();
+		String query = "select HR.no, U.uEmail , HR.revContents, HR.revDate "
+				+ "FROM HertiageReview HR, USERINFO U "
+				+ "WHERE HR.uNo = U.uNo AND HR.STATUS = 'Y' AND HR.no= ? ORDER BY HR.revNo DESC";
 
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, heritageNo);
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				HertiageReview review = new HertiageReview();
-				review.setRev_userEmail(rs.getString("rev_userEmail"));
-				review.setRevContents(rs.getString("revContents"));
-				review.setRevDate(rs.getDate("revDate"));
-				list.add(review);
-			}
-			return list;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rs);
-		}
-		return null;
+			 while (rs.next()) {
+		            int count = 1;
+		            int rev_no = rs.getInt(count++);
+		            String rev_userEmail = rs.getString(count++);
+		            String revContents = rs.getString(count++);
+		            Date revDate = rs.getDate(count++);
+		            HertiageReview reviewInfo = new HertiageReview(rev_no, rev_userEmail, revContents, revDate);
+		            list.add(reviewInfo);
+		         }
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      } finally {
+		         close(pstmt);
+		         close(rs);
+		      }
+		      System.out.println(list.toString());
+		      return list;
 	}
-
 		
 	// 리플 쓰기 기능
 	public int insert_HertiageReview(Connection conn, HertiageReview review) {
@@ -130,9 +133,12 @@ public class HertiageReviewDAO {
 		return result;
 	}
 
-//	public static void main(String[] args) {
-//		Connection conn = getConnection();
-//		HertiageReviewDAO dao = new HertiageReviewDAO();
+	public static void main(String[] args) {
+		Connection conn = getConnection();
+		HertiageReviewDAO dao = new HertiageReviewDAO();
+		
+		dao.getHertiageReview_ByNo(conn, 1);
+	}
 //
 ////	// 게시물 갯수
 //		int count = dao.getHertiageReview_Count(conn, 2);

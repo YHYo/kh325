@@ -90,7 +90,7 @@ public class favoriteDao {
 	public int CountFavoriteByNo(Connection conn, int no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(uno) from favorite group by no having no = ?";
+		String sql = "SELECT COUNT(uno) from hfavorite group by no having no = ?";
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
