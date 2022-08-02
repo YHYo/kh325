@@ -20,7 +20,7 @@
                     <!-- Breadcrumb-->
                     <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
                         <ol class="breadcrumb breadcrumb-light">
-                            <li class="breadcrumb-item"><a href="10.souvenirMain.jsp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<%=path%>/souvenirMain.do">사뿐몰</a></li>
                             <li class="breadcrumb-item active" aria-current="page">결제 및 주문하기</li>
                         </ol>
                     </nav>

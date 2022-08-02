@@ -30,7 +30,7 @@
 	}
 
 	function prView() {
-		location.href = "souvenirProductsDetail.jsp?SOUV_PRO_NO=souvenirNo";
+		location.href = "/souvenirProductsDetail.do?productNo=_____";
 	}
 </script>
 
@@ -115,7 +115,7 @@
 				style="font-size: 30px; color: #C389FF; margin-bottom: 1%">
 				<b>Best items</b>
 			</p>
-			<h2 class="h3 text-light mb-2 mb-sm-0">
+			<h2 class="h3 text-light mb-sm-0">
 				인기상품
 				</h3>
 		</div>
@@ -132,28 +132,28 @@
 						<!-- <span class="d-table badge bg-info mb-1">New</span>
                                 <span class="d-table badge bg-success" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex&quot;&gt;&lt;i class=&quot;fi-award mt-1 me-2&quot;&gt;&lt;/i&gt;&lt;div&gt;This car is checked and&lt;br&gt;certified by Finder.&lt;/div&gt;&lt;/div&gt;">Certified</span> -->
 					</div>
-					<div class="content-overlay end-0 top-0 pt-3 pe-3">
+					<div class="content-overlay end-0 top-0 pt-2 pe-3">
 						<!-- <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button> -->
 					</div>
 					<div class="tns-carousel-inner">
-						<img src="<%=listIngi.get(0).getSouv_pro_url() %>"
+						<img class="img-sovnir-main-1" src="<%=listIngi.get(0).getSouv_pro_url() %>"
 							alt="Image"> 
 					</div>
 				</div>
 				<div class="card-body">
 					<div class="d-flex align-items-center justify-content-between pb-1">
-						<span class="fs-sm text-light me-3">사뿐몰 제 1호 상품</span>
+						<span class="fs-sm text-light me-3 mb-2 mt-2">사뿐몰 제 1호 상품</span>
 					</div>
 					<h3 class="h6 mb-1">
-						<a class="nav-link-light"
+						<a class="nav-link-light mt-3 mb-2"
 							href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"
 							style="color: #A08DB4;"><%=listIngi.get(0).getSouv_pro_name() %></a>
 					</h3>
-					<div class="text-primary fw-bold mb-1"><%=df.format(listIngi.get(0).getSouv_pro_price()) %>원</div>
+					<div class="text-primary fw-bold mt-0"><%=df.format(listIngi.get(0).getSouv_pro_price()) %>원</div>
 					<!-- <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>New York</div> -->
 				</div>
 				<div class="card-footer border-0 pt-0">
-					<div class="border-top border-light pt-3">
+					<div class="border-top border-light pt-4">
 						<div class="row g-2">
 							<div class="col me-sm-1">
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
@@ -180,7 +180,7 @@
 
 			<!-- 기념품 제2호 시작 for문으로 2, 3호 출력-->
 			<% for (int i = 2; i < 4; i++){ %>
-			<div class="card card-light card-hover card-horizontal mb-4">
+			<div class="card card-light card-hover card-horizontal mb-3 mt-2">
 				<div class="tns-carousel-wrapper card-img-top card-img-hover">
 					<a class="img-overlay"
 						href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"></a>
@@ -193,22 +193,22 @@
 					</div>
 					<div class="tns-carousel-inner position-absolute top-0 h-100">
 						<div class="bg-size-cover bg-position-center w-100 h-100"
-							style="background-image: url(<%=listIngi.get(i).getSouv_pro_url() %>);"></div>
+							style="background-image: url(<%=listIngi.get(i).getSouv_pro_url()%>);"></div>
 						<div class="bg-size-cover bg-position-center w-100 h-100"
 							style="background-image: url(<%=path%>/resources/img/semi-img/10.souvir.best22.png);"></div>
 					</div>
 				</div>
 				<div class="card-body">
-					<div class="d-flex align-items-center justify-content-between pb-1">
-						<span class="fs-sm text-light me-3">사뿐몰 제 <%=i %>호 상품</span>
+					<div class="d-flex align-items-center justify-content-between">
+						<span class="fs-sm text-light me-3 mt-2 mb-2">사뿐몰 제 <%=i %>호 상품</span>
 
 					</div>
 					<h3 class="h6 mb-1">
-						<a class="nav-link-light"
+						<a class="nav-link-light mb-3"
 							href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"
 							style="color: #A08DB4;"><%=listIngi.get(i).getSouv_pro_name() %></a>
 					</h3>
-					<div class="text-primary fw-bold mb-1"><%=df.format(listIngi.get(i).getSouv_pro_price()) %>원</div>
+					<div class="text-primary fw-bold"><%=df.format(listIngi.get(i).getSouv_pro_price()) %>원</div>
 
 					<div class="border-top border-light mt-3 pt-3">
 						<div class="row g-2">

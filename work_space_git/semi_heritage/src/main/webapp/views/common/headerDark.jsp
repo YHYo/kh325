@@ -48,7 +48,7 @@ String saveId = "";
         .img-sovnir-main-1 {
         	width : 633px;
         	height : 262px;
-        	object-fit : cover;
+        	object-fit : contain;
         }
         
         .img-souvnir-main-23 {

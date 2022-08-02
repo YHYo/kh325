@@ -12,6 +12,7 @@
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
     SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");
+    List<SouvenirCategoryVO> listKeyword = (List<SouvenirCategoryVO>)request.getAttribute("listKeyword");
    	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    %>
    
@@ -47,7 +48,7 @@
             <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
                 <ol class="breadcrumb breadcrumb-light">
             		
-                    <li class="breadcrumb-item"><a href="<%=path%>/views/souvenir/souvenirMain.jsp">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<%=path%>/souvenirMain.do">사뿐몰</a></li>
                     <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html"><%=productDetail.getSouv_pro_category()%></a></li>
                     <li class="breadcrumb-item active" aria-current="page"><%=productDetail.getSouv_pro_name()%></li>
                 </ol>
@@ -73,7 +74,14 @@
                             </div>
                             <div class="text-nowrap">
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <span class="align-middle"><%=productDetail.getcKeyword(???)%></span>
+                                <span class="align-middle">
+                                <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
+                                     <%for (int i = 0; i < listKeyword.size(); i++){%>
+                                    	 <%if(productDetail.getSouv_pro_category().equals(listKeyword.get(i).getcName())){ %>
+                                    		 <%=listKeyword.get(i).getcKeyword()%>
+                                    		 <%} %>
+                                    		<%}%>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -104,14 +112,14 @@
                                 <span class="tns-total-slides fs-5 fw-lighter"></span>
                             </div>
                         </div>
-                        <div class="tns-carousel-inner img-souvnir-db" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
-                            <div><img class="rounded-3" src="<%=productDetail.getSouv_pro_url()%>" alt="Image"></div>
+                        <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
+                            <div><img class="rounded-3 img-souvnir-db" src="<%=productDetail.getSouv_pro_url()%>" alt="Image"></div>
                             
 
                         </div>
                     </div>
-                    <ul class="tns-thumbnails img-souvnir-ds" id="thumbnails">
-                        <li class="tns-thumbnail"><img src="<%=path%>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb1.png" alt="Thumbnail"></li>
+                    <ul class="tns-thumbnails" id="thumbnails">
+                        <li class="tns-thumbnail"><img class="img-souvnir-ds" src="<%=productDetail.getSouv_pro_url()%>" alt="Thumbnail"></li>
                         
 
                     </ul>
@@ -161,26 +169,33 @@
                             <span class="opacity-70">Published: <strong>May 9, 2021</strong></span>
                         </div>
                         <div class="border-end border-light pe-3 me-3">
-                            <span class="opacity-70">Product number: <strong><%=productDetail.getSouv_no()%></strong></span>
+                            <span class="opacity-70">Product number: <strong><%=productDetail.getSouv_pro_no()%></strong></span>
                         </div>
                         <!-- <div class="opacity-70">Views: <strong>57</strong></div> -->
                     </div>
                 </div>
-                <!-- Sidebar-->
+                <!-- Sidebar -->
                 <div class="col-md-4 pt-5 pt-md-0" style="margin-top: -6rem;">
                     <div class="sticky-top pt-5">
                         <div class="d-none d-md-block pt-5 ms-4">
 
                             <div class="h3 text-light" style="padding-top: 1%;"><%=productDetail.getSouv_pro_name()%></div>
-                            <div class="h5 text-danger"><%=df.format(listPro.getSouv_pro_price())%>원</div>
+                            <div class="h5 text-danger"><%=df.format(productDetail.getSouv_pro_price())%>원</div>
                             <div class="d-flex align-items-center text-light pb-4 mb-2">
                                 <div class="text-nowrap border-end border-light pe-3 me-3">
                                     <i class="fi-list fs-lg opacity-70 me-2"></i>
                                     <span class="align-middle"><%=productDetail.getSouv_pro_category()%></span>
                                 </div>
                                 <div class="text-nowrap">
-
-                                    <span class="text-light align-middle"><%=productDetail.getcKeyword(???)%></span>
+                                    <span class="text-light align-middle">
+                                    
+                                     <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
+                                     <%for (int i = 0; i < listKeyword.size(); i++){%>
+                                    	 <%if(productDetail.getSouv_pro_category().equals(listKeyword.get(i).getcName())){ %>
+                                    		 <%=listKeyword.get(i).getcKeyword()%>
+                                    		 <%}%>
+                                    		<%}%>
+                                    </span>
 
 
                                 </div>
@@ -192,7 +207,7 @@
                                 <button class="btn btn-outline-light btn-lg mb-4 me-5" type="button" style="padding-left: 25%; padding-right : 25%">
                                   <i class="fi-cart me-2">&nbsp 장바구니</i></button>
                                 <br>
-                                <a class="btn btn-lg me-5" href="13.souvenirCheckout.jsp" data-bs-toggle="collapse" style="background-color: #C389FF; color: #fff; padding-left: 25%; padding-right : 25%;">
+                                <a href="<%=path%>/souvenirPay.do" class="btn btn-lg me-5" data-bs-toggle="collapse" style="background-color: #C389FF; color: #fff; padding-left: 25%; padding-right : 25%;">
                                     <i class="fi-credit-card me-2" style="text-align: center;">&nbsp 구매하기</i></a>
                             </div>
                         </div>
@@ -261,7 +276,7 @@
                                     <a class="img-overlay" href="#"></a>
                                     <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                         <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                    </div><img src="<%=listIngi.get(i).getSouv_pro_url()%>" alt="Image">
+                                    </div><img class="img-souvnir-dl" src="<%=listIngi.get(i).getSouv_pro_url()%>" alt="Image">
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between pb-1">

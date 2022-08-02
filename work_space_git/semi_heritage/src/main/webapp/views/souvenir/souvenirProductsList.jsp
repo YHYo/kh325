@@ -42,7 +42,7 @@ function chageCate(categories){
 			<nav class="mb-3 pt-md-2 pt-lg-1" aria-label="Breadcrumb">
 				<ol class="breadcrumb breadcrumb-light">
 					<li class="breadcrumb-item"><a
-						href="<%=path%>/souvenirMain.do">Home</a></li>
+						href="<%=path%>/souvenirMain.do">사뿐몰</a></li>
 					<li class="breadcrumb-item active" aria-current="page">상품 목록</li>
 				</ol>
 			</nav>

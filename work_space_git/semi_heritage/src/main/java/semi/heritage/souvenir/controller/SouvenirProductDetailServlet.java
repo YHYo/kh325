@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.souvenir.service.SouvenirService;
+import semi.heritage.souvenir.vo.SouvenirCategoryVO;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 
@@ -31,7 +32,6 @@ public class SouvenirProductDetailServlet extends HttpServlet {
 		List<SouvenirProductVO> list = null;
 		int productNo = Integer.parseInt(req.getParameter("productNo"));
 		SouvenirProductVO p = service.findProductByNo(productNo);
-		
 
 		req.setAttribute("productDetail", p);
 		req.getRequestDispatcher("/views/souvenir/souvenirProductsDetail.jsp").forward(req, resp);
