@@ -12,12 +12,10 @@
 
 <%
 	List<Festival> list = (List<Festival>)request.getAttribute("list"); 
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo"); 
 // 서블릿에서 선언한 걸 이걸로 내가 뿌릴거야
 %>	
 
-		<%for(Festival f : list){%>
-			<%= f.toString() +"<br>" %>
-		<% }%>
 
         <!-- Page content-->
         <!-- 상단배경 Hero-->
@@ -68,6 +66,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="table-responsive">
                 <table class="table" cellspacing="0" style="text-align:center">
                     <thead class="thead-light">
@@ -81,100 +80,76 @@
                         </tr>
                     </thead>
                     <tbody>
+                    
+ 				<% for(Festival f :list){%>
                         <tr>
-                            <td>전통산사문화재</td>
-                            <td style="text-align:left">꽃장살 디자인학교</td>
-                            <td>충청남도 논산시</td>
-                            <td>20220413 - 20221026</td>
-                            <td><a href="http://ssanggyesa.com" target="_blank">http://ssanggyesa.com</a></td>
+                            <td> <%= f.getEventName() %></td>
+                            <td style="text-align:left"> <%= f.getSubTitle() %></td>
+                            <td><%= f.getSido() +" " %> <%= f.getGugun() %></td>
+                            <td><%= f.getsDate() %> - <%= f.geteDate() %></td>
+                            <%if( f.getSubPath()  == null) {%>
+    	                        <td>-</td>
+                            <%} else { %>
+	                            <td><a href="<%= f.getSubPath() %>" target="_blank"><%= f.getSubPath() %></a></td>
+                            <%} %>
                         </tr>
-                        <tr>
-                            <td>전통산사문화재</td>
-                            <td style="text-align:left ">쌍계 목공아카데미</td>
-                            <td>충청남도 논산시</td>
-                            <td>20220602 - 20221026</td>
-                            <td><a href="http://ssanggyesa.com" target="_blank">http://ssanggyesa.com</a></td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">흥미진진 인의예지</td>
-                            <td>전라남도 강진군</td>
-                            <td>20220701 - 20220701</td>
-                            <td>
-                                <a href="https://www.gjculture.or.kr/category/" target=" _blank ">https://www.gjculture.or.kr/category/ </a> </td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">향교에서 놀GO 배우GO</td>
-                            <td>충청남도 논산시</td>
-                            <td>20220701 - 20220701</td>
-                            <td>
-                                <a href="https://www.gjculture.or.kr/category/" target=" _blank ">https://www.gjculture.or.kr/category/ </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">올 곧은 선비정신을 기른다</td>
-                            <td>경상남도 창녕군</td>
-                            <td>20220701 - 20220701</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">유생(幼生), 유생(儒生)을 만나다!</td>
-                            <td>경상남도 함안군</td>
-                            <td>20220701 - 20220701</td>
-                            <td><a href="https://blog.naver.com/airfly0410" target=" _blank ">https://blog.naver.com/airfly0410 </a>
-                        </tr>
-                        <tr>
-                            <td>전통산사문화재</td>
-                            <td style="text-align:left">꽃장살 디자인학교</td>
-                            <td>충청남도 논산시</td>
-                            <td>20220413 - 20221026</td>
-                            <td><a href="http://ssanggyesa.com" target="_blank">http://ssanggyesa.com</a></td>
-                        </tr>
-                        <tr>
-                            <td>전통산사문화재</td>
-                            <td style="text-align:left ">쌍계 목공아카데미</td>
-                            <td>충청남도 논산시</td>
-                            <td>20220602 - 20221026</td>
-                            <td><a href="http://ssanggyesa.com" target="_blank">http://ssanggyesa.com</a></td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">흥미진진 인의예지</td>
-                            <td>전라남도 강진군</td>
-                            <td>20220701 - 20220701</td>
-                            <td>
-                                <a href="https://www.gjculture.or.kr/category/" target=" _blank ">https://www.gjculture.or.kr/category/ </a> </td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">향교에서 놀GO 배우GO</td>
-                            <td>충청남도 논산시</td>
-                            <td>20220701 - 20220701</td>
-                            <td>
-                                <a href="https://www.gjculture.or.kr/category/" target=" _blank ">https://www.gjculture.or.kr/category/ </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">올 곧은 선비정신을 기른다</td>
-                            <td>경상남도 창녕군</td>
-                            <td>20220701 - 20220701</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>살아숨쉬는 향교·서원</td>
-                            <td style="text-align:left ">유생(幼生), 유생(儒生)을 만나다!</td>
-                            <td>경상남도 함안군</td>
-                            <td>20220701 - 20220701</td>
-                            <td><a href="https://blog.naver.com/airfly0410" target=" _blank ">https://blog.naver.com/airfly0410 </a>
-                        </tr>
+ 				<% }%>
+                
                     </tbody>
                 </table>
             </div>
-
+            
+             <div>
+        <!-- 페이지 번호 Pagination-->
+        <nav class="mt-2 mb-4" aria-label="Reviews pagination">
+            <ul class="pagination">
+                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+                
+                <%-- 처음으로 가기 --%>
+                <li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getStartPage()%>" aria-label="Next"><i
+                            class="fi-chevrons-left"></i></a>
+                </li>
+                
+                <%-- 이전으로 가기 --%>
+                <li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getPrvePage()%>" aria-label="Next"><i
+                            class="fi-chevron-left"></i></a>
+                </li>
+                
+                <%-- 10개 목록 출력하기 --%>
+                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++) {%>
+					<%if(i == pageInfo.getCurrentPage()) {%>		
+		                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><%=i %><span class="visually-hidden">(current)</span></span>
+		                </li>
+					<%} else {%>		
+						<li class="page-item d-none d-sm-block"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=i%>"><%=i %></a></li>
+					<%} %>		
+				<%} %>		
+				
+				<%-- 다음으로 가기 --%>
+				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getNextPage()%>" aria-label="Next"><i
+                            class="fi-chevron-right"></i></a>
+                </li>
+                
+				<%-- 마지막으로 가기 --%>
+				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getEndPage()%>" aria-label="Next"><i
+                            class="fi-chevrons-right"></i></a>
+                </li>
+                
+                <!-- <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
+                </li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                <li class="page-item d-none d-sm-block">...</li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i
+                            class="fi-chevron-right"></i></a>
+                </li> -->
+            </ul>
+        </nav>
+    </div>
+            
+            
+            
         </section>
         <selection> <br><br><br><br> </selection>
     </main>

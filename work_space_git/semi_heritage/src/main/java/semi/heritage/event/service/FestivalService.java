@@ -6,6 +6,7 @@ import static semi.heritage.common.jdbc.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import semi.heritage.common.util.PageInfo;
 import semi.heritage.event.dao.FestivalDao;
 import semi.heritage.event.vo.Festival;
 
@@ -18,15 +19,14 @@ public class FestivalService {
 	public FestivalService() {
 		conn = getConnection();
 	}
-
-	public List<Festival> selectAll(){
-		return dao.selectAll(conn);
-		
+	public List<Festival> findAll(PageInfo pageInfo, String eventMonth) {
+		return dao.findAll(conn, pageInfo, eventMonth);
 	}
 	
-	public List<Festival> selectByMonth(String eventMonth){
-		return dao.selectByMonth(conn, eventMonth);
+	public int getBoardCount( String eventMonth) {
+		return dao.getBoardCount(conn, eventMonth);
 	}
+	
 
 	public int insert(Festival festival) {
 		Connection conn = getConnection();
