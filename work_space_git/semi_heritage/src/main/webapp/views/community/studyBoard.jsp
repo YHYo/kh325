@@ -36,41 +36,40 @@
                     <br>함께 자유로이 소통하는 공간</p> -->
             </div>
             <div class="col-xl-8 col-lg-9 col-md-10 mx-auto px-1">
-                <!-- Search form-->
-                <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
-                    <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i
-                                class="fi-search"></i></span>
-                        <input class="form-control" type="text" placeholder="관심있는 내용을 검색해보세요!">
+              <!-- 검색창 Search form-->
+                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
+                            <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
+                                <input class="form-control" type="text" placeholder="관심있는 내용을 검색해보세요!">
+                            </div>
+                            <hr class="d-md-none my-2">
+                            <div class="d-sm-flex">
+                                <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
+                                    <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span
+                                        class="dropdown-toggle-label">제목+내용</span></button>
+                                    <input type="hidden">
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i
+                                            class=" fs-lg opacity-60 me-2"></i><span
+                                            class="dropdown-item-label">제목+내용</span></a></li>
+                                        <li><a class="dropdown-item" href="#"><i
+                                                        class="  fs-lg opacity-60 me-2"></i><span
+                                                        class="dropdown-item-label">제목</span></a></li>
+                                        <li><a class="dropdown-item" href="#"><i
+                                                        class=" fs-lg opacity-60 me-2"></i><span
+                                                        class="dropdown-item-label">내용</span></a></li>
+                                        <li><a class="dropdown-item" href="#"><i
+                                                        class="  fs-lg opacity-60 me-2"></i><span
+                                                        class="dropdown-item-label">글쓴이</span></a></li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button">Search</button>
+                            </div>
+                        </form>
                     </div>
-                    <hr class="d-md-none my-2">
-                    <div class="d-sm-flex">
-                        <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
-                            <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span
-                                class="dropdown-toggle-label">제목+내용</span></button>
-                            <input type="hidden">
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i
-                                    class="fi-bed fs-lg opacity-60 me-2"></i><span
-                                    class="dropdown-item-label">제목+내용</span></a></li>
-                                <li><a class="dropdown-item" href="#"><i
-                                        class="fi-bed fs-lg opacity-60 me-2"></i><span
-                                        class="dropdown-item-label">제목</span></a></li>
-                                <li><a class="dropdown-item" href="#"><i
-                                                class="fi-cafe fs-lg opacity-60 me-2"></i><span
-                                                class="dropdown-item-label">내용</span></a></li>
-                                <li><a class="dropdown-item" href="#"><i
-                                                class="fi-shopping-bag fs-lg opacity-60 me-2"></i><span
-                                                class="dropdown-item-label">글쓴이</span></a></li>
-                            </ul>
-                        </div>
-                        <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button">Search</button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="position-absolute d-none d-xxl-block bottom-0 start-0 w-100 bg-white zindex-1" style="border-top-left-radius: 30px; border-top-right-radius: 30px; height: 30px;"></div>
-</section>
+            <div class="position-absolute d-none d-xxl-block bottom-0 start-0 w-100 bg-white zindex-1" style="border-top-left-radius: 30px; border-top-right-radius: 30px; height: 30px;"></div>
+        </section>
 <!-- Page header-->
 <section class="container pt-1 mt-1">
     <!-- Breadcrumb-->

@@ -11,7 +11,8 @@
 
 
 <%
-	List<Festival> list = (List<Festival>)request.getAttribute("list");
+	List<Festival> list = (List<Festival>)request.getAttribute("list"); 
+// 서블릿에서 선언한 걸 이걸로 내가 뿌릴거야
 %>	
 
 		<%for(Festival f : list){%>
