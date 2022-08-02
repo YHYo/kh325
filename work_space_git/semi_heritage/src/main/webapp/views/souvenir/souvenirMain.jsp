@@ -85,8 +85,6 @@
 		<!-- 카테고리 버튼 -->
  		<% for (int i = 0; i < listCat.size(); i++){ %> 
  		<div class="col"> 
- 		<%--  <%=listCat.get(i).getcName() --%>
-		
  			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
  			<img class="d-block mx-auto mb-3"
  					src="<%=path%><%=listCat.get(i).getcPath()%>" width="160" alt="Coupe">
