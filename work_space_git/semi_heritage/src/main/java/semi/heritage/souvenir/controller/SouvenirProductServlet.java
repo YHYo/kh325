@@ -14,7 +14,7 @@ import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 
-@WebServlet("/product/main")
+@WebServlet("/souvenirMain.do")
 public class SouvenirProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class SouvenirProductServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("doget 호출 ");
+//		System.out.println("doget 호출 ");
 		List<SouvenirProductVO> list = null;
 		
 		list = service.getProductList();

@@ -9,7 +9,7 @@
 <%@include file="/views/common/headerDark.jsp"%>
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
-	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
+// 	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
    	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    %>
    
@@ -54,7 +54,7 @@
 			</div>
 			<div class="col-lg-6 col-md-6 pt-md-5">
 				<img class="d-block mt-4 ms-auto"
-					src="<%=path%>/resources/img/semi-img/10.souvir.main.png" width="700"
+					src="<%=path%>/resources/img/naim/10.souvir.main.png" width="700"
 					alt="Car" style="position: relative;">
 			</div>
 		</div>
@@ -83,21 +83,21 @@
 	<div
 		class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2 g-md-4">
 		<!-- 카테고리 버튼 -->
-		<% for (int i = 0; i < listCat.size(); i++){ %>
-		<div class="col">
+<%-- 		<% for (int i = 0; i < listCat.size(); i++){ %> --%>
+<!-- 		<div class="col"> -->
 		
-			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center"> 
-			<img class="d-block mx-auto mb-3"
-					src="<%=listCat.get(i).getcPath() %>" width="160"
-					alt="Coupe">
-				 <a class="nav-link-light stretched-link fw-bold"
-					href="<%=path%>/views/souvenir/souvenirProductsList.jsp"
-					style="font-size: 18px;"><%=listCat.get(i).getcName() %></a> 
-					<a style="color: grey; font-size: 16px;"><%=listCat.get(i).getcSebu() %></a>
-			</div>
+<!-- 			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">  -->
+<!-- 			<img class="d-block mx-auto mb-3" -->
+<%-- 					src="<%=listCat.get(i).getcPath() %>" width="160" --%>
+<!-- 					alt="Coupe"> -->
+<!-- 				 <a class="nav-link-light stretched-link fw-bold" -->
+<%-- 					href="<%=path%>/views/souvenir/souvenirProductsList.jsp" --%>
+<%-- 					style="font-size: 18px;"><%=listCat.get(i).getcName() %>></a>  --%>
+<%-- 					<a style="color: grey; font-size: 16px;"><%=listCat.get(i).getcSebu() %></a> --%>
+<!-- 			</div> -->
 			
-		</div>
-		 <%} %>
+<!-- 		</div> -->
+<%-- 		 <%} %> --%>
 	
 		 
 	</div>
@@ -192,7 +192,7 @@
 						<div class="bg-size-cover bg-position-center w-100 h-100"
 							style="background-image: url(<%=listIngi.get(i).getSouv_pro_url() %>);"></div>
 						<div class="bg-size-cover bg-position-center w-100 h-100"
-							style="background-image: url(<%=path%>/resources/img/semi-img/10.souvir.best22.png);"></div>
+							style="background-image: url(<%=path%>/resources/img/naim/10.souvir.best22.png);"></div>
 					</div>
 				</div>
 				<div class="card-body">
@@ -240,7 +240,7 @@
 </section>
 <section class="container">
 	<div>
-		<img src="<%=path%>/resources/img/semi-img/10.souvir.main.mid.deco.png"></img>
+		<img src="<%=path%>/resources/img/naim/10.souvir.main.mid.deco.png"></img>
 	</div>
 </section>
 
@@ -292,11 +292,11 @@
 				<div class="rellax content-overlay pt-3"
 					data-rellax-percentage="0.7">
 					<img class="pt-5 mt-5"
-						src="<%=path%>/resources/img/semi-img/10.souvir.main.deco.png">
+						src="<%=path%>/resources/img/naim/10.souvir.main.deco.png">
 				</div>
 				<div
 					class="position-absolute top-0 start-50 translate-middle-x h-30 overflow-visible">
-					<img src="<%=path%>/resources/img/semi-img/10.souvir.main.line.png"
+					<img src="<%=path%>/resources/img/naim/10.souvir.main.line.png"
 						height="580px">
 				</div>
 			</div>
@@ -393,7 +393,7 @@
 		</div>
 		<div class="col-md-5 col-lg-6">
 			<img class="d-block mx-auto"
-				src="<%=path%>/resources/img/semi-img/10.souvir.main.app.png"
+				src="<%=path%>/resources/img/naim/10.souvir.main.app.png"
 				width="460" alt="Mobile App">
 		</div>
 	</div>

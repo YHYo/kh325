@@ -1,6 +1,7 @@
 package semi.heritage.souvenir.dao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.close;
+import static semi.heritage.common.jdbc.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +9,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import semi.heritage.heritageInfo.vo.HeritageVO;
 import semi.heritage.souvenir.vo.SouvenirBuyVO;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
 import semi.heritage.souvenir.vo.SouvenirPayVO;
@@ -24,22 +24,24 @@ public class SouvenirDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT * FROM SOUVENIR_PRODUCT ORDER BY 1";
+			String sql = "SELECT * FROM SOUV_PRODUCT ORDER BY 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				int count = 1;
+				SouvenirProductVO product = new SouvenirProductVO();
 
-				int souv_pro_no = rs.getInt(count++);
-				String souv_pro_name = rs.getString(count++);
-				int souv_pro_price = rs.getInt(count++);
-				String souv_pro_category = rs.getString(count++);
-				String souv_pro_url = rs.getString(count++);
+				product.setSouv_pro_no(rs.getInt(count++));
+				product.setSouv_pro_name(rs.getString(count++));
+				product.setSouv_pro_price(rs.getInt(count++));
+				product.setSouv_pro_category(rs.getString(count++));
+				product.setSouv_pro_url(rs.getString(count++));
+				list.add(product);
 
-				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
-						souv_pro_category, souv_pro_url);
-				list.add(info);
+//				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
+//						souv_pro_category, souv_pro_url);
+//				list.add(info);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,21 +59,25 @@ public class SouvenirDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT * FROM SOUVENIR_PRODUCT WHERE souv_pro_category = ?";
+			String sql = "SELECT * FROM SOUV_PRODUCT WHERE souv_pro_category = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + souv_pro_category + "%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int count = 1;
 
-				int souv_pro_no = rs.getInt(count++);
-				String souv_pro_name = rs.getString(count++);
-				int souv_pro_price = rs.getInt(count++);
-				String souv_pro_url = rs.getString(count++);
+				SouvenirProductVO product = new SouvenirProductVO();
 
-				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
-						souv_pro_category, souv_pro_url);
-				list.add(info);
+				product.setSouv_pro_no(rs.getInt(count++));
+				product.setSouv_pro_name(rs.getString(count++));
+				product.setSouv_pro_price(rs.getInt(count++));
+				product.setSouv_pro_category(rs.getString(count++));
+				product.setSouv_pro_url(rs.getString(count++));
+				list.add(product);
+
+//				SouvenirProductVO info = new SouvenirProductVO(souv_pro_no, souv_pro_name, souv_pro_price,
+//						souv_pro_category, souv_pro_url);
+//				list.add(info);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,9 +94,9 @@ public class SouvenirDao {
 		ResultSet rs = null;
 		SouvenirProductVO sp = null;
 		try {
-			String sql = "select * from SOUV_PRODUCT where SOUV_PRO_NO=?";
+			String sql = " select * from SOUV_PRODUCT where SOUV_PRO_NO=? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + productNo + "%");
+			pstmt.setInt(1, productNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				int count = 1;
@@ -98,6 +104,7 @@ public class SouvenirDao {
 				sp.setSouv_pro_no(rs.getInt(count++));
 				sp.setSouv_pro_name(rs.getString(count++));
 				sp.setSouv_pro_price(rs.getInt(count++));
+				sp.setSouv_pro_category(rs.getString(count++));
 				sp.setSouv_pro_url(rs.getString(count++));
 			}
 
@@ -146,7 +153,7 @@ public class SouvenirDao {
 			String sql = "SELECT SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
 					+ "FROM SOUV_CART WHERE UNO=?  AND BUY_STATUS='N' AND DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + uNo + "%");
+			pstmt.setInt(1, uNo);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int count = 1;
@@ -170,7 +177,7 @@ public class SouvenirDao {
 	}
 
 	// 장바구니 일련번호(seqNo)를 가져온다. 장바구니 삭제할때 사용
-	
+
 	public SouvenirCartVO findCartBySeqNo(Connection conn, int seqNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -179,7 +186,7 @@ public class SouvenirDao {
 			String sql = "SELECT SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
 					+ "	FROM SOUV_CART WHERE UNO=?  AND BUY_STATUS='N' AND DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + seqNo + "%");
+			pstmt.setInt(1, seqNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				int count = 1;
@@ -198,7 +205,7 @@ public class SouvenirDao {
 		}
 		return sc;
 	}
-	
+
 	// 장바구니 삭제
 	public int deleteCart(Connection conn, int uNo, String status) {
 		PreparedStatement pstmt = null;
@@ -281,11 +288,11 @@ public class SouvenirDao {
 //					+ "FROM souv_cart SC\r\n" + "WHERE  status = 'Y' AND uno=? ";
 
 			String sql = "SELECT SOUV_CART_NO||uno AS \"주문번호\", rownum, souv_pro_no, souv_pro_name, souv_pro_price,  SOUV_PRO_URL, "
-					+ "SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  " + "FROM souv_cart SC\r\n"
+					+ "SUM(souv_pro_price)OVER()+3000 AS \"결제금액\"  " + "FROM SOUV_CART SC "
 					+ "WHERE BUY_STATUS='Y' AND uno=? ";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + uNo + "%");
+			pstmt.setInt(1, uNo);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int count = 1;
@@ -309,6 +316,28 @@ public class SouvenirDao {
 			close(rs);
 		}
 		return list;
+	}
+
+	public static void main(String[] args) {
+		Connection conn = getConnection();
+		SouvenirDao dao = new SouvenirDao();
+
+		SouvenirCartVO cart = dao.findCartBySeqNo(conn, 1);
+		SouvenirProductVO product = dao.findProductByNo(conn, 1);
+		List<SouvenirProductVO> productAll = dao.selectProductAll(conn);
+		List<SouvenirProductVO> productCate = dao.selectByCategory(conn, "사무/문구");
+
+//		System.out.println(cart.toString().replace(",",",\n"));
+//		System.out.println(product.toString().replace(",",",\n"));
+		
+		System.out.println("=============전체 상품 출력===========");
+		for(SouvenirProductVO p : productAll) {
+		System.out.println(p.toString().replace(",", ",\n"));
+		}
+		System.out.println("=============카테고리로 검색===========");
+		for(SouvenirProductVO p : productCate) {
+		System.out.println(p.toString().replace(",", ",\n"));
+		}
 	}
 
 }
