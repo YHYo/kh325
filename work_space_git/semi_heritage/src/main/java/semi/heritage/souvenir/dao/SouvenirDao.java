@@ -228,7 +228,7 @@ public class SouvenirDao {
 	}
 
 	// 결제정보 출력
-	public List<SouvenirPayVO> selectPayByUNO(Connection conn, int uNo) {
+	public List<SouvenirPayVO> selectPayByUNO(Connection conn, int userNo) {
 		List<SouvenirPayVO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -246,12 +246,12 @@ public class SouvenirDao {
 					+ "FROM SOUV_CART SC, USERINFO UI "
 					+ "WHERE UI.uNo=sc.uno AND sc.uno=? AND sc.BUY_STATUS='N' AND sc.DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, uNo);
+			pstmt.setInt(1, userNo);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int count = 1;
 				
-				
+				int uNo = rs.getInt(count++);
 				String uname = rs.getString(count++);
 				String uadr = rs.getString(count++);
 				String upn = rs.getString(count++);
