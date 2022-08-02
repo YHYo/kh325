@@ -6,14 +6,22 @@
     pageEncoding="UTF-8"%>
     
     
-    
+    <!-- 메인페이지!!!!!!!!!!! -->
 <%@include file="/views/common/headerLight.jsp"%>
    
-   
+  
    <%
 	   List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
 	   List<CommunityBoard> blist = (List<CommunityBoard>)request.getAttribute("blist");
    
+// 	   	String searchType = "ccbaMnm";
+		String searchValue = request.getParameter("searchValue");
+// 		String searchParamValue = request.getParameter("searchValue");
+// 		if(searchParamValue != null && searchParamValue.length() > 0){
+// 			searchType = request.getParameter("searchType");
+// 			searchValue = request.getParameter("searchValue");
+// 		}
+	   
    %>
    
    
@@ -33,7 +41,7 @@
                         <!-- 검색 Form-->
                         <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/heritageSearch.do" method="get">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
-                                <input class="form-control p03" type="text" name="ccbaMnm" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
+                                <input class="form-control p03" type="text" id="searchValue" name="searchValue" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
                             <hr class="d-md-none my-2">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

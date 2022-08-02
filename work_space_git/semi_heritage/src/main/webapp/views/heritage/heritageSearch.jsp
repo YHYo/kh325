@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
 <%@page import="semi.heritage.heritageInfo.vo.HeritageMainVO"%>
 <%@page import="java.util.List"%>
@@ -5,10 +6,40 @@
     pageEncoding="UTF-8"%>
 
 <%@include file="/views/common/headerLight.jsp"%>
+
+<style>
+	/*페이지바*/
+	div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
+	
+	.input_text{width: calc( 60% - 14px); margin: 6px 7px; height: 30px; text-align:center;
+           		  border: 0; font-weight: bold; font-size: 16px; outline: none;}
+    .sch_smit{width: 54px; height: 40px; margin: 0; border: 0; 
+        		background: #007dd1; color: white; font-weight: bold; border-radius: 1px; cursor: pointer;}
+    .sch_smit:hover{background: #007daa;}
+</style>
+
+
+  <!-- 문화재 리스트 출력페이지!!!!!!!!!!! -->
        
 <% 
 List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
 PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
+String searchValue = request.getParameter("searchValue");
+int boardCount = (Integer)request.getAttribute("boardCount");
+// String searchType = "reigon";
+// String regions[] = request.getParameterValues("region");
+
+// String searchTypes = request.getParameter("searchType");
+// String searchValue = "";
+// String searchParamValue = request.getParameter("searchValue");
+// if(searchParamValue != null && searchParamValue.length() > 0){
+// 	searchType = request.getParameter("searchType");
+// 	searchValue = request.getParameter("searchValue");
+// }
+
+// List<String> searchCampType = new ArrayList<String>();
+
+// int k = 1;
 %>
 
 
@@ -24,12 +55,12 @@ PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
                     </div>
                     <div class="mx-auto px-0" style="margin-bottom: -3%">
                         <!-- Search form-->
-                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01">
+                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/heritageSearch.do" method="get">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
-                                <input class="form-control p03" type="text" name="ccbaMnm" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
+                                <input class="form-control p03" type="text" id="searchValue" name="searchValue" value="<%=searchValue%>" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
                             <hr class="d-md-none my-2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-10" style="background-color: #D97793; font-size: 22px;" type="button">&nbsp;&nbsp;검&nbsp;&nbsp;색&nbsp;&nbsp;</button>&nbsp;
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-10" style="background-color: #D97793; font-size: 22px;" type="button">&nbsp;&nbsp;검&nbsp;&nbsp;색&nbsp;&nbsp;</button>&nbsp;
                         </form>
                     </div>
                     <br><br><br><br>
@@ -53,133 +84,138 @@ PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
                                         <div class="widget widget-categories">
                                             <!-- <h3 class="widget-title">Categories</h3> -->
                                             <div class="accordion mt-n1" id="shop-categories">
-                                                <!-- 지역 -->
-                                                <div class="accordion-item">
-                                                    <h3 class="accordion-header"><a class="accordion-button collapsed" href="#shoes" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="shoes">지역</a></h3>
-                                                    <div class="accordion-collapse collapse" id="shoes" data-bs-parent="#shop-categories">
-                                                        <div class="accordion-body">
-                                                            <div class="widget widget-links widget-filter">
-                                                                <ul class="widget-list widget-filter-list list-unstyled pt-1" style="max-height: 11.5rem;" data-simplebar data-simplebar-auto-hide="false">
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-xs" name="region" value="전체">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-xs">전체</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-s" name="region" value="서울">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-s">서울</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-m" name="region" value="부산">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-m">부산</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-l" name="region" value="대구">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-l">대구</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-xl" name="region" value="인천">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-xl">인천</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-39" name="region" value="광주">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-39">광주</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-40" name="region" value="대전">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-40">대전</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-41" name="region" value="울산">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-40">울산</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-42" name="region" value="세종">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-42">세종</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="경기">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">경기</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="강원">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">강원</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="충북">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">충북</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="충남">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">충남</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="전북">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">전북</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="전남">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">전남</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="경북">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">경북</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="경남">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">경남</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="제주">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">제주</label>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="size-43" name="region" value="전국일원">
-                                                                            <label class="form-check-label widget-filter-item-text" for="size-43">전국일원</label>
-                                                                        </div>
-                                                                    </li>
+													<!--  지역 -->
+<!--                                                 <div class="accordion-item"> -->
+<!--                                                     <h3 class="accordion-header"><a class="accordion-button collapsed" href="#shoes" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="shoes">지역</a></h3> -->
+<!--                                                     <div class="accordion-collapse collapse" id="shoes" data-bs-parent="#shop-categories"> -->
+<!--                                                         <div class="accordion-body"> -->
+<!--                                                             <div class="widget widget-links widget-filter"> -->
+<!--                                                                 <ul class="widget-list widget-filter-list list-unstyled pt-1" style="max-height: 11.5rem;" data-simplebar data-simplebar-auto-hide="false"> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+                                                                       
+<!--                                                                         <div class="form-check"> -->
+<!--                                                                             <input class="form-check-input" type="checkbox" id="size-xs" name="region" value="전체" > -->
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-xs">전체</label> -->
+<!--                                                                         </div> -->
+                                                                    
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-s" name="region" value="서울" <%=region.contains("서울") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-s">서울</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-m" name="region" value="부산" <%=region.contains("부산") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-m">부산</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-l" name="region" value="대구" <%=region.contains("대구") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-l">대구</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-xl" name="region" value="인천" <%=region.contains("인천") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-xl">인천</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-39" name="region" value="광주" <%=region.contains("광주") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-39">광주</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-40" name="region" value="대전" <%=region.contains("대전") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-40">대전</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-41" name="region" value="울산" <%=region.contains("울산") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-40">울산</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-42" name="region" value="세종" <%=region.contains("세종") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-42">세종</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="경기" <%=region.contains("경기") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">경기</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="강원" <%=region.contains("강원") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">강원</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="충북" <%=region.contains("충북") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">충북</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="충남" <%=region.contains("충남") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">충남</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="전북" <%=region.contains("전북") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">전북</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="전남" <%=region.contains("전남") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">전남</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="경북" <%=region.contains("경북") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">경북</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="경남" <%=region.contains("경남") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">경남</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="제주" <%=region.contains("제주") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">제주</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
+<!--                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1"> -->
+<!--                                                                         <div class="form-check"> -->
+<%--                                                                             <input class="form-check-input" type="checkbox" id="size-43" name="region" value="전국일원" <%=region.contains("전국일원") ? "checked" : "" %>> --%>
+<!--                                                                             <label class="form-check-label widget-filter-item-text" for="size-43">전국일원</label> -->
+<!--                                                                         </div> -->
+<!--                                                                     </li> -->
 
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+<!--                                                                 </ul> -->
+<!--                                                             </div> -->
+<!--                                                         </div> -->
+<!--                                                     </div> -->
+<!--                                                 </div> -->
+                                            
+                                            
+                                               
                                                 <!-- 지정종목 -->
                                                 <div class="accordion-item">
                                                     <h3 class="accordion-header"><a class="accordion-button" href="#clothing" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="clothing">지정종목</a></h3>
@@ -501,12 +537,12 @@ PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
                 </select>
                     </div>
                     <hr class="d-none d-sm-block w-100 mx-4">
-                    <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-list me-2"></i><span class="fs-sm mt-n1">총 148 건의 자료가 검색되었습니다.(부속 문화재 포함)</span></div>
+                    <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-list me-2"></i><span class="fs-sm mt-n1">총 <%=boardCount%> 건의 자료가 검색되었습니다.(부속 문화재 포함)</span></div>
                 </div>
                 <!-- Catalog grid-->
                 <div class="row g-4 py-4">
                     <!-- Item-->
-                    <%for(int i = 0; i < list.size(); i++ ) {%>
+                    <%for(int i = 0; i < list.size(); i++) {%>
                     <div class="col-sm-6 col-xl-4">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="tns-carousel-wrapper card-img-top card-img-hover">
@@ -515,11 +551,12 @@ PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
 
                                 <div class="tns-carousel-inner"><img src="<%=list.get(i).getImageUrl()%>" alt="Image" style="height: 300px; width: 405px;"></div>
                             </div>
-                            <div class="card-body position-relative pb-3">
+                            <div class="card-body position-relative pb-3" >
+<%--                             <a href="<%=path%>/heritageDeatil.do?<%=list.get(i).getNo()%>"></a> --%>
                                 <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html"><%=list.get(i).getCcbaMnm1()%></a>
                                     <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i><%=list.get(i).getCcbaCtcdNm() + " " + list.get(i).getCcsiName()%></div>
                                 </h3>
-                                <h2 class="mb-1 fs-xs fw-normal"><%=list.get(i).getContent()%></h2>
+                                <h2 class="mb-1 fs-xs fw-normal" style="width:350px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><%=list.get(i).getContent()%></h2>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
                                 <span class="d-inline-block mx-1 px-2 fs-sm">
@@ -529,23 +566,46 @@ PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
                         </div>
                     </div>
                      <% }%>
-                <!-- Pagination-->
-                <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
-                    <ul class="pagination mb-1">
-                        <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                        <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                        </li>
-                        <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item d-none d-sm-block">...</li>
-                        <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- </div> -->
-        </div>
-    </main>
+					  <!-- Pagination-->
+					                <nav class="border-top pb-md-4 pt-4 mt-2" aria-label="Pagination">
+					                    <ul class="pagination mb-1">
+					                    <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+					                     <%if(i == pageInfo.getCurrentPage()){ %>
+					                        <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+					                        <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><%=i%><span class="visually-hidden">(current)</span></span>
+					                        </li>
+					                           <%} else {%>
+					                        <li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('<%=path%>/heritageSearch.do?page=<%=i%>');"><%=i%></a></li>
+					                            <%} %>
+					                        <%} %>
+					                        <li class="page-item"><a class="page-link" onclick="movePage('<%=path%>/heritageSearch.do?page=<%=pageInfo.getNextPage()%>');" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+					                    </ul>
+					                </nav>
+					            </div>
+					            <!-- </div> -->
+										
+									<script type="text/javascript">
+											function movePage(pageUrl){
+												var searchValue = document.getElementById("searchValue"); // 문화재 이름
+					// 							var searchTypes = document.getElementsByName("searchType"); // title + content + writer
+					// 							var searchType = 'title';
+												if(searchValue.value.length > 0){
+					// 								for(var i = 0; i <searchType.length; i++){
+					// 									if(searchTypes[i].checked == true){
+					// 										searchType = searchTypes[i].value;
+					// 									}
+					// 								}
+													pageUrl = pageUrl +  '&searchValue=' + searchValue.value; 
+												}
+					// 							alert(searchValue.value);
+// 												alert(pageUrl);
+												location.href = encodeURI(pageUrl);	
+											}
+									</script>			
+					        </div>
+					    </main>
+    
+    
   
 
 <%@include file="/views/common/footer.jsp"%>

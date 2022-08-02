@@ -195,9 +195,11 @@ public class HeritageDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT ROWNUM, H.* "
-					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H "
-					+ "where H.ccbaMnm1 like ? and ROWNUM between ? and ? ";
+			String sql = "SELECT rn.* from "
+                    + "(SELECT ROWNUM AS RNUM, H.* "
+                    + "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H "
+                    + "where H.ccbaMnm1 like  ? ) rn "
+                    + "where RNUM between ? and ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + ccbaMnm + "%");
