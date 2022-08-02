@@ -151,24 +151,14 @@
                         <div class="col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="city-guide-catalog.html ">
                        더보기<i class="fi-arrow-long-right ms-2 "></i></a></div>
                     </div>
-                    <div class="table-responsive ">
-                        <table class="table" style="font-size: 19px;">
-                            <thead>
-                                <tr>
-                                    <!-- <th>글번호</th> -->
-                                    <!-- <th style="text-align: center;">제목</th>
-                                    <th>글쓴이</th> -->
-                                    <!-- <th>작성일</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                            
+                    <div class="table-responsive" >
+                        <table class="table" style="font-size: 19px;" >
+                            <tbody >
                              <% for (int j = 0; j < 7; j++){ %>
-                                <tr>
-                                    <!-- <th scope="row ">7</th> -->
-                                    <td style="width: 500px; text-overflow: ellipsis"><%=blist.get(j).getTitle()%></td>
+                                <tr > 
+                                    <td style="width:500px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><a href="<%=path%>/community/view?type=H&boardNo=<%=blist.get(j).getNo()%>"> <%=blist.get(j).getTitle()%></a></td>
+                                    
                                     <td><%=blist.get(j).getuName()%></td>
-                                    <!-- <td>2022/07/17</td> -->
                                 </tr>  
                      <% } %>
                             </tbody>
