@@ -25,7 +25,7 @@
 						<div
 							class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4">
 							<img class="rounded-circle"
-								src="<%=path%>/resources/img/naim/01.info.default.photo.png"
+								src="<%=path%>/resources/img/semi-img/01.info.default.photo.png"
 								width="48" alt="Annette Black">
 							<div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
 								<h2 class="fs-lg mb-0">Annette Black</h2>

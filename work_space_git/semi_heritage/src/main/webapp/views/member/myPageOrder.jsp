@@ -20,7 +20,7 @@
 
                     <!-- 프로필 & 카테고리 시작 -->
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/naim/01.info.default.photo.png" width="48" alt="Annette Black">
+                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Annette Black">
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                                 <h2 class="fs-lg mb-0">Annette Black</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
@@ -202,7 +202,7 @@
                                     <!-- Review-->
                                     <!-- <div class="mb-4 pb-4 border-bottom ">
                                 <div class="d-flex justify-content-between mb-3 ">
-                                    <div class="d-flex align-items-center pe-2 "><img class="rounded-circle me-1 " src="<%=path %>/resources/img/naim/01.info.default.photo.png " width="48 " alt="Avatar ">
+                                    <div class="d-flex align-items-center pe-2 "><img class="rounded-circle me-1 " src="<%=path %>/resources/img/semi-img/01.info.default.photo.png " width="48 " alt="Avatar ">
                                         <div class="ps-2 ">
                                             <h6 class="fs-base mb-0 ">Annette Black</h6><span class="star-rating ">
                                               <span class="star-rating ">
@@ -225,7 +225,7 @@
             
                             <div class="mb-4 pb-4 border-bottom ">
                                 <div class="d-flex justify-content-between mb-3 ">
-                                    <div class="d-flex align-items-center pe-2 "><img class="rounded-circle me-1 " src="<%=path %>/resources/img/naim/01.info.default.photo.png " width="48 " alt="Avatar ">
+                                    <div class="d-flex align-items-center pe-2 "><img class="rounded-circle me-1 " src="<%=path %>/resources/img/semi-img/01.info.default.photo.png " width="48 " alt="Avatar ">
                                         <div class="ps-2 ">
                                             <h6 class="fs-base mb-0 ">Annette Black</h6><span class="star-rating ">
                                               <span class="star-rating ">

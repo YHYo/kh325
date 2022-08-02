@@ -74,8 +74,8 @@
                                         <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                     </div> -->
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best2.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best22.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best2.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best22.png" alt="Image">
                                     </div>
                                 </div>
 
@@ -134,8 +134,8 @@
                                         <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                     </div> -->
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image"></div>
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image"></div>
                                 </div>
 
                                 <div class="card-body">
@@ -190,8 +190,8 @@
                 <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
             </div> -->
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image"></div>
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image"></div>
                                 </div>
 
                                 <div class="card-body">
@@ -250,8 +250,8 @@
                                                                 <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                                             </div> -->
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best2.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best22.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best2.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best22.png" alt="Image">
                                     </div>
                                 </div>
 

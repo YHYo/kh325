@@ -140,7 +140,7 @@
                             <li class="d-flex mb-2"><i class="fi-check-circle mt-1 me-2" style="color: #B0C729;"></i><span>사뿐사뿐에서 소개하는 아름다운 우리 문화재</span></li>
                             <li class="d-flex mb-2"><i class="fi-check-circle mt-1 me-2" style="color: #B0C729;"></i><span>사뿐사뿐 회원들과 함께 나누는 추억</span></li>
                             <li class="d-flex mb-0"><i class="fi-check-circle mt-1 me-2" style="color: #B0C729;"></i><span>사뿐사뿐과 함께하는 스탬프 투어</span></li>
-                        </ul><img class="d-block mx-auto" src="<%=path %>/resources/img/naim/00.signup.main.png" width="344" alt="Illustartion">
+                        </ul><img class="d-block mx-auto" src="<%=path %>/resources/img/semi-img/00.signup.main.png" width="344" alt="Illustartion">
                         <div class="mt-sm-4 pt-md-3">계정이 있으신가요? <a href="00.signIn.jsp" style="color: #8957BD;"><b>로그인</b></a></div>
                     </div>
 

@@ -69,20 +69,20 @@
                             </div>
                         </div>
                         <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb1.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb2.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb3.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb4.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb5.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb1.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb2.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb3.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb4.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb5.png" alt="Image"></div>
 
                         </div>
                     </div>
                     <ul class="tns-thumbnails" id="thumbnails">
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb1.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb2.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb3.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb4.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb5.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb1.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb2.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb3.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb4.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb5.png" alt="Thumbnail"></li>
 
                     </ul>
 
@@ -179,7 +179,7 @@
                             <div class="card card-light card-hover h-100">
                                 <div class="card-img-top card-img-hover">
                                     <a class="img-overlay" href="12.souvenirProductsDetail3.jsp"></a>
-                                    <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image">
+                                    <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image">
                                 </div>
 
                                 <div class="card-body">

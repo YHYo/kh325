@@ -23,7 +23,7 @@ String cartId = session.getId();
                 <aside class="col-lg-4 col-md-5 pe-xl-4 mb-5">
                     <!-- 프로필 & 카테고리 시작 -->
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/naim/01.info.default.photo.png" width="48" alt="Annette Black">
+                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Annette Black">
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                                 <h2 class="fs-lg mb-0">Annette Black</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
@@ -55,7 +55,7 @@ String cartId = session.getId();
                     <p class="pt-1 mb-4">사뿐몰에서 담은 상품들을 확인 해보세요</p>
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/naim/02.cart.product1.png);">
+                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/semi-img/02.cart.product1.png);">
                             <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">New</span></div> -->
                         </a>
                         <div class="card-body position-relative pb-3">
@@ -76,7 +76,7 @@ String cartId = session.getId();
                     
                     <!--Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/naim/02.cart.product2.png);">
+                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/semi-img/02.cart.product2.png);">
                         </a>
                         <div class="card-body position-relative pb-3">
                             <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
@@ -94,7 +94,7 @@ String cartId = session.getId();
                     </div>
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm">
-                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/naim/02.cart.product3.png);">
+                        <a class="card-img-top" href="real-estate-single-v1.html" style="background-image: url(<%=path %>/resources/img/semi-img/02.cart.product3.png);">
                         </a>
                         <div class="card-body position-relative pb-3">
                             <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">

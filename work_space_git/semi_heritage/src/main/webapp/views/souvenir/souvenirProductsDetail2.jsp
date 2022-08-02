@@ -1,34 +1,63 @@
+<%@page import="semi.heritage.souvenir.vo.SouvenirCategoryVO"%>
+<%@page import="semi.heritage.souvenir.vo.SouvenirProductVO"%>
+<%@page import= "java.text.DecimalFormat" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/views/common/headerDark.jsp"%>
 
+<%
+   	DecimalFormat df = new DecimalFormat("###,###");
+   %>
+
+<script type ="text/javascript">
+
+function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
+	alert('장바구니에 담으시겠습니까?');
+	if(confirm("장바구니를 확인하시겠습니까?")) {
+		location.href = "views/member/02.myPageCart.jsp";
+		
+		if(obj != souvenirName) {	//세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
+			
+		} else {        
+	        alert("이미 존재하는 상품 입니다");
+		}
+	}
+}
+
+</script>
 
         <div class="container mt-5 mb-md-4 py-5 ps-5">
             <!-- Breadcrumb-->
+            <%for(SouvenirProductVO p : list){ %>
+            
             <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
                 <ol class="breadcrumb breadcrumb-light">
                     <li class="breadcrumb-item"><a href="10.souvenirMain.jsp">Home</a></li>
-                    <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html">생활/데코</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">일월오봉도 한지조명</li>
+                    <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html"><%=p.getSouv_pro_category%></a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><%=p.getSouv_pro_name()%>
+                    
+                    </li>
                 </ol>
             </nav>
             <!-- Title + Sharing-->
             <div class="d-sm-flex align-items-end align-items-md-center justify-content-between position-relative mb-4" style="z-index: 1025;">
                 <div class="me-3">
-                    <h1 class="h2 text-light mb-md-0" style="color: #C389FF;"> 일월오봉도 한지조명</h1>
+                    <h1 class="h2 text-light mb-md-0" style="color: #C389FF;"><%=p.getSouv_pro_name()%></h1>
                     <div class="d-md-none">
                         <div class="d-flex align-items-center mb-3">
-                            <div class="h3 mb-0 text-light">110,000원</div>
+                            <div class="h3 mb-0 text-light"><%=df.format(p.getSouv_pro_price())%>원</div>
                             <div class="text-nowrap ps-3"></div>
                         </div>
                         <div class="d-flex flex-wrap align-items-center text-light mb-2">
                             <div class="text-nowrap border-end border-light pe-3 me-3">
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <span class="align-middle">생활/데코</span>
+                                <span class="align-middle"><%=p.getSouv_pro_category%></span>
                             </div>
                             <div class="text-nowrap">
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <span class="align-middle">Chicago, IL 60603</span>
+                                <span class="align-middle">아늑한, 따뜻한</span>
                             </div>
                         </div>
                     </div>
@@ -55,20 +84,20 @@
                             </div>
                         </div>
                         <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb1.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb2.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb3.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb4.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb5.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=p.getSouv_pro_url() %>" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb2.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb3.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb4.png" alt="Image"></div>
+                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb5.png" alt="Image"></div>
                             
                         </div>
                     </div>
                     <ul class="tns-thumbnails" id="thumbnails">
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb1.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb2.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb3.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb4.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/naim/12.bigSouvenirProductsDetailThumb5.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb1.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb2.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb3.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb4.png" alt="Thumbnail"></li>
+                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb5.png" alt="Thumbnail"></li>
                         
                     </ul>
                     
@@ -150,7 +179,7 @@
                         <div style="align-content: center;">
                             
                             <div class="mt-2" style="text-align: center;">
-                                <button class="btn btn-outline-light btn-lg mb-4 me-5" type="button" style="padding-left: 25%; padding-right : 25%">
+                                <button class="btn btn-outline-light btn-lg mb-4 me-5" type="button" onclick="fnCart();" style="padding-left: 25%; padding-right : 25%">
                                   <i class="fi-cart me-2">&nbsp 장바구니</i></button>
                                 <br>
                                 <a class="btn btn-lg me-5" href="13.souvenirCheckout.jsp" data-bs-toggle="collapse" style="background-color: #C389FF; color: #fff; padding-left: 25%; padding-right : 25%;">
@@ -173,7 +202,7 @@
                                 <div class="card-img-top card-img-hover">
                                     <a class="img-overlay" href="12.souvenirProductsDetail3.jsp"></a>
                                     
-                                    <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image">
+                                    <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image">
                                 </div>
 
                                 <div class="card-body">

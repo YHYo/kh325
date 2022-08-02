@@ -121,7 +121,7 @@
                         <ul class="list-unstyled mt-3">
 
                             <li class="d-flex align-items-start mt-4">
-                                <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" style="width: 132px; height: 83px">
+                                <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" style="width: 132px; height: 83px">
                                 <p class="col-lg-8 nav-link-light ps-1 ms-2" data-scroll data-scroll-offset="20">
                                     일월오봉도 부채</a><br>
                                     <a class="nav-link-light opacity-65" data-scroll data-scroll-offset="20"> 가격 : </a>
@@ -129,7 +129,7 @@
                             </li>
 
                             <li class="d-flex align-items-start mt-4">
-                                <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" style="width: 132px; height: 83px">
+                                <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" style="width: 132px; height: 83px">
                                 <p class="col-lg-8 nav-link-light ps-1 ms-2" data-scroll data-scroll-offset="20">
                                     일월오봉도 부채</a><br>
                                     <a class="nav-link-light opacity-65" data-scroll data-scroll-offset="20"> 가격 : </a>

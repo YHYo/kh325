@@ -61,8 +61,8 @@
                                     </div>
                                     
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best2.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best22.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best2.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best22.png" alt="Image">
                                     </div>
                                 </div>
 
@@ -115,8 +115,8 @@
                                     <a class="img-overlay" href="<%=path %>12.souvenirProductsDetail3.jsp"></a>
                                     
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image"></div>
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image"></div>
                                 </div>
 
                                 <div class="card-body">
@@ -166,8 +166,8 @@
                                     <a class="img-overlay" href="<%=path %>12.souvenirProductsDetail3.jsp"></a>
                                     
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best3.png" alt="Image"></div>
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image"></div>
                                 </div>
 
                                 <div class="card-body">
@@ -221,8 +221,8 @@
                                     </div>
                                     
                                     <div class="tns-carousel-inner">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best2.png" alt="Image">
-                                        <img src="<%=path %>/resources/img/naim/10.souvir.best22.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best2.png" alt="Image">
+                                        <img src="<%=path %>/resources/img/semi-img/10.souvir.best22.png" alt="Image">
                                     </div>
                                 </div>
 

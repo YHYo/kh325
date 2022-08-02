@@ -18,7 +18,7 @@
 
                     <!-- 프로필 & 카테고리 시작 -->
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/naim/01.info.default.photo.png" width="48" alt="Annette Black">
+                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Annette Black">
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                                 <h2 class="fs-lg mb-0">Annette Black</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
@@ -54,7 +54,7 @@
                     </div>
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
-                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/naim/03.like.heritage1.png); ">
+                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/semi-img/03.like.heritage1.png); ">
                             <a class="stretched-link " href="real-estate-single-v1.html "></a>
                             <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div> -->
                             <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5 ">
@@ -80,7 +80,7 @@
 
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
-                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/naim/03.like.heritage2.png); ">
+                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/semi-img/03.like.heritage2.png); ">
                             <a class="stretched-link " href="real-estate-single-v1.html "></a>
                             <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span></div> -->
                             <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5 ">
@@ -106,7 +106,7 @@
 
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
-                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/naim/03.like.heritage3.png); ">
+                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/semi-img/03.like.heritage3.png); ">
                             <a class="stretched-link " href="real-estate-single-v1.html "></a>
                             <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5 ">
                                 <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Remove from Wishlist ">
