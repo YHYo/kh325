@@ -256,11 +256,7 @@ String saveId = "";
         <header class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" data-scroll-header>
              <div class="container ">
                 <!--container-fluid 이거 내가 지웠음-->
-<<<<<<< HEAD
                 <a class="navbar-brand me-3 me-xl-4" href="<%=path%>/index.do"><img class="d-block" src="<%=path%>/resources/img/semi-img/logo_spsp_3.png" width="110" alt="spsp"></a>
-=======
-                <a class="navbar-brand me-3 me-xl-4" href="<%=path%>/index.do"><img class="d-block" src="<%=path%>/resources/img/semi-img/logo_spsp_2.png" width="110" alt="spsp"></a>
->>>>>>> branch 'master' of https://github.com/YHYo/kh325.git
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <%if(loginMember == null){ %>
                 <a class="btn btn-sm  d-none d-lg-block order-lg-3 p05" href="<%=path%>/views/member/signIn.jsp" style="font-size: 22px; color: #D97793;"><i class="fi-user me-2"></i>로그인</a>
