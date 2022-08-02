@@ -23,7 +23,6 @@
        
 <% 
 List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
-List<Integer> nolist = (List<Integer>)request.getAttribute("nolist");
 List<Integer> favlist = (List<Integer>)request.getAttribute("favlist");
 // List<Integer> nolist = new ArrayList<Integer>();
 // for(int j = 0; j < list.size(); j++){
