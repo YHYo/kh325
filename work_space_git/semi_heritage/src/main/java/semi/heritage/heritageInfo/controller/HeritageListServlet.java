@@ -45,8 +45,10 @@ public class HeritageListServlet extends MyHttpServlet {
 //		} catch (Exception e) {}
 	
 		
-		
+		try {
 		page = Integer.parseInt(req.getParameter("page"));
+		} catch (Exception e) {}
+		
 		boardCount = service.getHeritageMainVOCount(ccbaMnm); // 이름입력해서 게시글 갯수 몇개인지 가져옴
 		pageInfo = new PageInfo(page, 8, boardCount, 9); // 하단버튼 8개 , 게시글 9개 보임
 		list = service.selectByHeritageName(ccbaMnm, pageInfo);
