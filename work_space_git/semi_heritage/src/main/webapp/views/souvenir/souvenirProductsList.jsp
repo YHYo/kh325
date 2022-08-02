@@ -46,6 +46,7 @@
                                 <option value="">생활/데코</option>
                                 <option value="">전자/IT</option>
                                 </select>
+                        </div>
                             
                     </div>
                     <div class="row">

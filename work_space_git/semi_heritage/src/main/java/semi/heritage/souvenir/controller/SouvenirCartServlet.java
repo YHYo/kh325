@@ -32,9 +32,9 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 
 			list = service.getCartList(uNo);
 			
-			req.setAttribute("list", list);
+			req.setAttribute("cart", list);
 //			req.setAttribute("pageInfo", pageInfo);
-			req.getRequestDispatcher("/views/board/02.myPageCart.jsp").forward(req, resp);
+			req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
 		}
 		
 		@Override

@@ -59,13 +59,13 @@ public class SouvenirDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT * FROM SOUV_PRODUCT WHERE souv_pro_category = ?";
+			String sql = "SELECT * FROM SOUV_PRODUCT WHERE souv_pro_category LIKE ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + souv_pro_category + "%");
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				int count = 1;
-
 				SouvenirProductVO product = new SouvenirProductVO();
 
 				product.setSouv_pro_no(rs.getInt(count++));

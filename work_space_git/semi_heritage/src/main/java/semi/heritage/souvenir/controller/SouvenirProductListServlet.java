@@ -33,12 +33,6 @@ public class SouvenirProductListServlet extends HttpServlet {
 		String category = req.getParameter("category");
 		
 		list = service.getProductListByCategory(category);
-		System.out.println("list");
-		System.out.println(list);
-		
-//		if(list == null) {
-//			list = new ArrayList<SouvenirProductVO>();
-//		}
 		
 		req.setAttribute("list", list);
 		req.getRequestDispatcher("/views/souvenir/souvenirProductsList.jsp").forward(req, resp);

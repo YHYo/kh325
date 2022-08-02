@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirCategoryVO;
 
-	@WebServlet("/souvenirMain.do")
+//	@WebServlet("/souvenirMain.do")
 	public class SouvenirCategoryServlet extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 

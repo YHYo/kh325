@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.souvenir.service.SouvenirService;
+import semi.heritage.souvenir.vo.SouvenirCategoryVO;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 
@@ -29,17 +30,30 @@ public class SouvenirProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 //		System.out.println("doget 호출 ");
-		List<SouvenirProductVO> list = null;
+		List<SouvenirProductVO> Plist = null;
 		
-		list = service.getProductList();
+		List<SouvenirCategoryVO> Clist = new ArrayList<SouvenirCategoryVO>();
+		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.1.png","유아/DIY","장난감, 인형, DIY"));
+		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.2.png","사무/문구","필기도구, 카드"));
+		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.3.png","뷰티/미용","비누, 향수"));
+		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.4.png","패션/잡화","가방, 우산"));
+		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.5.png","생활/데코","홈데코, 인테리어"));
+		Clist.add(new SouvenirCategoryVO("request.getContextPath()/resources/img/naim/10.souvir.cate.6.png","전자/IT","폰케이스, 그립톡"));
+		
+		
+		
+		Plist = service.getProductList();
 		System.out.println("list");
-		System.out.println(list);
-		if(list == null) {
-			list = new ArrayList<SouvenirProductVO>();
+		System.out.println(Plist);
+		if(Plist == null) {
+			Plist = new ArrayList<SouvenirProductVO>();
 		}
 		
 		
-		req.setAttribute("listIngi", list);
+		req.setAttribute("listCat", Clist);
+		req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
+		
+		req.setAttribute("listIngi", Plist);
 		req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);
 		
 		
