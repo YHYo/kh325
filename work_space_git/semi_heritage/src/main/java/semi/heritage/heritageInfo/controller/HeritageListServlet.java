@@ -50,16 +50,13 @@ public class HeritageListServlet extends MyHttpServlet {
 		list = service.selectByHeritageName(ccbaMnm, pageInfo);
 		
 		
-		 List<Integer> nolist = new ArrayList<Integer>();
-		 for(int i = 0; i < list.size(); i++){
-		 	nolist.add(list.get(i).getNo());
-		 }
+		 
 		 List<Integer> favlist = new ArrayList<Integer>();
-		 for(int j = 0; j < nolist.size(); j++){
-			 favoriteNum = fservice.CountFavoriteByNo(nolist.get(j));
+		 for(int j = 0; j < list.size(); j++){
+			 favoriteNum = fservice.CountFavoriteByNo(list.get(j).getNo());
 			 favlist.add(favoriteNum);
 		 }
-		System.out.println(nolist); //list에 i번쨰의 문화재고유번호들의 리스트
+//		System.out.println(nolist); //list에 i번쨰의 문화재고유번호들의 리스트
 		System.out.println(favoriteNum);//찜갯수 리스트
 		
 	
@@ -77,7 +74,7 @@ public class HeritageListServlet extends MyHttpServlet {
 		req.setAttribute("boardCount", boardCount);
 		req.setAttribute("favoriteNum", favoriteNum);
 		req.setAttribute("favlist", favlist);
-		req.setAttribute("nolist", nolist);
+//		req.setAttribute("nolist", nolist);
 		req.setAttribute("no", no);
 //		req.setAttribute("uNo", uNo);
 		req.getRequestDispatcher("/views/heritage/heritageSearch.jsp").forward(req, resp);// 문화재 리스트 보여주는 페이지주소 넣어야함
