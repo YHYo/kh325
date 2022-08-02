@@ -29,9 +29,6 @@ public class SouvenirProductListServlet extends HttpServlet {
 
 		List<SouvenirProductVO> list = null;
 
-//		String category = req.getParameter("category");
-//		list = service.getProductListByCategory(category);
-
 		try {
 			String category = req.getParameter("category");
 
