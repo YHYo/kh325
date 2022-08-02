@@ -85,12 +85,18 @@
 		<!-- 카테고리 버튼 -->
  		<% for (int i = 0; i < listCat.size(); i++){ %> 
  		<div class="col"> 
- 			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center">
+ 			<div class="card card-body card-light card-hover bg-transparent border-0 px-0 pt-0 text-center" > <!-- 여기가 클릭하는 네모칸 -->
  			<img class="d-block mx-auto mb-3"
  					src="<%=path%><%=listCat.get(i).getcPath()%>" width="160" alt="Coupe">
+<!--  				 <a class="nav-link-light stretched-link fw-bold" -->
+<%--  					href="<%=path%>/views/souvenir/souvenirProductsList.jsp"  --%>
+<%--  					style="font-size: 18px;"><%=listCat.get(i).getcName() %></a>   --%>
+ 					
  				 <a class="nav-link-light stretched-link fw-bold"
- 					href="<%=path%>/views/souvenir/souvenirProductsList.jsp" 
+ 					href="<%=path+"/souvenirProductsList.do?category="+ listCat.get(i).getcName()%> "
  					style="font-size: 18px;"><%=listCat.get(i).getcName() %></a>  
+ 					
+ 					
  					<a style="color: grey; font-size: 16px;"><%=listCat.get(i).getcSebu() %></a>
  			</div>
 			
@@ -131,9 +137,7 @@
 					</div>
 					<div class="tns-carousel-inner">
 						<img src="<%=listIngi.get(0).getSouv_pro_url() %>"
-							alt="Image"> <img
-							src="<%=listIngi.get(0).getSouv_pro_url() %>"
-							alt="Image">
+							alt="Image"> 
 					</div>
 				</div>
 				<div class="card-body">
@@ -180,6 +184,7 @@
 				<div class="tns-carousel-wrapper card-img-top card-img-hover">
 					<a class="img-overlay"
 						href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"></a>
+						
 					<div class="position-absolute start-0 top-0 pt-3 ps-3">
 						<!-- <span class="d-table badge bg-info">Used</span> -->
 					</div>

@@ -14,7 +14,7 @@ import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 
-@WebServlet("/product/list")
+@WebServlet("/souvenirProductsList.do")
 public class SouvenirProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,14 @@ public class SouvenirProductListServlet extends HttpServlet {
 		
 		list = service.getProductListByCategory(category);
 		
-		req.setAttribute("list", list);
+//		System.out.println("list");
+//		System.out.println(list);
+		if(list == null) {
+			list = new ArrayList<SouvenirProductVO>();
+		}
+		
+		
+		req.setAttribute("productList", list);
 		req.getRequestDispatcher("/views/souvenir/souvenirProductsList.jsp").forward(req, resp);
 		
 		
