@@ -237,7 +237,7 @@ String saveId = "";
                 <a class="navbar-brand me-3 me-xl-4" href="<%=path%>/index.do"><img class="d-block" src="<%=path%>/resources/img/semi-img/logo_spsp_1.png" width="110" alt="spsp"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <%if(loginMember == null){ %>
-                <a class="btn btn-sm  d-none d-lg-block order-lg-3 p05" href="<%=path%>/login" data-bs-toggle="modal" style="font-size: 22px; color: #D97793;"><i class="fi-user me-2"></i>로그인</a>
+                <a class="btn btn-sm  d-none d-lg-block order-lg-3 p05" href="<%=path%>/views/member/signIn.jsp"  style="font-size: 22px; color: #D97793;"><i class="fi-user me-2"></i>로그인</a>
                 <%}else{%>
                <a class="nav-link dropdown-toggle align-items-center pe-sm-1" href="<%=path%>/community/main" data-bs-toggle="dropdown" role="button" aria-expanded="false" style="font-size: 22px;">
                                 <b><%=loginMember.getUname()%>님</b><span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y " style="width: 1px; height: 30px;"></span></a>
@@ -283,7 +283,7 @@ String saveId = "";
                                 <li class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="<%=path%>/community/list?type=H" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>역사연구소</b></a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="<%=path%>/community/list?type=F" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>자유게시판</b></a></li>
+                                <li><a class="dropdown-item" href="<%=path%>/community/list?type=T" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>자유게시판</b></a></li>
                             </ul>
                         </li>
                 </div>
