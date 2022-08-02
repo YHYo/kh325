@@ -53,14 +53,14 @@ public class HeritageListServlet extends MyHttpServlet {
 		} catch (Exception e) {
 		}
 		System.out.println(list);
-		if (list == null) {
-			sendCommonPage("검색 결과가 없습니다", "/index.do" , req, resp);
-		}	
 
-		boardCount = service.getHeritageMainVOCount("ccbaMnm"); // 이름입력해서 게시글 갯수 몇개인지 가져옴
+		boardCount = service.getHeritageMainVOCount(ccbaMnm); // 이름입력해서 게시글 갯수 몇개인지 가져옴
 		pageInfo = new PageInfo(page, 8, boardCount, 9); // 하단버튼 8개 , 게시글 9개 보임
 		list = service.selectByHeritageName(ccbaMnm, pageInfo);
 
+		if (list == null) {
+			sendCommonPage("검색 결과가 없습니다", "/index.do" , req, resp);
+		}	
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
 		req.getRequestDispatcher("/views/heritage/heritageSearch.jsp").forward(req, resp);// 문화재 리스트 보여주는 페이지주소 넣어야함

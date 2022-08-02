@@ -31,7 +31,7 @@
                     </div>
                     <div class="mx-auto px-0" style="margin-bottom: -3%">
                         <!-- 검색 Form-->
-                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/heritageSearch.do" method="post">
+                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/heritageSearch.do" method="get">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
                                 <input class="form-control p03" type="text" name="ccbaMnm" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
