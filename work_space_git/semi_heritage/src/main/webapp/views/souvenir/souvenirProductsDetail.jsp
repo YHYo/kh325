@@ -11,9 +11,28 @@
 
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
- 	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
-   	// List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
+    SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");
+   	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    %>
+   
+   <script type="text/javascript">
+	function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
+		alert('장바구니에 담으시겠습니까?');
+		if (confirm("장바구니를 확인하시겠습니까?")) {
+			location.href = "<%=path%>/views/member/myPageCart.jsp";
+
+			if (obj != souvenirName) { //세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
+
+			} else {
+				alert("이미 존재하는 상품 입니다");
+			}
+		}
+	}
+
+	function prView() {
+		location.href = "souvenirProductsDetail.jsp?SOUV_PRO_NO=souvenirNo";
+	}
+</script>
 
 <!-- Body-->
 
@@ -22,21 +41,26 @@
         <!-- Page content-->
         <!-- Page content-->
         <div class="container mt-5 mb-md-4 py-5 ps-5">
+            
             <!-- Breadcrumb-->
+       
             <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
                 <ol class="breadcrumb breadcrumb-light">
-                    <li class="breadcrumb-item"><a href="10.souvenirMain.jsp">Home</a></li>
-                    <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html">생활/데코</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">전통그림부채</li>
+            		
+                    <li class="breadcrumb-item"><a href="<%=path%>/views/souvenir/souvenirMain.jsp">Home</a></li>
+                    <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html"><%=productDetail.getSouv_pro_category()%></a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><%=productDetail.getSouv_pro_name()%></li>
                 </ol>
             </nav>
+            
+            
             <!-- Title + Sharing-->
             <div class="d-sm-flex align-items-end align-items-md-center justify-content-between position-relative mb-4" style="z-index: 1025;">
                 <div class="me-3">
-                    <h1 class="h2 text-light mb-md-0" style="color: #C389FF;">전통그림부채</h1>
+                    <h1 class="h2 text-light mb-md-0" style="color: #C389FF;"><%=productDetail.getSouv_pro_name()%></h1>
                     <div class="d-md-none">
                         <div class="d-flex align-items-center mb-3">
-                            <div class="h3 mb-0 text-light">25,800원</div>
+                            <div class="h3 mb-0 text-light"><%=df.format(productDetail.getSouv_pro_price())%>원</div>
                             <div class="text-nowrap ps-3">
                                 <!-- <span class="badge bg-info fs-base me-2">Used</span> -->
                                 <!-- <span class="badge bg-success fs-base me-2" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex&quot;&gt;&lt;i class=&quot;fi-award mt-1 me-2&quot;&gt;&lt;/i&gt;&lt;div&gt;This car is checked and&lt;br&gt;certified by Finder.&lt;/div&gt;&lt;/div&gt;">Certified</span> -->
@@ -45,11 +69,11 @@
                         <div class="d-flex flex-wrap align-items-center text-light mb-2">
                             <div class="text-nowrap border-end border-light pe-3 me-3">
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <span class="align-middle">생활/데코</span>
+                                <span class="align-middle"><%=productDetail.getSouv_pro_category()%></span>
                             </div>
                             <div class="text-nowrap">
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <span class="align-middle">Chicago, IL 60603</span>
+                                <span class="align-middle"><%=productDetail.getcKeyword(???)%></span>
                             </div>
                         </div>
                     </div>
@@ -80,21 +104,15 @@
                                 <span class="tns-total-slides fs-5 fw-lighter"></span>
                             </div>
                         </div>
-                        <div class="tns-carousel-inner" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb1.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb2.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb3.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb4.png" alt="Image"></div>
-                            <div><img class="rounded-3" src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb5.png" alt="Image"></div>
+                        <div class="tns-carousel-inner img-souvnir-db" data-carousel-options="{&quot;navAsThumbnails&quot;: true, &quot;navContainer&quot;: &quot;#thumbnails&quot;, &quot;gutter&quot;: 12, &quot;responsive&quot;: {&quot;0&quot;:{&quot;controls&quot;: false},&quot;500&quot;:{&quot;controls&quot;: true}}}">
+                            <div><img class="rounded-3" src="<%=productDetail.getSouv_pro_url()%>" alt="Image"></div>
+                            
 
                         </div>
                     </div>
-                    <ul class="tns-thumbnails" id="thumbnails">
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb1.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb2.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb3.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb4.png" alt="Thumbnail"></li>
-                        <li class="tns-thumbnail"><img src="<%=path %>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb5.png" alt="Thumbnail"></li>
+                    <ul class="tns-thumbnails img-souvnir-ds" id="thumbnails">
+                        <li class="tns-thumbnail"><img src="<%=path%>/resources/img/semi-img/12.bigSouvenirProductsDetailThumb1.png" alt="Thumbnail"></li>
+                        
 
                     </ul>
 
@@ -143,7 +161,7 @@
                             <span class="opacity-70">Published: <strong>May 9, 2021</strong></span>
                         </div>
                         <div class="border-end border-light pe-3 me-3">
-                            <span class="opacity-70">Product number: <strong>681013232</strong></span>
+                            <span class="opacity-70">Product number: <strong><%=productDetail.getSouv_no()%></strong></span>
                         </div>
                         <!-- <div class="opacity-70">Views: <strong>57</strong></div> -->
                     </div>
@@ -153,16 +171,16 @@
                     <div class="sticky-top pt-5">
                         <div class="d-none d-md-block pt-5 ms-4">
 
-                            <div class="h3 text-light" style="padding-top: 1%;">전통그림부채</div>
-                            <div class="h5 text-danger"> 110,000원</div>
+                            <div class="h3 text-light" style="padding-top: 1%;"><%=productDetail.getSouv_pro_name()%></div>
+                            <div class="h5 text-danger"><%=df.format(listPro.getSouv_pro_price())%>원</div>
                             <div class="d-flex align-items-center text-light pb-4 mb-2">
                                 <div class="text-nowrap border-end border-light pe-3 me-3">
                                     <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                    <span class="align-middle">생활/데코</span>
+                                    <span class="align-middle"><%=productDetail.getSouv_pro_category()%></span>
                                 </div>
                                 <div class="text-nowrap">
 
-                                    <span class="text-light align-middle">아늑한, 따뜻한</span>
+                                    <span class="text-light align-middle"><%=productDetail.getcKeyword(???)%></span>
 
 
                                 </div>
@@ -181,8 +199,11 @@
                     </div>
                 </div>
             </div>
+            
 
             <!-- 이런상품들은 어때요 시작-->
+            <!-- 제 1호 상품 시작-->
+            
             <h2 class="h3 text-light pt-5 pb-1 mt-md-4">You may be interested in</h2>
             <h5 class="h5 text-light pb-3">이런 상품들은 어때요?</h2>
                 <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-carousel-light">
@@ -191,20 +212,20 @@
                             <div class="card card-light card-hover h-100">
                                 <div class="card-img-top card-img-hover">
                                     <a class="img-overlay" href="12.souvenirProductsDetail3.jsp"></a>
-                                    <img src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" alt="Image">
+                                    <img class="img-souvnir-dl" src="<%=listIngi.get(0).getSouv_pro_url()%>" alt="Image">
                                 </div>
 
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between pb-1">
-                                        <span class="fs-sm text-light me-3">생활/데코</span>
+                                        <span class="fs-sm text-light me-3">사뿐몰 제 1호 상품</span>
                                         <div class="form-check form-check-light">
 
                                         </div>
                                     </div>
                                     <h3 class="h6 mb-1">
-                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;">일월오봉도 부채</a>
+                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=listIngi.get(0).getSouv_pro_name()%></a>
                                     </h3>
-                                    <div class="text-primary fw-bold mb-1 ms-1">6,500원</div>
+                                    <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(listIngi.get(0).getSouv_pro_price()) %>원</div>
                                 </div>
 
                                 <!-- 상품 박스 하단 버튼 시작 -->
@@ -214,7 +235,55 @@
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
+                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
+                                                </div>
+                                            </div>
+                                            <div class="col me-sm-1">
+                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
+                                                    <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
+                                                    <span class="fs-xs text-light"><a href="12.souvenirProductsDetail2.jsp" class="nav-link-light">상세보기</a></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 상품 박스 하단 버튼 끝 -->
+								<!-- 제 1호 상품 끝-->
+                            </div>
+                        </div>
+
+						<!-- 제 2-3호 상품 시작-->
+						<% for (int i = 2; i < 4; i++){ %>
+                        <div>
+                            <div class="card card-light card-hover h-100">
+                                <div class="card-img-top card-img-hover">
+                                    <a class="img-overlay" href="#"></a>
+                                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                                        <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                                    </div><img src="<%=listIngi.get(i).getSouv_pro_url()%>" alt="Image">
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between pb-1">
+                                        <span class="fs-sm text-light me-3">사뿐몰 제 <%=i %>호 상품</span>
+                                        <div class="form-check form-check-light">
+
+                                        </div>
+                                    </div>
+                                    <h3 class="h6 mb-1">
+                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=listIngi.get(i).getSouv_pro_name()%></a>
+                                    </h3>
+                                    <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(listIngi.get(i).getSouv_pro_price()) %>원</div>
+                                </div>
+
+                                <!-- 상품 박스 하단 버튼 시작 -->
+                                <div class="card-footer border-0 pt-0">
+                                    <div class="border-top border-light pt-3">
+                                        <div class="row g-2">
+                                            <div class="col me-sm-1">
+                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
+                                                    <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
+                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
                                                 </div>
                                             </div>
                                             <div class="col me-sm-1">
@@ -231,131 +300,7 @@
 
                             </div>
                         </div>
-
-                        <div>
-                            <div class="card card-light card-hover h-100">
-                                <div class="card-img-top card-img-hover">
-                                    <a class="img-overlay" href="#"></a>
-                                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                        <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                    </div><img src="<%=path %>/resources/img/car-finder/catalog/05.jpg" alt="Image">
-                                </div>
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">2018</span>
-                                        <div class="form-check form-check-light">
-                                            <!-- <input class="form-check-input" type="checkbox" id="compare2"> -->
-                                            <!-- <label class="form-check-label fs-sm" for="compare2">Compare</label> -->
-                                        </div>
-                                    </div>
-                                    <h3 class="h6 mb-1"><a class="nav-link-light" href="#">BMW 640 XI Gran Turismo</a></h3>
-                                    <div class="text-primary fw-bold mb-1">$43,500</div>
-                                    <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>San Francisco</div>
-                                </div>
-
-                                <!-- 상품 박스 하단 버튼 시작 -->
-                                <div class="card-footer border-0 pt-0">
-                                    <div class="border-top border-light pt-3">
-                                        <div class="row g-2">
-                                            <div class="col me-sm-1">
-                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                                                    <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col me-sm-1">
-                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                                                    <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="12.souvenirProductsDetail2.jsp" class="nav-link-light">상세보기</a></span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 상품 박스 하단 버튼 끝 -->
-
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-light card-hover h-100">
-                                <div class="card-img-top card-img-hover">
-                                    <a class="img-overlay" href="#"></a>
-                                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                        <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                    </div><img src="<%=path %>/resources/img/car-finder/catalog/04.jpg" alt="Image">
-                                </div>
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">2019</span>
-                                        <div class="form-check form-check-light">
-
-                                        </div>
-                                    </div>
-                                    <h3 class="h6 mb-1"><a class="nav-link-light" href="#">Nissan 370Z Nismo</a></h3>
-                                    <div class="text-primary fw-bold mb-1">$37,900</div>
-                                    <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>New York</div>
-                                </div>
-
-                                <!-- 상품 박스 하단 버튼 시작 -->
-                                <div class="card-footer border-0 pt-0">
-                                    <div class="border-top border-light pt-3">
-                                        <div class="row g-2">
-                                            <div class="col me-sm-1">
-                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                                                    <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
-                                                </div>
-                                            </div>
-                                            <div class="col me-sm-1">
-                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                                                    <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="12.souvenirProductsDetail2.jsp" class="nav-link-light">상세보기</a></span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 상품 박스 하단 버튼 끝 -->
-
-                            </div>
-                        </div>
-                        <div>
-                            <div class="card card-light card-hover h-100">
-                                <div class="card-img-top card-img-hover">
-                                    <a class="img-overlay" href="#"></a>
-                                    <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info">Used</span></div>
-                                    <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                        <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                    </div><img src="<%=path %>/resources/img/car-finder/catalog/08.jpg" alt="Image">
-                                </div>
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">2017</span>
-                                        <div class="form-check form-check-light">
-                                            <input class="form-check-input" type="checkbox" id="compare4">
-                                            <label class="form-check-label fs-sm" for="compare4">Compare</label>
-                                        </div>
-                                    </div>
-                                    <h3 class="h6 mb-1"><a class="nav-link-light" href="#">Ford Explorer XLT</a></h3>
-                                    <div class="text-primary fw-bold mb-1">$26,950</div>
-                                    <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>Kansas</div>
-                                </div>
-                                <div class="card-footer border-0 pt-0">
-                                    <div class="border-top border-light pt-3">
-                                        <div class="row g-2">
-                                            <div class="col me-sm-1">
-                                                <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-dashboard d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">34K mi</span></div>
-                                            </div>
-                                            <div class="col me-sm-1">
-                                                <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-gearbox d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">Manual</span></div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-petrol d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">Diesel</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
                 </div>
         </div>

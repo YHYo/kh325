@@ -14,7 +14,7 @@ import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 
-@WebServlet("/product/detail")
+@WebServlet("/souvenirProductsDetail.do")
 public class SouvenirProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,10 +33,8 @@ public class SouvenirProductDetailServlet extends HttpServlet {
 		SouvenirProductVO p = service.findProductByNo(productNo);
 		
 
-		
-		req.setAttribute("product", p);
+		req.setAttribute("productDetail", p);
 		req.getRequestDispatcher("/views/souvenir/souvenirProductsDetail.jsp").forward(req, resp);
-		
 		
 		
 	}
