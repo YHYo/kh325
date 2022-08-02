@@ -513,7 +513,7 @@ PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
                                 <a class="img-overlay" href="real-estate-single-v1.html"></a>
 
 
-                                <div class="tns-carousel-inner"><img src="<%=list.get(i).getImageUrl()%>g" alt="Image" style="height: 300px; width: 405px;"></div>
+                                <div class="tns-carousel-inner"><img src="<%=list.get(i).getImageUrl()%>" alt="Image" style="height: 300px; width: 405px;"></div>
                             </div>
                             <div class="card-body position-relative pb-3">
                                 <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html"><%=list.get(i).getCcbaMnm1()%></a>
