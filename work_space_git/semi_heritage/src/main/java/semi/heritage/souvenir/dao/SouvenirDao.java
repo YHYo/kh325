@@ -1,6 +1,7 @@
 package semi.heritage.souvenir.dao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.close;
+import static semi.heritage.common.jdbc.JDBCTemplate.commit;
 import static semi.heritage.common.jdbc.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -339,7 +340,7 @@ public class SouvenirDao {
 //			System.out.println(p.toString().replace(",", ",\n"));
 //		}
 		
-//		SouvenirCartVO ic = new SouvenirCartVO(); // 장바구니 추가.. 안됨
+//		SouvenirCartVO ic = new SouvenirCartVO(); // 장바구니 추가. 됨!!
 //		ic.setUno(100);
 //		ic.setSouv_pro_no(100);
 //		ic.setSouv_pro_name("테스트");
@@ -350,6 +351,7 @@ public class SouvenirDao {
 //		if(result == 1) {
 //			System.out.println("성공");
 //			System.out.println(ic.toString().replace(",",",\n"));
+//			commit(conn);
 //		}else {
 //			System.out.println("실패");
 //		}
@@ -360,29 +362,30 @@ public class SouvenirDao {
 //			System.out.println(sc.toString().replace(",", ",\n"));
 //		}
 //		
-//		SouvenirCartVO cart = dao.findCartBySeqNo(conn, 11);		// 안됨 왜지?
+//		SouvenirCartVO cart = dao.findCartBySeqNo(conn, 10);		//  됨.
 //		System.out.println(cart.toString().replace(",",",\n"));
 
 			
-//		int deleteCart = dao.deleteCart(conn, 10, "Y");			// 이것도,,, ㅗㅗㅗㅗㅗㅗ
+//		int deleteCart = dao.deleteCart(conn, 13, "Y");			// 오류는 뜨지만 delete_status가 n에서 y로 잘 바뀜!!
 //		System.out.println("삭제 결과 : " + deleteCart );
 //		if(deleteCart == 1) {
 //			System.out.println("탈퇴 업데이트 성공");
 //			SouvenirCartVO delete = dao.findCartBySeqNo(conn, 10);
+//			commit(conn);
 //			System.out.println(delete.toString());
 //		}else {
 //			System.out.println("탈퇴 업데이트 실패");
 //		}
 		
-		List<SouvenirPayVO> selectPayByUNO = dao.selectPayByUNO(conn, 2);
-		System.out.println("=============회원번호2의 결제정보===========");	// 왜안뜨냐,,
-		for (SouvenirPayVO p : selectPayByUNO) {
-			System.out.println(p.toString().replace(",", ",\n"));
-		}
-	
+//		List<SouvenirPayVO> selectPayByUNO = dao.selectPayByUNO(conn, 2);
+//		System.out.println("=============회원번호2의 결제정보===========");	// 됨
+//		for (SouvenirPayVO p : selectPayByUNO) {
+//			System.out.println(p.toString().replace(",", ",\n"));
+//		}
+//	
 		
 //		List<SouvenirBuyVO> selectBuyByUNO = dao.selectBuyByUNO(conn, 1);
-//		System.out.println("=============회원번호1의 구매정보===========");	// String 으로 바꾸니까 됨
+//		System.out.println("=============회원번호1의 구매정보===========");	// 구매번호를 String 으로 바꾸니까 됨
 //		for (SouvenirBuyVO p : selectBuyByUNO) {
 //		System.out.println(p.toString().replace(",", ",\n"));
 //	}
