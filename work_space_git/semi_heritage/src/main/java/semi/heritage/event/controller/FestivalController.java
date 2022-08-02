@@ -26,9 +26,6 @@ public class FestivalController {
 		}
 	}
 
-	public List<Festival> selectAll() {
-		return festivalService.selectAll();
-	}
 	
 	public static void main(String[] args) {
 		FestivalController fc = new FestivalController();

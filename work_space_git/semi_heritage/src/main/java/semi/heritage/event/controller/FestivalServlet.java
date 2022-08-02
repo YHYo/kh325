@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.heritage.common.util.PageInfo;
 import semi.heritage.event.service.FestivalService;
 import semi.heritage.event.vo.Festival;
 
@@ -19,16 +20,24 @@ public class FestivalServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		int page = 1;
 		String eventMonth = req.getParameter("eventMonth");
 		if(eventMonth == null || eventMonth.length() < 1) {
 			eventMonth = "202208";
 		}
-									// 202202
-		List<Festival> list = service.selectByMonth(eventMonth);
+		
+		try {
+			page = Integer.parseInt(req.getParameter("page"));
+		} catch (Exception e) {	}
+		
+		int maxCount = service.getBoardCount(eventMonth);
+		System.out.println(maxCount);
+		PageInfo pageInfo = new PageInfo(page, 10, maxCount, 10);
+		List<Festival> list = service.findAll(pageInfo, eventMonth);
 
 		System.out.println(list);
 		req.setAttribute("list", list);
+		req.setAttribute("pageInfo", pageInfo);
 		req.getRequestDispatcher("/views/event/eventSchedule.jsp").forward(req, resp);
 
 	}

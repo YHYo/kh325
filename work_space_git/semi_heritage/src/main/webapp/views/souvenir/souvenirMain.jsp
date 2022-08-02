@@ -76,7 +76,7 @@
 		</div>
 		<div class="col-md-4 d-lg-flex align-items-center justify-content-end">
 			<a class="btn btn-link fw-normal ms-sm-3 p-0"
-				href="<%=path%>/views/souvenir/souvenirProductsList.jsp">더보기<i
+				href="<%=path%>/souvenirProductsList.do">더보기<i
 				class="fi-arrow-long-right ms-2"></i></a>
 		</div>
 	</div>
