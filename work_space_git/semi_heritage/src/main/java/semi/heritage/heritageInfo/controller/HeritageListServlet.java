@@ -48,10 +48,13 @@ public class HeritageListServlet extends MyHttpServlet {
 //		}
 
 		String ccbaMnm = req.getParameter("ccbaMnm").trim();
-		page = Integer.parseInt(req.getParameter("page"));
-		
+		try {
+			page = Integer.parseInt(req.getParameter("page"));
+		} catch (Exception e) {
+		}
+		System.out.println(list);
 		if (list == null) {
-			sendCommonPage("검색 결과가 없습니다","/index.do" , req, resp);
+			sendCommonPage("검색 결과가 없습니다", "/index.do" , req, resp);
 		}	
 
 		boardCount = service.getHeritageMainVOCount("ccbaMnm"); // 이름입력해서 게시글 갯수 몇개인지 가져옴

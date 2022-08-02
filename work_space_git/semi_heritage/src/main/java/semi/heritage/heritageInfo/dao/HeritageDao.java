@@ -169,7 +169,7 @@ public class HeritageDao {
 			ResultSet rs = null;
 			String query = "SELECT count(ROWNUM) FROM("
 					+ "SELECT ROWNUM, H.* "
-					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H"
+					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H "
 					+ "where H.ccbaMnm1 like ? ) SCH ";
 			int result = 0;
 			try {
@@ -196,7 +196,7 @@ public class HeritageDao {
 
 		try {
 			String sql = "SELECT ROWNUM, H.* "
-					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H"
+					+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL from HERITAGE order by sn) H "
 					+ "where H.ccbaMnm1 like ? and ROWNUM between ? and ? ";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -328,8 +328,9 @@ public class HeritageDao {
 	
 	public static void main(String[] args) {
 		Connection conn = getConnection();
+		PageInfo pageinfo = new PageInfo(1, 8, 2, 8);
 		HeritageDao dao = new HeritageDao();
-		
+		dao.selectByHeritageName(conn, "숭", pageinfo);
 	}
 }
 
