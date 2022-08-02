@@ -35,12 +35,12 @@ public class SouvenirProductServlet extends HttpServlet {
 		List<SouvenirCategoryVO> cList = new ArrayList<SouvenirCategoryVO>();
 
 		
-		cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.5.png","생활/데코","홈데코, 인테리어","아늑한,따뜻한"));
-        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.4.png","패션/잡화","가방, 우산","인기많은,주문제작"));
-        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.2.png","사무/문구","필기도구, 카드","편리한,선물용"));
-        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.1.png","유아/DIY","장난감, 인형, DIY",""));
-        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.3.png","뷰티/미용","비누, 향수",""));
-        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.6.png","전자/IT","폰케이스, 그립톡",""));
+		cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.5.png","생활/데코","홈데코, 인테리어","아늑한, 따뜻한"));
+        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.4.png","패션/잡화","가방, 우산","인기많은, 주문제작"));
+        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.2.png","사무/문구","필기도구, 카드","편리한, 선물용"));
+        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.1.png","유아/DIY","장난감, 인형, DIY","귀여운, 만들기"));
+        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.3.png","뷰티/미용","비누, 향수","예쁜, 향기로운"));
+        cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.6.png","전자/IT","폰케이스, 그립톡","얼리어답터, 유용한, 편리한"));
 		
 		
 		

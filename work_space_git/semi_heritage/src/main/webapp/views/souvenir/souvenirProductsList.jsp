@@ -10,6 +10,7 @@
    	DecimalFormat df = new DecimalFormat("###,###");
  	
   	List<SouvenirProductVO> productList = (List<SouvenirProductVO>)request.getAttribute("productList");
+  	List<SouvenirProductVO> productListAll = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    %>
 
 <script>
@@ -42,7 +43,7 @@ function chageLangSelect(){
                     <!-- Breadcrumb-->
                     <nav class="mb-3 pt-md-2 pt-lg-1" aria-label="Breadcrumb">
                         <ol class="breadcrumb breadcrumb-light">
-                            <li class="breadcrumb-item"><a href="<%=path%>/views/souvenir/souvenirMain.jsp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<%=path%>/souvenirMain.do">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">상품 목록</li>
                         </ol>
                     </nav>
@@ -75,7 +76,7 @@ function chageLangSelect(){
                             <div class="card card-light card-hover h-100">
 
                                 <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                    <a class="img-overlay" href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"></a>
+                                    <a class="img-overlay" href="<%=path%>/souvenirProductsDetail.do"></a>
                                     <div class="position-absolute start-0 top-0 pt-3 ps-3">
                                         <!-- <span class="d-table badge bg-info">Used</span> -->
                                     </div>
@@ -95,7 +96,7 @@ function chageLangSelect(){
                                         </div>
                                     </div>
                                     <h3 class="h6 mb-1">
-                                        <a class="nav-link-light" href="<%=path %>12.souvenirProductsDetail2.jsp" style="color: #A08DB4;"><%=productList.get(i).getSouv_pro_name() %></a>
+                                        <a class="nav-link-light" href="<%=path %>/souvenirProductsDetail.do" style="color: #A08DB4;"><%=productList.get(i).getSouv_pro_name() %></a>
                                     </h3>
                                     <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(productList.get(i).getSouv_pro_price()) %>원</div>
                                     <div class="fs-sm text-light opacity-70">
@@ -110,13 +111,13 @@ function chageLangSelect(){
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="<%=path%>/views/member/myPageCart.jsp" class="nav-link-light">장바구니</a></span>
+                                                    <span class="fs-xs text-light"><a href="<%=path%>/myPageCart.do" class="nav-link-light">장바구니</a></span>
                                                 </div>
                                             </div>
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp" class="nav-link-light">상세보기</a></span>
+                                                    <span class="fs-xs text-light"><a href="<%=path%>/souvenirProductsDetail.do" class="nav-link-light">상세보기</a></span>
                                                 </div>
                                             </div>
                                             
