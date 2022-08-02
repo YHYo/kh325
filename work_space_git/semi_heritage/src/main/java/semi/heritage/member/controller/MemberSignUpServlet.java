@@ -24,7 +24,7 @@ public class MemberSignUpServlet extends MyHttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect(req.getContextPath() + "/views/member/00.signUp.jsp");
+		resp.sendRedirect(req.getContextPath() + "/views/member/signUp.jsp");
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public class MemberSignUpServlet extends MyHttpServlet{
 			
 			if(result > 0) {
 				req.setAttribute("msg", "회원가입에 성공하였습니다!");
-				req.setAttribute("location", "/index.jsp");
+				req.setAttribute("location", "/index.do");
 			}else {
 				req.setAttribute("msg", "회원가입 실패!! (code:101=DB이슈)");
 				req.setAttribute("location", "/");

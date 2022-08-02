@@ -141,7 +141,7 @@
                             <li class="d-flex mb-2"><i class="fi-check-circle mt-1 me-2" style="color: #B0C729;"></i><span>사뿐사뿐 회원들과 함께 나누는 추억</span></li>
                             <li class="d-flex mb-0"><i class="fi-check-circle mt-1 me-2" style="color: #B0C729;"></i><span>사뿐사뿐과 함께하는 스탬프 투어</span></li>
                         </ul><img class="d-block mx-auto" src="<%=path %>/resources/img/semi-img/00.signup.main.png" width="344" alt="Illustartion">
-                        <div class="mt-sm-4 pt-md-3">계정이 있으신가요? <a href="00.signIn.jsp" style="color: #8957BD;"><b>로그인</b></a></div>
+                        <div class="mt-sm-4 pt-md-3">계정이 있으신가요? <a href="<%=path %>/views/member/signIn.jsp" style="color: #8957BD;"><b>로그인</b></a></div>
                     </div>
 
                     <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="https://accounts.google.com/"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="https://ko-kr.facebook.com/login"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
@@ -181,7 +181,7 @@
                                 <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
                                 <label class="form-check-label" for="agree-to-terms">사뿐사뿐 <a href='#' style="color: #8957BD;">이용약관</a> 및 <a href='#'  style="color: #8957BD;">개인정보보호정책</a>에<br>동의합니다.</label>
                             </div>
-                            <button class="btn btn-lg w-100" style="background-color: #8957BD; color: #fff;" type="submit" herf="index.jsp">Sign up         </button>
+                            <button class="btn btn-lg w-100" style="background-color: #8957BD; color: #fff;" type="submit" herf="index.do">Sign up         </button>
                         </form>
                     </div>
                 </div>
