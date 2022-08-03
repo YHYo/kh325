@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.heritage.common.util.MyHttpServlet;
+import semi.heritage.member.vo.Member;
 import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirPayVO;
 
 @WebServlet("/souvenirPay.do")
-public class SouvenirPayServlet extends HttpServlet{
-
+public class SouvenirPayServlet extends MyHttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private SouvenirService service = new SouvenirService();
@@ -22,12 +23,17 @@ public class SouvenirPayServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		List<SouvenirPayVO> payList = null;
-		int uNo = Integer.parseInt(req.getParameter("uNo"));
-		payList = service.getPayList(uNo);
+		int uNo = 0;
 		
-		req.setAttribute("userNumber", payList);
+		try {
+			Member loginMember = (Member)getSessionMember(req);
+			uNo = loginMember.getUno();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("payList", payList);
 		req.getRequestDispatcher("/views/souvenir/souvenirCheckout.jsp").forward(req, resp);
 
 	}
@@ -35,6 +41,11 @@ public class SouvenirPayServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req, resp);
+	}
+
+	@Override
+	public String getServletName() {
+		return "SouvenirPayServlet";
 	}
 
 }

@@ -2,9 +2,12 @@
 	pageEncoding="UTF-8"%>
 	
 <%@include file="/views/common/headerDark.jsp"%>
-<%-- <% String path = request.getContextPath(); %>  --%>
+
 
 <!-- Body-->
+
+
+
 
 <body class="bg-dark">
     <!-- Page loading spinner-->
