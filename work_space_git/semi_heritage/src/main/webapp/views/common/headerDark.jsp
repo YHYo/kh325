@@ -261,15 +261,10 @@ String saveId = "";
                 <%if(loginMember == null){ %>
                 <a class="btn btn-sm  d-none d-lg-block order-lg-3 p05" href="<%=path%>/views/member/signIn.jsp" style="font-size: 22px; color: #D97793;"><i class="fi-user me-2"></i>로그인</a>
                 <%}else{%>
-               <a class="nav-link dropdown-toggle align-items-center pe-sm-1" href="<%=path%>/community/main" data-bs-toggle="dropdown" role="button" aria-expanded="false" style="font-size: 22px;">
-                                <b><%=loginMember.getUname()%>님</b><span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y " style="width: 1px; height: 30px;"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<%=path%>/community/main" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>마이페이지</b></a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="<%=path%>/logout" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>로그아웃</b></a></li>
-                            </ul>
-                	
+               <a class="btn btn-sm  d-none d-lg-block order-lg-3 p05 dropdown" href="<%=path%>/myPageInfo.do"  style="font-size: 22px; color: #D97793;"><i class="fi-user me-2"></i><%=loginMember.getUname() %>님</a>
                 	<%} %>
+                	
+              
                 	
                 
                 
