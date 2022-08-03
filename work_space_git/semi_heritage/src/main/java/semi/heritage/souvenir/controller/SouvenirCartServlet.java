@@ -24,7 +24,7 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			int uNo = 0;
-			List<SouvenirCartVO> list = null;
+			List<SouvenirCartVO> cartList = null;
 			
 			try {
 				Member loginMember = (Member)getSessionMember(req);
@@ -35,10 +35,9 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 			}
 			
 
-			list = service.getCartList(uNo);
+			cartList = service.getCartList(uNo);
 			
-			req.setAttribute("cartList", list);
-//			req.setAttribute("pageInfo", pageInfo);
+			req.setAttribute("cartList", cartList);
 			req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
 		}
 		
