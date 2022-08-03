@@ -2,6 +2,7 @@ package semi.heritage.souvenir.vo;
 
 public class SouvenirCartVO {
 
+	private int seqNo;
 	private String souv_cart_no;
 	private int uno;
 	private int souv_pro_no;
@@ -28,10 +29,11 @@ public class SouvenirCartVO {
 	}
 
 	// 회원별 장바구니 (주문번호, 회원번호 제품명, 가격, 카테고리, 이미지주소)
-	public SouvenirCartVO( int uno, String souv_pro_name, int souv_pro_price, String souv_pro_category,
+	public SouvenirCartVO(int seqNo, int uno, String souv_pro_name, int souv_pro_price, String souv_pro_category,
 			String souv_pro_url) {
 		super();
 //		this.souv_cart_no = souv_cart_no;
+		this.seqNo = seqNo;
 		this.uno = uno;
 		this.souv_pro_name = souv_pro_name;
 		this.souv_pro_price = souv_pro_price;
@@ -54,12 +56,21 @@ public class SouvenirCartVO {
 		this.souv_pro_url = souv_pro_url;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "SouvenirCartVO [souv_cart_no=" + souv_cart_no + ", uno=" + uno + ", souv_pro_no=" + souv_pro_no
-				+ ", souv_pro_name=" + souv_pro_name + ", souv_pro_price=" + souv_pro_price + ", souv_pro_category="
-				+ souv_pro_category + ", buy_status=" + buy_status + ", delete_status=" + delete_status
-				+ ", souv_pro_url=" + souv_pro_url + "]";
+		return "SouvenirCartVO [seqNo=" + seqNo + ", souv_cart_no=" + souv_cart_no + ", uno=" + uno + ", souv_pro_no="
+				+ souv_pro_no + ", souv_pro_name=" + souv_pro_name + ", souv_pro_price=" + souv_pro_price
+				+ ", souv_pro_category=" + souv_pro_category + ", buy_status=" + buy_status + ", delete_status="
+				+ delete_status + ", souv_pro_url=" + souv_pro_url + "]";
+	}
+
+	public int getSeqNo() {
+		return seqNo;
+	}
+
+	public void setSeqNo(int seqNo) {
+		this.seqNo = seqNo;
 	}
 
 	public String getSouv_cart_no() {

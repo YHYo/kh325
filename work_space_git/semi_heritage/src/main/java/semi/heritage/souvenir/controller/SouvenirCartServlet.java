@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.heritage.common.util.MyHttpServlet;
+import semi.heritage.member.vo.Member;
 import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
 
 	@WebServlet("/myPageCart.do")
-	public class SouvenirCartServlet extends HttpServlet {
+	public class SouvenirCartServlet extends MyHttpServlet {
 		private static final long serialVersionUID = 1L;
 
 		private SouvenirService service = new SouvenirService();
@@ -25,7 +27,9 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 			List<SouvenirCartVO> list = null;
 			
 			try {
-					uNo = Integer.parseInt(req.getParameter("uNo"));
+				Member loginMember = (Member)getSessionMember(req);
+				uNo = loginMember.getUno();
+				System.out.println(uNo);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -33,7 +37,7 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 
 			list = service.getCartList(uNo);
 			
-			req.setAttribute("cart", list);
+			req.setAttribute("cartList", list);
 //			req.setAttribute("pageInfo", pageInfo);
 			req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
 		}
@@ -41,6 +45,12 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			doGet(req, resp);
+		}
+
+		@Override
+		public String getServletName() {
+			// TODO Auto-generated method stub
+			return "SouvenirCartServlet";
 		}
 	}
 

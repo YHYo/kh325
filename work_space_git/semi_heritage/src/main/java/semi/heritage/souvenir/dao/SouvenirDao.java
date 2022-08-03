@@ -117,35 +117,6 @@ public class SouvenirDao {
 		}
 		return sp;
 	}
-	
-	// 제품이름으로 찾기(장바구니 넣을때, 상세보기할때 사용)
-	public SouvenirProductVO findProductByName(Connection conn, String productName) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		SouvenirProductVO sp = null;
-		try {
-			String sql = " select * from SOUV_PRODUCT where SOUV_PRO_NAME = ? ";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, productName);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				int count = 1;
-				sp = new SouvenirProductVO();
-				sp.setSouv_pro_no(rs.getInt(count++));
-				sp.setSouv_pro_name(rs.getString(count++));
-				sp.setSouv_pro_price(rs.getInt(count++));
-				sp.setSouv_pro_category(rs.getString(count++));
-				sp.setSouv_pro_url(rs.getString(count++));
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rs);
-		}
-		return sp;
-	}
 
 	// 장바구니 추가
 	public int insertCart(Connection conn, SouvenirCartVO cart) {
@@ -180,7 +151,7 @@ public class SouvenirDao {
 		try {
 			// uNo번의 회원이 가진 장바구니의 제품명, 제품가격, 제품카테고리 출력 (구매 / 삭제한 품목 제외. 구매/삭제시 STATUS들이 Y로
 			// 변경)
-			String sql = "SELECT SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
+			String sql = "SELECT seqNo, SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
 					+ "FROM SOUV_CART WHERE UNO=?  AND BUY_STATUS='N' AND DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, uNo);
@@ -188,12 +159,13 @@ public class SouvenirDao {
 			while (rs.next()) {
 				int count = 1;
 
+				int seqNo = rs.getInt(count++);
 				String souv_pro_name = rs.getString(count++);
 				int souv_pro_price = rs.getInt(count++);
 				String souv_pro_category = rs.getString(count++);
 				String souv_pro_url = rs.getString(count++);
 
-				SouvenirCartVO info = new SouvenirCartVO(uNo, souv_pro_name, souv_pro_price, souv_pro_category,
+				SouvenirCartVO info = new SouvenirCartVO(seqNo, uNo, souv_pro_name, souv_pro_price, souv_pro_category,
 						souv_pro_url);
 				list.add(info);
 			}
