@@ -14,7 +14,7 @@ import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.member.service.MemberService;
 import semi.heritage.member.vo.Member;
 
-@WebServlet("/myPageInfo.do")
+@WebServlet("/update.do")
 public class MemberUpdateServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class MemberUpdateServlet extends MyHttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			// 1. 저장 경로 지정
 			String path = getServletContext().getRealPath("/resources/upload/photo");

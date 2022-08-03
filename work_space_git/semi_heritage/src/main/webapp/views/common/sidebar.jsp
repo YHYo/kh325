@@ -31,14 +31,15 @@
 
                         <div class="collapse d-md-block mt-3 a:hover" id="account-nav">
                             <div class="card-nav"><a class="card-nav-link" href="/myPageInfo.do"><i class="fi-user opacity-60 me-2"></i>회원정보 수정</a>
-                                <!-- <a class="card-nav-link" href="real-estate-account-security.html"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a> -->
-                                <a class="card-nav-link active" href="<%=path%>/myPageCart.do" style="color: #8957BD;"><i class="fi-home opacity-60 me-2"></i>장바구니</a>
+                                <a class="card-nav-link" href="<%=path%>/myPageCart.do" ><i class="fi-home opacity-60 me-2"></i>장바구니</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageLike.do"><i class="fi-heart opacity-60 me-2"></i>찜 목록</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageReview.do"><i class="fi-star opacity-60 me-2"></i>리뷰</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageOrder.do"><i class="fi-star opacity-60 me-2"></i>구매이력</a>
                                 <!-- <a class="card-nav-link" href="real-estate-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a> -->
                                 <a class="card-nav-link" href="<%=path%>/views/member/myPageStamp.jsp"><i class="fi-help opacity-60 me-2"></i>스탬프</a>
-                                <a class="card-nav-link" href="<%=path%>/views/member/signIn.jsp"><i class="fi-logout opacity-60 me-2"></i>로그아웃</a></div>
+                                <a class="card-nav-link" onclick="location.href='<%=path%>/logout';"><i class="fi-logout opacity-60 me-2"></i>로그아웃</a></div>
                         </div>
                     </div>
                 </aside>
+                
+                					
