@@ -15,7 +15,7 @@ import semi.heritage.souvenir.vo.SouvenirCategoryVO;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 
-@WebServlet("/souvenProductsDetail.do")
+@WebServlet("/souvenirProductsDetail.do")
 public class SouvenirProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

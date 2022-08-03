@@ -39,11 +39,11 @@ public class SouvenirService {
 	}
 	
 	//테스트
-	public SouvenirProductVO findProductByName(String productName) {
-		Connection conn = getConnection();
-		SouvenirProductVO sp = dao.findProductByName(conn, productName);
-		return sp;
-	}
+//	public SouvenirProductVO findProductByName(String productName) {
+//		Connection conn = getConnection();
+//		SouvenirProductVO sp = dao.findProductByName(conn, productName);
+//		return sp;
+//	}
 	
 	public SouvenirCartVO findCartByNo(int seqNo) {
 		Connection conn = getConnection();

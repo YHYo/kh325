@@ -73,18 +73,12 @@
                         <div class="d-flex flex-wrap align-items-center text-light mb-2">
                             <div class="text-nowrap border-end border-light pe-3 me-3">
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <span class="align-middle"><%=productDetail.getSouv_pro_category()%></span>
+                                <span class="align-middle"><%=productDetail.getSouv_pro_category()%>!!!!</span>
                             </div>
-                            <div class="text-nowrap">
+                            <div class="text-nowrap">ㅗㅗㅗㅗ
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <!-- <span class="text-light align-middle">  -->
-                                    
-                                     <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
-                                      <%for (int i = 0; i < cList.size(); i++){%>
-                                    	  <%if(productDetail.getSouv_pro_category().equals(cList.get(i).getcName())){ %>
-                                    		  <%=cList.get(i).getcKeyword()%>
-                                    		  <%}%>
-                                    		 <%}%>
+                                <span class="text-light align-middle"> 
+											안녕
                                     </span>
                             </div>
                         </div>
@@ -191,13 +185,13 @@
                                     <span class="align-middle"><%=productDetail.getSouv_pro_category()%></span>
                                 </div>
                                 <div class="text-nowrap">
-                                    
+                                   
                                      <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
-                                      <!-- %for (int i = 0; i < listKeyword.size(); i++){%> -->
-                                    	  <!-- %if(productDetail.getSouv_pro_category().equals(listKeyword.get(i).getcName())){ %> -->
-                                    		  <!-- %=listKeyword.get(i).getcKeyword()%> -->
-                                    		  <!-- %}%> -->
-                                    		 <!-- %}%> -->
+                                      <%for (int i = 0; i < cList.size(); i++){%>
+                                    	  <%if(productDetail.getSouv_pro_category().equals(cList.get(i).getcName())){ %>
+                                    		  <%=cList.get(i).getcKeyword()%>
+                                    		  <%}%>
+                                    		 <%}%>
 
                                 </div>
                             </div>
@@ -227,7 +221,7 @@
                         <div>
                             <div class="card card-light card-hover h-100">
                                 <div class="card-img-top card-img-hover">
-                                    <a class="img-overlay" href="12.souvenirProductsDetail3.jsp"></a>
+                                    <a class="img-overlay" href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(0).getSouv_pro_no()%>"></a>
                                     <img class="img-souvnir-dl" src="<%=pList.get(0).getSouv_pro_url()%>" alt="Image">
                                 </div>
 
@@ -239,7 +233,7 @@
                                         </div>
                                     </div>
                                     <h3 class="h6 mb-1">
-                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=pList.get(0).getSouv_pro_name()%></a>
+                                        <a class="nav-link-light" href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(0).getSouv_pro_no()%>" style="color: #A08DB4;"><%=pList.get(0).getSouv_pro_name()%></a>
                                     </h3>
                                     <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(pList.get(0).getSouv_pro_price()) %>원</div>
                                 </div>
@@ -274,7 +268,7 @@
                         <div>
                             <div class="card card-light card-hover h-100">
                                 <div class="card-img-top card-img-hover">
-                                    <a class="img-overlay" href="#"></a>
+                                    <a class="img-overlay" href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(i).getSouv_pro_no()%>"></a>
                                     <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                         <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                     </div><img class="img-souvnir-dl" src="<%=pList.get(i).getSouv_pro_url()%>" alt="Image">
@@ -287,7 +281,7 @@
                                         </div>
                                     </div>
                                     <h3 class="h6 mb-1">
-                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=pList.get(i).getSouv_pro_name()%></a>
+                                        <a class="nav-link-light" href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(i).getSouv_pro_no()%>" style="color: #A08DB4;"><%=pList.get(i).getSouv_pro_name()%></a>
                                     </h3>
                                     <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(pList.get(i).getSouv_pro_price()) %>원</div>
                                 </div>
@@ -299,13 +293,13 @@
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
+                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="#" class="nav-link-light">장바구니</a></span>
                                                 </div>
                                             </div>
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="12.souvenirProductsDetail2.jsp" class="nav-link-light">상세보기</a></span>
+                                                    <span class="fs-xs text-light"><a href="#" class="nav-link-light">상세보기</a></span>
                                                 </div>
                                             </div>
 
