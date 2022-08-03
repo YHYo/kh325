@@ -86,7 +86,7 @@ function chageCate(categories){
 					<div class="card card-light card-hover h-100">
 
 						<div class="tns-carousel-wrapper card-img-top card-img-hover">
-							<a class="img-overlay" href="<%=path+"/souvenProductsDetail.do?productNo=" + productList.get(i).getSouv_pro_no()%>"></a>
+							<a class="img-overlay" href="<%=path+"/souvenirProductsDetail.do?productNo=" + productList.get(i).getSouv_pro_no()%>"></a>
 							<div class="position-absolute start-0 top-0 pt-3 ps-3">
 								<!-- <span class="d-table badge bg-info">Used</span> -->
 							</div>
@@ -106,7 +106,7 @@ function chageCate(categories){
 							</div>
 							<h3 class="h6 mb-1">
 								<a class="nav-link-light"
-									href="<%=path%>/souvenirProductsDetail.do"
+									href="<%=path%>/souvenirProductsDetail.do?productNo=<%=productList.get(i).getSouv_pro_no()%>"
 									style="color: #A08DB4;"><%=productList.get(i).getSouv_pro_name()%></a>
 							</h3>
 							<div class="text-primary fw-bold mb-1 ms-1"><%=df.format(productList.get(i).getSouv_pro_price())%>원

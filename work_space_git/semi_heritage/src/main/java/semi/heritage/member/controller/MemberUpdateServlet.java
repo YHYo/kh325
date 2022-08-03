@@ -14,7 +14,7 @@ import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.member.service.MemberService;
 import semi.heritage.member.vo.Member;
 
-//@WebServlet("/member/update")
+@WebServlet("/myPageInfo.do")
 public class MemberUpdateServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -59,7 +59,7 @@ public class MemberUpdateServlet extends MyHttpServlet {
 //			newMember.setHobby(String.join(",", req.getParameterValues("hobby")));
 
 			if (loginMember.getUemail().equals(newMember.getUemail()) == false) {
-				sendCommonPage("잘못된 아이디 입니다.", "/member/mainPage", req, resp);
+				sendCommonPage("잘못된 아이디 입니다.", "/index.do", req, resp);
 				return;
 			}
 
@@ -68,14 +68,18 @@ public class MemberUpdateServlet extends MyHttpServlet {
 			if (result > 0) { // 업데이트 성공
 				newMember = service.findMemberById(newMember.getUemail());
 				setSessionMember(req, newMember);
-				sendCommonPage("회원정보 수정하였습니다.", "/member/myPageInfo", req, resp);
+				sendCommonPage("회원정보 수정하였습니다.", "/myPageInfo.do", req, resp);
 			} else {
-				sendCommonPage("오류로 회원정보를 수정할수 없습니다.", "/member/myPageInfo", req, resp);
+				sendCommonPage("오류로 회원정보를 수정할수 없습니다.", "/myPageInfo.do", req, resp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			sendCommonPage("인자가 잘못되었습니다.", "/member/mainPage", req, resp);
+			sendCommonPage("인자가 잘못되었습니다.", "/index.do", req, resp);
 		}
-	}
 
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		doGet(req, resp);
+//	}
+	}
 }

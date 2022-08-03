@@ -7,7 +7,7 @@
 <!-- Content-->
 <div class="col-lg-8 col-md-7 mb-5">
 	<form name="memberInfoFrm"
-		action="<%=request.getContextPath()%>/member/update" method="POST">
+		action="<%=request.getContextPath()%>/myPageInfo.do" method="POST">
 
 		<h1 class="h2">마이페이지</h1>
 		<div class="mb-2 pt-1">회원정보를 수정 해주세요</div>
@@ -22,7 +22,7 @@
 			<div class="col-lg-9 col-sm-8 mb-4">
 				<textarea class="form-control" id="account-bio" name="introduce"
 					rows="6" placeholder="사뿐사뿐에 멋진 소개를 남겨주세요">
-								<%= loginMember.getIntroduce() %>
+								<%=loginMember.getIntroduce()%>
 								</textarea>
 			</div>
 
@@ -44,7 +44,7 @@
 					<div class="pe-2">
 						<label class="form-label fw-bold">이름</label>
 						<div id="name-value">
-																<%= loginMember.getUname() %>
+							<%=loginMember.getUname()%>
 						</div>
 					</div>
 					<div class="me-n3" data-bs-toggle="tooltip" title="Edit">
@@ -66,8 +66,8 @@
 					<div class="pe-2">
 						<label class="form-label fw-bold">연락처</label>
 						<div id="phone-value">
-						<%= loginMember.getUpn() %>
-							
+							<%=loginMember.getUpn()%>
+
 						</div>
 					</div>
 					<div class="me-n3" data-bs-toggle="tooltip" title="Edit">

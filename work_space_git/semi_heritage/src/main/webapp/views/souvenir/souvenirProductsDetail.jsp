@@ -12,9 +12,8 @@
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
     SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");
-    List<SouvenirCategoryVO> cList = (List<SouvenirCategoryVO>)request.getAttribute("cList");
-   	List<SouvenirProductVO> pList = (List<SouvenirProductVO>)request.getAttribute("pList");
-   	String keyword = null;
+    List<SouvenirCategoryVO> listKeyword = (List<SouvenirCategoryVO>)request.getAttribute("listKeyword");
+   	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    %>
    
    <script type="text/javascript">
@@ -50,9 +49,7 @@
                 <ol class="breadcrumb breadcrumb-light">
             		
                     <li class="breadcrumb-item"><a href="<%=path%>/souvenirMain.do">사뿐몰</a></li>
-                    <%if(productDetail.getSouv_pro_category() != null) %>{
                     <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html"><%=productDetail.getSouv_pro_category()%></a></li>
-                    }
                     <li class="breadcrumb-item active" aria-current="page"><%=productDetail.getSouv_pro_name()%></li>
                 </ol>
             </nav>
@@ -77,15 +74,14 @@
                             </div>
                             <div class="text-nowrap">
                                 <i class="fi-list fs-lg opacity-70 me-2"></i>
-                                <!-- <span class="text-light align-middle">  -->
-                                    
-                                     <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
-                                      <%for (int i = 0; i < cList.size(); i++){%>
-                                    	  <%if(productDetail.getSouv_pro_category().equals(cList.get(i).getcName())){ %>
-                                    		  <%=cList.get(i).getcKeyword()%>
-                                    		  <%}%>
-                                    		 <%}%>
-                                    </span>
+                                <span class="align-middle">
+                                <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
+                                     <%for (int i = 0; i < listKeyword.size(); i++){%>
+                                    	 <%if(productDetail.getSouv_pro_category().equals(listKeyword.get(i).getcName())){ %>
+                                    		 <%=listKeyword.get(i).getcKeyword()%>
+                                    		 <%} %>
+                                    		<%}%>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -191,13 +187,16 @@
                                     <span class="align-middle"><%=productDetail.getSouv_pro_category()%></span>
                                 </div>
                                 <div class="text-nowrap">
+                                    <span class="text-light align-middle">
                                     
                                      <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
-                                      <!-- %for (int i = 0; i < listKeyword.size(); i++){%> -->
-                                    	  <!-- %if(productDetail.getSouv_pro_category().equals(listKeyword.get(i).getcName())){ %> -->
-                                    		  <!-- %=listKeyword.get(i).getcKeyword()%> -->
-                                    		  <!-- %}%> -->
-                                    		 <!-- %}%> -->
+                                     <%for (int i = 0; i < listKeyword.size(); i++){%>
+                                    	 <%if(productDetail.getSouv_pro_category().equals(listKeyword.get(i).getcName())){ %>
+                                    		 <%=listKeyword.get(i).getcKeyword()%>
+                                    		 <%}%>
+                                    		<%}%>
+                                    </span>
+
 
                                 </div>
                             </div>
@@ -228,7 +227,7 @@
                             <div class="card card-light card-hover h-100">
                                 <div class="card-img-top card-img-hover">
                                     <a class="img-overlay" href="12.souvenirProductsDetail3.jsp"></a>
-                                    <img class="img-souvnir-dl" src="<%=pList.get(0).getSouv_pro_url()%>" alt="Image">
+                                    <img class="img-souvnir-dl" src="<%=listIngi.get(0).getSouv_pro_url()%>" alt="Image">
                                 </div>
 
                                 <div class="card-body">
@@ -239,9 +238,9 @@
                                         </div>
                                     </div>
                                     <h3 class="h6 mb-1">
-                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=pList.get(0).getSouv_pro_name()%></a>
+                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=listIngi.get(0).getSouv_pro_name()%></a>
                                     </h3>
-                                    <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(pList.get(0).getSouv_pro_price()) %>원</div>
+                                    <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(listIngi.get(0).getSouv_pro_price()) %>원</div>
                                 </div>
 
                                 <!-- 상품 박스 하단 버튼 시작 -->
@@ -277,7 +276,7 @@
                                     <a class="img-overlay" href="#"></a>
                                     <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                         <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
-                                    </div><img class="img-souvnir-dl" src="<%=pList.get(i).getSouv_pro_url()%>" alt="Image">
+                                    </div><img class="img-souvnir-dl" src="<%=listIngi.get(i).getSouv_pro_url()%>" alt="Image">
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-between pb-1">
@@ -287,9 +286,9 @@
                                         </div>
                                     </div>
                                     <h3 class="h6 mb-1">
-                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=pList.get(i).getSouv_pro_name()%></a>
+                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=listIngi.get(i).getSouv_pro_name()%></a>
                                     </h3>
-                                    <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(pList.get(i).getSouv_pro_price()) %>원</div>
+                                    <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(listIngi.get(i).getSouv_pro_price()) %>원</div>
                                 </div>
 
                                 <!-- 상품 박스 하단 버튼 시작 -->

@@ -31,9 +31,9 @@
 		}
 	}
 
-	function prView() {
-		location.href = "/souvenirProductsDetail.do?productNo=<%=productDetail.getSouv_pro_no()%>";
-	}
+// 	function prView() {
+<%-- 		location.href = "/souvenirProductsDetail.do?productNo=<%=productDetail.getSouv_pro_no()%>"; --%>
+// 	}
 </script>
 
 
