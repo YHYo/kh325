@@ -23,11 +23,11 @@ public class SouvenirPayServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<SouvenirPayVO> list = null;
+		List<SouvenirPayVO> payList = null;
 		int uNo = Integer.parseInt(req.getParameter("uNo"));
-		SouvenirPayVO pay = service.getPayList(uNo);
+		payList = service.getPayList(uNo);
 		
-		req.setAttribute("userNumber", pay);
+		req.setAttribute("userNumber", payList);
 		req.getRequestDispatcher("/views/souvenir/souvenirCheckout.jsp").forward(req, resp);
 
 	}

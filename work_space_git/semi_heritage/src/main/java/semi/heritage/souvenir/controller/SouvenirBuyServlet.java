@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.heritage.member.service.MemberService;
+import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirBuyVO;
 
 @WebServlet("/souvenirBuy.do")
@@ -18,13 +18,13 @@ public class SouvenirBuyServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MemberService service = new MemberService();
+		SouvenirService service = new SouvenirService();
 		
-		List<SouvenirBuyVO> list = null;
+		List<SouvenirBuyVO> BuyList = null;
 		int uNo = Integer.parseInt(req.getParameter("uNo"));
-		SouvenirBuyVO buy = service.getBuyList(uNo);
+		BuyList = service.getBuyList(uNo);
 		
-		req.setAttribute("productOrder", buy);
+		req.setAttribute("productOrder", BuyList);
 		req.getRequestDispatcher("/views/member/myPageOrder.jsp").forward(req, resp);
 	}
 	
