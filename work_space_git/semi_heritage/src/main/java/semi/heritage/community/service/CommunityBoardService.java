@@ -33,7 +33,6 @@ public class CommunityBoardService {
 		return result;
 	}
 	
-
 	public List<CommunityBoard> getBoardList(PageInfo pageinfo, Map<String, String> searchMap, String type) {
 		Connection conn = getConnection();
 		String boardType = "";
@@ -101,7 +100,7 @@ public class CommunityBoardService {
 		CommunityBoard board = dao.findBoardByNo(conn, no, boardType);
 		
 		
-		// 조회수 증가 로직
+		// 議고쉶�닔 利앷� 濡쒖쭅
 		if(hasRead == true && board != null) {
 			int result = dao.updateReadCount(conn, board, boardType);
 			if(result > 0) {
@@ -165,7 +164,7 @@ public class CommunityBoardService {
 			if(replyResult > 0) {
 				commit(conn);
 			}
-			System.out.println("리플 갯수 오류");
+			System.out.println("由ы뵆 媛��닔 �삤瑜�");
 		}else {
 			rollback(conn);
 		}
