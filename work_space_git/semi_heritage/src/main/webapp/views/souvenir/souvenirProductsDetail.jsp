@@ -9,6 +9,26 @@
     
 <%@include file="/views/common/headerDark.jsp"%>
 
+   <script type="text/javascript">
+	function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
+		alert('장바구니에 담으시겠습니까?');
+		if (confirm("장바구니를 확인하시겠습니까?")) {
+			location.href = "<%=path%>/views/member/myPageCart.jsp";
+
+			if (obj != souvenirName) { //세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
+
+			} else {
+				alert("이미 존재하는 상품 입니다");
+			}
+		}
+	}
+
+	function prView() {
+		location.href = "souvenirProductsDetail.jsp?SOUV_PRO_NO=souvenirNo";
+	}
+</script>
+
+
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
     SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");
@@ -17,46 +37,6 @@
    	String keyword = null;
    %>
    
-   <script type="text/javascript">
-	function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
-		if(loginMember != null) { // 로그인 한 상태
-			alert('장바구니에 담으시겠습니까?');
-					add.cList(<%pList.get%>);
-					
-				if(confirm("장바구니를 확인하시겠습니까?")) {
-					location.href = "<%=path%>/";
-					//ajax로 보낸 후에 그 ajax에서 처리를 해줘야한대
-					
-					if()
-						
-						
-					
-				} else {
-				alert("이미 존재하는 상품 입니다");
-				
-				
-			}
-		} else { // 로그인 안한상태
-			alert('로그인이 필요합니다');
-			if(confirm("로그인 하시겠습니까?")) {
-				location.href = "<%=path%>/view/member/signIn.jsp";
-			}
-		}
-	}
-
-
-	function fnPay() {
-		if(loginMember != null) {
-			location.href = "<%=path%>/";
-		} else {
-			alert('로그인이 필요합니다');
-			if(confirm("로그인 하시겠습니까?")) {
-				location.href = "<%=path%>/view/member/signIn.jsp";
-			}
-		}
-	}
-	
-</script>
 
 <!-- Body-->
 
@@ -344,4 +324,7 @@
         </div>
     </main>
     <!-- Footer-->
+	
+</script>
+    
 <%@include file="/views/common/footer.jsp"%>
