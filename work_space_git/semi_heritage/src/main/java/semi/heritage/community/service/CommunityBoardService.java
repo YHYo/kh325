@@ -99,8 +99,6 @@ public class CommunityBoardService {
 		
 		CommunityBoard board = dao.findBoardByNo(conn, no, boardType);
 		
-		
-		// 議고쉶�닔 利앷� 濡쒖쭅
 		if(hasRead == true && board != null) {
 			int result = dao.updateReadCount(conn, board, boardType);
 			if(result > 0) {
@@ -139,7 +137,7 @@ public class CommunityBoardService {
 		return result;
 	}
 
-	public int saveReply(CommunityBoard board, CommunityReply reply, String type) {
+	public int saveReply(CommunityReply reply, String type, int boardNo) {
 		Connection conn = getConnection();
 		String boardType = "";
 		String replyType = "";
@@ -160,11 +158,11 @@ public class CommunityBoardService {
 		int result = dao.insertReply(conn, reply, replyType);
 		
 		if(result > 0 ) {
-			int replyResult = dao.replyCount(conn, boardType, replyType, board);
+			int replyResult = dao.replyCount(conn, boardType, replyType, boardNo);
 			if(replyResult > 0) {
 				commit(conn);
 			}
-			System.out.println("由ы뵆 媛��닔 �삤瑜�");
+			System.out.println("리플 갯수 오류");
 		}else {
 			rollback(conn);
 		}
@@ -187,7 +185,7 @@ public class CommunityBoardService {
 			boardType = "HIS_REPLY";
 		}
 		
-		int result = dao.deleteReply(conn, replyNo, type);
+		int result = dao.deleteReply(conn, replyNo, boardType);
 		
 		if(result > 0 ) {
 			commit(conn);

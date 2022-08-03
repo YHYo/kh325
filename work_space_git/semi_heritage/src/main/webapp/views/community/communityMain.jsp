@@ -51,21 +51,21 @@
                             <div class="d-sm-flex">
                                 <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
                                     <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span
-                                        class="dropdown-toggle-label">제목+내용</span></button>
+                                        class="dropdown-toggle-label">제목+글쓴이</span></button>
                                     <input type="hidden">
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#"><i
                                             class=" fs-lg opacity-60 me-2"></i><span
-                                            class="dropdown-item-label">제목+내용</span></a></li>
+                                            class="dropdown-item-label">제목+글쓴이</span></a></li>
                                         <li><a class="dropdown-item" href="#"><i
                                                         class="  fs-lg opacity-60 me-2"></i><span
                                                         class="dropdown-item-label">제목</span></a></li>
                                         <li><a class="dropdown-item" href="#"><i
                                                         class=" fs-lg opacity-60 me-2"></i><span
-                                                        class="dropdown-item-label">내용</span></a></li>
+                                                        class="dropdown-item-label">글쓴이</span></a></li>
                                         <li><a class="dropdown-item" href="#"><i
                                                         class="  fs-lg opacity-60 me-2"></i><span
-                                                        class="dropdown-item-label">글쓴이</span></a></li>
+                                                        class="dropdown-item-label">내용</span></a></li>
                                     </ul>
                                 </div>
                                 <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button">Search</button>

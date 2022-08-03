@@ -31,9 +31,14 @@ public class CommunityBoardList extends HttpServlet {
 		
 		try {
 			type = req.getParameter("type");
+			System.out.println("type : " + type);
 			String searchValue = req.getParameter("searchValue");
+			System.out.println("searchValue : " + searchValue);
 			if(searchValue != null && searchValue.length() > 0) {
 				String searchType = req.getParameter("searchType");
+				
+				System.out.println("searchType : " + searchType);
+				
 				searchMap.put(searchType, searchValue);
 			}
 			page = Integer.parseInt(req.getParameter("page"));
@@ -45,10 +50,16 @@ public class CommunityBoardList extends HttpServlet {
 		pageInfo = new PageInfo(page, 10, boardCount, 10);
 //		pageInfo = new PageInfo(page, 30, boardCount, 10); // 페이지(하단 페이지 버튼)가 30개로 보인다.
 //		pageInfo = new PageInfo(page, 10, boardCount, 20); // 게시글이 20개로 보인다.
+		
+		System.out.println("테스트1");
+		
 		list = service.getBoardList(pageInfo, searchMap, type);
+		
+		System.out.println("테스트2");
 		
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
+		req.setAttribute("type", type);
 		
 		if(type.equals("T")) {
 			req.getRequestDispatcher("/views/community/togetherBoard.jsp").forward(req, resp);

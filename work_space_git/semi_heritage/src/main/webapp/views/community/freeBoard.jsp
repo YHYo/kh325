@@ -4,10 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
-    
 <!-- Header -->
 <%@ include file="/views/common/headerLight.jsp" %>
+
 
 <%
 	List<CommunityBoard> list = (List<CommunityBoard>)request.getAttribute("list");
@@ -37,8 +36,8 @@
             <li class="breadcrumb-item active" aria-current="page">자유게시판</li>
             
             <!-- 글쓰기 테스트용!! -->
-            <%-- <a class="btn btn-primary btn-lg d-block " href="<%=path%>/community/write">
-            게시글등록</a> --%>
+            <a class="btn btn-primary btn-lg d-block " href="<%=path%>/community/write">
+            게시글등록</a>
             <!-- 글쓰기 테스트용!! -->
                     
         </ol>

@@ -145,7 +145,7 @@
     <div class="card py-md-4 py-3 shadow-sm">
         <div class="card-body ">
             <h3 class="mb-4 pb-sm-2">댓글남기기</h3>
-            <form class="needs-validation row gy-md-4 gy-3" action="<%=request.getContextPath()%>/community/reply?type=<%=type %>>" method="post">
+            <form class="needs-validation row gy-md-4 gy-3" action="<%=request.getContextPath()%>/community/reply?type=<%=type %>boardNo=<%=b.getNo() %>>" method="post">
                 <!-- <div class="col-sm-6">
                     <label class="form-label" for="comment-name">닉네임</label>
                     <input class="form-control form-control-lg" type="text" id="comment-name" placeholder="전소피아" required>

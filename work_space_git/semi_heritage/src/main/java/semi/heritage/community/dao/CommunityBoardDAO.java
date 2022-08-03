@@ -80,7 +80,7 @@ public class CommunityBoardDAO {
 
 	// 게시물의 갯수를 가져오는 쿼리문
 	// searchMap : key=탐색할 컨텐츠, value=키워드
-	// 탐색 가능 컨텐츠 : title&writer, title, writer
+	// 탐색 가능 컨텐츠 : title&writer, title, writer, content
 	public int getBoardCount(Connection conn, Map<String, String> searchMap, String type) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -89,14 +89,17 @@ public class CommunityBoardDAO {
 				+ "JOIN USERINFO U ON(B.UNO = U.UNO) "
 				+ "WHERE 1=1 AND B.STATUS = 'Y' ";
 
-		if (searchMap.containsKey("title&writer")) { 
-			query += "AND (FB.TITLE LIKE ? OR U.UNAME LIKE ?) ";
+		if (searchMap.containsKey("titleAndwriter")) { 
+			query += "AND (B.TITLE LIKE ? OR U.UNAME LIKE ?) ";
 		}
 		if (searchMap.containsKey("title")) { 
-			query += "AND FB.TITLE LIKE ? ";
+			query += "AND B.TITLE LIKE ? ";
 		}
 		if (searchMap.containsKey("writer")) {
 			query += "AND U.UNAME LIKE ? ";
+		}
+		if(searchMap.containsKey("content")) {
+			query += "AND B.CONTENT LIKE ? ";
 		}
 
 		int result = 0;
@@ -104,15 +107,18 @@ public class CommunityBoardDAO {
 			pstmt = conn.prepareStatement(query);
 			int count = 1;
 
-			if (searchMap.containsKey("title&writer")) {
-				pstmt.setString(count++, "%" + searchMap.get("title&writer") + "%");
-				pstmt.setString(count++, "%" + searchMap.get("title&writer") + "%");
+			if (searchMap.containsKey("titleAndwriter")) {
+				pstmt.setString(count++, "%" + searchMap.get("titleAndwriter") + "%");
+				pstmt.setString(count++, "%" + searchMap.get("titleAndwriter") + "%");
 			}
 			if (searchMap.containsKey("title")) {
 				pstmt.setString(count++, "%" + searchMap.get("title") + "%");
 			}
 			if (searchMap.containsKey("writer")) {
 				pstmt.setString(count++, "%" + searchMap.get("writer") + "%");
+			}
+			if (searchMap.containsKey("content")) {
+				pstmt.setString(count++, "%" + searchMap.get("content") + "%");
 			}
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -136,21 +142,24 @@ public class CommunityBoardDAO {
 				+ "FROM ( "
 				+ "    SELECT ROWNUM AS RNUM, NO, TITLE, UNAME, CREATE_DATE, ORIGINAL_FILE, READCOUNT, STATUS "
 				+ "    FROM ( "
-				+ "      SELECT  FB.NO, FB.TITLE, U.UNAME, FB.CREATE_DATE, FB.ORIGINAL_FILE, FB.READCOUNT, FB.STATUS "
-				+ "        FROM " + type + " FB JOIN USERINFO U ON(FB.UNO = U.UNO) "
+				+ "      SELECT  B.NO, B.TITLE, U.UNAME, B.CREATE_DATE, B.ORIGINAL_FILE, B.READCOUNT, B.STATUS "
+				+ "        FROM " + type + " B JOIN USERINFO U ON(B.UNO = U.UNO) "
 				+ "        WHERE 1 = 1 "
-				+ "        AND FB.STATUS = 'Y'";
+				+ "        AND B.STATUS = 'Y'";
 
-		String queryAfter = "  ORDER BY FB.NO DESC " + "    ) " + ") " + " WHERE RNUM BETWEEN ? and ? ";
+		String queryAfter = "  ORDER BY B.NO DESC " + "    ) " + ") " + " WHERE RNUM BETWEEN ? and ? ";
 
-		if (searchMap.containsKey("title&writer")) {
-			queryBefore += "AND (FB.TITLE LIKE ? OR U.UNAME LIKE ?)";
+		if (searchMap.containsKey("titleAndwriter")) {
+			queryBefore += "AND (B.TITLE LIKE ? OR U.UNAME LIKE ?)";
 		}
 		if (searchMap.containsKey("title")) {
-			queryBefore += "AND FB.FREE_TITLE LIKE ? ";
+			queryBefore += "AND B.TITLE LIKE ? ";
 		}
 		if (searchMap.containsKey("writer")) {
 			queryBefore += "AND U.UNAME LIKE ? ";
+		}
+		if(searchMap.containsKey("content")) {
+			queryBefore += "AND B.CONTENT LIKE ? ";
 		}
 
 		String query = queryBefore + queryAfter;
@@ -159,15 +168,18 @@ public class CommunityBoardDAO {
 			pstmt = conn.prepareStatement(query);
 
 			int count = 1;
-			if (searchMap.containsKey("title&writer")) {
-				pstmt.setString(count++, "%" + searchMap.get("title&writer") + "%");
-				pstmt.setString(count++, "%" + searchMap.get("title&writer") + "%");
+			if (searchMap.containsKey("titleAndwriter")) {
+				pstmt.setString(count++, "%" + searchMap.get("titleAndwriter") + "%");
+				pstmt.setString(count++, "%" + searchMap.get("titleAndwriter") + "%");
 			}
 			if (searchMap.containsKey("title")) {
 				pstmt.setString(count++, "%" + searchMap.get("title") + "%");
 			}
 			if (searchMap.containsKey("writer")) {
 				pstmt.setString(count++, "%" + searchMap.get("writer") + "%");
+			}
+			if (searchMap.containsKey("content")) {
+				pstmt.setString(count++, "%" + searchMap.get("content") + "%");
 			}
 
 			pstmt.setInt(count++, pageInfo.getStartList());
@@ -398,7 +410,7 @@ public class CommunityBoardDAO {
 	}
 	
 	// 리플 개수 올려주는 쿼리
-	public int replyCount(Connection conn, String boardType, String replyType, CommunityBoard board) {
+	public int replyCount(Connection conn, String boardType, String replyType, int boardNo) {
 		PreparedStatement pstmt = null;
 		String query = "UPDATE " + boardType + " B"
 				+ "SET B.REPLY_COUNT = (SELECT COUNT(NO) FROM " + replyType + " WHERE BOARD_NO = ?) "
@@ -407,8 +419,8 @@ public class CommunityBoardDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, board.getNo());
-			pstmt.setInt(2, board.getNo());
+			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, boardNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
