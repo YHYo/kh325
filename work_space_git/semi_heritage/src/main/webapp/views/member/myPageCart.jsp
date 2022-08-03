@@ -14,9 +14,6 @@ SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
 
 %>
 
-
-
-				
                 <div class="col-lg-8 col-md-7 mb-5">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h1 class="h2 mb-0">장바구니</h1><a class="fw-bold text-decoration-none" href="#"  style="color: #8957BD;">
