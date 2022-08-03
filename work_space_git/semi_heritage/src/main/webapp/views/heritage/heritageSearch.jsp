@@ -23,18 +23,15 @@
        
 <% 
 List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
-List<Integer> favlist = (List<Integer>)request.getAttribute("favlist");
-// List<Integer> nolist = new ArrayList<Integer>();
-// for(int j = 0; j < list.size(); j++){
-// 	nolist.add(list.get(j).getNo());
-// }
-
-
+List<Integer> favlist = (List<Integer>)request.getAttribute("favlist"); // 문화재 리스트에서 문화재 찜개수만 가지는 list
+// List<Integer> hnolist = (List<Integer>)request.getAttribute("hnolist"); // 문화재 리스트에서 문화재 고유번호만 가지는 list
 PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
 String searchValue = request.getParameter("searchValue");
 int boardCount = (Integer)request.getAttribute("boardCount");
-int favoriteNum = (Integer)request.getAttribute("no");
+int favoriteNum = (Integer)request.getAttribute("favoriteNum");
 int uNo = (Integer)request.getAttribute("uNo");
+
+
 // int no = (Integer)request.getAttribute("no");
 
 // String searchType = "reigon";
@@ -68,7 +65,7 @@ int uNo = (Integer)request.getAttribute("uNo");
                         <!-- Search form-->
                         <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/heritageSearch.do" method="get">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
-                                <input class="form-control p03" type="text" id="searchValue" name="searchValue" value="<%=searchValue%>" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
+                                <input class="form-control p03" type="text" id="searchValue" name="searchValue" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
                             <hr class="d-md-none my-2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-10" style="background-color: #D97793; font-size: 22px;" type="button">&nbsp;&nbsp;검&nbsp;&nbsp;색&nbsp;&nbsp;</button>&nbsp;
@@ -557,14 +554,12 @@ int uNo = (Integer)request.getAttribute("uNo");
                     <div class="col-sm-6 col-xl-4">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="real-estate-single-v1.html"></a>
-
-
-                                <div class="tns-carousel-inner"><img src="<%=list.get(i).getImageUrl()%>" alt="Image" style="height: 300px; width: 405px;"></div>
+                                <a class="img-overlay" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=list.get(i).getNo()%>"></a>
+                                <div class="tns-carousel-inner" ><img src="<%=list.get(i).getImageUrl()%>"  alt="Image" style="height: 300px; width: 405px;">
+                                  </div>
                             </div>
                             <div class="card-body position-relative pb-3" >
-<%--                             <a href="<%=path%>/heritageDeatil.do?<%=list.get(i).getNo()%>"></a> --%>
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="real-estate-single-v1.html"><%=list.get(i).getCcbaMnm1()%></a>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" ><%=list.get(i).getCcbaMnm1()%></a>
                                     <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i><%=list.get(i).getCcbaCtcdNm() + " " + list.get(i).getCcsiName()%></div>
                                 </h3>
                                 <h2 class="mb-1 fs-xs fw-normal" style="width:350px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><%=list.get(i).getContent()%></h2>

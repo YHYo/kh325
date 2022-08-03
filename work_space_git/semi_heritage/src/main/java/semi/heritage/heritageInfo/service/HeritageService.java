@@ -114,10 +114,19 @@ public class HeritageService {
 	}
 
 	// 문화재 비디오에서 no로 상세조회
-	public HeritageVideo findHeritageVideoByNo(int videoNo) {
+	public String findHeritageVideoByNo(int videoNo) {
 		Connection conn = getConnection();
-		HeritageVideo hv = dao.findHeritageVideoByNo(conn, videoNo);
-		return hv;
+		String hv = dao.findHeritageVideoByNo(conn, videoNo);
+			return hv;
 	}
-
+	
+	
+	
+//	public static void main(String[] args) {
+//		HeritageService h = new HeritageService();
+//		Connection conn = getConnection();
+//		HeritageDao i = new HeritageDao();
+//		i.findHeritageVideoByNo(conn, 220);
+//		System.out.println(i);
+//	}
 }
