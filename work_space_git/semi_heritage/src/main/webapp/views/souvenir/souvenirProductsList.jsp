@@ -86,7 +86,7 @@ function chageCate(categories){
 					<div class="card card-light card-hover h-100">
 
 						<div class="tns-carousel-wrapper card-img-top card-img-hover">
-							<a class="img-overlay" href="<%=path%>/souvenirProductsDetail.do"></a>
+							<a class="img-overlay" href="<%=path+"/souvenProductsDetail.do?productNo=" + productList.get(i).getSouv_pro_no()%>"></a>
 							<div class="position-absolute start-0 top-0 pt-3 ps-3">
 								<!-- <span class="d-table badge bg-info">Used</span> -->
 							</div>

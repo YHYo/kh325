@@ -11,6 +11,8 @@
    	DecimalFormat df = new DecimalFormat("###,###");
  	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
    	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
+	
+   	
    %>
    
 
@@ -30,7 +32,7 @@
 	}
 
 	function prView() {
-		location.href = "/souvenirProductsDetail.do?productNo=_____";
+		location.href = "/souvenirProductsDetail.do?productNo=<%=productDetail.getSouv_pro_no()%>";
 	}
 </script>
 
@@ -146,7 +148,7 @@
 					</div>
 					<h3 class="h6 mb-1">
 						<a class="nav-link-light mt-3 mb-2"
-							href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"
+							href="<%=path%>/souvenirProductsDetail.do"
 							style="color: #A08DB4;"><%=listIngi.get(0).getSouv_pro_name() %></a>
 					</h3>
 					<div class="text-primary fw-bold mt-0"><%=df.format(listIngi.get(0).getSouv_pro_price()) %>원</div>
@@ -167,7 +169,7 @@
 									<i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
 									<span class="fs-xs text-light"><a class="nav-link-light"
 										onclick="prView();"
-										href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp">상세보기</a></span>
+										href="<%=path%>/souvenirProductsDetail.do">상세보기</a></span>
 								</div>
 							</div>
 
