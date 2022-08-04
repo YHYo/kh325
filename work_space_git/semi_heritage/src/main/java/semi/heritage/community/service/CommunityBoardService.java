@@ -55,15 +55,19 @@ public class CommunityBoardService {
 	public int save(CommunityBoard board, String type) {
 		Connection conn = getConnection();
 		String boardType = "";
+		String boardSeqType = "";
 		
 		if(type.equals("F")) {
 			boardType = "FREE_BOARD";
+			boardSeqType = "FREE";
 		}
 		if(type.equals("T")) {
 			boardType = "TO_BOARD";
+			boardSeqType = "TO";
 		}
 		if(type.equals("H")) {
 			boardType = "HIS_BOARD";
+			boardSeqType = "HIS";
 		}
 		
 		int result = 0;
@@ -71,7 +75,7 @@ public class CommunityBoardService {
 		if(board.getNo() != 0 ) {
 			result = dao.updateBoard(conn, board, boardType);
 		} else {
-			result = dao.insertBoard(conn, board, boardType);
+			result = dao.insertBoard(conn, board, boardType, boardSeqType);
 		}
 		
 		if(result > 0) {

@@ -208,9 +208,9 @@ public class CommunityBoardDAO {
 	}
 
 	// 글쓰기 기능
-	public int insertBoard(Connection conn, CommunityBoard board, String type) {
+	public int insertBoard(Connection conn, CommunityBoard board, String type, String noType) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO " + type + " VALUES(SEQ_FREE_NO.NEXTVAL,?,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,DEFAULT)";
+		String query = "INSERT INTO " + type + " VALUES(SEQ_" + noType + "_NO.NEXTVAL,?,?,?,?,?,?,DEFAULT,DEFAULT,SYSDATE,SYSDATE,DEFAULT)";
 		int result = 0;
 
 		try {
@@ -218,7 +218,7 @@ public class CommunityBoardDAO {
 			pstmt.setInt(1, board.getuNo());
 			pstmt.setString(2, board.getTitle());
 			pstmt.setString(3, board.getContent());
-			pstmt.setString(4, ""); // 게시글 타입
+			pstmt.setString(4, board.getType()); // 게시글 타입
 			pstmt.setString(5, board.getOriginal_file());
 			pstmt.setString(6, board.getRenamed_file());
 
