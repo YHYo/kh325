@@ -60,8 +60,8 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
             <!-- Breadcrumb-->
             <nav class="mb-3 pt-md-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="real-estate-catalog-rent.html">문화재검색</a></li>
+                    <li class="breadcrumb-item"><a href="<%=path%>/index.do">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<%=path%>/heritageSearch.do">문화재검색</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><%= h.getCcbaMnm1() + " (" + h.getCcbaMnm2() + ")" %></li>
                 </ol>
             </nav>
@@ -157,7 +157,7 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         <h3 class="h3 pb-3">리뷰(<%=HertiageReview_Count%>개)
                         </h3>
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between">
-                            <a class="btn btn-outline-primary mb-sm-0 mb-3" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>Add review</a>
+                            <a class="btn btn-outline-primary mb-sm-0 mb-3" id="review" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>Add review</a>
                             <div class="d-flex align-items-center ms-sm-4">
                                 <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i
                                         class="fi-arrows-sort text-muted mt-n1 me-2"></i>Sort by:</label>
@@ -168,7 +168,14 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                             </div>
                         </div>
                     </div>
+                    
+                    <script>
+                    	$('#review').on("click", function() {
+							alert('클릭 이벤트 발생');
+						});
+                    </script>
                     <!-- Review-->
+                    <div style="overflow: auto; height: 700px">
                    <% for(int i= 0; i<list.size(); i++){
                 	   %>
                     <div class="mb-4 pb-4 border-bottom">
@@ -188,22 +195,22 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         </div>
                     </div>
                     <%} %>
-                    -
+                    </div>
                     <!-- Pagination-->
-                    <nav class="mt-2 mb-4" aria-label="Reviews pagination">
-                        <ul class="pagination">
-                            <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-                            <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                            </li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item d-none d-sm-block">...</li>
-                            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i
-                                        class="fi-chevron-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
+<!--                     <nav class="mt-2 mb-4" aria-label="Reviews pagination"> -->
+<!--                         <ul class="pagination"> -->
+<!--                             <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li> -->
+<!--                             <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span> -->
+<!--                             </li> -->
+<!--                             <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li> -->
+<!--                             <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li> -->
+<!--                             <li class="page-item d-none d-sm-block">...</li> -->
+<!--                             <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li> -->
+<!--                             <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i -->
+<!--                                         class="fi-chevron-right"></i></a> -->
+<!--                             </li> -->
+<!--                         </ul> -->
+<!--                     </nav> -->
                 </div>
                 <!-- Sidebar-->
                 <aside class="col-lg-4 col-md-5 ms-lg-auto pb-1">

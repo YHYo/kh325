@@ -292,28 +292,28 @@ public class HeritageDao {
 	}
 
 	// 문화재 비디오 테이블에서 no로 상세조회
-	public HeritageVideo findHeritageVideoByNo(Connection conn, int videoNo) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		HeritageVideo hv = null;
-		String query = "SELECT videoUrl FROM heritageVideo " + "WHERE no = ? ";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, videoNo);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				hv = new HeritageVideo();
-				hv.setVideoUrl(rs.getString("videoUrl"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-			close(rs);
-		}
-		System.out.println(hv);
-		return hv;
-	}
+    public String findHeritageVideoByNo(Connection conn, int videoNo) {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String hv = "";
+        String query = "SELECT VIDEOURL FROM HERITAGEVIDEO " + "WHERE NO = ? ";
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, videoNo);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                hv = rs.getString(1);
+            }
+//            System.out.println(hv);
+            return hv;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+            close(rs);
+        }
+        return hv;
+    }
 
 	// 문화재 검색페이지 리스트를 가져오는 메소드
 	public List<HeritageVO> findAll(Connection conn, PageInfo pageInfo, String ccbaMnm, String[] ccbaCtcdNm,

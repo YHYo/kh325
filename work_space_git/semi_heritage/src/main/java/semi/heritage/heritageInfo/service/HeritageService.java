@@ -114,12 +114,12 @@ public class HeritageService {
 	}
 
 	// 문화재 비디오에서 no로 상세조회
-	public HeritageVideo findHeritageVideoByNo(int videoNo) {
-		Connection conn = getConnection();
-		HeritageVideo hv = dao.findHeritageVideoByNo(conn, videoNo);
-		return hv;
-	}
-
+    public String findHeritageVideoByNo(int videoNo) {
+        Connection conn = getConnection();
+        String hv = dao.findHeritageVideoByNo(conn, videoNo);
+            return hv;
+    }
+    
 	// 문화재 검색페이지 리스트를 가져오는 메소드
 	public List<HeritageVO> findAll(PageInfo pageInfo, String ccbaMnm, String[] ccbaCtcdNm, String[] gcodeName,
 			String[] ccmaName, String[] ccceName, String startYear, String endYear) {
