@@ -11,14 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.common.util.PageInfo;
 import semi.heritage.community.service.CommunityBoardService;
 import semi.heritage.community.vo.CommunityBoard;
 
-@WebServlet("/community/list")
-public class CommunityBoardList extends HttpServlet {
+@WebServlet("/community/search")
+public class CommunityMainSearch extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CommunityBoardService service = new CommunityBoardService();
+	
+	@Override
+	public String getServletName() {
+		return "communityMain";
+	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,18 +32,15 @@ public class CommunityBoardList extends HttpServlet {
 		int boardCount = 0;
 		PageInfo pageInfo = null;
 		List<CommunityBoard> list = null;
-		String type = "";
+		String[] type = {"T", "H", "F"};
+		int[] postNum = {10, 10, 10};
 		Map<String, String> searchMap = new HashMap<>();
 		
 		try {
-			type = req.getParameter("type");
-			System.out.println("type : " + type);
 			String searchValue = req.getParameter("searchValue");
-			System.out.println("searchValue : " + searchValue);
 			if(searchValue != null && searchValue.length() > 0) {
 				String searchType = req.getParameter("searchType");
 				System.out.println("searchType : " + searchType);
-				
 				searchMap.put(searchType, searchValue);
 			}
 			page = Integer.parseInt(req.getParameter("page"));
@@ -45,31 +48,18 @@ public class CommunityBoardList extends HttpServlet {
 			
 		}
 		
-		boardCount = service.getBoardCount(searchMap, type);
-		pageInfo = new PageInfo(page, 10, boardCount, 10);
-//		pageInfo = new PageInfo(page, 30, boardCount, 10); // 페이지(하단 페이지 버튼)가 30개로 보인다.
-//		pageInfo = new PageInfo(page, 10, boardCount, 20); // 게시글이 20개로 보인다.
-		
-		System.out.println("테스트1");
-		
-		list = service.getBoardList(pageInfo, searchMap, type);
-		
-		System.out.println("테스트2");
-		
-		req.setAttribute("list", list);
-		req.setAttribute("pageInfo", pageInfo);
-		req.setAttribute("type", type);
-		
-		if(type.equals("T")) {
-			req.getRequestDispatcher("/views/community/togetherBoard.jsp").forward(req, resp);
+		int count = 1;
+		for(int i = 0; i < type.length; i++) {
+			boardCount = service.getBoardCount(searchMap, type[i]);
+			pageInfo = new PageInfo(page, 10, boardCount, postNum[i]);
+			list = service.getBoardList(pageInfo, searchMap, type[i]);
+			
+			req.setAttribute("list" + count++, list);
+			req.setAttribute("pageInfo", pageInfo);
 		}
-		if(type.equals("F")) {
-			req.getRequestDispatcher("/views/community/freeBoard.jsp").forward(req, resp);
-		}
-		if(type.equals("H")) {
-			req.getRequestDispatcher("/views/community/studyBoard.jsp").forward(req, resp);
-		}
-		
+				
+		req.getRequestDispatcher("/views/community/communityMainSearch.jsp").forward(req, resp);
+			
 	}
 	
 	@Override

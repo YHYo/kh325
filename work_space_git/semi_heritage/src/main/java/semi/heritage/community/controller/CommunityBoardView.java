@@ -19,8 +19,11 @@ public class CommunityBoardView extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int boardNo = Integer.parseInt(req.getParameter("boardNo"));
+		int boardNo = Integer.parseInt(req.getParameter("boardNo"));		
+		System.out.println("boardNo : " + boardNo);
+		
 		String type = req.getParameter("type");
+		System.out.println("type : " + type);
 		
 		CommunityBoard board = service.findBoardByNo(boardNo, true, type);
 		

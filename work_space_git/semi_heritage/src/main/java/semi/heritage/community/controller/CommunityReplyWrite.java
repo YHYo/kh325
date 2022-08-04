@@ -26,7 +26,6 @@ public class CommunityReplyWrite extends MyHttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			Member loginMember = getSessionMember(req);
-			
 			int replyWriterNo = Integer.parseInt(req.getParameter("uNo"));
 			
 			if(loginMember.getUno() != replyWriterNo) {

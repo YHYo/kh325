@@ -19,7 +19,7 @@ import semi.heritage.member.vo.Member;
 public class CommunityBoardWrite extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CommunityBoardService service = new CommunityBoardService();
-	private Member loginMember  = new Member();
+	
 	
 	@Override
 	public String getServletName() {
@@ -29,21 +29,26 @@ public class CommunityBoardWrite extends MyHttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-//			Member loginMember = getSessionMember(req);
-			loginMember = getSessionMember(req);
+			Member loginMember = getSessionMember(req);
+			
+			System.out.println(loginMember.toString());
+			
 			if(loginMember != null) {
 				// 정상흐름
 				req.getRequestDispatcher("/views/community/communityWrite.jsp").forward(req, resp);
 				return;
-			}
+			} 
 		} catch (Exception e) {
 		}
 		sendCommonPage("로그인 이후 사용할 수 있습니다.", "/views/community/communityMain.jsp", req, resp);
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			System.out.println("write post!");
+			
 			// 1. 저장 경로 지정
 			String path = getServletContext().getRealPath("/resources/community/boardUpload");
 			// 2. 파일사이즈 지정
@@ -56,25 +61,29 @@ public class CommunityBoardWrite extends MyHttpServlet {
 			// 멀티 파라메터 선언 끝
 			System.out.println(path);
 			
-//			Member loginMember = getSessionMember(req);
-//			// 세션이 풀렸거나 실제 글쓴 사람과 세션이 일치하지 않은 경우 = 보안적인 요구사항
+			Member loginMember = getSessionMember(req);
+			// 세션이 풀렸거나 실제 글쓴 사람과 세션이 일치하지 않은 경우 = 보안적인 요구사항
 //			System.out.println(mr.getParameter("writer"));
 //			if(loginMember == null 
 //					|| loginMember.getUno().equals(mr.getParameter("writer")) == false) {
 //				sendCommonPage("잘못된 접근입니다. (code=101)", "/board/list", req, resp);
 //				return;
 //			}
+			String type = mr.getParameter("ap-category");
+			
+			System.out.println("파일 첨부 테스트1 : " + mr.getOriginalFileName("upfile"));
+			System.out.println("파일 첨부 테스트2 : " + mr.getFilesystemName("upfile"));
 			
 			CommunityBoard board = new CommunityBoard();
-			board.setTitle(mr.getParameter("ap-title").strip());
 			board.setuNo(loginMember.getUno());
-			board.setuName(loginMember.getUname());
+			board.setTitle(mr.getParameter("ap-title").strip());
 			board.setContent(mr.getParameter("ap-description").trim());
+			board.setType(type);
 			board.setOriginal_file(mr.getOriginalFileName("upfile"));
 			board.setRenamed_file(mr.getFilesystemName("upfile"));
-			System.out.println(board);
 			
-			String type = mr.getParameter("ap-category");
+			System.out.println(board.toString());
+			
 			
 			int result = service.save(board, type);
 			
