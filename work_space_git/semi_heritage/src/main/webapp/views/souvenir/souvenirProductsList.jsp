@@ -124,7 +124,7 @@ function chageCate(categories){
 									<div class="col me-sm-1">
 										<div class="bg-dark rounded text-center w-100 h-100 p-2">
 											<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-											<span class="fs-xs text-light"><button type="submit" class="nav-link-light">장바구니</button></span>
+											<span class="fs-xs text-light"><button type="submit" class="nav-link-light bg-dark" style="border : none;">장바구니</button></span>
 										</div>
 									</div>
 									<div class="col me-sm-1">
