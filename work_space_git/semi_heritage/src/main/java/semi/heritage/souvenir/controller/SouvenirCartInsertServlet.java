@@ -17,21 +17,22 @@ import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
 import semi.heritage.souvenir.vo.SouvenirProductVO;
 
+// -------------------------- 장바구니 추가 Servlet -------------------------- //
 
 /**
  * 1. get 요청이 올 경우 -> 회원가입 페이지로 이동
  * 2. post 요청이 올 경우 -> 회원가입 기능 동작...?
  */
-@WebServlet("/member/myPageCart.do")
+@WebServlet("/souvenirInsert.do")
 public class SouvenirCartInsertServlet extends MyHttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private SouvenirService service = new SouvenirService();
 	
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doPost(req, resp);
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		doPost(req, resp);
 //		try {
 //			Member loginMember = getSessionMember(req);
 //			
@@ -46,7 +47,7 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 //		
 //		resp.sendRedirect(req.getContextPath() + "/views/souvenir/enroll.jsp");
 //		doGet(req, resp);
-	}
+//	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,34 +55,46 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 //		List<SouvenirCartVO> list = new ArrayList<SouvenirCartVO>();
 		SouvenirProductVO SVO = new SouvenirProductVO();
 		
-		try {
+	
 			
 			HttpSession session = req.getSession(); //HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 세션을 생성합니다
 			System.out.println(session.getAttribute("loginMember"));
-			Member member = (Member) session.getAttribute("loginMember");
+			Member loginMember = (Member) session.getAttribute("loginMember");
 			
-			if(member == null) {
-				sendCommonPage("로그인후 이용해주세요.", "/views/main/index.jsp", req, resp);
+			if(loginMember == null) {
+				sendCommonPage("로그인후 이용해주세요.", "/views/member/signIn.jsp", req, resp);
 				return;
 			}
 			int productNo = Integer.parseInt(req.getParameter("productNo"));
 			
 			SVO = service.findProductByNo(productNo);
-			int userno = member.getUno();
+			int userno = loginMember.getUno();
 			
 			
 			int result = service.insertCart(SVO, userno);
+			System.out.println("인서트 결과 " + result);
 			
 			if(result > 0) {
-				sendCommonPage("찜 등록되었습니다.", "/souvenirProductsList.do", req, resp);
+				sendCommonPage("장바구니 등록되었습니다.", "/souvenirProductsList.do", req, resp);
 				
 			}else {
-				sendCommonPage("찜 실패하였습니다. (code=101)", "/souvenirProductsList.do", req, resp);
+				sendCommonPage("장바구니 담기 실패하였습니다. (code=101)", "/souvenirProductsList.do", req, resp);
 			}
 			
 			
-			
-			
+	}
+	
+//	req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);
+//	}
+//	
+	
+	@Override
+	public String getServletName() {
+		return "SouvenirCartInsertServlet";
+	}
+	
+}
+
 // 마이페이지 리스트 수정할때 한번 싸봐라			
 //			int userno = member.getUno();
 //			System.out.println(userno);
@@ -92,9 +105,9 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 //			req.setCharacterEncoding("UTF-8");
 //			req.setAttribute("list", list);
 //			req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
-	//----------------------------------------		
-			
-			
+//----------------------------------------		
+
+
 //			insert.setUno(Integer.parseInt(req.getParameter("uno")));
 //			insert.setSouv_pro_no(Integer.parseInt(req.getParameter("souv_pro_no")));
 //			insert.setSouv_pro_name(req.getParameter("souv_pro_name").trim());
@@ -114,16 +127,3 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 //				req.setAttribute("location", "/");
 //			}
 //			req.getRequestDispatcher("/views/common/msg.jsp").forward(req, resp);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	@Override
-	public String getServletName() {
-		return "SouvenirCartInsertServlet";
-	}
-	
-}

@@ -15,7 +15,10 @@ import semi.heritage.member.vo.Member;
 import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
 
-	@WebServlet("/myPageCart.do")
+//-------------------------- 장바구니 Servlet -------------------------- //
+
+
+	@WebServlet("/member/myPageCart.do")
 	public class SouvenirCartServlet extends MyHttpServlet {
 		private static final long serialVersionUID = 1L;
 

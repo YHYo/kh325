@@ -22,6 +22,7 @@ function chageCate(categories){
 }
 </script>
 
+<form action="<%=path%>/souvenirInsert.do" method="post" >
 
 <!-- Body-->
 <!-- Navbar-->
@@ -85,7 +86,7 @@ function chageCate(categories){
 				%>
 				<div class="col-sm-6 mb-4">
 					<div class="card card-light card-hover h-100">
-
+					<input type="hidden" name="productNo" value="<%=productList.get(i).getSouv_pro_no()%>">
 						<div class="tns-carousel-wrapper card-img-top card-img-hover">
 							<a class="img-overlay" href="<%=path+"/souvenirProductsDetail.do?productNo=" + productList.get(i).getSouv_pro_no()%>"></a>
 							<div class="position-absolute start-0 top-0 pt-3 ps-3">
@@ -123,16 +124,14 @@ function chageCate(categories){
 									<div class="col me-sm-1">
 										<div class="bg-dark rounded text-center w-100 h-100 p-2">
 											<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-											<span class="fs-xs text-light"><a
-											
-												href="<%=path+"/member/myPageCart.do?productNo=" + productList.get(i).getSouv_pro_no()%>" class="nav-link-light">장바구니</a></span>
+											<span class="fs-xs text-light"><button type="submit" class="nav-link-light">장바구니</button></span>
 										</div>
 									</div>
 									<div class="col me-sm-1">
 										<div class="bg-dark rounded text-center w-100 h-100 p-2">
 											<i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
 											<span class="fs-xs text-light"><a
-												href="<%=path+"/souvenirProductsDetail.do?productNo=" + productList.get(i).getSouv_pro_no()%>"
+												href="<%=path%>/souvenirProductsDetail.do"
 												class="nav-link-light">상세보기</a></span>
 										</div>
 									</div>
@@ -150,7 +149,7 @@ function chageCate(categories){
 				<!-- item 끝 -->
 
 			</div>
-
+</form>
 		</div>
 	</div>
 </div>
