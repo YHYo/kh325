@@ -111,12 +111,12 @@
 					<%} %>
 					
 					<%-- 다음으로 가기 --%>
-				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getNextPage()%>" aria-label="Next"><i
+				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=H&page=<%=pageInfo.getNextPage()%>" aria-label="Next"><i
                             class="fi-chevron-right"></i></a>
                 </li>
                 
 				<%-- 마지막으로 가기 --%>
-				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getEndPage()%>" aria-label="Next"><i
+				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=H&page=<%=pageInfo.getEndPage()%>" aria-label="Next"><i
                             class="fi-chevrons-right"></i></a>
                 </li>
                     

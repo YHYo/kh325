@@ -128,15 +128,6 @@
                             class="fi-chevrons-right"></i></a>
                 </li>
                 
-                <!-- <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                </li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i
-                            class="fi-chevron-right"></i></a>
-                </li> -->
             </ul>
         </nav>
     </div>
