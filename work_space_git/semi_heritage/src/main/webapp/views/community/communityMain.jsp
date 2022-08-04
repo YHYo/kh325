@@ -234,17 +234,17 @@
 				</tr>
 				<%} else {%>
 				<%-- 게시글 리스트 시작 --%>
-				<%for(CommunityBoard b : list3) {%>
+				<%for(CommunityBoard b3 : list3) {%>
 				<tr>
 					<td>
 						<div class="etc2">
-							<a href="<%=path+"/community/view?type=H&boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
+							<a href="<%=path+"/community/view?type=F&boardNo="+b3.getNo()%>"><%=b3.getTitle() %></a>
 						</div>
 					</td>
-					<td><%=b.getuName() %></td>
+					<td><%=b3.getuName() %></td>
 					<%-- 게시판 추천은 없는 것이라서 임의로 작성일 넣음 --%>
-					<td><%=b.getCreate_date() %></td>
-					<td><%=b.getReply_count() %></td>
+					<td><%=b3.getCreate_date() %></td>
+					<td><%=b3.getReply_count() %></td>
 				</tr>
 				<%} %>
 				<%} %>
