@@ -3,7 +3,7 @@
 
 <style>
 	.searchOption {
-		width: 150px
+		width: 130px
 		
 	}
 

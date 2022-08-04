@@ -32,12 +32,12 @@
     <nav class="mb-2 pt-md-2" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="real-estate-home-v1.html"><i class="fi-home"></i> Home</a></li>
-            <li class="breadcrumb-item"><a href="1boardMain.html">커뮤니티</a></li>
+            <li class="breadcrumb-item"><a href="<%=path%>/community/main">커뮤니티</a></li>
             <li class="breadcrumb-item active" aria-current="page">자유게시판</li>
             
             <!-- 글쓰기 테스트용!! -->
-            <a class="btn btn-primary btn-lg d-block " href="<%=path%>/community/write">
-            게시글등록</a>
+            <%-- <a class="btn btn-primary btn-lg d-block " href="<%=path%>/community/write">
+            게시글등록</a> --%>
             <!-- 글쓰기 테스트용!! -->
                     
         </ol>
@@ -82,13 +82,17 @@
            			<%} %>
            			<%-- 게시글 리스트 끝 --%>
            		<%} %>
-           		
             </tbody>
         </table>
-   
 	</div>
-
     <div>
+    	<!--게시글 하단-->
+        <div class="d-flex right-box">
+            <!-- 게시글등록 버튼 Action buttons -->
+            <a class="btn btn-primary btn-lg d-block right" href="<%=path%>/community/write">
+                게시글등록</a>
+        </div>
+        <div class="d-flex left-box">
         <!-- 페이지 번호 Pagination-->
         <nav class="mt-2 mb-4" aria-label="Reviews pagination">
             <ul class="pagination">

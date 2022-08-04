@@ -4,7 +4,13 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<%
+	CommunityBoard board = (CommunityBoard)request.getAttribute("board");
+	String type = (String)request.getAttribute("type");
+
+%>
+
 <style>
     /* 테이블 반띵 */
     
@@ -208,15 +214,17 @@
 <!-- Title-->
 <div class="mar">
     <div class="mb-4 text-center center-block">
-        <h1 class="h2 mb-0">글쓰기</h1>
+        <h1 class="h2 mb-0">게시글 수정</h1>
     </div>
     <!-- Basic info-->
     <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
-    <form id="write" action="<%=path%>/community/write" method="POST" enctype="multipart/form-data">
+    <form id="write" action="<%=path%>/community/update" method="POST" enctype="multipart/form-data">
+    	<input type="hidden" name="boardNo type" value="<%=board.getNo() %>">
+    	
         <div>
             <h2 class="h4 mb-4"><i class="fi-pencil text-primary fs-5 mt-n1 me-2"></i>Write</h2>
             <label class="form-label" for="ap-title">제목<span class="text-danger">*</span></label>
-            <input class="form-control" type="text" id="ap-title" placeholder="제목을 입력하세요" name="ap-title" value="" required>
+            <input class="form-control" type="text" id="ap-title" name="ap-title" value="<%=board.getTitle() %>>" required>
         </div>
         <br>
         <div>
@@ -230,11 +238,17 @@
         <br>
         <div>
             <label class="form-label" for="ap-category">내용<span class="text-danger">*</span></label>
-            <textarea class="form-control" id="ap-description" name="ap-description" rows="12" placeholder="내용을 입력하세요"></textarea><span class="form-text">1500 characters
-                    left</span>
+            <textarea class="form-control" id="ap-description" name="ap-description" rows="12" ><%=board.getContent()%></textarea><span class="form-text"></span>
 
         </div>
         <br>
+        
+        <!-- 기존 파일 여부 -->
+        <%if(board.getOriginal_file() != null && board.getOriginal_file().length() > 0){ %>
+    		<input type="hidden" name="original_file" value="<%=board.getOriginal_file()%>"/>
+			<input type="hidden" name="renamed_file" value="<%=board.getRenamed_file()%>"/>
+    	<%} %>
+        
         <!-- 파일첨부 Photos / video-->
         <h2 class="h4 mb-4"><i class="fi-image text-primary fs-5 mt-n1 me-2"></i>Photos / video</h2>
         <div class="alert alert-info mb-4" role="alert">
@@ -248,7 +262,8 @@
         <div class="mar2">
             <!-- <section class="mar d-sm-flex justify-content-between pt-4 writebtn"> -->
             	<!-- javascript:history.back(); -->
-                <a class="btn btn-primary btn-lg d-block mb-1 writeBtn" href="#" onclick="return post_form()">글쓰기</a>
+                <a class="btn btn-primary btn-lg d-block mb-1 writeBtn" href="#" onclick="return post_form()">수정</a>
+                <a class="btn btn-primary btn-lg d-block mb-1 writeBtn" href="#" onclick="return post_form()">목록으로</a>
                 <!-- <button type="submit">글쓰기</button> -->
             <!-- </section> -->
         </div>

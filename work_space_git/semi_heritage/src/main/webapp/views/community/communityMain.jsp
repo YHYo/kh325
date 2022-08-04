@@ -9,7 +9,18 @@
 
 <%
 	List<CommunityBoard> list1 = (List<CommunityBoard>)request.getAttribute("list1");
-
+	List<CommunityBoard> list2 = (List<CommunityBoard>)request.getAttribute("list2");
+	List<CommunityBoard> list3 = (List<CommunityBoard>)request.getAttribute("list3");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	String type = (String)request.getAttribute("type");
+	/* String searchType = "title"; */
+	String searchType = "";
+	String searchValue = "";
+	String searchParamValue = request.getParameter("searchValue");
+	if(searchParamValue != null && searchParamValue.length() > 0) {
+		searchType = request.getParameter("searchType");
+		searchValue = request.getParameter("searchValue");
+	}
 %>
 
 <style>
@@ -23,6 +34,25 @@
 	    width: 48%;
 	    float: right;
 	    position: relative;
+	}
+	
+	.etc1 {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 700px;
+	}
+		
+	.etc2 {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 330px;
+	}
+	
+	.searchOption {
+		width: 130px
+		
 	}
 </style>
 <!-- Hero-->
@@ -43,39 +73,53 @@
             </div>
             <div class="col-xl-8 col-lg-9 col-md-10 mx-auto px-0">
             <!-- 검색창 Search form-->
-                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5">
-                            <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
-                                <input class="form-control" type="text" placeholder="관심있는 내용을 검색해보세요!">
-                            </div>
-                            <hr class="d-md-none my-2">
-                            <div class="d-sm-flex">
-                                <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
-                                    <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span
-                                        class="dropdown-toggle-label">제목+글쓴이</span></button>
-                                    <input type="hidden">
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i
-                                            class=" fs-lg opacity-60 me-2"></i><span
-                                            class="dropdown-item-label">제목+글쓴이</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><i
-                                                        class="  fs-lg opacity-60 me-2"></i><span
-                                                        class="dropdown-item-label">제목</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><i
-                                                        class=" fs-lg opacity-60 me-2"></i><span
-                                                        class="dropdown-item-label">글쓴이</span></a></li>
-                                        <li><a class="dropdown-item" href="#"><i
-                                                        class="  fs-lg opacity-60 me-2"></i><span
-                                                        class="dropdown-item-label">내용</span></a></li>
-                                    </ul>
-                                </div>
-                                <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="button">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="position-absolute d-none d-xxl-block bottom-0 start-0 w-100 bg-white zindex-1" style="border-top-left-radius: 30px; border-top-right-radius: 30px; height: 30px;"></div>
-        </section>
+             <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5" action="<%=path%>/community/search" method="get">
+                 <div class="input-group input-group-lg border-end-md"><span class="input-group-text text-muted rounded-pill ps-3"><i class="fi-search"></i></span>
+                     <input class="form-control" type="text" name="searchValue" value="<%=searchValue%>" placeholder="관심있는 내용을 검색해보세요!">
+                 </div>
+                 <hr class="d-md-none my-2">
+                 <div class="d-sm-flex">
+                     <div class="dropdown w-100 mb-sm-0 mb-3" data-bs-toggle="select">
+                     <div class="col-12 searchOption">
+                     	<select class="form-select" id="inline-form-select" name="searchType">
+						    <option selected>검색옵션</option>
+						    <option value="titleAndwriter">제목+글쓴이</option>
+						    <option value="title">제목</option>
+						    <option value="writer">글쓴이</option>
+						    <option value="content">내용</option>
+					    </select>
+                     </div>
+                     
+                     
+                     
+                     
+                     
+                         <!-- <button class="btn btn-link btn-lg dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span
+                             class="dropdown-toggle-label">검색옵션</span></button>
+                         <input type="hidden">
+                         <ul class="dropdown-menu">
+                             <li><a class="dropdown-item" href="#"><i
+                                 class=" fs-lg opacity-60 me-2"></i><span
+                                 class="dropdown-item-label">제목+글쓴이</span></a></li>
+                             <li><a class="dropdown-item" href="#"><i
+                                             class="  fs-lg opacity-60 me-2"></i><span
+                                             class="dropdown-item-label">제목</span></a></li>
+                             <li><a class="dropdown-item" href="#"><i
+                                             class=" fs-lg opacity-60 me-2"></i><span
+                                             class="dropdown-item-label">글쓴이</span></a></li>
+                             <li><a class="dropdown-item" href="#"><i
+                                             class="  fs-lg opacity-60 me-2"></i><span
+                                   class="dropdown-item-label">내용</span></a></li>
+                          </ul> -->
+                      </div>
+                      <button class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-3" type="submit">Search</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+   </div>
+   <div class="position-absolute d-none d-xxl-block bottom-0 start-0 w-100 bg-white zindex-1" style="border-top-left-radius: 30px; border-top-right-radius: 30px; height: 30px;"></div>
+</section>
 <!-- Page header-->
 <section class="container pt-1 mt-1">
     <!-- Breadcrumb-->
@@ -86,10 +130,9 @@
                 <li class="breadcrumb-item active" aria-current="page">커뮤니티</li>
             </ol>
             <!-- Action buttons -->
-            <a class="btn btn-primary btn-lg d-block " href="1boardWriting.html">
+            <a class="btn btn-primary btn-lg d-block " href="<%=path%>/community/write">
                     게시글등록</a>
         </section>
-        </div>
     </nav>
     <br>
     <!-- Light table head -->
@@ -113,8 +156,7 @@
             		<%for(CommunityBoard b : list1) {%>
             			<tr>
             				<td>
-            					<!-- <a href="<%=path+"/board/view?boardNo="+b.getNo()%>"><%=b.getTitle() %></a> -->
-            					<a href="<%=path+"community/view?type=F&boardNo="+b.getNo()%>"><%=b.getTitle() %></a>
+            					<div class="etc1"><a href="<%=path+"/community/view?type=T&boardNo="+b.getNo()%>"><%=b.getTitle() %></a></div>
             				</td>
             				<td><%=b.getuName() %></td>
             				<%-- 게시판 추천은 없는 것이라서 임의로 작성일 넣음 --%>
@@ -123,66 +165,6 @@
             			</tr>
             		<%} %>
             	<%} %>
-                <!-- <tr>
-                    <td>안양->파주 / 1박 2일 함께 가실분?!</td>
-                    <td>유나영</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>[16th] 소피의 사뿐사뿐 투어 모집합니다.</td>
-                    <td>전소피아</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>(男마감)안동하회마을 게스트하우스 벙개(25세-37세) </td>
-                    <td>안동주인장</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>[5번째 독도투어] 함께해요!!</td>
-                    <td>나임 킴</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>8월 15일 청와대 함께하실분!!</td>
-                    <td>정원일</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>안양->파주 / 1박 2일 함께 가실분?!</td>
-                    <td>유나영</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>[16th] 소피의 사뿐사뿐 투어 모집합니다.</td>
-                    <td>전소피아</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>(男마감)안동하회마을 게스트하우스 벙개(25세-37세) </td>
-                    <td>안동주인장</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>[5번째 독도투어] 함께해요!!</td>
-                    <td>나임 킴</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>8월 15일 청와대 함께하실분!!</td>
-                    <td>정원일</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr> -->
             </tbody>
         </table>
     </div>
@@ -191,41 +173,32 @@
         <div class="d-sm-flex align-items-center justify-content-between ">
             <h1 class="h2 mb-2 "> <i class="fi-search"></i> 역사연구소</h1><a class="btn btn-link fw-normal p-0" href="<%=path%>/community/list?type=H">더보기<i class="fi-arrow-long-right ms-2"></i></a>
         </div>
-        </h1>
+        <hr>
         <table class="table">
             <thead class="thead-light">
             </thead>
             <tbody>
-                <tr>
-                    <td>고구려 벽화와 일본벽화 특징</td>
-                    <td>하영쓰</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>한국사 1급의 가치에 대해서</td>
-                    <td>정온리원</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>독도가 한국땅인 이유</td>
-                    <td>수아 정</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>美 뉴욕에서 최초로 선보인 신라금관</td>
-                    <td>William</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>마한의 왕족과 귀족들은 사실 고구려로 많이 향했지.</td>
-                    <td>서녕채</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
+                <%if(list2 == null || list2.isEmpty()) {%>
+            		<%-- 게시글이 없는 상황 --%>
+            		<tr>
+            			<td colspan="4">
+            				조회된 게시글이 없습니다.
+            			</td>
+            		</tr>
+            	<%} else {%>
+            		<%-- 게시글 리스트 시작 --%>
+            		<%for(CommunityBoard b : list2) {%>
+            			<tr>
+            				<td>
+            					<div class="etc2"><a href="<%=path+"/community/view?type=H&boardNo="+b.getNo()%>"><%=b.getTitle() %></a></div>
+            				</td>
+            				<td><%=b.getuName() %></td>
+            				<%-- 게시판 추천은 없는 것이라서 임의로 작성일 넣음 --%>
+            				<td><%=b.getCreate_date() %></td>
+            				<td><%=b.getReply_count() %></td>
+            			</tr>
+            		<%} %>
+            	<%} %>
             </tbody>
         </table>
     </div>
@@ -238,36 +211,27 @@
             <thead class="thead-light">
             </thead>
             <tbody>
-                <tr>
-                    <td>귀여운 달팽이 분양받으실 분?</td>
-                    <td>형채군</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>횐님덜,, 거제에서 올라왔읍니다,,,인사박겠읍니다,,,</td>
-                    <td>길라임</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>저희집 고양이 좀 보고가세요. </td>
-                    <td>소피</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>코딩 참 쉽지 않나요? </td>
-                    <td>빛해성</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
-                <tr>
-                    <td>신입생활 질문드립니다.. </td>
-                    <td>미향</td>
-                    <td><em class="fi-like"></em>&nbsp;15</td>
-                    <td><em class="fi-chat-right">&nbsp;2</td>
-                </tr>
+                <%if(list3 == null || list3.isEmpty()) {%>
+            		<%-- 게시글이 없는 상황 --%>
+            		<tr>
+            			<td colspan="4">
+            				조회된 게시글이 없습니다.
+            			</td>
+            		</tr>
+            	<%} else {%>
+            		<%-- 게시글 리스트 시작 --%>
+            		<%for(CommunityBoard b : list3) {%>
+            			<tr>
+            				<td>
+            					<div class="etc2"><a href="<%=path+"/community/view?type=H&boardNo="+b.getNo()%>"><%=b.getTitle() %></a></div>
+            				</td>
+            				<td><%=b.getuName() %></td>
+            				<%-- 게시판 추천은 없는 것이라서 임의로 작성일 넣음 --%>
+            				<td><%=b.getCreate_date() %></td>
+            				<td><%=b.getReply_count() %></td>
+            			</tr>
+            		<%} %>
+            	<%} %>
             </tbody>
         </table>
     </div>

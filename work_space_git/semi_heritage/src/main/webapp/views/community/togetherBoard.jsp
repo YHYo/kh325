@@ -159,6 +159,14 @@
         </table>
     </div>
     <div>
+    	<!--게시글 하단-->
+        <div class="d-flex right-box">
+            <!-- 게시글등록 버튼 Action buttons -->
+            <a class="btn btn-primary btn-lg d-block right" href="<%=path%>/community/write">
+                게시글등록</a>
+        </div>
+        <div class="d-flex left-box">
+    
         <!-- 페이지 번호 Pagination-->
         <nav class="mt-2 mb-4" aria-label="Reviews pagination">
             <ul class="pagination">

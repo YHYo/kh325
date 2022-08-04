@@ -79,7 +79,7 @@
         <!--게시글 하단-->
         <div class="d-flex right-box">
             <!-- 게시글등록 버튼 Action buttons -->
-            <a class="btn btn-primary btn-lg d-block right" href="1boardWriting.html">
+            <a class="btn btn-primary btn-lg d-block right" href="<%=path%>/community/write">
                 게시글등록</a>
         </div>
         <!-- 페이지 번호 Pagination-->
