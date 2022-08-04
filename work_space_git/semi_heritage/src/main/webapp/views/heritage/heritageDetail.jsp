@@ -55,6 +55,40 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                 </div>
             </div>
         </div>
+<!--         리뷰 더보기 팝업 -->
+<div class="modal fade" id="modal-review-more" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header d-block position-relative border-0 pb-0 px-sm-5 px-4">
+                        <h3 class="modal-title mt-4 text-center">리뷰(<%=HertiageReview_Count%>개)
+                        </h3>
+                        <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 px-4" style="overflow: auto; height: 800px">
+                        <% for(int i= 0; i< list.size(); i++){
+                	   %>
+                    <div class="mb-4 pb-4 border-bottom">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="<%=path%>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Avatar">
+                                <div class="ps-2">
+                                    <h6 class="fs-base mb-0"><%=list.get(i).getRev_userEmail() %></h6>
+                                </div>
+                            </div><span class="text-muted fs-sm"><%=list.get(i).getRevDate()%></span>
+                        </div>
+                        <p><%=list.get(i).getRevContents()%></p>
+                        <div class="d-flex align-items-center">
+                            <button class="btn-like" type="button"><i class="fi-like"></i><span>(5)</span></button>
+                            <div class="border-end me-1">&nbsp;</div>
+                            <button class="btn-dislike" type="button"><i
+                                    class="fi-dislike"></i><span>(1)</span></button>
+                        </div>
+                    </div>
+                    <%} %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Page header-->
         <section class="container pt-5 mt-5">
             <!-- Breadcrumb-->
@@ -169,14 +203,10 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         </div>
                     </div>
                     
-                    <script>
-                    	$('#review').on("click", function() {
-							alert('클릭 이벤트 발생');
-						});
-                    </script>
+                  
                     <!-- Review-->
-                    <div style="overflow: auto; height: 700px">
-                   <% for(int i= 0; i<list.size(); i++){
+                    <div style="overflow: hidden; height: 570px">
+                   <%if(list != null){ for(int i= 0; i< list.size(); i++){
                 	   %>
                     <div class="mb-4 pb-4 border-bottom">
                         <div class="d-flex justify-content-between mb-3">
@@ -191,10 +221,16 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                             <button class="btn-like" type="button"><i class="fi-like"></i><span>(5)</span></button>
                             <div class="border-end me-1">&nbsp;</div>
                             <button class="btn-dislike" type="button"><i
-                                    class="fi-dislike"></i><span>(3)</span></button>
+                                    class="fi-dislike"></i><span>(1)</span></button>
                         </div>
                     </div>
-                    <%} %>
+                    <%}} %>
+                    
+                    </div>
+                    <div class="mb-4 pb-4 border-bottom">
+                        <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between">
+                            <a class="btn btn-outline-primary mb-sm-0 mb-3" id="review" href="#modal-review-more" data-bs-toggle="modal"><i class="fi-plus me-1"></i>리뷰 더보기</a>
+                        </div>
                     </div>
                     <!-- Pagination-->
 <!--                     <nav class="mt-2 mb-4" aria-label="Reviews pagination"> -->
