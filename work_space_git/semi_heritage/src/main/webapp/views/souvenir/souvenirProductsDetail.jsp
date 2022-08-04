@@ -11,29 +11,21 @@
 
    <script type="text/javascript">
 	function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
-		alert('장바구니에 담으시겠습니까?');
-		if (confirm("장바구니를 확인하시겠습니까?")) {
-			location.href = "<%=path%>/views/member/myPageCart.jsp";
-
-			if (obj != souvenirName) { //세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
-
-			} else {
-				alert("이미 존재하는 상품 입니다");
+		if (confirm('장바구니에 담으시겠습니까?')) {
+		
+		} alert("장바구니에 담겼습니다");	
 			}
-		}
-	}
 
-	function prView() {
-		location.href = "souvenirProductsDetail.jsp?SOUV_PRO_NO=souvenirNo";
-	}
-</script>
+	</script>
 
 
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
     SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");
+    SouvenirProductVO cart = (SouvenirProductVO)request.getAttribute("SouvenirCartInsertServlet");
     List<SouvenirCategoryVO> cList = (List<SouvenirCategoryVO>)request.getAttribute("cList");
    	List<SouvenirProductVO> pList = (List<SouvenirProductVO>)request.getAttribute("pList");
+   	
    	String keyword = null;
    %>
    
@@ -170,6 +162,7 @@
                     <!-- 배송 및 교환환불 끝-->
 
                     <!-- Post meta-->
+                    
                     <div class="d-flex flex-wrap border-top border-light fs-sm text-light pt-4 pb-5 pb-md-2">
                         <div class="border-end border-light pe-3 me-3">
                             <span class="opacity-70">Published: <strong>May 9, 2021</strong></span>
@@ -195,12 +188,11 @@
                                 <div class="text-nowrap">
                                     
                                      <!-- 문제의 그 코드 : 아늑함따뜻함 출력하기 왜 만들었는지 후회 중 -->
-                                      <!-- %for (int i = 0; i < listKeyword.size(); i++){%> -->
-                                    	  <!-- %if(productDetail.getSouv_pro_category().equals(listKeyword.get(i).getcName())){ %> -->
-                                    		  <!-- %=listKeyword.get(i).getcKeyword()%> -->
-                                    		  <!-- %}%> -->
-                                    		 <!-- %}%> -->
-
+                                      <%for (int i = 0; i < cList.size(); i++){%>
+                                    	  <%if(productDetail.getSouv_pro_category().equals(cList.get(i).getcName())){ %>
+                                    		  <%=cList.get(i).getcKeyword()%>
+                                    		  <%}%> 
+                                    		 <%}%>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +200,7 @@
 
                             <div class="mt-2" style="text-align: center;">
                                 <button class="btn btn-outline-light btn-lg mb-4 me-5" type="button" style="padding-left: 25%; padding-right : 25%">
-                                  <i class="fi-cart me-2">&nbsp 장바구니</i></button>
+                                  <i id="SouvenirCartInsertServlet" class="fi-cart me-2">&nbsp 장바구니</i></button>
                                 <br>
                                 <a href="<%=path%>/souvenirPay.do" class="btn btn-lg me-5" data-bs-toggle="collapse" style="background-color: #C389FF; color: #fff; padding-left: 25%; padding-right : 25%;">
                                     <i class="fi-credit-card me-2" style="text-align: center;">&nbsp 구매하기</i></a>

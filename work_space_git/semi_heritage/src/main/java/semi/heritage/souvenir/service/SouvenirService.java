@@ -59,9 +59,9 @@ public class SouvenirService {
 		return list;
 	}
 
-	public int insertCart(SouvenirCartVO cart) {
+	public int insertCart(SouvenirProductVO cart, int userno) {
 		Connection conn = getConnection();
-		int result = dao.insertCart(conn, cart);
+		int result = dao.insertCart(conn, cart, userno);
 
 		if (result > 0) {
 
@@ -102,5 +102,6 @@ public class SouvenirService {
 		close(conn);
 		return list;
 	}
+	
 	
 }

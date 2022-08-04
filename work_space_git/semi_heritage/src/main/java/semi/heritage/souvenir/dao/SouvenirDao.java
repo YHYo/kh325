@@ -119,14 +119,14 @@ public class SouvenirDao {
 	}
 
 	// 장바구니 추가
-	public int insertCart(Connection conn, SouvenirCartVO cart) {
+	public int insertCart(Connection conn, SouvenirProductVO cart, int userno) {
 		PreparedStatement pstmt = null;
 		String query = "INSERT INTO SOUV_CART VALUES(seqNo.NEXTVAL, to_char(SYSDATE,'YYYYMMDDHH24'),?,?,?,?,?,?,DEFAULT, DEFAULT)";
 		int result = 0;
 
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, cart.getUno());
+			pstmt.setInt(1, userno);
 			pstmt.setInt(2, cart.getSouv_pro_no());
 			pstmt.setString(3, cart.getSouv_pro_name());
 			pstmt.setInt(4, cart.getSouv_pro_price());

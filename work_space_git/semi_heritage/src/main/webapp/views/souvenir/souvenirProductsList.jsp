@@ -13,6 +13,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 List<SouvenirProductVO> productList = (List<SouvenirProductVO>) request.getAttribute("productList");
 List<SouvenirProductVO> productListAll = (List<SouvenirProductVO>) request.getAttribute("listIngi");
 List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>) request.getAttribute("listCat");
+SouvenirProductVO cart = (SouvenirProductVO)request.getAttribute("SouvenirCartInsertServlet");
 %>
 
 <script>
@@ -123,7 +124,8 @@ function chageCate(categories){
 										<div class="bg-dark rounded text-center w-100 h-100 p-2">
 											<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
 											<span class="fs-xs text-light"><a
-												href="<%=path%>/myPageCart.do" class="nav-link-light">장바구니</a></span>
+											
+												href="<%=path+"/member/myPageCart.do?productNo=" + productList.get(i).getSouv_pro_no()%>" class="nav-link-light">장바구니</a></span>
 										</div>
 									</div>
 									<div class="col me-sm-1">
