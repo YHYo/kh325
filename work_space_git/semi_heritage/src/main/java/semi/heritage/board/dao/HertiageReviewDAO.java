@@ -2,7 +2,6 @@ package semi.heritage.board.dao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.*;
 
-import java.awt.image.DataBufferInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import semi.heritage.board.vo.HertiageReview;
-import semi.heritage.heritageInfo.vo.HeritageImage;
 
 
 public class HertiageReviewDAO {

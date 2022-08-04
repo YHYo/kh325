@@ -1,16 +1,17 @@
 package semi.heritage.favorite.service;
 
+import static semi.heritage.common.jdbc.JDBCTemplate.close;
 import static semi.heritage.common.jdbc.JDBCTemplate.commit;
 import static semi.heritage.common.jdbc.JDBCTemplate.getConnection;
 import static semi.heritage.common.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
+
 
 import semi.heritage.favorite.dao.favoriteDao;
 import semi.heritage.favorite.vo.favoriteMyPageVO;
-import semi.heritage.heritageInfo.vo.HeritageMainVO;
+import semi.heritage.favorite.vo.favoriteVO;
 
 public class favoriteService {
 
@@ -43,6 +44,25 @@ public class favoriteService {
 		return result;
 	}
 	
+	// 문화재 찜하기 DB 저장
+	public int save(favoriteVO fv) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		if(fv.getNo() != 0) {
+			result = dao.update(conn, fv);
+		}else {
+			result = dao.insert(conn, fv.getuNo() , fv.getNo());
+		}
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	// 마이페이지 문화재 찜목록 출력
 	public List<favoriteMyPageVO> selectAll(int uNo) {
 		return dao.selectAll(conn, uNo);
@@ -52,14 +72,19 @@ public class favoriteService {
 	public int CountFavoriteByNo(int no){
 		return dao.CountFavoriteByNo(conn, no);
 	}
-
-	public static void main(String[] args) {
-		List<HeritageMainVO> list = new ArrayList<HeritageMainVO>();
-		int no = 0;
-		favoriteDao d = new favoriteDao();
-		Connection conn = getConnection();
-		for (int j = 0; j < list.size(); j++) {
-			no = d.CountFavoriteByNo(conn, list.get(j).getNo());
-		}
+	
+	// 문화재 번호로 찜목록 출력
+	public favoriteVO findFavoriteVObyNo(int no){
+		return dao.findFavoriteVObyNo(conn, no);
 	}
+
+//	public static void main(String[] args) {
+//		List<HeritageMainVO> list = new ArrayList<HeritageMainVO>();
+//		int no = 0;
+//		favoriteDao d = new favoriteDao();
+//		Connection conn = getConnection();
+//		for (int j = 0; j < list.size(); j++) {
+//			no = d.CountFavoriteByNo(conn, list.get(j).getNo());
+//		}
+//	}
 }

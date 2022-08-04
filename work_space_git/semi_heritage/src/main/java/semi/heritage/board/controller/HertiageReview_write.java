@@ -12,7 +12,7 @@ import semi.heritage.board.vo.HertiageReview;
 import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.member.vo.Member;
 
-//@WebServlet("/board/HertiageReview")
+@WebServlet("/HertiageReview_write.do")
 public class HertiageReview_write extends MyHttpServlet{
 		private static final long serialVersionUID = 1L;
 		private HeritageReviewService service = new HeritageReviewService();
@@ -27,8 +27,8 @@ public class HertiageReview_write extends MyHttpServlet{
 			try {
 				Member loginMember = getSessionMember(req);
 				
-				if(loginMember.getUemail().equals(req.getParameter("email")) == false) {
-					sendCommonPage("리플 등록 권한이 없습니다. (401)", "/board/list" , req, resp);
+				if(loginMember.getUemail().equals(req.getParameter("userId")) == false) {
+					sendCommonPage("리플 등록 권한이 없습니다. (401)", "views/heritage/heritageDetail.jsp" , req, resp);
 					return;
 				}
 				int revNo = Integer.parseInt(req.getParameter("revNo"));    //리뷰 글번호
@@ -45,13 +45,12 @@ public class HertiageReview_write extends MyHttpServlet{
 				int result = service.save(hreview);
 				
 				if(result > 0) {
-					sendCommonPage("리플 등록에 성공하였습니다.", "/board/view?Rev_no="+revNo, req, resp);
+					sendCommonPage("리플 등록에 성공하였습니다.", "views/heritage/heritageDetail.jsp", req, resp);
 				}else {
-					sendCommonPage("리플 등록에 실패하였습니다. (402)", "/board/view?Rev_no="+revNo, req, resp);
+					sendCommonPage("리플 등록에 실패하였습니다. (402)", "views/heritage/heritageDetail.jsp", req, resp);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				sendCommonPage("리플을 정상적으로 등록할수 없습니다. (403)", "/board/list" , req, resp);
 			}
 		
 		}

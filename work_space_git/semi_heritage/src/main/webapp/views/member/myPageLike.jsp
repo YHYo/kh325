@@ -1,6 +1,19 @@
+<%@page import="oracle.net.aso.i"%>
+<%@page import="semi.heritage.favorite.vo.favoriteMyPageVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/headerLight.jsp" %>
+<%@ include file="/views/common/sidebar.jsp"%>
+
+
+
+<%
+
+List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fmlist");
+favoriteMyPageVO fmv = new favoriteMyPageVO();
+
+%>
  
         <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
             <!-- Breadcrumb-->
@@ -18,13 +31,13 @@
 
                     <!-- 프로필 & 카테고리 시작 -->
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Annette Black">
+                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path%>/resources/img/semi-img/01.info.default.photo.png" width="48" alt=<%=loginMember.getUemail()%>>
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
-                                <h2 class="fs-lg mb-0">Annette Black</h2>
+                                <h2 class="fs-lg mb-0"><%=loginMember.getUname()%>님</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
                                 <ul class="list-unstyled fs-sm mt-3 mb-0">
-                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i>(302) 555-0107</a></li>
-                                    <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i>annette_black@email.com</a></li>
+                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i><%=loginMember.getUpw()%></a></li>
+                                    <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i><%=loginMember.getUemail()%></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -53,6 +66,7 @@
                         <a class="fw-bold text-decoration-none" href="#" style="color: #8957BD;"><i class=" fi-x fs-xs mt-n1 me-2 " style="color: #8957BD; "></i>전체 비우기</a>
                     </div>
                     <!-- Item-->
+                    <%for(int i = 0; i < fmlist.size(); i++ ) { %>
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
                         <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/semi-img/03.like.heritage1.png); ">
                             <a class="stretched-link " href="real-estate-single-v1.html "></a>
@@ -63,74 +77,40 @@
                             </div>
                         </div>
                         <div class="card-body position-relative pb-3 ">
-                            <h4 class="mb-1 fs-xs fw-normal text-uppercase" style="color: #B0C729;"><b>보물</b></h4>
-                            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link " href="real-estate-single-v1.html "><b>향원정</b></a>
+                            <h4 class="mb-1 fs-xs fw-normal text-uppercase" style="color: #B0C729;"><b><%=fmlist.get(i).getCcmaName()%></b></h4>
+                            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link " href="real-estate-single-v1.html "><b><%=fmlist.get(i).getCcbaMnm1()%></b></a>
                                 <br>
-                                <p style="color: #A08DB4; margin-top: -4%; margin-bottom: 1%; font-size: 15px;">서울시 종로구 사직로 161</p>
+                                <p style="color: #A08DB4; margin-top: -4%; margin-bottom: 1%; font-size: 15px;"><%=fmlist.get(i).getCcbaLcad()%></p>
                             </h3>
-                            <label><p class="mb-2 fs-sm text-muted ">향원정은 서울특별시 종로구, 경복궁 내에 있는 조선시대의 건축물이다. 2012년 3월 2일 대한민국의 보물 제1759호로 지정되었다. 1885년에 세워진 것으로 추정되며, 고종의 어필로 현판을 제작하였다.</p></label>
+                            <label><p class="mb-2 fs-sm text-muted "><%=fmlist.get(i).getContent()%></p></label>
                             <!-- <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$94,000</div> -->
                             <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
-                                <i class="fi-share text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">공유하기</span>
-                                <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">상세보기</span>
-                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><span class="d-inline-block fs-sm">찜 해제</span>
+                                <i class="fi-share text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm" onclick="changeForm(0)" id="shareTwitter()">공유하기</span>
+                                <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm" onclick="changeForm(1)" id="heritageDetail()">상세보기</span>
+                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><span class="d-inline-block fs-sm" onclick="changeForm(2)" id="favoriteDelete()">찜 해제</span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Item-->
-                    <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
-                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/semi-img/03.like.heritage2.png); ">
-                            <a class="stretched-link " href="real-estate-single-v1.html "></a>
-                            <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span></div> -->
-                            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5 ">
-                                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Remove from Wishlist ">
-                                  <i class="fi-heart-filled" style="color: #C389FF;"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body position-relative pb-3 ">
-                            <h4 class="mb-1 fs-xs fw-normal text-uppercase" style="color: #B0C729;"><b>국보</b></h4>
-                            <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">경회루</a> <br>
-                                <p style="color: #A08DB4; margin-top: -4%; margin-bottom: 1%; font-size: 15px;">서울시 종로구 사직로 161</p>
-                            </h3>
-
-                            <label><p class="mb-2 fs-sm text-muted ">경회루는 경복궁에 있는 누각으로, 조선시대에 연회를 하거나, 외국의 사신을 접견하던 곳으로, 지금의 청와대 영빈관에 해당된다. 1985년 1월 8일 대한민국의 국보 제224호로 지정되었다.</p></label>
-                            <!-- <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$2,400</div> -->
-                            <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
-                                <i class="fi-share text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">공유하기</span>
-                                <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">상세보기</span>
-                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><span class="d-inline-block fs-sm">찜 해제</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item-->
-                    <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
-                        <div class="card-img-top position-relative " style="background-image: url(<%=path %>/resources/img/semi-img/03.like.heritage3.png); ">
-                            <a class="stretched-link " href="real-estate-single-v1.html "></a>
-                            <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5 ">
-                                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Remove from Wishlist ">
-                                  <i class="fi-heart-filled" style="color: #C389FF;"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body position-relative pb-3 ">
-                            <h4 class="mb-1 fs-xs fw-normal text-uppercase" style="color: #B0C729;"><b>정보없음</b></h4>
-                            <h3 class="h6 mb-2 fs-base "><a class="nav-link stretched-link " href="real-estate-single-v1.html ">광화문</a><br>
-                                <p style="color: #A08DB4; margin-top: -4%; margin-bottom: 1%; font-size: 15px;">서울시 종로구 사직로 161</p>
-                            </h3>
-                            <p class="mb-2 fs-sm text-muted ">광화문은 경복궁의 남쪽에 있는 정문이다. ‘임금의 큰 덕이 온 나라를 비춘다’는 의미이다. 1395년에 세워졌으며, 2층 누각인 광화문 앞의 양쪽에는 한 쌍의 해치 조각상이 자리잡고 있다. 광화문의 석축부에는 세 개의 홍예문이 있다. </p>
-                            <!-- <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$162,000</div> -->
-                            <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
-                                <i class="fi-share text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">공유하기</span>
-                                <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">상세보기</span>
-                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><span class="d-inline-block fs-sm">찜 해제</span>
-                            </div>
-                        </div>
-                    </div>
-                    
+					<% } %>
                 </div>
             </div>
         </div>
     </main>
+    
+    <script  type="text/javascript">
+	            
+function changeForm(val) {
+		if (val == "0") {
+			function shareTwitter() {
+			    var sendText = <%=fmv.getCcbaMnm1()%>; // 전달할 텍스트
+			    window.open("https://twitter.com/intent/tweet?text=" + sendText);
+			}
+		} else if (val == "1") {
+			location.href = "<%= request.getContextPath() %>/heritageDeatil.do";
+		} else if (val == "2") {
+			location.href = "<%= request.getContextPath() %>/favoriteDelete.do";
+		} 
+	}
+</script>
         <!-- Footer-->
     <%@include file="/views/common/footer.jsp"%>

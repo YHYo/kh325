@@ -1,8 +1,8 @@
 package semi.heritage.favorite.dao;
 
-import static semi.heritage.common.jdbc.JDBCTemplate.*;
+import static semi.heritage.common.jdbc.JDBCTemplate.close;
+
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -106,6 +106,51 @@ public class favoriteDao {
 		} finally {
 			close(pstmt);
 			close(rs);
+		}
+		return result;
+	}
+
+	// 문화재 번호로 찜 객체 가져오기 (insert할때, 찜목록 상세보기)
+	public favoriteVO findFavoriteVObyNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		favoriteVO f = null;
+		String query = "select HFAVNUM, UNO, NO from hfavorite WHERE NO = ? ";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				f = new favoriteVO();
+				f.setFavNum(rs.getInt("HFAVNUM"));
+				f.setuNo(rs.getInt("UNO"));
+				f.setNo(rs.getInt("NO"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return f;
+	}
+
+	// 찜리스트 수정
+	public int update(Connection conn, favoriteVO fv) {
+		PreparedStatement pstmt = null;
+		String query = "UPDATE hFavorite SET HFAVNUM=?,UNO=? WHERE NO=? ";
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fv.getFavNum());
+			pstmt.setInt(2, fv.getuNo());
+			pstmt.setInt(3, fv.getNo());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		return result;
 	}

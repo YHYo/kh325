@@ -2,11 +2,11 @@ package semi.heritage.favorite.vo;
 
 public class favoriteVO {
 	
-	private int rowNum;
-	private int countNum;
-	private int favNum;
-	private int uNo;
-	private int no;
+	private int rowNum; // 찜테이블 번호
+	private int countNum; //찜 갯수
+	private int favNum; //찜 번호
+	private int uNo; //회원번호
+	private int no; //문화재 고유번호
 	
 	public favoriteVO() {
 		super();

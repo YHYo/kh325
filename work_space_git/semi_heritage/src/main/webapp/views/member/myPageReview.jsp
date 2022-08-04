@@ -1,6 +1,16 @@
+<%@page import="java.util.List"%>
+<%@page import="semi.heritage.board.vo.HertiageReview"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="/views/common/headerLight.jsp" %>
+<%@ include file="/views/common/headerLight.jsp" %>
+<%@ include file="/views/common/sidebar.jsp"%>
+
+<%
+
+List<HertiageReview> hlist = (List<HertiageReview>)request.getAttribute("hlist");
+int hreviewCount = (Integer)request.getAttribute("hreviewCount");
+
+%>
 
 
         <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
@@ -21,11 +31,11 @@
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
                         <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Annette Black">
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
-                                <h2 class="fs-lg mb-0">Annette Black</h2>
+                                <h2 class="fs-lg mb-0"><%=loginMember.getUname()%>님</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
                                 <ul class="list-unstyled fs-sm mt-3 mb-0">
-                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i>(302) 555-0107</a></li>
-                                    <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i>annette_black@email.com</a></li>
+                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i><%=loginMember.getUpw()%></a></li>
+                                    <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i><%=loginMember.getUemail()%></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -75,12 +85,14 @@
                     </select>
                                 </div>
                             </div>
+                            
                             <!-- Review-->
+                            <% for(int i = 0 ; i < hlist.size(); i++) {%>
                             <div class="mb-4 pb-4 border-bottom">
                                 <div class="d-flex justify-content-between mb-3">
                                     <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Avatar">
                                         <div class="ps-2">
-                                            <h6 class="fs-base mb-0">Annette Black</h6>
+                                            <h6 class="fs-base mb-0"><%=loginMember.getUname()%>님</h6>
                                             <!-- <span class="star-rating">
                                               <i class="star-rating-icon fi-star-filled active"></i>
                                               <i class="star-rating-icon fi-star-filled active"></i>
@@ -89,80 +101,16 @@
                                               <i class="star-rating-icon fi-star-filled active"></i>
                                             </span> -->
                                         </div>
-                                    </div><span class="text-muted fs-sm">Jan 17, 2021</span>
+                                    </div><span class="text-muted fs-sm"><%=hlist.get(i).getRevDate()%></span>
                                 </div>
-                                <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor
-                                    quis.
-                                </p>
+                                <p><%=hlist.get(i).getRevContents()%></p>
                                 <!-- <div class="d-flex align-items-center">
                                     <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
                                     <div class="border-end me-1">&nbsp;</div>
                                     <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
                                 </div> -->
                             </div>
-                            <!-- Review-->
-                            <div class="mb-4 pb-4 border-bottom">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Avatar">
-                                        <div class="ps-2">
-                                            <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating">
-                                              <!-- <span class="star-rating">
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                              </span> -->
-                                        </div>
-                                    </div><span class="text-muted fs-sm">Dec 1, 2020</span>
-                                </div>
-                                <p>Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit. Dui accumsan at phasellus tempus consequat dignissim tellus sodales.</p>
-                                <!-- <div class="d-flex align-items-center">
-                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
-                                    <div class="border-end me-1">&nbsp;</div>
-                                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                                </div> -->
-                            </div>
-                            <!-- Review-->
-                            <div class="mb-4 pb-4 border-bottom">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Avatar">
-                                        <div class="ps-2">
-                                            <h6 class="fs-base mb-0">Annette Black</h6><span class="star-rating">
-                                              <!-- <span class="star-rating">
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                                <i class="star-rating-icon fi-star-filled active"></i>
-                                              </span> -->
-                                        </div>
-                                    </div><span class="text-muted fs-sm">Oct  28, 2020</span>
-                                </div>
-                                <p>Viverra nunc blandit sapien non imperdiet sit. Purus tempus elementum aliquam eu urna. A aenean duis non egestas at libero porttitor integer eget. Sed dictum lobortis laoreet gravida.</p>
-                                <!-- <div class="d-flex align-items-center">
-                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(2)</span></button>
-                                    <div class="border-end me-1">&nbsp;</div>
-                                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                                </div> -->
-                            </div>
-                            <!-- Review
-                            <div class="mb-4 pb-4 border-bottom">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="<%=path %>/resources/img/avatars/04.jpg" width="48" alt="Avatar">
-                                        <div class="ps-2">
-                                            <h6 class="fs-base mb-0">Ralph Edwards</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i></span>
-                                        </div>
-                                    </div><span class="text-muted fs-sm">Sep 14, 2020</span>
-                                </div>
-                                <p>Elementum nisl, egestas nam consectetur nisl, at pellentesque cras. Non sed ac vivamus dolor dignissim ut. Nisl sapien blandit pulvinar sagittis donec sociis ipsum arcu est. Tempus, rutrum morbi scelerisque tempor mi. Etiam
-                                    urna, cras bibendum leo nec faucibus velit. Tempor lectus dignissim at auctor integer neque quam amet.</p>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(0)</span></button>
-                                    <div class="border-end me-1">&nbsp;</div>
-                                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                                </div>
-                            </div> -->
+                            <% } %>
 
                             <!-- Pagination-->
                             <nav class="mt-2" aria-label="Reviews pagination">
@@ -183,7 +131,7 @@
                         <!-- Reviews by you tab-->
                         <div class="tab-pane fade" id="reviews-by-you" role="tabpanel">
                             <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between pb-4 mb-2 mb-md-3">
-                                <h3 class="h4 mb-sm-0">3 reviews</h3>
+                                <h3 class="h4 mb-sm-0"><%=hreviewCount%> reviews</h3>
                                 <div class="d-flex align-items-center ms-sm-4">
                                     <label class="fs-sm me-2 pe-1 text-nowrap" for="review-sorting2"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>Sort by:</label>
                                     <select class="form-select form-select-sm" id="review-sorting2">
@@ -195,50 +143,31 @@
                     </select>
                                 </div>
                             </div>
-                            <!-- Review-->
+                          <!-- Review-->
+                            <% for(int i = 0 ; i < hlist.size(); i++) {%>
                             <div class="mb-4 pb-4 border-bottom">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <div class="pe-2">
-                                        <h6 class="mb-0"> <span class="fw-normal text-muted me-1">For:</span>3-bed Apartment</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star"></i><i class="star-rating-icon fi-star"></i><i class="star-rating-icon fi-star"></i></span>
-                                    </div><span class="text-muted fs-sm">Jan 13, 2021</span>
+                                    <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Avatar">
+                                        <div class="ps-2">
+                                            <h6 class="fs-base mb-0"><%=loginMember.getUname()%>님</h6>
+                                            <!-- <span class="star-rating">
+                                              <i class="star-rating-icon fi-star-filled active"></i>
+                                              <i class="star-rating-icon fi-star-filled active"></i>
+                                              <i class="star-rating-icon fi-star-filled active"></i>
+                                              <i class="star-rating-icon fi-star-filled active"></i>
+                                              <i class="star-rating-icon fi-star-filled active"></i>
+                                            </span> -->
+                                        </div>
+                                    </div><span class="text-muted fs-sm"><%=hlist.get(i).getRevDate()%></span>
                                 </div>
-                                <p>Elementum ut quam tincidunt egestas vitae elit, hendrerit. Ullamcorper nulla amet lobortis elit, nibh condimentum enim. Aliquam felis nisl tellus sodales lectus dictum tristique proin vitae. Odio fermentum viverra tortor
-                                    quis.
-                                </p>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(2)</span></button>
-                                    <div class="border-end me-1">&nbsp;</div>
-                                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(1)</span></button>
-                                </div>
-                            </div>
-                            <!-- Review-->
-                            <div class="mb-4 pb-4 border-bottom">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <div class="pe-2">
-                                        <h6 class="mb-0"> <span class="fw-normal text-muted me-1">For:</span>Terra Nova Apartments</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-half active"></i><i class="star-rating-icon fi-star"></i></span>
-                                    </div><span class="text-muted fs-sm">Dec 10, 2020</span>
-                                </div>
-                                <p>Vel dictum nunc ut tristique. Egestas diam amet, ut proin hendrerit. Dui accumsan at phasellus tempus consequat dignissim tellus sodales.</p>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(4)</span></button>
-                                    <div class="border-end me-1">&nbsp;</div>
-                                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(2)</span></button>
-                                </div>
-                            </div>
-                            <!-- Review-->
-                            <div class="mb-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <div class="pe-2">
-                                        <h6 class="mb-0"> <span class="fw-normal text-muted me-1">For:</span>Duplex with Garage</h6><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span>
-                                    </div><span class="text-muted fs-sm">Oct  24, 2020</span>
-                                </div>
-                                <p>Viverra nunc blandit sapien non imperdiet sit. Purus tempus elementum aliquam eu urna. A aenean duis non egestas at libero porttitor integer eget. Sed dictum lobortis laoreet gravida.</p>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(2)</span></button>
+                                <p><%=hlist.get(i).getRevContents()%></p>
+                                <!-- <div class="d-flex align-items-center">
+                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
                                     <div class="border-end me-1">&nbsp;</div>
                                     <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                                </div>
+                                </div> -->
                             </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
