@@ -21,7 +21,7 @@
 	function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
 		alert('장바구니에 담으시겠습니까?');
 		if (confirm("장바구니를 확인하시겠습니까?")) {
-			location.href = "<%=path%>/views/member/myPageCart.jsp";
+			location.href = "<%=path%>/myPageCart.do";
 
 			if (obj != souvenirName) { //세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
 
@@ -129,7 +129,7 @@
 			<div class="card card-light card-hover h-lg-100 mb-4 mb-lg-0">
 				<div class="tns-carousel-wrapper card-img-top card-img-hover">
 					<a class="img-overlay"
-						href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"></a>
+						href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(0).getSouv_pro_no()%>"></a>
 					<div class="position-absolute start-0 top-0 pt-3 ps-3">
 						<!-- <span class="d-table badge bg-info mb-1">New</span>
                                 <span class="d-table badge bg-success" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex&quot;&gt;&lt;i class=&quot;fi-award mt-1 me-2&quot;&gt;&lt;/i&gt;&lt;div&gt;This car is checked and&lt;br&gt;certified by Finder.&lt;/div&gt;&lt;/div&gt;">Certified</span> -->
@@ -148,7 +148,7 @@
 					</div>
 					<h3 class="h6 mb-1">
 						<a class="nav-link-light mt-3 mb-2"
-							href="<%=path%>/souvenirProductsDetail.do"
+							href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(0).getSouv_pro_no()%>"
 							style="color: #A08DB4;"><%=listIngi.get(0).getSouv_pro_name() %></a>
 					</h3>
 					<div class="text-primary fw-bold mt-0"><%=df.format(listIngi.get(0).getSouv_pro_price()) %>원</div>
@@ -169,7 +169,7 @@
 									<i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
 									<span class="fs-xs text-light"><a class="nav-link-light"
 										onclick="prView();"
-										href="<%=path%>/souvenirProductsDetail.do">상세보기</a></span>
+										href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(0).getSouv_pro_no()%>">상세보기</a></span>
 								</div>
 							</div>
 
@@ -185,7 +185,7 @@
 			<div class="card card-light card-hover card-horizontal mb-3 mt-2">
 				<div class="tns-carousel-wrapper card-img-top card-img-hover">
 					<a class="img-overlay"
-						href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"></a>
+						href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(i).getSouv_pro_no()%>"></a>
 						
 					<div class="position-absolute start-0 top-0 pt-3 ps-3">
 						<!-- <span class="d-table badge bg-info">Used</span> -->
@@ -207,7 +207,7 @@
 					</div>
 					<h3 class="h6 mb-1">
 						<a class="nav-link-light mb-3"
-							href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp"
+							href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(i).getSouv_pro_no()%>"
 							style="color: #A08DB4;"><%=listIngi.get(i).getSouv_pro_name() %></a>
 					</h3>
 					<div class="text-primary fw-bold"><%=df.format(listIngi.get(i).getSouv_pro_price()) %>원</div>
@@ -227,7 +227,7 @@
 									<i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
 									<span class="fs-xs text-light"><a class="nav-link-light"
 										onclick="prView();"
-										href="<%=path%>/views/souvenir/souvenirProductsDetail.jsp">상세보기</a></span>
+										href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(i).getSouv_pro_no()%>">상세보기</a></span>
 								</div>
 							</div>
 

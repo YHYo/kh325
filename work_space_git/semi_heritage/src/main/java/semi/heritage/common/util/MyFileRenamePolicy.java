@@ -32,9 +32,9 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 
 		
 		String renamedPhoto = dateStr + "_" +sequenceStr + "_" + randomStr + extensionStr;
-		File newFile = new File(originalPhoto.getParent(), renamedPhoto);
+		File newPhoto = new File(originalPhoto.getParent(), renamedPhoto);
 		
-		return newFile;
+		return newPhoto;
 	}
 
 }

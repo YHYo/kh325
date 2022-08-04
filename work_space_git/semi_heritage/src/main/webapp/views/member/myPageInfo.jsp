@@ -35,21 +35,26 @@
 			<div class="col-lg-9 col-sm-8 mb-4">
 			
 				<textarea class="form-control" id="introduce" name="introduce" rows="6" placeholder="사뿐사뿐에 멋진 소개를 남겨주세요">	
-					<%=loginMember.getIntroduce() %>
+					<%=loginMember.getIntroduce().strip() %>
 				</textarea>
 			</div>
-
+			
+			
+			<!-- 프로필사진 -->
 			<div class="col-lg-3 col-sm-4 mb-4">
-				<input class="file-uploader bg-secondary" type="file" id="photo" name="photo"
-					accept="image/png, image/jpeg"
+				<input class="file-uploader bg-secondary" type="file" id="photo" name="photo" 
+					accept="image/png, image/jpeg, image/jpg" 
 					data-label-idle="&lt;i class=&quot;d-inline-block fi-camera-plus fs-2 text-muted mb-2&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;span class=&quot;fw-bold&quot;&gt;Change picture&lt;/span&gt;"
 					data-style-panel-layout="compact" data-image-preview-height="160"
 					data-image-crop-aspect-ratio="1:1"
 					data-image-resize-target-width="200"
 					data-image-resize-target-height="200">
 			</div>
+			
+			
 		</div>
 		<div class="border rounded-3 p-3 mb-4" id="personal-info">
+
 
 			<!-- Name-->
 			<div class="border-bottom pb-3 mb-3">
@@ -112,7 +117,7 @@
 					data-bs-parent="#personal-info">
 					<input class="form-control mt-3" type="text"
 						data-bs-binded-element="#phone-value"
-						data-bs-unset-value="Not specified" placeholder="Enter phone number" value="" id="phone" name="phone">
+						data-bs-unset-value="Not specified" placeholder="Enter phone number" value="<%if (loginMember != null) {%><%=loginMember.getUpn()%><%}%>" id="phone" name="phone">
 				</div>
 			</div>
 
@@ -134,7 +139,7 @@
 					data-bs-parent="#personal-info">
 					<input class="form-control mt-3" type="text"
 						data-bs-binded-element="#address-value"
-						data-bs-unset-value="Not specified" placeholder="Enter address" value="" id="address" name="address">
+						data-bs-unset-value="Not specified" placeholder="Enter address" value="<%if (loginMember != null) {%><%=loginMember.getUadr()%><%}%>" id="address" name="address">
 				</div>
 			</div>
 

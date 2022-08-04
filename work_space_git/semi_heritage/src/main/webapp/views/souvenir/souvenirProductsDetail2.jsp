@@ -218,13 +218,57 @@
             <h5 class="h5 text-light pb-3">이런 상품들은 어때요?</h2>
                 <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-carousel-light">
                     <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 3, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1, &quot;gutter&quot;: 16},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;900&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;gutter&quot;: 24}}}">
-
-						<!-- 제 i호 상품 시작-->
-						<% for (int i = 1; i < pList.size(); i++){ %>
                         <div>
                             <div class="card card-light card-hover h-100">
                                 <div class="card-img-top card-img-hover">
-                                    <a class="img-overlay" href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(i).getSouv_pro_no()%>"></a>
+                                    <a class="img-overlay" href="12.souvenirProductsDetail3.jsp"></a>
+                                    <img class="img-souvnir-dl" src="<%=pList.get(0).getSouv_pro_url()%>" alt="Image">
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between pb-1">
+                                        <span class="fs-sm text-light me-3">사뿐몰 제 1호 상품</span>
+                                        <div class="form-check form-check-light">
+
+                                        </div>
+                                    </div>
+                                    <h3 class="h6 mb-1">
+                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=pList.get(0).getSouv_pro_name()%></a>
+                                    </h3>
+                                    <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(pList.get(0).getSouv_pro_price()) %>원</div>
+                                </div>
+
+                                <!-- 상품 박스 하단 버튼 시작 -->
+                                <div class="card-footer border-0 pt-0">
+                                    <div class="border-top border-light pt-3">
+                                        <div class="row g-2">
+                                            <div class="col me-sm-1">
+                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
+                                                    <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
+                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
+                                                </div>
+                                            </div>
+                                            <div class="col me-sm-1">
+                                                <div class="bg-dark rounded text-center w-100 h-100 p-2">
+                                                    <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
+                                                    <span class="fs-xs text-light"><a href="12.souvenirProductsDetail2.jsp" class="nav-link-light">상세보기</a></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 상품 박스 하단 버튼 끝 -->
+								<!-- 제 1호 상품 끝-->
+                            </div>
+                        </div>
+
+						<!-- 제 2-3호 상품 시작-->
+						<% for (int i = 2; i < 4; i++){ %>
+                        <div>
+                            <div class="card card-light card-hover h-100">
+                                <div class="card-img-top card-img-hover">
+                                    <a class="img-overlay" href="#"></a>
                                     <div class="content-overlay end-0 top-0 pt-3 pe-3">
                                         <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
                                     </div><img class="img-souvnir-dl" src="<%=pList.get(i).getSouv_pro_url()%>" alt="Image">
@@ -237,7 +281,7 @@
                                         </div>
                                     </div>
                                     <h3 class="h6 mb-1">
-                                        <a class="nav-link-light" href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(i).getSouv_pro_no()%>" style="color: #A08DB4;"><%=pList.get(i).getSouv_pro_name()%></a>
+                                        <a class="nav-link-light" href="12.souvenirProductsDetail3.jsp" style="color: #A08DB4;"><%=pList.get(i).getSouv_pro_name()%></a>
                                     </h3>
                                     <div class="text-primary fw-bold mb-1 ms-1"><%=df.format(pList.get(i).getSouv_pro_price()) %>원</div>
                                 </div>
@@ -249,13 +293,13 @@
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="<%=path+"/myPageCart.do"%>" class="nav-link-light">장바구니</a></span>
+                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="02.myPageCart.jsp" class="nav-link-light">장바구니</a></span>
                                                 </div>
                                             </div>
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span class="fs-xs text-light"><a href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(i).getSouv_pro_no()%>" class="nav-link-light">상세보기</a></span>
+                                                    <span class="fs-xs text-light"><a href="12.souvenirProductsDetail2.jsp" class="nav-link-light">상세보기</a></span>
                                                 </div>
                                             </div>
 

@@ -29,8 +29,8 @@ public class MemberUpdateServlet extends MyHttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			// 1. 저장 경로 지정
-			String path = getServletContext().getRealPath("/resources/upload/photo");
-//			String path = req.getSession().getServletContext().getRealPath("/resources/upload/photo") ;
+//			String path = getServletContext().getRealPath("/resources/upload/photo");
+			String path = req.getSession().getServletContext().getRealPath("/resources/upload/photo") ;
 
 			// 2. 파일사이즈 지정
 			int maxSize = 104857600; // 100 MB
@@ -47,16 +47,17 @@ public class MemberUpdateServlet extends MyHttpServlet {
 
 			Member newMember = new Member();
 			newMember.setUno(loginMember.getUno());
-			newMember.setIntroduce(req.getParameter("introduce"));
+			newMember.setIntroduce(mr.getParameter("introduce").trim());
 //			newMember.setUname(loginMember.getUname());
-			newMember.setUpn(req.getParameter("phone"));
+			newMember.setUpn(mr.getParameter("phone"));
 			newMember.setUemail(loginMember.getUemail());
-			newMember.setUadr(req.getParameter("address"));
-			newMember.setOriginalPhoto(req.getParameter("photo"));
-			newMember.setRenamedPhoto(req.getParameter("photo"));
-			newMember.setTwt(req.getParameter("twt"));
-			newMember.setInsta(req.getParameter("insta"));
-			newMember.setFacebook(req.getParameter("facebook"));
+			newMember.setUadr(mr.getParameter("address"));
+			newMember.setOriginalPhoto(mr.getOriginalFileName("photo"));
+			newMember.setRenamedPhoto(mr.getFilesystemName("photo"));
+			newMember.setTwt(mr.getParameter("twt"));
+			newMember.setInsta(mr.getParameter("insta"));
+			newMember.setFacebook(mr.getParameter("facebook"));
+			System.out.println("업데이트서블릿 : "+newMember);
 			
 			
 			if (loginMember.getUemail().equals(newMember.getUemail()) == false) {

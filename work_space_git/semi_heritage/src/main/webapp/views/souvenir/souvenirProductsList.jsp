@@ -132,7 +132,7 @@ function chageCate(categories){
 										<div class="bg-dark rounded text-center w-100 h-100 p-2">
 											<i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
 											<span class="fs-xs text-light"><a
-												href="<%=path%>/souvenirProductsDetail.do"
+												href="<%=path+"/souvenirProductsDetail.do?productNo=" + productList.get(i).getSouv_pro_no()%>"
 												class="nav-link-light">상세보기</a></span>
 										</div>
 									</div>
