@@ -30,7 +30,7 @@
                         <a class="btn btn-outline-secondary d-block d-md-none w-100 mb-3" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Menu</a>
 
                         <div class="collapse d-md-block mt-3 a:hover" id="account-nav">
-                            <div class="card-nav"><a class="card-nav-link" href="/myPageInfo.do"><i class="fi-user opacity-60 me-2"></i>회원정보 수정</a>
+                            <div class="card-nav"><a class="card-nav-link" href="<%=path%>/myPageInfo.do"><i class="fi-user opacity-60 me-2"></i>회원정보 수정</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageCart.do" ><i class="fi-home opacity-60 me-2"></i>장바구니</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageLike.do"><i class="fi-heart opacity-60 me-2"></i>찜 목록</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageReview.do"><i class="fi-star opacity-60 me-2"></i>리뷰</a>

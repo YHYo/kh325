@@ -33,28 +33,62 @@ public class MemberDao {
 		}
 		return result;
 	}
+//	public int insertMember(Connection conn, Member member) {
+//		PreparedStatement pstmt = null;
+//		String empty = " ";
+//
+//		String query = "INSERT INTO USERINFO VALUES(SEQ_UNO.NEXTVAL,?, ?, ?, "
+//				+ " ?, ?,?, ?, ?, ?, ?, ?, ?)";
+//						
+//		int result = 0;
+//
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, member.getUemail());
+//			pstmt.setString(2, member.getUpw());
+//			pstmt.setString(3, member.getUname());
+//			pstmt.setString(4, empty);
+//			pstmt.setString(5, empty);
+//			pstmt.setString(6, empty);
+//			pstmt.setString(7, empty);
+//			pstmt.setString(8, empty);
+//			pstmt.setString(9, empty);
+//			pstmt.setString(9, empty);
+//			pstmt.setString(10, empty);
+//			pstmt.setString(11, empty);
+//			pstmt.setString(12, empty);
+//
+//			result = pstmt.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		return result;
+//	}
+
 
 	// 회원정보 수정
 	public int updateMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE USERINFO SET uemail=?, upw=?, uname=?, upn=?, uadr=?, "
-				+ "originalPhoto=?, renamedPhoto=?, introduce=?,"
+		String query = "UPDATE USERINFO SET upn=?, uadr=?, "
+				+ " ORIGINAL_PHOTO=?, RENAMED_PHOTO=?, introduce=?,"
 				+ " twt=?, insta=?, facebook=? WHERE UNO=?";
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getUemail());
-			pstmt.setString(2, member.getUpw());
-			pstmt.setString(3, member.getUname());
-			pstmt.setString(4, member.getUpn());
-			pstmt.setString(5, member.getUadr());
-			pstmt.setString(6, member.getOriginalPhoto());
-			pstmt.setString(6, member.getRenamedPhoto());
-			pstmt.setString(7, member.getIntroduce());
-			pstmt.setString(8, member.getTwt());
-			pstmt.setString(9, member.getInsta());
-			pstmt.setString(10, member.getFacebook());
-			pstmt.setInt(11, member.getUno());
+//			pstmt.setString(1, member.getUemail());
+//			pstmt.setString(1, member.getUpw());
+//			pstmt.setString(3, member.getUname());
+			pstmt.setString(1, member.getUpn());
+			pstmt.setString(2, member.getUadr());
+			pstmt.setString(3, member.getOriginalPhoto());
+			pstmt.setString(4, member.getRenamedPhoto());
+			pstmt.setString(5, member.getIntroduce());
+			pstmt.setString(6, member.getTwt());
+			pstmt.setString(7, member.getInsta());
+			pstmt.setString(8, member.getFacebook());
+			pstmt.setInt(9, member.getUno());
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {

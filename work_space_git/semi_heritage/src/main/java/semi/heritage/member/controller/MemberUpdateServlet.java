@@ -26,15 +26,18 @@ public class MemberUpdateServlet extends MyHttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			// 1. 저장 경로 지정
 			String path = getServletContext().getRealPath("/resources/upload/photo");
+//			String path = req.getSession().getServletContext().getRealPath("/resources/upload/photo") ;
+
 			// 2. 파일사이즈 지정
 			int maxSize = 104857600; // 100 MB
 			// 3. 문자열 인코딩 설정
 			String encoding = "UTF-8";
 			MultipartRequest mr = new MultipartRequest(req, path, maxSize, encoding, new MyFileRenamePolicy());
+
 			Member loginMember = getSessionMember(req);
 
 			if (loginMember == null) {
@@ -45,19 +48,17 @@ public class MemberUpdateServlet extends MyHttpServlet {
 			Member newMember = new Member();
 			newMember.setUno(loginMember.getUno());
 			newMember.setIntroduce(req.getParameter("introduce"));
-			newMember.setUname(req.getParameter("userName"));
+//			newMember.setUname(loginMember.getUname());
 			newMember.setUpn(req.getParameter("phone"));
-			newMember.setUemail(req.getParameter("userId"));
+			newMember.setUemail(loginMember.getUemail());
 			newMember.setUadr(req.getParameter("address"));
 			newMember.setOriginalPhoto(req.getParameter("photo"));
-			newMember.setOriginalPhoto(mr.getOriginalFileName("photo"));
-			newMember.setRenamedPhoto(mr.getFilesystemName("photo"));
+			newMember.setRenamedPhoto(req.getParameter("photo"));
 			newMember.setTwt(req.getParameter("twt"));
 			newMember.setInsta(req.getParameter("insta"));
 			newMember.setFacebook(req.getParameter("facebook"));
-
-//			newMember.setHobby(String.join(",", req.getParameterValues("hobby")));
-
+			
+			
 			if (loginMember.getUemail().equals(newMember.getUemail()) == false) {
 				sendCommonPage("잘못된 아이디 입니다.", "/index.do", req, resp);
 				return;
@@ -78,8 +79,9 @@ public class MemberUpdateServlet extends MyHttpServlet {
 		}
 
 //	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		doGet(req, resp);
 //	}
 	}
+
 }

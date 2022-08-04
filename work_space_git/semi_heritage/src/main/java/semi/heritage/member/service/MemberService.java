@@ -21,7 +21,7 @@ public class MemberService {
 		Connection conn = getConnection();
 		Member member = dao.findMemberById(conn, uemail);
 		close(conn);
-		System.out.println("여기!!"+member);
+//		System.out.println("여기!!"+member);
 		return member;
 	}
 	
@@ -59,6 +59,7 @@ public class MemberService {
 			rollback(conn);
 		}
 		close(conn);
+		System.out.println("회원정보 수정!! "+member);
 		return result;
 	}
 	

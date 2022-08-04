@@ -1,13 +1,27 @@
+<%@page import= "java.text.DecimalFormat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/headerLight.jsp"%>
 <%@ include file="/views/common/sidebar.jsp"%>
 
+<%
+	//DecimalFormat df = new DecimalFormat("###.####.####");
+	Member member = (Member)request.getAttribute("member");
+	String phoneNum = loginMember.getUpn();
+	
+// 	if (loginMember.getIntroduce()==null || loginMember.getUpn()==null|| loginMember.getUadr()==null|| loginMember.getFacebook()==null|| loginMember.getTwt()==null|| loginMember.getInsta()==null) {
+// 		plzInput="정보를 입력해 주세요";
+// 	}
+	
+	
+%>
+
+
 <!-- Content-->
 <div class="col-lg-8 col-md-7 mb-5">
 	<form name="memberInfoFrm"
-		action="<%=request.getContextPath()%>/update.do" method="GET">
+		action="<%=request.getContextPath()%>/update.do" method="POST"  enctype="multipart/form-data">
 
 		<h1 class="h2">마이페이지</h1>
 		<div class="mb-2 pt-1">회원정보를 수정 해주세요</div>
@@ -16,14 +30,13 @@
 				style="width: 50%" aria-valuenow="50" aria-valuemin="0"
 				aria-valuemax="100"></div>
 		</div>
-		<label class="form-label pt-2" for="account-bio"><b>All
-				About You</b></label>
+		<label class="form-label pt-2" for="account-bio" style="color: #8957BD;"><b>All About You</b></label>
 		<div class="row pb-2">
 			<div class="col-lg-9 col-sm-8 mb-4">
-				<textarea class="form-control" id="introduce" name="introduce"
-					rows="6" placeholder="사뿐사뿐에 멋진 소개를 남겨주세요">
-								<%=loginMember.getIntroduce()%>
-								</textarea>
+			
+				<textarea class="form-control" id="introduce" name="introduce" rows="6" placeholder="사뿐사뿐에 멋진 소개를 남겨주세요">	
+					<%=loginMember.getIntroduce() %>
+				</textarea>
 			</div>
 
 			<div class="col-lg-3 col-sm-4 mb-4">
@@ -42,32 +55,52 @@
 			<div class="border-bottom pb-3 mb-3">
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="pe-2">
-						<label class="form-label fw-bold">이름</label>
-						<div id="userName" name="userName">
+						<label class="form-label fw-bold" style="color: #8957BD;">이름</label>
+						<div >
 							<%=loginMember.getUname()%>
 						</div>
 					</div>
-					<div class="me-n3" data-bs-toggle="tooltip" title="Edit">
-						<a class="nav-link py-0" href="#name-collapse"
-							data-bs-toggle="collapse"><i class="fi-edit"></i></a>
+<!-- 					<div class="me-n3" data-bs-toggle="tooltip" title="Edit"> -->
+<!-- 						<a class="nav-link py-0" href="#name-collapse" -->
+<!-- 							data-bs-toggle="collapse"><i class="fi-edit"></i></a> -->
+<!-- 					</div> -->
+				</div>
+<!-- 				<div class="collapse" id="name-collapse" -->
+<!-- 					data-bs-parent="#personal-info"> -->
+<!-- 					<input class="form-control mt-3" type="text" -->
+<!-- 						data-bs-binded-element="#name-value" -->
+<!-- 						data-bs-unset-value="Not specified" value="" id="userName" name="userName"> -->
+<!-- 				</div> -->
+			</div>
+
+			<!-- Email-->
+			<div class="border-bottom pb-3 mb-3">
+				<div class="d-flex align-items-center justify-content-between">
+					<div class="pe-2">
+						<label class="form-label fw-bold" style="color: #8957BD;">Email</label>
+						<div id="userId" name="userId">
+							<%if (loginMember != null) {%><%=loginMember.getUemail()%><%}%>
+						</div>
 					</div>
+					<!-- <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div> -->
 				</div>
-				<div class="collapse" id="name-collapse"
-					data-bs-parent="#personal-info">
-					<input class="form-control mt-3" type="text"
-						data-bs-binded-element="#name-value"
-						data-bs-unset-value="Not specified" value="Annette Black">
-				</div>
+<!-- 				<div class="collapse" id="email-collapse" -->
+<!-- 					data-bs-parent="#personal-info"> -->
+<!-- 					<input class="form-control mt-3" type="email" -->
+<!-- 						data-bs-binded-element="#email-value" -->
+<!-- 						data-bs-unset-value="Not specified" -->
+<!-- 						value="annette_black@email.com"> -->
+<!-- 				</div> -->
 			</div>
 
 			<!-- Phone number-->
 			<div class="border-bottom pb-3 mb-3">
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="pe-2">
-						<label class="form-label fw-bold">연락처</label>
-						<div id="phone" name="phone">
-							<%=loginMember.getUpn()%>
-
+						<label class="form-label fw-bold" style="color: #8957BD;">연락처</label>
+						<div id="phone-value">
+						<%=loginMember.getUpn() %>
+						
 						</div>
 					</div>
 					<div class="me-n3" data-bs-toggle="tooltip" title="Edit">
@@ -79,47 +112,17 @@
 					data-bs-parent="#personal-info">
 					<input class="form-control mt-3" type="text"
 						data-bs-binded-element="#phone-value"
-						data-bs-unset-value="Not specified" value="(302) 555-0107">
-				</div>
-			</div>
-
-			<!-- Email-->
-			<div class="border-bottom pb-3 mb-3">
-				<div class="d-flex align-items-center justify-content-between">
-					<div class="pe-2">
-						<label class="form-label fw-bold">Email</label>
-						<div id="userId" name="userId">
-							<%
-							if (loginMember != null) {
-							%><%=loginMember.getUemail()%>
-							<%
-							}
-							%>
-						</div>
-					</div>
-					<!-- <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div> -->
-				</div>
-				<div class="collapse" id="email-collapse"
-					data-bs-parent="#personal-info">
-					<input class="form-control mt-3" type="email"
-						data-bs-binded-element="#email-value"
-						data-bs-unset-value="Not specified"
-						value="annette_black@email.com">
+						data-bs-unset-value="Not specified" placeholder="Enter phone number" value="" id="phone" name="phone">
 				</div>
 			</div>
 
 			<!-- Address-->
-			<div>
+			<div class="border-bottom pb-3 mb-3">
 				<div class="d-flex align-items-center justify-content-between">
 					<div class="pe-2">
-						<label class="form-label fw-bold">주소</label>
-						<div id="address" name="address">
-							<%
-							if (loginMember != null) {
-							%><%=loginMember.getUadr()%>
-							<%
-							}
-							%>
+						<label class="form-label fw-bold" style="color: #8957BD;">주소</label>
+						<div id="address-value">
+						<%=loginMember.getUadr()%>
 						</div>
 					</div>
 					<div class="me-n3" data-bs-toggle="tooltip" title="Edit">
@@ -131,14 +134,13 @@
 					data-bs-parent="#personal-info">
 					<input class="form-control mt-3" type="text"
 						data-bs-binded-element="#address-value"
-						data-bs-unset-value="Not specified" placeholder="Enter address">
+						data-bs-unset-value="Not specified" placeholder="Enter address" value="" id="address" name="address">
 				</div>
 			</div>
-		</div>
 
 		<!-- Socials-->
 		<div class="pt-2">
-			<label class="form-label fw-bold mb-3">Socials</label>
+			<label class="form-label fw-bold mb-3" style="color: #8957BD;">Socials</label>
 		</div>
 		<div class="d-flex align-items-center mb-3">
 			<div
@@ -179,7 +181,7 @@
 			aria-expanded="false" aria-controls="showMoreSocials"><i
 			class="fi-arrow-down me-2" style="color: #8957BD;"></i></a>
 		<div class="d-flex align-items-center justify-content-between border-top mt-4 pt-4 pb-1">
-			<button class="btn px-3 px-sm-4" type="button" onclick="changeForm(0)" 
+			<button class="btn px-3 px-sm-4" type="submit" 
 				style="background-color: #8957BD; color: #fff;">변경사항 저장하기</button>
 			<button class="btn btn-link btn-sm px-0" type="button" onclick="changeForm(1)" 
 				id="deleteMember()">
