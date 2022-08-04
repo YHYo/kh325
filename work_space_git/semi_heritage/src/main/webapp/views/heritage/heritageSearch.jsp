@@ -1,3 +1,5 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="semi.heritage.heritageInfo.vo.HeritageVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
 <%@page import="semi.heritage.heritageInfo.vo.HeritageMainVO"%>
@@ -22,13 +24,69 @@
   <!-- 문화재 리스트 출력페이지!!!!!!!!!!! -->
        
 <% 
-List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
-List<Integer> favlist = (List<Integer>)request.getAttribute("favlist"); // 문화재 리스트에서 문화재 찜개수만 가지는 list
-// List<Integer> hnolist = (List<Integer>)request.getAttribute("hnolist"); // 문화재 리스트에서 문화재 고유번호만 가지는 list
+List<HeritageVO> findAllList = (List<HeritageVO>)request.getAttribute("findAllList");
+List<Integer> allFavlist = (List<Integer>)request.getAttribute("allFavlist"); // 문화재 리스트에서 문화재 찜개수만 가지는 list
+//List<HeritageMainVO> list = (List<HeritageMainVO>)request.getAttribute("list");
+//List<Integer> favlist = (List<Integer>)request.getAttribute("favlist"); // 문화재 리스트에서 문화재 찜개수만 가지는 list
+//List<Integer> hnolist = (List<Integer>)request.getAttribute("hnolist"); // 문화재 리스트에서 문화재 고유번호만 가지는 list
+
 PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
-String searchValue = request.getParameter("searchValue");
-int boardCount = (Integer)request.getAttribute("boardCount");
-int favoriteNum = (Integer)request.getAttribute("favoriteNum");
+
+String searchValue = "";
+String ccbaCtcdNm[] = null;
+String gcodeName[] = null;
+String ccmaName[] = null;
+String ccceName[] = null;
+String startYear = "";
+String endYear = "";
+List<String> region = new ArrayList<String>();
+List<String> type = new ArrayList<String>();
+List<String> designated = new ArrayList<String>();
+List<String> age = new ArrayList<String>();
+
+
+searchValue = request.getParameter("searchValue");
+
+ccbaCtcdNm  = request.getParameterValues("region");
+if(ccbaCtcdNm != null){
+	region = new ArrayList<>(Arrays.asList(ccbaCtcdNm));
+}else{
+	region = new ArrayList<>();
+}
+
+gcodeName  = request.getParameterValues("type");
+if(gcodeName != null){
+	type = new ArrayList<>(Arrays.asList(gcodeName));
+}else{
+	type = new ArrayList<>();
+}
+
+ccmaName  = request.getParameterValues("designated");
+if(ccmaName != null){
+	designated = new ArrayList<>(Arrays.asList(ccmaName));
+}else{
+	designated = new ArrayList<>();
+}
+
+ccceName  = request.getParameterValues("age");
+if(ccceName != null){
+	age = new ArrayList<>(Arrays.asList(ccceName));
+}else{
+	age = new ArrayList<>();
+}
+
+
+
+
+
+startYear = request.getParameter("startYear");
+endYear = request.getParameter("endYear");
+
+//=================================================================================================================================
+//int boardCount = (Integer)request.getAttribute("boardCount");
+int getFindAllCount = (Integer)request.getAttribute("getFindAllCount");
+//int favoriteNum = (Integer)request.getAttribute("favoriteNum");
+int allFavoriteNum = (Integer)request.getAttribute("allFavoriteNum");
 int uNo = (Integer)request.getAttribute("uNo");
 
 
@@ -69,7 +127,7 @@ int uNo = (Integer)request.getAttribute("uNo");
                             </div>
                             <hr class="d-md-none my-2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-10" style="background-color: #D97793; font-size: 22px;" type="button">&nbsp;&nbsp;검&nbsp;&nbsp;색&nbsp;&nbsp;</button>&nbsp;
-                        </form>
+                 
                     </div>
                     <br><br><br><br>
         </section>
@@ -529,7 +587,7 @@ int uNo = (Integer)request.getAttribute("uNo");
                     <!-- 필터링기능 끝-->
                 </div>
                     <!-- 필터링기능 끝-->
-                    
+                      </form>
                 </div>
                 <!-- Sorting-->
                 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
@@ -542,29 +600,29 @@ int uNo = (Integer)request.getAttribute("uNo");
                 </select>
                     </div>
                     <hr class="d-none d-sm-block w-100 mx-4">
-                    <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-list me-2"></i><span class="fs-sm mt-n1">총 <%=boardCount%> 건의 자료가 검색되었습니다.(부속 문화재 포함)</span></div>
+                    <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i class="fi-list me-2"></i><span class="fs-sm mt-n1">총 <%=getFindAllCount%> 건의 자료가 검색되었습니다.(부속 문화재 포함)</span></div>
                 </div>
                 <!-- Catalog grid-->
                 <div class="row g-4 py-4">
                     <!-- Item-->
-                    <%for(int i = 0; i < list.size(); i++) {%>
+                    <%for(int i = 0; i < findAllList.size(); i++) {%>
                     <div class="col-sm-6 col-xl-4">
                         <div class="card shadow-sm card-hover border-0 h-100">
                             <div class="tns-carousel-wrapper card-img-top card-img-hover">
-                                <a class="img-overlay" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=list.get(i).getNo()%>"></a>
-                                <div class="tns-carousel-inner" ><img src="<%=list.get(i).getImageUrl()%>"  alt="Image" style="height: 300px; width: 405px;">
+                                <a class="img-overlay" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=findAllList.get(i).getNo()%>"></a>
+                                <div class="tns-carousel-inner" ><img src="<%=findAllList.get(i).getImageUrl()%>"  alt="Image" style="height: 300px; width: 405px;">
                                   </div>
                             </div>
                             <div class="card-body position-relative pb-3" >
-                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" ><%=list.get(i).getCcbaMnm1()%></a>
-                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i><%=list.get(i).getCcbaCtcdNm() + " " + list.get(i).getCcsiName()%></div>
+                                <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" ><%=findAllList.get(i).getCcbaMnm1()%></a>
+                                    <div class="fw-bold"><i class="fi-map-pin mt-n1 me-2 lead align-middle opacity-70"></i><%=findAllList.get(i).getCcbaCtcdNm() + " " + findAllList.get(i).getCcsiName()%></div>
                                 </h3>
-                                <h2 class="mb-1 fs-xs fw-normal" style="width:350px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><%=list.get(i).getContent()%></h2>
+                                <h2 class="mb-1 fs-xs fw-normal" style="width:350px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><%=findAllList.get(i).getContent()%></h2>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
                                 <span class="d-inline-block mx-1 px-2 fs-sm">
                                 <i class="fi-heart-filled ms-1 mt-n1 fs-lg text-muted"></i></span>
-                                <a><%=favlist.get(i)%></a>
+                                <a><%=allFavlist.get(i)%></a>
                             </div>
                         </div>
                     </div>

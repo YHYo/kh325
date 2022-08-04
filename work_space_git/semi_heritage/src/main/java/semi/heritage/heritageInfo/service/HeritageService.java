@@ -114,19 +114,30 @@ public class HeritageService {
 	}
 
 	// 문화재 비디오에서 no로 상세조회
-	public String findHeritageVideoByNo(int videoNo) {
+	public HeritageVideo findHeritageVideoByNo(int videoNo) {
 		Connection conn = getConnection();
-		String hv = dao.findHeritageVideoByNo(conn, videoNo);
-			return hv;
+		HeritageVideo hv = dao.findHeritageVideoByNo(conn, videoNo);
+		return hv;
 	}
-	
-	
-	
-//	public static void main(String[] args) {
-//		HeritageService h = new HeritageService();
-//		Connection conn = getConnection();
-//		HeritageDao i = new HeritageDao();
-//		i.findHeritageVideoByNo(conn, 220);
-//		System.out.println(i);
-//	}
+
+	// 문화재 검색페이지 리스트를 가져오는 메소드
+	public List<HeritageVO> findAll(PageInfo pageInfo, String ccbaMnm, String[] ccbaCtcdNm, String[] gcodeName,
+			String[] ccmaName, String[] ccceName, String startYear, String endYear) {
+		Connection conn = getConnection();
+		List<HeritageVO> findAllList = dao.findAll(conn, pageInfo, ccbaMnm, ccbaCtcdNm, gcodeName, ccmaName, ccceName,
+				startYear, endYear);
+		close(conn);
+		return findAllList;
+	}
+
+	// 문화재 검색페이지 리스트 갯수
+	public int getFindAllCount(String ccbaMnm, String[] ccbaCtcdNm, String[] gcodeName, String[] ccmaName,
+			String[] ccceName, String startYear, String endYear) {
+		Connection conn = getConnection();
+		int countResult = dao.getFindAllCount(conn, ccbaMnm, ccbaCtcdNm, gcodeName, ccmaName, ccceName, startYear,
+				endYear);
+		close(conn);
+		return countResult;
+	}
+
 }

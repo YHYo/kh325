@@ -292,27 +292,275 @@ public class HeritageDao {
 	}
 
 	// 문화재 비디오 테이블에서 no로 상세조회
-	public String findHeritageVideoByNo(Connection conn, int videoNo) {
+	public HeritageVideo findHeritageVideoByNo(Connection conn, int videoNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String hv = "";
-		String query = "SELECT VIDEOURL FROM HERITAGEVIDEO " + "WHERE NO = ? ";
+		HeritageVideo hv = null;
+		String query = "SELECT videoUrl FROM heritageVideo " + "WHERE no = ? ";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, videoNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				hv = rs.getString(1);	
+				hv = new HeritageVideo();
+				hv.setVideoUrl(rs.getString("videoUrl"));
 			}
-//			System.out.println(hv);
-			return hv;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rs);
 		}
+		System.out.println(hv);
 		return hv;
+	}
+
+	// 문화재 검색페이지 리스트를 가져오는 메소드
+	public List<HeritageVO> findAll(Connection conn, PageInfo pageInfo, String ccbaMnm, String[] ccbaCtcdNm,
+			String[] gcodeName, String[] ccmaName, String[] ccceName, String startYear, String endYear) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<HeritageVO> findAllList = new ArrayList<>();
+		String queryBefore = "SELECT rn.* from " + "(SELECT ROWNUM AS RNUM, H.* "
+				+ "FROM (select sn, no, ccbaMnm1, ccbaCtcdNm, ccsiName, content, IMAGEURL, GCODENAME, CCMANAME, ccceName, CCBAASDT from HERITAGE order by sn) H "
+				+ "where 1 = 1 ";
+
+		String queryAfter = " )rn WHERE RNUM between ? and ?";
+
+		if (ccbaMnm != null) {
+			queryBefore += "AND H.ccbaMnm1 like ? ";
+		}
+		if (ccbaCtcdNm != null) {
+			for (int i = 0; i < ccbaCtcdNm.length; i++) {
+				if (i == 0) {
+					queryBefore += "AND (H.ccbaCtcdNm = ? ";
+				} else if (i > 0 && i < (ccbaCtcdNm.length - 1)) {
+					queryBefore += "OR H.ccbaCtcdNm = ? ";
+				} else if (i == (ccbaCtcdNm.length - 1)) {
+					queryBefore += "OR H.ccbaCtcdNm = ? )";
+				}
+			}
+		}
+		if (gcodeName != null) {
+			for (int i = 0; i < gcodeName.length; i++) {
+				if (i == 0) {
+					queryBefore += "AND (H.gcodeName = ? ";
+				} else if (i > 0 && i < (gcodeName.length - 1)) {
+					queryBefore += "OR H.gcodeName = ? ";
+				} else if (i == (gcodeName.length - 1)) {
+					queryBefore += "OR H.gcodeName = ? )";
+				}
+			}
+		}
+		if (ccmaName != null) {
+			for (int i = 0; i < ccmaName.length; i++) {
+				if (i == 0) {
+					queryBefore += "AND (H.ccmaName = ? ";
+				} else if (i > 0 && i < (ccmaName.length - 1)) {
+					queryBefore += "OR H.ccmaName = ? ";
+				} else if (i == (ccmaName.length - 1)) {
+					queryBefore += "OR H.ccmaName = ? )";
+				}
+			}
+		}
+		if (ccceName != null) {
+			for (int i = 0; i < ccceName.length; i++) {
+				if (i == 0) {
+					queryBefore += "AND (H.ccceName like ? ";
+				} else if (i > 0 && i < (ccceName.length - 1)) {
+					queryBefore += "OR H.ccceName like ? ";
+				} else if (i == (ccceName.length - 1)) {
+					queryBefore += "OR H.ccceName like ? )";
+				}
+			}
+		}
+		if (startYear != null) {
+			queryBefore += "AND SUBSTR(H.CCBAASDT, 1, 4) >= ? ";
+		}
+		if (endYear != null) {
+			queryBefore += "AND SUBSTR(H.CCBAASDT, 1, 4) <= ? ";
+		}
+
+		String query = queryBefore + queryAfter;
+//					System.out.println(query);
+//					return query;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			int count = 1;
+
+			if (ccbaMnm != null) {
+				pstmt.setString(count++, "%" + ccbaMnm + "%");
+			}
+			if (ccbaCtcdNm != null) {
+				for (int i = 0; i < ccbaCtcdNm.length; i++) {
+					pstmt.setString(count++, ccbaCtcdNm[i]);
+				}
+			}
+			if (gcodeName != null) {
+				for (int i = 0; i < gcodeName.length; i++) {
+					pstmt.setString(count++, gcodeName[i]);
+				}
+			}
+			if (ccmaName != null) {
+				for (int i = 0; i < ccmaName.length; i++) {
+					pstmt.setString(count++, ccmaName[i]);
+				}
+			}
+			if (ccceName != null) {
+				for (int i = 0; i < ccceName.length; i++) {
+					pstmt.setString(count++, "%" + ccceName[i] + "%");
+				}
+			}
+			if (startYear != null) {
+				pstmt.setString(count++, startYear);
+			}
+			if (endYear != null) {
+				pstmt.setString(count++, endYear);
+			}
+			pstmt.setInt(count++, pageInfo.getStartList());
+			pstmt.setInt(count++, pageInfo.getEndList());
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				HeritageVO heritageSearchAll = new HeritageVO();
+				int cnt = 1;
+				heritageSearchAll.setRowNum(rs.getInt(cnt++));
+				heritageSearchAll.setSn(rs.getInt(cnt++));
+				heritageSearchAll.setNo(rs.getInt(cnt++));
+				heritageSearchAll.setCcbaMnm1(rs.getString(cnt++));
+				heritageSearchAll.setCcbaCtcdNm(rs.getString(cnt++));
+				heritageSearchAll.setCcsiName(rs.getString(cnt++));
+				heritageSearchAll.setContent(rs.getString(cnt++));
+				heritageSearchAll.setImageUrl(rs.getString(cnt++));
+				heritageSearchAll.setGcodeName(rs.getString(cnt++));
+				heritageSearchAll.setCcmaName(rs.getString(cnt++));
+				heritageSearchAll.setCcceName(rs.getString(cnt++));
+				heritageSearchAll.setCcbaAsdt(rs.getString(cnt++));
+
+				findAllList.add(heritageSearchAll);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("체크포인트4 에러!!");
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		System.out.println(query);
+		System.out.println(findAllList.toString());
+		return findAllList;
+	}
+	
+	// 문화개 검색페이지 개수 구하기
+	public int getFindAllCount(Connection conn, String ccbaMnm, String[] ccbaCtcdNm,
+			String[] gcodeName, String[] ccmaName, String[] ccceName, String startYear, String endYear) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT COUNT(*) FROM HERITAGE where 1 = 1 ";
+
+		if (ccbaMnm != null) {
+			query += "AND ccbaMnm1 like ? ";
+		}
+		if (ccbaCtcdNm != null) {
+			for (int i = 0; i < ccbaCtcdNm.length; i++) {
+				if (i == 0) {
+					query += "AND (ccbaCtcdNm = ? ";
+				} else if (i > 0 && i < (ccbaCtcdNm.length - 1)) {
+					query += "OR ccbaCtcdNm = ? ";
+				} else if (i == (ccbaCtcdNm.length - 1)) {
+					query += "OR ccbaCtcdNm = ? )";
+				}
+			}
+		}
+		if (gcodeName != null) {
+			for (int i = 0; i < gcodeName.length; i++) {
+				if (i == 0) {
+					query += "AND (gcodeName = ? ";
+				} else if (i > 0 && i < (gcodeName.length - 1)) {
+					query += "OR gcodeName = ? ";
+				} else if (i == (gcodeName.length - 1)) {
+					query += "OR gcodeName = ? )";
+				}
+			}
+		}
+		if (ccmaName != null) {
+			for (int i = 0; i < ccmaName.length; i++) {
+				if (i == 0) {
+					query += "AND (ccmaName = ? ";
+				} else if (i > 0 && i < (ccmaName.length - 1)) {
+					query += "OR ccmaName = ? ";
+				} else if (i == (ccmaName.length - 1)) {
+					query += "OR ccmaName = ? )";
+				}
+			}
+		}
+		if (ccceName != null) {
+			for (int i = 0; i < ccceName.length; i++) {
+				if (i == 0) {
+					query += "AND (ccceName like ? ";
+				} else if (i > 0 && i < (ccceName.length - 1)) {
+					query += "OR ccceName like ? ";
+				} else if (i == (ccceName.length - 1)) {
+					query += "OR ccceName like ? )";
+				}
+			}
+		}
+		if (startYear != null) {
+			query += "AND SUBSTR(CCBAASDT, 1, 4) >= ? ";
+		}
+		if (endYear != null) {
+			query += "AND SUBSTR(CCBAASDT, 1, 4) <= ? ";
+		}
+		int countResult = 0;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			int count = 1;
+			if (ccbaMnm != null) {
+				pstmt.setString(count++, "%" + ccbaMnm + "%");
+			}
+			if (ccbaCtcdNm != null) {
+				for (int i = 0; i < ccbaCtcdNm.length; i++) {
+					pstmt.setString(count++, ccbaCtcdNm[i]);
+				}
+			}
+			if (gcodeName != null) {
+				for (int i = 0; i < gcodeName.length; i++) {
+					pstmt.setString(count++, gcodeName[i]);
+				}
+			}
+			if (ccmaName != null) {
+				for (int i = 0; i < ccmaName.length; i++) {
+					pstmt.setString(count++, ccmaName[i]);
+				}
+			}
+			if (ccceName != null) {
+				for (int i = 0; i < ccceName.length; i++) {
+					pstmt.setString(count++, "%" + ccceName[i] + "%");
+				}
+			}
+			if (startYear != null) {
+				pstmt.setString(count++, startYear);
+			}
+			if (endYear != null) {
+				pstmt.setString(count++, endYear);
+			}
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				countResult = rs.getInt(1);
+			}
+			close(pstmt);
+			close(rs);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+		System.out.println(countResult);
+		return countResult;
 	}
 
 	public static void main(String[] args) {
@@ -320,6 +568,28 @@ public class HeritageDao {
 		PageInfo pageinfo = new PageInfo(1, 8, 2, 8);
 		HeritageDao dao = new HeritageDao();
 //		dao.selectByHeritageName(conn, "숭", pageinfo);
-		dao.findHeritageVideoByNo(conn, 1);
+
+		String[] ccbaCtcdNm = new String[] { "서울", "부산", "대구" };
+		String ccbaMnm = "숭";
+		String[] gcodeName = new String[] { "유적건조물", "기록유산", "유물" };
+		String[] ccmaName = new String[] { "국보", "보물", "사적" };
+		String[] ccceName = new String[] { "조선", "삼국", "신라" };
+		String startYear = "1960";
+		String endYear = "2022";
+//		String ccbaAsdt  = 
+
+		dao.findAll(conn, pageinfo, ccbaMnm, ccbaCtcdNm, gcodeName, ccmaName, ccceName, startYear, endYear);
+		dao.getFindAllCount(conn, ccbaMnm, ccbaCtcdNm, gcodeName, ccmaName, ccceName, startYear, endYear);
+//		String ccbaCtcdNmStr = null;
+//		for(int i = 0; i < ccbaCtcdNm.length; i++) {
+//			if(i < ccbaCtcdNm.length -1) {
+//			ccbaCtcdNmStr = ccbaCtcdNm[i] + ",";
+//			}else{
+//				ccbaCtcdNmStr = ccbaCtcdNm[ccbaCtcdNm.length - 1];
+//			}
+//			System.out.print(ccbaCtcdNmStr);
 	}
+
+//		
+//	}
 }

@@ -2,6 +2,7 @@ package semi.heritage.heritageInfo.vo;
 
 public class HeritageVO {
 	
+	private int rowNum;
 	private int sn;					// 순번
 	private int no;   				// 고유 키값
 	private String ccmaName;		// 문화재종목
@@ -39,6 +40,22 @@ public class HeritageVO {
 		this.ccbaKdcd = ccbaKdcd;
 		this.ccbaCtcd = ccbaCtcd;
 		this.ccbaAsno = ccbaAsno;
+	}
+	
+	public HeritageVO(int rowNum, int sn, int no, String ccbaMnm1, String ccbaCtcdNm, String ccsiName, String content, String imageUrl, String gcodeName, String ccmaName, String ccceName, String ccbaAsdt) {
+		super();
+		this.rowNum = rowNum;
+		this.sn = sn;
+		this.no = no;
+		this.ccbaMnm1 = ccbaMnm1;
+		this.ccbaCtcdNm = ccbaCtcdNm;
+		this.ccsiName = ccsiName;
+		this.content = content;
+		this.imageUrl = imageUrl;
+		this.gcodeName = gcodeName;
+		this.ccmaName = ccmaName;
+		this.ccceName = ccceName;
+		this.ccbaAsdt = ccbaAsdt;
 	}
 
 	public HeritageVO(int sn, int no, String ccmaName, int crltsnoNm, String ccbaMnm1, String ccbaMnm2,
@@ -115,6 +132,16 @@ public class HeritageVO {
 		this.ccbaPoss = ccbaPoss;
 		this.imageUrl = imageUrl;
 		this.content = content;
+	}
+	
+	
+
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 
 	public int getSn() {
