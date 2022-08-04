@@ -62,7 +62,7 @@
                     <h1 style="font-size: 45px;"><span class="p01">인기문화명소</span><span class="text-muted p04" style="font-size: 21px;">  &nbsp실시간 인기가 많은 문화명소를 <span style="color: #ec6e9d;">史뿐史뿐</span> 둘러보세요!</span>
                     </h1>
                 </div>
-                <div class="col-md-1 d-lg-flex align-items-center justify-content-end"><a class="btn btn-link fw-normal ms-sm-3 p-0" href="city-guide-catalog.html">
+                <div class="col-md-1 d-lg-flex align-items-center justify-content-end"><a class="btn btn-link fw-normal ms-sm-3 p-0" href="<%=path%>/heritageSearch.do">
                더보기<i class="fi-arrow-long-right ms-2"></i></a></div>
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside">
@@ -73,8 +73,8 @@
                             <div class="position-relative mb-3">
                                 <img class="rounded-3" src="<%=list.get(i).getImageUrl()%>" style="width: 250px; height: 300px;" alt="Image">
                             </div>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="city-guide-single.html"><%= list.get(i).getCcbaMnm1() %></a></h3>
-                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="city-guide-single.html"><%= list.get(i).getCcbaCtcdNm() + " " +list.get(i).getCcsiName() %></a></h3>
+                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=list.get(i).getNo()%>"><%= list.get(i).getCcbaMnm1() %></a></h3>
+                            <h3 class="mb-2 fs-lg"><a class="nav-link stretched-link text-muted" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=list.get(i).getNo()%>"><%= list.get(i).getCcbaCtcdNm() + " " +list.get(i).getCcsiName() %></a></h3>
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item pe-1"><i class="fi-heart-filled mt-n1 me-1 fs-base text-warning align-middle"></i><b><%= list.get(i).getCountHfavorite() %></b></li>
                                 <li class="list-inline-item pe-1"><i class="fi-chat-circle mt-n1 me-1 fs-base text-muted align-middle"></i><%= list.get(i).getCountHreview() %></li>
@@ -95,7 +95,7 @@
                             <p class="subtitle text-primary" style="font-size: 15px; margin-bottom: 1%;"><b>E V E N T &nbsp S C H E D U L E</b></p>
                                 <h1 style="font-size: 45px;"><span class="p01">행사일정</span></h1>
                         </div>
-                        <div class=" col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="city-guide-catalog.html ">
+                        <div class=" col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="<%=path%>/event/main.do">
                        더보기<i class="fi-arrow-long-right ms-2 "></i></a></div>
                     </div>
                     <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside ">
@@ -156,7 +156,7 @@
                             <p class="subtitle text-primary " style="font-size: 15px; margin-bottom: 4%; "><b>C O M M U N I T Y</b></p>
                             <h1 style="font-size: 45px;"><span class="p01">커뮤니티</span></h1>
                         </div>
-                        <div class="col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="city-guide-catalog.html ">
+                        <div class="col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="<%=path%>/community/main">
                        더보기<i class="fi-arrow-long-right ms-2 "></i></a></div>
                     </div>
                     <div class="table-responsive" >
@@ -164,7 +164,7 @@
                             <tbody >
                              <% for (int j = 0; j < 7; j++){ %>
                                 <tr > 
-                                    <td style="width:500px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><a href="<%=path%>/community/view?type=H&boardNo=<%=blist.get(j).getNo()%>"> <%=blist.get(j).getTitle()%></a></td>
+                                    <td style="width:500px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><a  href="<%=path%>/community/view?type=H&boardNo=<%=blist.get(j).getNo()%>"> <%=blist.get(j).getTitle()%></a></td>
                                     
                                     <td><%=blist.get(j).getuName()%></td>
                                 </tr>  
@@ -209,12 +209,12 @@
                         <p class="subtitle text-primary " style="font-size: 17px; margin-bottom: 1%; "><b>T H E S E &nbsp A R E &nbsp E X P I R I N G &nbsp S O O N</b></p>
                         <h1 style="font-size: 45px;" class="p04">SP<span style="color: #cc99ff; ">mall</span> <span class="text-muted " style="font-size: 21px; "> 사뿐사뿐이 엄선한 가장 HOT한 전통문화상품</span></h1>
                     </div>
-                    <div class="col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="city-guide-catalog.html ">
+                    <div class="col-md-4 d-lg-flex align-items-center justify-content-end "><a class="btn btn-link fw-normal ms-sm-3 p-0 " href="<%=path%>/souvenirMain.do">
                    더보기<i class="fi-arrow-long-right ms-2 "></i></a></div>
                 </div>
                 <!-- 기획전 사진 -->
                 <div class="col-lg-4 text-center text-lg-start mb-lg-0 mb-5 ">
-                    <a class="d-block text-decoration-none bg-faded-accent rounded-3 h-100 " href="# ">
+                    <a class="d-block text-decoration-none bg-faded-accent rounded-3 h-100 " href="<%=path%>/souvenirMain.do">
                         <img src="<%=path%>/resources/img/semi-img/mainSpSpMall.png" style="width: 100%; height: 100%; " alt="Illustration "></a>
                 </div>
                 <!-- 기념품 소개글-->
@@ -225,7 +225,7 @@
                             <div class="d-flex align-items-start position-relative mb-4 "><img class="flex-shrink-0 me-3 rounded-3 " src="http://www.museumshop.or.kr/center/files/upload/20220610/20220610103108_sricunbl.jpg" style="max-width: 25%;
                                 height: 106px; " alt="Brand logo ">
                                 <div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">이조 연화당초 육각 악세사리함</a></h3>
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="<%=path%>/souvenirProductsDetail.do?productNo=4">이조 연화당초 육각 악세사리함</a></h3>
                                     <li><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>60,000원</li>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                             <div class="d-flex align-items-start position-relative mb-4 "><img class="flex-shrink-0 me-3 rounded-3 " src="https://www.museumshop.or.kr/center/files/good/202202091748300291100.jpg" style="max-width: 25%; height:
                                 1%; " alt="Brand logo ">
                                 <div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">반가사유상
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="<%=path%>/souvenirProductsDetail.do?productNo=1">반가사유상
                                     </a></h3>
                                     <li><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>15,000원</li>
                                 </div>
@@ -242,7 +242,7 @@
                             <div class="d-flex align-items-start position-relative mb-4 "><img class="flex-shrink-0 me-3 rounded-3 " src="https://www.museumshop.or.kr/center/files/good/202112311557320231100.jpg" style="max-width: 25%; height:
                                 1%; " alt="Brand logo ">
                                 <div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">[조선의 승려 장인]약사불 보호등
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="<%=path%>/souvenirProductsDetail.do?productNo=3">[조선의 승려 장인]약사불 보호등
                                     </a></h3>
                                     <li><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>50,000원</li>
                                 </div>
@@ -253,7 +253,7 @@
                             <div class="d-flex align-items-start position-relative mb-4 "><img class="flex-shrink-0 me-3 rounded-3 " src="https://khmall.or.kr/web/product/small/shop1_50a82de59064d70b280a59d64c02b837.jpg" style="max-width: 25%; height:
                                 1%; " alt="Brand logo ">
                                 <div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">일월오봉도 부채
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="<%=path%>/souvenirProductsDetail.do?productNo=7">일월오봉도 부채
                                     </a></h3>
                                     <li><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>9,500원</li>
                                 </div>
@@ -262,7 +262,7 @@
                             <div class="d-flex align-items-start position-relative mb-4 "><img class="flex-shrink-0 me-3 rounded-3 " src="https://khmall.or.kr/web/product/small/202102/50d26bfdf88f5d14497bcacd86a3d350.jpg" style="max-width: 25%; height:
                                 1%; " alt="Brand logo ">
                                 <div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">전통그림부채
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="<%=path%>/souvenirProductsDetail.do?productNo=8">전통그림부채
                                     </a></h3>
                                     <li><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>2,700원</li>
                                 </div>
@@ -270,7 +270,7 @@
                             <!-- 기념품 6-->
                             <div class="d-flex align-items-start position-relative "><img class="flex-shrink-0 me-3 rounded-3 " src="https://khmall.or.kr/web/product/extra/small/202109/7f6f066c90afdf0a892e9b291b711bf8.jpg" style="max-width: 25%; height: 1%; " alt="Brand logo ">
                                 <div>
-                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="city-guide-single.html ">향기로 만나는 궁 (디퓨저)
+                                    <h3 class="mb-2 fs-lg "><a class="nav-link stretched-link " href="<%=path %>/souvenirProductsDetail.do?productNo=5">향기로 만나는 궁 (디퓨저)
                                     </a></h3>
                                     <li><i class="fi-credit-card mt-n1 me-1 fs-base text-muted align-middle "></i>45,000원</li>
                                 </div>
