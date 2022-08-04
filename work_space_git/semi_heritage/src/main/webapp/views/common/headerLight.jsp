@@ -276,7 +276,7 @@ String saveId = "";
                                 <li class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="<%=path%>/community/list?type=H" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>역사연구소</b></a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="<%=path%>/community/list?type=T" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>자유게시판</b></a></li>
+                                <li><a class="dropdown-item" href="<%=path%>/community/list?type=F" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>자유게시판</b></a></li>
                             </ul>
                         </li>
                         
