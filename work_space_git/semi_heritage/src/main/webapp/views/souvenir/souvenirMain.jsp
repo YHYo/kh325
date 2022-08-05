@@ -158,6 +158,7 @@
 		</div>
 		<div class="col-lg-6">
 
+
 			<!-- 기념품 제2호 시작 for문으로 2, 3호 출력-->
 			<% for (int i = 2; i < 4; i++){ %>
 			<div class="card card-light card-hover card-horizontal mb-3 mt-2">

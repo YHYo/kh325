@@ -112,6 +112,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
        </form>
     </main>
     
+  
     <script  type="text/javascript">
 	            
 function changeForm(val) {
