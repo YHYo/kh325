@@ -100,6 +100,8 @@ public class SouvenirService {
 		Connection conn = getConnection();
 		List<SouvenirBuyVO> list = dao.selectBuyByUNO(conn, uNo);
 		close(conn);
+		
+		System.out.println("구매목록" + list);
 		return list;
 	}
 	
