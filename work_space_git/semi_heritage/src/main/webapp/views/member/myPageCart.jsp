@@ -1,3 +1,4 @@
+<%@page import="semi.heritage.souvenir.vo.SouvenirProductVO"%>
 <%@page import="semi.heritage.souvenir.vo.SouvenirCartVO"%>
 <%@page import= "java.text.DecimalFormat" %>
 <%@page import="java.util.ArrayList"%>
@@ -8,6 +9,7 @@
 
 <%
 DecimalFormat df = new DecimalFormat("###,###");
+SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");
 List<SouvenirCartVO> cartList = (List<SouvenirCartVO>)request.getAttribute("cartList");
 SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
 %>
@@ -84,7 +86,7 @@ SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
                     </div>
                     <%} %>
                     
-                    <button href="<%=path%>/souvenirCheckout.do%>" class="btn mt-4 justify-content-end" style="background-color: #8957BD; color: #fff;">전 제품 결제하기</button>
+                    <button href="<%=path%>/souvenirPay.do%>" class="btn mt-4 justify-content-end" style="background-color: #8957BD; color: #fff;">전 제품 결제하기</button>
 
 
 
