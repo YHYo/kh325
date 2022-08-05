@@ -108,7 +108,8 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
 
                 </ul>
                 <div class="text-nowrap">
-                    <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                    <input type="hidden" name="hertiageNo" value="<%=h.getNo()%>">
+                    <button onclick="location.href='<%=request.getContextPath() %>/favoriteInsert.do?hertiageNo=<%=h.getNo()%>'" class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="submit" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
                     <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                         <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                         <div class="dropdown-menu dropdown-menu-end my-1">
@@ -331,7 +332,7 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         <br><br><br><br> <br><br><br><br>
                         <div class="text-center">
                             <p>
-                                <a style="color:rgb(220, 58, 85)" href="#">
+                                <a style="color:rgb(220, 58, 85)" href="<%=path%>/favoriteInsert.do?hertiageNo=<%=h.getNo()%>">
                                     <i class="fi-heart-filled" style="color:rgb(220, 58, 85)"></i> Like this place</a>
                             </p><span><%=CountFavoriteByNo%>명의 사람들이 이 장소를 찜하였습니다.</span>
                         </div>
