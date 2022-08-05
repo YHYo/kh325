@@ -124,6 +124,7 @@ List<SouvenirBuyVO> BuyList = (List<SouvenirBuyVO>)request.getAttribute("BuyList
 					</div>
 <!-- 				</div> -->
 				
+				
 				<!-- 주문번호 첫번째 끝 -->
 
 			</div>

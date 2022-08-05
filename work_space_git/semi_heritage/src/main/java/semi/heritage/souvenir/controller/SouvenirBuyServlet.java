@@ -25,6 +25,7 @@ public class SouvenirBuyServlet extends MyHttpServlet {
 		int uNo = 0;
 		List<SouvenirBuyVO> BuyList = null;
 
+		
 		try {
 			Member loginMember = (Member) getSessionMember(req);
 			uNo = loginMember.getUno();
