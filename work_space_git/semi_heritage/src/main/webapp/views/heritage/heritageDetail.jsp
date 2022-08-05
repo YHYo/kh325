@@ -128,29 +128,29 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
         <section class="container overflow-auto mb-4 pb-3" data-simplebar>
             <div class="row g-2 g-md-3 gallery" data-thumbnails="true" style="min-width: 30rem;">
                 <div class="col-8" >
-                   <a class="gallery-item rounded rounded-md-3" href="<%if(hi.get(0).getImageUrl() != null){ %><%=hi.get(0).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;&lt;/h6&gt;"><img src="<%if(hi.get(0).getImageUrl() != null){ %><%=hi.get(0).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" alt="Gallery thumbnail" img class="img-contain3"></a> 
+                   <a class="gallery-item rounded rounded-md-3" href="<%if(hi.get(0).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;&lt;/h6&gt;"><img src="<%if(hi.get(0).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain3"></a> 
                 </div>
                 <div class="col-4" >
-                    <a class="gallery-item rounded rounded-md-3 mb-2 mb-md-3" href="<%if(hi.get(1).getImageUrl() != null){ %><%=hi.get(1).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;&lt;/h6&gt;"><img src="<%if(hi.get(1).getImageUrl() != null){ %><%=hi.get(1).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
-                    <a class="gallery-item rounded rounded-md-3" href="<%if(hi.get(2).getImageUrl() != null){ %><%=hi.get(2).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(2).getImageUrl() != null){ %><%=hi.get(2).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
+                    <a class="gallery-item rounded rounded-md-3 mb-2 mb-md-3" href="<%if(hi.get(1).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(1).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;&lt;/h6&gt;"><img src="<%if(hi.get(1).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(1).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
+                    <a class="gallery-item rounded rounded-md-3" href="<%if(hi.get(2).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(2).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(2).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(2).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
                 </div>
                 <div class="col-12">
                     <div class="row g-2 g-md-3">
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.get(3).getImageUrl() != null){ %><%=hi.get(3).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(3).getImageUrl() != null){ %><%=hi.get(3).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.get(3).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(3).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(3).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(3).getImageUrl()%><%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.get(4).getImageUrl() != null){ %><%=hi.get(4).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(4).getImageUrl() != null){ %><%=hi.get(4).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.get(4).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(4).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(4).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(4).getImageUrl()%><%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.get(5).getImageUrl() != null){ %><%=hi.get(5).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(5).getImageUrl() != null){ %><%=hi.get(5).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.get(5).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(5).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(5).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(5).getImageUrl()%><%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" style="object-fit: contain" href="<%if(hi.get(6).getImageUrl() != null){ %><%=hi.get(6).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(6).getImageUrl() != null){ %><%=hi.get(6).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" style="object-fit: contain" href="<%if(hi.get(6).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(6).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.get(6).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(6).getImageUrl()%><%} %>" img class="img-contain" alt="Gallery thumbnail"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item more-item rounded-1 rounded-md-2" href="<%if(hi.get(7).getImageUrl() != null){ %><%=hi.get(7).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Bath&lt;/h6&gt;">
-                            <img src="<%if(hi.get(8).getImageUrl() != null){ %><%=hi.get(8).getImageUrl()%><%}else{%><%=path%>/resources/img/semi-img/noimage_spsp.png<%} %>" img class="img-contain" alt="Gallery thumbnail"><span class="gallery-item-caption fs-base"><span class='d-none d-md-inline'>+ more
+                            <a class="gallery-item more-item rounded-1 rounded-md-2" href="<%if(hi.get(7).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(7).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Bath&lt;/h6&gt;">
+                            <img src="<%if(hi.get(7).toString().isEmpty() == true){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(7).getImageUrl()%><%} %>" img class="img-contain" alt="Gallery thumbnail"><span class="gallery-item-caption fs-base"><span class='d-none d-md-inline'>+ more
                                         photos</span></span>
                             </a>
                         </div>
@@ -205,7 +205,7 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                     
                   
                     <!-- Review-->
-                    <div style="overflow: hidden; height: 570px">
+                    <div style="overflow: hidden; height: 750px">
                    <%if(list != null){ for(int i= 0; i< list.size(); i++){
                 	   %>
                     <div class="mb-4 pb-4 border-bottom">
@@ -304,21 +304,10 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         </div>
                     </div>
                     <!-- 위치 LOCATION (Map)-->
-                    <div class="pt-2">
-                        <p class="subtitle text-sm text-primary" style="font-weight:bold"> &nbsp;&nbsp;L O C A T I O N
+                     <p class="subtitle text-sm text-primary" style="font-weight:bold"> &nbsp;&nbsp;L O C A T I O N
                         </p>
-                        <h3 class="h4 pb-3"><i class="mt-n1 me-2 lead align-middle text-warning" style="font-weight:bold"></i>위치
-                        </h3>
-                        <div class="position-relative mb-2"><img class="rounded-3" src="<%=path%>/resources/img/semi-img/map.jpg" alt="Map">
-                            <div class="d-flex w-100 h-100 align-items-center justify-content-center position-absolute top-0 start-0">
-                                <a class="btn btn-primary stretched-link" href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6145424811048!2d-73.9399927840
-                                6218!3d40.74850644331743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2592979d4827f%3A0x3a5d8b3cf779f3b6!2s28%20Jackson%20Ave%2C%20Long%20I
-                                sland%20City%2C%20NY%2011101%2C%20USA!5e0!3m2!1sen!2sua!4v1618074552281!5m2!1sen!2sua"
-                                    data-iframe="true" data-bs-toggle="lightbox"><i class="fi-route me-2"></i>Get
-                                    directions</a>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="map" style="width:100%;height:350px;"></div>
+                     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fe923d0403373a46493e39c5c706eea9"></script>
                     <br>
 
                     <!-- 동영상 video-->
@@ -351,6 +340,29 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
         </section>
         </div>
     </main>
+   
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(<%=h.getLatitude()%>,<%=h.getLongitude()%>), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
 
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(<%=h.getLatitude()%>, <%=h.getLongitude()%>); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);    
+</script>
 <%@include file="/views/common/footer.jsp"%>
  

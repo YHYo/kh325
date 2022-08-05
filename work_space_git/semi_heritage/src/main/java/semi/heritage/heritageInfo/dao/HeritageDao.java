@@ -229,7 +229,7 @@ public class HeritageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		HeritageVO hv = null;
-		String query = "SELECT   ccbaMnm1,  ccbaMnm2,  ccbaCtcdNm,  ccsiName,  content,  ccbaKdcd,  ccbaQuan,  ccbaAsdt,  ccbaLcad,  ccceName,  ccbaPoss,  imageUrl, ccmaName, ccbaAdmin "
+		String query = "SELECT   ccbaMnm1,  ccbaMnm2,  ccbaCtcdNm,  ccsiName,  content,  ccbaKdcd,  ccbaQuan,  ccbaAsdt,  ccbaLcad,  ccceName,  ccbaPoss,  imageUrl, ccmaName, ccbaAdmin, longitude, latitude "
 				+ "FROM HERITAGE WHERE no = ? ";
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -252,7 +252,8 @@ public class HeritageDao {
 				hv.setImageUrl(rs.getString("imageUrl"));
 				hv.setCcmaName(rs.getString("ccmaName"));
 				hv.setCcbaAdmin(rs.getString("ccbaAdmin"));
-
+				hv.setLongitude(rs.getString("longitude"));
+				hv.setLatitude(rs.getString("latitude"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
