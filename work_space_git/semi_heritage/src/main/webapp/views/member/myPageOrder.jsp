@@ -70,8 +70,8 @@ List<SouvenirBuyVO> BuyList = (List<SouvenirBuyVO>)request.getAttribute("BuyList
 										style="text-align: center;">주문번호</th>
 									<th class="fw-bold align-content-center mb-lg-3"
 										style="text-align: center;">상품번호</th>
-									<th class="fw-bold align-content-center"
-										style="text-align: center;">사진</th>
+<!-- 									<th class="fw-bold align-content-center" -->
+<!-- 										style="text-align: center;">사진</th> -->
 									<th class="fw-bold align-content-center"
 										style="text-align: center;">상품명</th>
 									<th class="fw-bold align-content-center"
@@ -86,8 +86,8 @@ List<SouvenirBuyVO> BuyList = (List<SouvenirBuyVO>)request.getAttribute("BuyList
 										style="color: #9E9E9E; text-align: center; border-top: 1px solid #efecf3;"><%=BuyList.get(i).getOrderNum() %></th>
 									<td class="fw-bold align-content-center"
 										style="color: #9E9E9E; text-align: center; border-top: 1px solid #efecf3;"><%=BuyList.get(i).getSouv_pro_no() %></td>
-									<td class="fw-bold align-content-center"
-										style="color: #9E9E9E; text-align: center; border-top: 1px solid #efecf3;"><img src="<%=BuyList.get(i).getSouv_pro_url() %>" width="50px" height="50px"></td>
+<!-- 									<td class="fw-bold align-content-center" -->
+<%-- 										style="color: #9E9E9E; text-align: center; border-top: 1px solid #efecf3;"><img src="<%=BuyList.get(i).getSouv_pro_url() %>" width="50px" height="50px"></td> --%>
 									<td class="fw-bold align-content-center"
 										style="color: #9E9E9E; text-align: center; border-top: 1px solid #efecf3;"><a
 										class="card-nav-link" style="text-decoration: none;"
