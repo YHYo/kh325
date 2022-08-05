@@ -3,6 +3,15 @@
 
 
 <%-- <%@include file="/views/common/headerDark.jsp"%> --%>
+
+<style>
+.rounded-circle2 {
+	width: 80px;
+	height: 80px;
+    border-radius: 100% !important;
+}
+</style>
+
 <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
             <!-- Breadcrumb-->
             <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
@@ -18,7 +27,7 @@
                 <aside class="col-lg-4 col-md-5 pe-xl-4 mb-5">
                     <!-- 프로필 & 카테고리 시작 -->
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path+"/resources/upload/photo/"+loginMember.getRenamedPhoto()%>" width="48" onerror="this.src='<%=path%>/resources/img/semi-img/01.info.default.photo.png'">
+                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle2" src="<%=path+"/resources/upload/photo/"+loginMember.getRenamedPhoto()%>" width="48" onerror="this.src='<%=path%>/resources/img/semi-img/01.info.default.photo.png'">
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                                 <h2 class="fs-lg mb-0"><%=loginMember.getUname()%>님</h2>
                                 <ul class="list-unstyled fs-sm mt-3 mb-0">
