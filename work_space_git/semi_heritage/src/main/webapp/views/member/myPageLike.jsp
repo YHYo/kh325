@@ -15,6 +15,20 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
 
 %>
  
+ <style>
+ .mhj-content {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          word-wrap:break-word; 
+          line-height: 20px;
+            width: 450px;
+        }
+</style>
+ 
+ 
  <form action="<%=path%>/myPageLike.do" method="get" >
  <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
             <!-- Breadcrumb-->
