@@ -16,8 +16,8 @@
             <!-- Breadcrumb-->
             <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="real-estate-account-info.html">Account</a></li>
+                    <li class="breadcrumb-item"><a href="<%=path%>/index.do">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<%=path%>/myPageInfo.do">Account</a></li>
                     <li class="breadcrumb-item active" aria-current="page">My Properties</li>
                 </ol>
             </nav>
@@ -35,7 +35,7 @@
                                     <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i><%=loginMember.getUemail() %></a></li>
                                 </ul>
                             </div>
-                        </div><a class="btn btn-lg w-100 mb-3" href="real-estate-add-property.html" style="background-color: #8957BD; color: #fff;"><i class="fi-plus me-2"></i>게시글 작성하기</a>
+                        </div><a class="btn btn-lg w-100 mb-3" href="<%=path%>/community/write" style="background-color: #8957BD; color: #fff;"><i class="fi-plus me-2"></i>게시글 작성하기</a>
                         <a class="btn btn-outline-secondary d-block d-md-none w-100 mb-3" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Menu</a>
 
                         <div class="collapse d-md-block mt-3 a:hover" id="account-nav">
