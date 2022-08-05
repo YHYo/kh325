@@ -100,6 +100,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                 </div>
             </div>
         </div>
+       </form>
     </main>
     
   

@@ -9,6 +9,7 @@
 <%@include file="/views/common/headerDark.jsp"%>
    <%
    	DecimalFormat df = new DecimalFormat("###,###");
+    List<SouvenirProductVO> productList = (List<SouvenirProductVO>) request.getAttribute("productList");
  	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
    	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
    	SouvenirProductVO cart = (SouvenirProductVO)request.getAttribute("SouvenirCartInsertServlet");
@@ -138,7 +139,8 @@
 							<div class="col me-sm-1">
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
 									<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-									<span class="fs-xs text-light"><button type="submit" class="nav-link-light bg-dark" style="border : none;">장바구니</button></span>
+									<span class="fs-xs text-light">
+									<button type="submit" class="nav-link-light bg-dark" style="border : none;">장바구니</button></span>
 								</div>
 							</div>
 							<div class="col me-sm-1">
@@ -157,7 +159,7 @@
 		<div class="col-lg-6">
 
 			<!-- 기념품 제2호 시작 for문으로 2, 3호 출력-->
-			<% for (int i = 1; i < listIngi.size(); i++){ %>
+			<% for (int i = 2; i < 4; i++){ %>
 			<div class="card card-light card-hover card-horizontal mb-3 mt-2">
 				<div class="tns-carousel-wrapper card-img-top card-img-hover">
 					<a class="img-overlay"
@@ -192,17 +194,16 @@
 						<div class="row g-2">
 							<div class="col me-sm-1">
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
-									<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i> <span
-										class="fs-xs text-light"><a class="nav-link-light"
-										onclick="fnCart();" href="<%=path%>/views/member/myPageCart.jsp">
-											장바구니</span></a>
+									<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
+									<span class="fs-xs text-light"><button type="submit" class="nav-link-light bg-dark" style="border : none;">
+										장바구니</span></button>
 								</div>
 							</div>
 							<div class="col me-sm-1">
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
 									<i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
 									<span class="fs-xs text-light"><a class="nav-link-light"
-										onclick="prView();"
+										
 										href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(i).getSouv_pro_no()%>">상세보기</a></span>
 								</div>
 							</div>
