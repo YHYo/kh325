@@ -11,32 +11,11 @@
    	DecimalFormat df = new DecimalFormat("###,###");
  	List<SouvenirCategoryVO> listCat = (List<SouvenirCategoryVO>)request.getAttribute("listCat");
    	List<SouvenirProductVO> listIngi = (List<SouvenirProductVO>)request.getAttribute("listIngi");
-	
-   	
+   	SouvenirProductVO cart = (SouvenirProductVO)request.getAttribute("SouvenirCartInsertServlet");
    %>
    
 
-
-<script type="text/javascript">
-	function fnCart(souvenirName, souvenirCategory, souvenirPrice) {
-		alert('장바구니에 담으시겠습니까?');
-		if (confirm("장바구니를 확인하시겠습니까?")) {
-			location.href = "<%=path%>/myPageCart.do";
-
-			if (obj != souvenirName) { //세션 정보가 없으면 배열을 생성 : 최초 주문한 경우
-
-			} else {
-				alert("이미 존재하는 상품 입니다");
-			}
-		}
-	}
-
-// 	function prView() {
-<%-- 		location.href = "/souvenirProductsDetail.do?productNo=<%=productDetail.getSouv_pro_no()%>"; --%>
-// 	}
-</script>
-
-
+<form action="<%=path%>/souvenirInsert.do" method="post" >
 <!-- Body-->
 <!-- Page loading spinner-->
 <!-- Page content-->
@@ -97,8 +76,6 @@
  				 <a class="nav-link-light stretched-link fw-bold"
  					href="<%=path+"/souvenirProductsList.do?category="+ listCat.get(i).getcName()%> "
  					style="font-size: 18px;"><%=listCat.get(i).getcName() %></a>  
- 					
- 					
  					<a style="color: grey; font-size: 16px;"><%=listCat.get(i).getcSebu() %></a>
  			</div>
 			
@@ -110,8 +87,7 @@
 </section>
 <!-- Top offers-->
 <section class="container pt-sm-1 pb-5 mb-md-4">
-	<div
-		class="d-sm-flex align-items-center justify-content-between mb-4 pb-sm-2">
+	<div class="d-sm-flex align-items-center justify-content-between mb-4 pb-sm-2">
 		<div class="col-md-8">
 			<p class="subtitle"
 				style="font-size: 30px; color: #C389FF; margin-bottom: 1%">
@@ -157,18 +133,18 @@
 				<div class="card-footer border-0 pt-0">
 					<div class="border-top border-light pt-4">
 						<div class="row g-2">
+						
+						
 							<div class="col me-sm-1">
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
-									<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i> <span
-										class="fs-xs text-light nav-link-light"
-										onclick="fnCart('이곳에 인자도 없고 ㅠㅠ');"> 장바구니 </span>
+									<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
+									<span class="fs-xs text-light"><button type="submit" class="nav-link-light bg-dark" style="border : none;">장바구니</button></span>
 								</div>
 							</div>
 							<div class="col me-sm-1">
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
 									<i class="fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
 									<span class="fs-xs text-light"><a class="nav-link-light"
-										onclick="prView();"
 										href="<%=path+"/souvenirProductsDetail.do?productNo=" + listIngi.get(0).getSouv_pro_no()%>">상세보기</a></span>
 								</div>
 							</div>
@@ -181,7 +157,7 @@
 		<div class="col-lg-6">
 
 			<!-- 기념품 제2호 시작 for문으로 2, 3호 출력-->
-			<% for (int i = 2; i < 4; i++){ %>
+			<% for (int i = 1; i < listIngi.size(); i++){ %>
 			<div class="card card-light card-hover card-horizontal mb-3 mt-2">
 				<div class="tns-carousel-wrapper card-img-top card-img-hover">
 					<a class="img-overlay"
@@ -237,10 +213,8 @@
 			</div>
 			<%} %>
 			<!-- 기념품 제2호 끝 -->
-
-			
-
 		</div>
+		</form>
 	</div>
 </section>
 <section class="container">

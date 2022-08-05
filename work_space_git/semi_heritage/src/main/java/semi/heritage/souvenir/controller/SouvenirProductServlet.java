@@ -49,6 +49,7 @@ public class SouvenirProductServlet extends HttpServlet {
 			pList = new ArrayList<SouvenirProductVO>();
 		}
 		
+		System.out.println("!!"+pList);
 		
 //		req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);
 		

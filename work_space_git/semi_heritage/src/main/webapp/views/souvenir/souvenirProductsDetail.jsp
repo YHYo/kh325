@@ -44,9 +44,11 @@
                 <ol class="breadcrumb breadcrumb-light">
             		
                     <li class="breadcrumb-item"><a href="<%=path%>/souvenirMain.do">사뿐몰</a></li>
-                    <%if(productDetail.getSouv_pro_category() != null) %>{
-                    <li class="breadcrumb-item"><a href="car-finder-catalog-grid.html"><%=productDetail.getSouv_pro_category()%></a></li>
-                    }
+                    <!-- if(productDetail.getSouv_pro_category() != null) {%> -->                   
+                    <li class="breadcrumb-item">
+                    <a href="<%=path+"/souvenirProductsDetail.do?category=" + productDetail.getSouv_pro_category()%>">
+                    <%=productDetail.getSouv_pro_category()%></a></li>
+                    <!-- } %> -->
                     <li class="breadcrumb-item active" aria-current="page"><%=productDetail.getSouv_pro_name()%></li>
                 </ol>
             </nav>

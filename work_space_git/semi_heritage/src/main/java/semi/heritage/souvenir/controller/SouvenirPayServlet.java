@@ -26,18 +26,15 @@ public class SouvenirPayServlet extends MyHttpServlet{
 		List<SouvenirPayVO> payList = null;
 		int uNo = 0;
 		
-		try {
 			Member loginMember = (Member)getSessionMember(req);
 			uNo = loginMember.getUno();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		payList = service.getPayList(uNo);
 		
 		req.setAttribute("payList", payList);
 		req.getRequestDispatcher("/views/souvenir/souvenirCheckout.jsp").forward(req, resp);
-
+		
+	
 	}
 	
 	@Override

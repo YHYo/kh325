@@ -14,7 +14,6 @@ List<SouvenirCartVO> cartList = (List<SouvenirCartVO>)request.getAttribute("cart
 SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
 %>
 
-<form action="<%=path%>/myPageCart.do" method="get" >
 <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
             <!-- Breadcrumb-->
             <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
@@ -63,6 +62,7 @@ SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
                     <p class="pt-1 mb-4">사뿐몰에서 담은 상품들을 확인 해보세요</p>
                     <%for(int i = 0; i < cartList.size(); i++){ %>
                    	<%int deleteSeqNo = cartList.get(i).getSeqNo(); %>
+                    
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
                         <a class="card-img-top" href="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>" style="background-image: url(<%=cartList.get(i).getSouv_pro_url()%>);">
@@ -85,11 +85,9 @@ SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
                         </div>
                     </div>
                     <%} %>
-                    
-                    <button href="<%=path%>/souvenirPay.do" class="btn mt-4 justify-content-end" style="background-color: #8957BD; color: #fff;">전 제품 결제하기</button>
-
-
-
+					<form action="<%=path%>/souvenirPay.do" method="get" >
+                	
+                    <button type="submit" class="btn mt-4 justify-content-end" style="background-color: #8957BD; color: #fff;">전 제품 결제하기</button>
                 </div>
                 </form>
             </div>

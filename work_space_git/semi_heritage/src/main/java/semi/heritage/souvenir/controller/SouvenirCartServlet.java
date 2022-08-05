@@ -39,6 +39,7 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 			
 
 			cartList = service.getCartList(uNo);
+			System.out.println(cartList);
 			
 			req.setAttribute("cartList", cartList);
 			req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
