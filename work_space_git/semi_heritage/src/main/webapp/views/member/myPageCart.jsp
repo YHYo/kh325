@@ -86,7 +86,7 @@ SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
                     </div>
                     <%} %>
                     
-                    <button href="<%=path%>/souvenirPay.do%>" class="btn mt-4 justify-content-end" style="background-color: #8957BD; color: #fff;">전 제품 결제하기</button>
+                    <button href="<%=path%>/souvenirPay.do" class="btn mt-4 justify-content-end" style="background-color: #8957BD; color: #fff;">전 제품 결제하기</button>
 
 
 

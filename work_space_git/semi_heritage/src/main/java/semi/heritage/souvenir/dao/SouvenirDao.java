@@ -321,6 +321,28 @@ public class SouvenirDao {
 		}
 		return list;
 	}
+	
+	// 결제 후 구매목록에 업데이트 (buy_status를 y로 수정)
+	public int updateBuyING(Connection conn, int uNo) {
+		PreparedStatement pstmt = null;
+		String query = "UPDATE SOUV_CART SET BUY_STATUS='Y' WHERE uNO=?";
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, status); // Y,N (STATUS IN ('Y', 'N'))
+			pstmt.setInt(1, uNo);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
 
 	public static void main(String[] args) {
 		Connection conn = getConnection();

@@ -10,7 +10,6 @@
 <%
 DecimalFormat df = new DecimalFormat("###,###");
 List<SouvenirBuyVO> BuyList = (List<SouvenirBuyVO>)request.getAttribute("BuyList");
-// SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
 %>
 
 <style>

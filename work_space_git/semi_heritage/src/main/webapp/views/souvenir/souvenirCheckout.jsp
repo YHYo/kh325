@@ -1,13 +1,20 @@
+<%@page import="semi.heritage.souvenir.vo.SouvenirPayVO"%>
+<%@page import= "java.text.DecimalFormat" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
 <%@include file="/views/common/headerDark.jsp"%>
 
+<%
+	Member member = (Member)request.getAttribute("member");
+	DecimalFormat df = new DecimalFormat("###,###");
+	List<SouvenirPayVO> payList = (List<SouvenirPayVO>)request.getAttribute("payList");
+
+%>
 
 <!-- Body-->
-
-
-
 
 <body class="bg-dark">
     <!-- Page loading spinner-->
@@ -41,7 +48,7 @@
                         <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="form-label text-light mb-2 mt-2 ms-1" for="sc-fn">이름 (받는 사람) <span class="text-danger ms-1"> * </span></label>
-                                <input class="form-control form-control-light" type="text" id="sc-fn" value="" placeholder="이름" required>
+                                <input class="form-control form-control-light" type="text" id="sc-fn" value="<%=loginMember.getUname() %>" placeholder="이름" required>
                             </div>
                             <!-- 주소 -->
                             <div class="row">
@@ -54,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <input class="form-control form-control-light" type="text" id="sc-address1" placeholder="기본 주소" value="" required>
+                                    <input class="form-control form-control-light" type="text" id="sc-address1" placeholder="기본 주소" value="<%=loginMember.getUadr() %>" required>
                                 </div>
                                 <div class="mb-3">
                                     <input class="form-control form-control-light" type="text" id="sc-address1" placeholder="상세 주소" value="" required>
@@ -64,12 +71,12 @@
                         <!-- 연락처 -->
                         <div class="col-sm-6 mb-3">
                             <label class="form-label text-light mb-2 mt-2 ms-1" for="sc-phone"> 연락처 <span class="text-danger">&nbsp * </span></label>
-                            <input class="form-control form-control-light" type="tel" id="sc-phone" data-format="custom" data-delimiter="-" data-blocks="3 4 4" value="" placeholder="000-0000-0000">
+                            <input class="form-control form-control-light" type="tel" id="sc-phone" data-format="custom" data-delimiter="-" data-blocks="3 4 4" value="<%=loginMember.getUpn() %>" placeholder="000-0000-0000">
                         </div>
                         <!-- 이메일 -->
                         <div class="col-sm-6 mb-3">
                             <label class="form-label text-light mb-2 mt-2 ms-1" for="sc-email"> Email <span class="text-danger">&nbsp * </span></label>
-                            <input class="form-control form-control-light" type="text" id="sc-email" value="" placeholder="이메일">
+                            <input class="form-control form-control-light" type="text" id="sc-email" value="<%=loginMember.getUemail() %>" placeholder="이메일">
                         </div>
 
                     </section>
@@ -110,9 +117,9 @@
                             </div>
                             <!-- 결제 동의 끝 -->
                             <div class="d-sm-flex justify-content-end pt-3 pb-1">
-                                <a class="btn btn-outline-light btn-lg d-block mb-3 mb-sm-2 me-4" href="02.myPageCart.jsp" data-bs-toggle="modal">
+                                <a class="btn btn-outline-light btn-lg d-block mb-3 mb-sm-2 me-4" href="<%=path%>/myPageCart.do" data-bs-toggle="modal">
                                     돌아가기</a>
-                                <a class="btn btn-lg d-block mb-2" href="05.myPageOrder.jsp" style="background-color: #C389FF; color: #fff;">결제하기</a></div>
+                                <a class="btn btn-lg d-block mb-2" href="<%=path%>/myPageBuyING.do" style="background-color: #C389FF; color: #fff;">결제하기</a></div>
                         </div>
                     </section>
                 </div>
@@ -123,21 +130,15 @@
 
                         <ul class="list-unstyled mt-3">
 
+							<%for(int i = 0; i<payList.size(); i++){ %>
                             <li class="d-flex align-items-start mt-4">
-                                <img class="img-souvnir-co" src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" style="width: 132px; height: 83px">
+                                <img class="img-souvnir-co" src="<%=payList.get(i).getSouv_pro_url() %>" style="width: 132px; height: 83px">
                                 <p class="col-lg-8 nav-link-light ps-1 ms-2" data-scroll data-scroll-offset="20">
-                                    일월오봉도 부채</a><br>
+                                    <%=payList.get(i).getSouv_pro_name() %></a><br>
                                     <a class="nav-link-light opacity-65" data-scroll data-scroll-offset="20"> 가격 : </a>
-                                    <a class="nav-link-light ps-1 opacity-65" data-scroll data-scroll-offset="20"> 6,000원</a>
                             </li>
-
-                            <li class="d-flex align-items-start mt-4">
-                                <img class="img-souvnir-co" src="<%=path %>/resources/img/semi-img/10.souvir.best3.png" style="width: 132px; height: 83px">
-                                <p class="col-lg-8 nav-link-light ps-1 ms-2" data-scroll data-scroll-offset="20">
-                                    일월오봉도 부채</a><br>
-                                    <a class="nav-link-light opacity-65" data-scroll data-scroll-offset="20"> 가격 : </a>
-                                    <a class="nav-link-light ps-1 opacity-65" data-scroll data-scroll-offset="20"> 6,000원</a>
-                            </li>
+							<%} %>
+                            
 
 
                             <!-- 금액 시작 -->
@@ -147,12 +148,12 @@
                             </li>
                             <li class="d-flex justify-content-end">
                                 <a class="me-2" style="text-decoration: none; color: #898989;">구매액</a>
-                                <a class="nav-link-light ps-1 justify-content-end" data-scroll data-scroll-offset="20">13,000원</a>
+                                <a class="nav-link-light ps-1 justify-content-end" data-scroll data-scroll-offset="20"><%=df.format(payList.get(0).getTotal_price()) %>원</a>
                             </li>
                             <div class="border-bottom border-secondary mt-4 mb-4" style="height: .25rem;"></div>
                             <li class="d-flex justify-content-end">
                                 <a class="me-2 text-light" style="text-decoration: none;">총 구매액</a>
-                                <a class="nav-link-light ps-1 justify-content-end text-light" data-scroll data-scroll-offset="20">16,000원</a>
+                                <a class="nav-link-light ps-1 justify-content-end text-light" data-scroll data-scroll-offset="20"><%=df.format(payList.get(0).getBsb_total_price()) %>원</a>
                             </li>
                         </ul>
                     </div>

@@ -33,6 +33,8 @@ public class SouvenirPayServlet extends MyHttpServlet{
 			e.printStackTrace();
 		}
 		
+		payList = service.getPayList(uNo);
+		
 		req.setAttribute("payList", payList);
 		req.getRequestDispatcher("/views/souvenir/souvenirCheckout.jsp").forward(req, resp);
 

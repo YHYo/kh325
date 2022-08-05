@@ -8,6 +8,7 @@ import static semi.heritage.common.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import semi.heritage.member.vo.Member;
 import semi.heritage.souvenir.dao.SouvenirDao;
 import semi.heritage.souvenir.vo.SouvenirBuyVO;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
@@ -31,20 +32,20 @@ public class SouvenirService {
 		close(conn);
 		return list;
 	}
-	
+
 	public SouvenirProductVO findProductByNo(int productNo) {
 		Connection conn = getConnection();
 		SouvenirProductVO sp = dao.findProductByNo(conn, productNo);
 		return sp;
 	}
-	
-	//테스트
+
+	// 테스트
 //	public SouvenirProductVO findProductByName(String productName) {
 //		Connection conn = getConnection();
 //		SouvenirProductVO sp = dao.findProductByName(conn, productName);
 //		return sp;
 //	}
-	
+
 	public SouvenirCartVO findCartByNo(int seqNo) {
 		Connection conn = getConnection();
 		SouvenirCartVO sc = dao.findCartBySeqNo(conn, seqNo);
@@ -100,10 +101,38 @@ public class SouvenirService {
 		Connection conn = getConnection();
 		List<SouvenirBuyVO> list = dao.selectBuyByUNO(conn, uNo);
 		close(conn);
-		
+
 		System.out.println("구매목록" + list);
 		return list;
 	}
-	
-	
+
+	public int updateBuyING(int uNo) {
+		int result = 0;
+		Connection conn = getConnection();
+
+		result = dao.updateBuyING(conn, uNo);
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
+	}
+
+//	public int delete(int no) {
+//		Connection conn = getConnection();
+//		int result = dao.updateStatus(conn, no, "N");
+//		
+//		if(result > 0) {
+//			commit(conn);
+//		}else {
+//			rollback(conn);
+//		}
+//		close(conn);
+//		return result;
+//	}
+
 }
