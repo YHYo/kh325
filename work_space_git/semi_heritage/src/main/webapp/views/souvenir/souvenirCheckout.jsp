@@ -117,7 +117,7 @@
                             </div>
                             <!-- 결제 동의 끝 -->
                             <div class="d-sm-flex justify-content-end pt-3 pb-1">
-                                <a class="btn btn-outline-light btn-lg d-block mb-3 mb-sm-2 me-4" href="<%=path%>/myPageCart.do" data-bs-toggle="modal">
+                                <a class="btn btn-outline-light btn-lg d-block mb-3 mb-sm-2 me-4" onclick="history.go(-1); return false;" data-bs-toggle="modal">
                                     돌아가기</a>
                                 <a class="btn btn-lg d-block mb-2" href="<%=path%>/myPageBuyING.do" style="background-color: #C389FF; color: #fff;">결제하기</a></div>
                         </div>
@@ -135,7 +135,7 @@
                                 <img class="img-souvnir-co" src="<%=payList.get(i).getSouv_pro_url() %>" style="width: 132px; height: 83px">
                                 <p class="col-lg-8 nav-link-light ps-1 ms-2" data-scroll data-scroll-offset="20">
                                     <%=payList.get(i).getSouv_pro_name() %></a><br>
-                                    <a class="nav-link-light opacity-65" data-scroll data-scroll-offset="20"> 가격 : </a>
+                                    <a class="nav-link-light opacity-65 fs-sm" data-scroll data-scroll-offset="20"> 가격 : <%=df.format(payList.get(0).getSouv_pro_price())%>원</a>
                             </li>
 							<%} %>
                             
