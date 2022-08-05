@@ -11,54 +11,9 @@
 <%
 
 List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fmlist");
-favoriteMyPageVO fmv = new favoriteMyPageVO();
 
 %>
- 
-        <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
-            <!-- Breadcrumb-->
-            <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="real-estate-home-v1.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="real-estate-account-info.html">Account</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
-                </ol>
-            </nav>
-            <!-- Page content-->
-            <div class="row">
-                <!-- Sidebar-->
-                <aside class="col-lg-4 col-md-5 pe-xl-4 mb-5">
-
-                    <!-- 프로필 & 카테고리 시작 -->
-                    <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path%>/resources/img/semi-img/01.info.default.photo.png" width="48" alt=<%=loginMember.getUemail()%>>
-                            <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
-                                <h2 class="fs-lg mb-0"><%=loginMember.getUname()%>님</h2>
-                                <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
-                                <ul class="list-unstyled fs-sm mt-3 mb-0">
-                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i><%=loginMember.getUpw()%></a></li>
-                                    <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i><%=loginMember.getUemail()%></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <a class="btn btn-lg w-100 mb-3" href="real-estate-add-property.html" style="background-color:#8957BD; color:#fff;"><i class="fi-plus me-2"></i>게시글 작성하기</a>
-                        <a class="btn btn-outline-secondary d-block d-md-none w-100 mb-3" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Menu</a>
-                        <div class="collapse d-md-block mt-3" id="account-nav">
-                            <div class="card-nav"><a class="card-nav-link" href="01.myPageInfo.html"><i class="fi-user opacity-60 me-2"></i>회원정보 수정</a>
-                                <!-- <a class="card-nav-link" href="real-estate-account-security.html"><i class="fi-lock opacity-60 me-2"></i>Password &amp; Security</a> -->
-                                <a class="card-nav-link" href="02.myPageCart.html"><i class="fi-home opacity-60 me-2"></i>장바구니</a>
-                                <a class="card-nav-link active" href="03.myPageLike.html" style="color: #8957BD;"><i class="fi-heart opacity-60 me-2"></i>찜 목록</a>
-                                <a class="card-nav-link" href="04.myPageReview.html"><i class="fi-star opacity-60 me-2"></i>리뷰</a>
-                                <a class="card-nav-link" href="05.myPageOrder.html"><i class="fi-star opacity-60 me-2"></i>구매이력</a>
-                                <!-- <a class="card-nav-link" href="real-estate-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a> -->
-                                <a class="card-nav-link" href="20.myPageStamp.html"><i class="fi-help opacity-60 me-2"></i>스탬프</a>
-                                <a class="card-nav-link" href="00.signIn.html"><i class="fi-logout opacity-60 me-2"></i>로그아웃</a></div>
-                        </div>
-                    </div>
-                </aside>
-                <!-- 프로필 & 카테고리 끝 -->
-
-
+ <form action="<%=path%>/myPageLike.do" method="get" >
                 <!-- Content-->
                 <div class="col-lg-8 col-md-7 mb-5">
                     <div class="d-flex align-items-center justify-content-between mb-4 pb-2">
@@ -97,20 +52,6 @@ favoriteMyPageVO fmv = new favoriteMyPageVO();
         </div>
     </main>
     
-    <script  type="text/javascript">
-	            
-function changeForm(val) {
-		if (val == "0") {
-			function shareTwitter() {
-			    var sendText = <%=fmv.getCcbaMnm1()%>; // 전달할 텍스트
-			    window.open("https://twitter.com/intent/tweet?text=" + sendText);
-			}
-		} else if (val == "1") {
-			location.href = "<%= request.getContextPath() %>/heritageDeatil.do";
-		} else if (val == "2") {
-			location.href = "<%= request.getContextPath() %>/favoriteDelete.do";
-		} 
-	}
-</script>
+  
         <!-- Footer-->
     <%@include file="/views/common/footer.jsp"%>

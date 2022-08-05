@@ -1,6 +1,7 @@
 package semi.heritage.favorite.dao;
 
 import static semi.heritage.common.jdbc.JDBCTemplate.close;
+import static semi.heritage.common.jdbc.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,7 +60,7 @@ public class favoriteDao {
 		try {
 			String sql = "SELECT " + "HFV.hfavNum, H.CCMANAME, H.CCBAMNM1, H.CCBALCAD, H.IMAGEURL, H.CONTENT " + "FROM "
 					+ "heritage H, hFavorite HFV " + "WHERE " + "H.no = HFV.no AND " + "HFV.uNO = ? "
-					+ "order by hfavNum desc";
+					+ "order by HFV.hfavNum desc";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, uNo);
@@ -76,6 +77,7 @@ public class favoriteDao {
 						content);
 				list.add(mypage);
 			}
+			System.out.println(list.toString());
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,4 +157,9 @@ public class favoriteDao {
 		return result;
 	}
 
+	public static void main(String[] args) {
+		favoriteDao fdao = new favoriteDao();
+		Connection conn = getConnection();
+		fdao.selectAll(conn, 6);
+	}
 }
