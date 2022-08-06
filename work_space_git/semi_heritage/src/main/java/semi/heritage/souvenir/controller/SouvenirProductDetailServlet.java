@@ -62,6 +62,7 @@ public class SouvenirProductDetailServlet extends HttpServlet {
 		
 		
 		req.setAttribute("productDetail", productDetail);
+		req.setAttribute("productNo", productNo);
 		req.setAttribute("cList", cList);
 		req.setAttribute("pList", pList);
 		req.getRequestDispatcher("/views/souvenir/souvenirProductsDetail.jsp").forward(req, resp);

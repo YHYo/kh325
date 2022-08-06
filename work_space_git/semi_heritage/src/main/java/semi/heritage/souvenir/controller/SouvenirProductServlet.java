@@ -32,7 +32,6 @@ public class SouvenirProductServlet extends HttpServlet {
 //		System.out.println("doget 호출 ");
 		List<SouvenirProductVO> pList = null;
 		List<SouvenirCategoryVO> cList = new ArrayList<SouvenirCategoryVO>();
-
 		
 		cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.5.png","생활/데코","홈데코,인테리어","아늑한,따뜻한"));
         cList.add(new SouvenirCategoryVO("/resources/img/semi-img/10.souvir.cate.4.png","패션/잡화","가방,우산","인기많은,주문제작"));
@@ -43,6 +42,7 @@ public class SouvenirProductServlet extends HttpServlet {
 		
 		
 		pList = service.getProductList();
+		
 //		System.out.println("list");
 //		System.out.println(pList);
 		if(pList == null) {

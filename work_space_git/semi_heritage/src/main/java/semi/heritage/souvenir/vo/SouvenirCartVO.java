@@ -29,12 +29,12 @@ public class SouvenirCartVO {
 	}
 
 	// 회원별 장바구니 (주문번호, 회원번호 제품명, 가격, 카테고리, 이미지주소)
-	public SouvenirCartVO(int seqNo, int uno, String souv_pro_name, int souv_pro_price, String souv_pro_category,
+	public SouvenirCartVO(int seqNo, String souv_cart_no, String souv_pro_name, int souv_pro_price, String souv_pro_category,
 			String souv_pro_url) {
 		super();
 //		this.souv_cart_no = souv_cart_no;
 		this.seqNo = seqNo;
-		this.uno = uno;
+		this.souv_cart_no = souv_cart_no;
 		this.souv_pro_name = souv_pro_name;
 		this.souv_pro_price = souv_pro_price;
 		this.souv_pro_category = souv_pro_category;

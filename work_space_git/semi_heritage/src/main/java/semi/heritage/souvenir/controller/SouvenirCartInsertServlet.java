@@ -65,21 +65,26 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 				sendCommonPage("로그인후 이용해주세요.", "/views/member/signIn.jsp", req, resp);
 				return;
 			}
-			int productNo = Integer.parseInt(req.getParameter("productNo"));
-			
-			SVO = service.findProductByNo(productNo);
-			int userno = loginMember.getUno();
-			
-			
-			int result = service.insertCart(SVO, userno);
-			System.out.println("인서트 결과 " + result);
-			
-			if(result > 0) {
-				sendCommonPage("장바구니 등록되었습니다.", "/souvenirProductsList.do", req, resp);
+//			try {
+				int productNo = Integer.parseInt(req.getParameter("productNo"));
+				SVO = service.findProductByNo(productNo);
+				int userno = loginMember.getUno();
+				int result = service.insertCart(SVO, userno);
+				System.out.println("인서트 결과 " + result);
 				
-			}else {
-				sendCommonPage("장바구니 담기 실패하였습니다. (code=101)", "/souvenirProductsList.do", req, resp);
-			}
+				if(result > 0) {
+					sendCommonPage("장바구니 등록되었습니다.", "/souvenirProductsList.do", req, resp);
+					
+				}else {
+					sendCommonPage("장바구니 담기 실패하였습니다. (code=101)", "/souvenirProductsList.do", req, resp);
+				}
+				
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+			
+			
+			
 			
 			
 	}

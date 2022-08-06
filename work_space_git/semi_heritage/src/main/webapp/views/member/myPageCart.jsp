@@ -7,11 +7,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/headerLight.jsp" %>
 
+<!-- SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");  -->
 <%
 DecimalFormat df = new DecimalFormat("###,###");
-SouvenirProductVO productDetail = (SouvenirProductVO)request.getAttribute("productDetail");
 List<SouvenirCartVO> cartList = (List<SouvenirCartVO>)request.getAttribute("cartList");
-SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
+// SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
+// int productNo = (Integer)request.getAttribute("productNo");
 %>
 
 <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
@@ -65,7 +66,7 @@ SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
                     
                     <!-- Item-->
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4">
-                        <a class="card-img-top" href="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>" style="background-image: url(<%=cartList.get(i).getSouv_pro_url()%>);">
+                        <a class="card-img-top" href="<%=path%>/souvenirProductsDetail.do?productNo=<%=cartList.get(i).getSouv_cart_no()%>" style="background-image: url(<%=cartList.get(i).getSouv_pro_url()%>);">
                         </a>
                         <div class="card-body position-relative pb-3">
                             <div class="dropdown position-absolute zindex-5 top-0 end-0 mt-3 me-3">
@@ -78,7 +79,7 @@ SouvenirCartVO cart = (SouvenirCartVO)request.getAttribute("deleteCart");
                             <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i><%=df.format(cartList.get(i).getSouv_pro_price())%>원</div>
                             <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
                                 <i class="fi-share text-muted" style="padding-right: 2%;"></i>
-                                <span class="d-inline-block me-4 fs-sm"><a onclick=clip();>공유하기</a></span>
+                                <span class="d-inline-block me-4 fs-sm">공유하기</span>
                                 <i href="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>" class="fi-eye-on text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">상세보기</span>
                                 <i id="deleteCart" class="fi-trash text-muted" style="padding-right: 2%;"></i><span class="d-inline-block fs-sm">장바구니 해제</span>
                             </div>

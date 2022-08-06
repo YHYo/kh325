@@ -88,6 +88,14 @@ public class SouvenirService {
 		return result;
 	}
 
+	//링크 복사 기능
+	public SouvenirProductVO copyLinkCart(int productNo) {
+		Connection conn = getConnection();
+		SouvenirProductVO link = dao.findProductByNo(conn, productNo);
+		
+		return link;
+	}
+
 	// pay
 	public List<SouvenirPayVO> getPayList(int uNo) {
 		Connection conn = getConnection();

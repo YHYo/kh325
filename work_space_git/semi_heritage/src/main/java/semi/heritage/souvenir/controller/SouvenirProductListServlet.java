@@ -38,6 +38,8 @@ public class SouvenirProductListServlet extends HttpServlet {
 
 				list = service.getProductListByCategory(category);
 			}
+			
+			System.out.println(list);
 
 //			String searchValue = req.getParameter("searchValue");
 //			if(searchValue != null && searchValue.length() > 0) {

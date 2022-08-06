@@ -14,6 +14,7 @@ import semi.heritage.common.util.MyHttpServlet;
 import semi.heritage.member.vo.Member;
 import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
+import semi.heritage.souvenir.vo.SouvenirProductVO;
 
 //-------------------------- 장바구니 Servlet -------------------------- //
 
@@ -37,10 +38,11 @@ import semi.heritage.souvenir.vo.SouvenirCartVO;
 				e.printStackTrace();
 			}
 			
-
+//			SouvenirProductVO productDetail = service.findProductByNo(productNo);
 			cartList = service.getCartList(uNo);
 			System.out.println(cartList);
 			
+//			req.setAttribute("productDetail", productDetail);
 			req.setAttribute("cartList", cartList);
 			req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
 		}
