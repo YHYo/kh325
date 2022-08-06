@@ -29,22 +29,13 @@ public class favoriteInsertServlet extends MyHttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<favoriteMyPageVO>  favoriteMyPageVO = null;
-		int no = 0; 
 	
-		try {
-			no = Integer.parseInt(req.getParameter("hertiageNo")); // jsp에서 문화재 고유번호 받아오기
-		} catch (Exception e) {
-		}
-		System.out.println(no + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+		int	no = Integer.parseInt(req.getParameter("hertiageNo")); // jsp에서 문화재 고유번호 받아오기
+		System.out.println("문화재 번호  : " + no);
 		
 			HttpSession session = req.getSession(); // HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 세션을 생성합니다
-			System.out.println(session.getAttribute("loginMember"));
+//			System.out.println(session.getAttribute("loginMember"));
 			Member member = (Member) session.getAttribute("loginMember");
 
 			
@@ -57,8 +48,11 @@ public class favoriteInsertServlet extends MyHttpServlet {
 			favoriteMyPageVO  = fservice.selectAll(uNo); //jsp에서 문화재 고유번호 받아서 문화재 객체 찾아오기
 			
 			int result = fservice.insert(uNo, no);
-			System.out.println(result + "!!!!!!!!!!!!!!!!!!!!!!");
+			System.out.println("찜 추가 결과  : " + result);
 
+			req.setAttribute("favoriteMyPageVO", favoriteMyPageVO);
+			req.getRequestDispatcher("/myPageLike.do").forward(req, resp);
+		
 //			if (result > 0) {
 //				sendCommonPage("찜 등록되었습니다.", "/myPageLike.jsp", req, resp);
 //			} else {
@@ -71,9 +65,11 @@ public class favoriteInsertServlet extends MyHttpServlet {
 //				sendCommonPage("찜 실패하였습니다. (code=101)", "/favoriteMyPage.do", req, resp); // 문화재 상세 페이지로 보내주기
 //			}
 ////			
-		req.setAttribute("favoriteMyPageVO", favoriteMyPageVO);
-		req.getRequestDispatcher("/favoriteMyPage.do").forward(req, resp);
-		
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
 	}
 	
 	

@@ -229,7 +229,7 @@ public class HeritageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		HeritageVO hv = null;
-		String query = "SELECT   ccbaMnm1,  ccbaMnm2,  ccbaCtcdNm,  ccsiName,  content,  ccbaKdcd,  ccbaQuan,  ccbaAsdt,  ccbaLcad,  ccceName,  ccbaPoss,  imageUrl, ccmaName, ccbaAdmin, longitude, latitude "
+		String query = "SELECT  sn, no, ccbaMnm1,  ccbaMnm2,  ccbaCtcdNm,  ccsiName,  content,  ccbaKdcd,  ccbaQuan,  ccbaAsdt,  ccbaLcad,  ccceName,  ccbaPoss,  imageUrl, ccmaName, ccbaAdmin, longitude, latitude "
 				+ "FROM HERITAGE WHERE no = ? ";
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -237,6 +237,8 @@ public class HeritageDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				hv = new HeritageVO();
+				hv.setSn(rs.getInt("sn"));
+	            hv.setNo(rs.getInt("no"));
 				hv.setCcbaMnm1(rs.getString("ccbaMnm1"));
 				hv.setCcbaMnm2(rs.getString("ccbaMnm2"));
 				hv.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
@@ -248,7 +250,6 @@ public class HeritageDao {
 				hv.setCcbaLcad(rs.getString("ccbaLcad"));
 				hv.setCcceName(rs.getString("ccceName"));
 				hv.setCcbaPoss(rs.getString("ccbaPoss"));
-				;
 				hv.setImageUrl(rs.getString("imageUrl"));
 				hv.setCcmaName(rs.getString("ccmaName"));
 				hv.setCcbaAdmin(rs.getString("ccbaAdmin"));
@@ -263,6 +264,9 @@ public class HeritageDao {
 		}
 		return hv;
 	}
+	
+	
+	
 
 	// 문화재 이미지 테이블에서 no로 이미지 가져오기
 	public List<HeritageImage> findHeritageImageByNo(Connection conn, int no) {
@@ -293,28 +297,28 @@ public class HeritageDao {
 	}
 
 	// 문화재 비디오 테이블에서 no로 상세조회
-    public String findHeritageVideoByNo(Connection conn, int videoNo) {
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        String hv = "";
-        String query = "SELECT VIDEOURL FROM HERITAGEVIDEO " + "WHERE NO = ? ";
-        try {
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, videoNo);
-            rs = pstmt.executeQuery();
-            if (rs.next()) {
-                hv = rs.getString(1);
-            }
+	public String findHeritageVideoByNo(Connection conn, int videoNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String hv = "";
+		String query = "SELECT VIDEOURL FROM HERITAGEVIDEO " + "WHERE NO = ? ";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, videoNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				hv = rs.getString(1);
+			}
 //            System.out.println(hv);
-            return hv;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            close(pstmt);
-            close(rs);
-        }
-        return hv;
-    }
+			return hv;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return hv;
+	}
 
 	// 문화재 검색페이지 리스트를 가져오는 메소드
 	public List<HeritageVO> findAll(Connection conn, PageInfo pageInfo, String ccbaMnm, String[] ccbaCtcdNm,
@@ -452,10 +456,10 @@ public class HeritageDao {
 		System.out.println(findAllList.toString());
 		return findAllList;
 	}
-	
+
 	// 문화개 검색페이지 개수 구하기
-	public int getFindAllCount(Connection conn, String ccbaMnm, String[] ccbaCtcdNm,
-			String[] gcodeName, String[] ccmaName, String[] ccceName, String startYear, String endYear) {
+	public int getFindAllCount(Connection conn, String ccbaMnm, String[] ccbaCtcdNm, String[] gcodeName,
+			String[] ccmaName, String[] ccceName, String startYear, String endYear) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

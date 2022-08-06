@@ -108,8 +108,10 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
 
                 </ul>
                 <div class="text-nowrap">
+                	<form action="<%=path%>/favoriteInsert.do" method="post">
                     <input type="hidden" name="hertiageNo" value="<%=h.getNo()%>">
-                    <button onclick="location.href='<%=request.getContextPath() %>/favoriteInsert.do?hertiageNo=<%=h.getNo()%>'" class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="submit" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                    <button type="submit" class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="submit" data-bs-toggle="tooltip" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                    </form>
                     <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                         <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                         <div class="dropdown-menu dropdown-menu-end my-1">

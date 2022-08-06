@@ -28,8 +28,8 @@ public class HeritageDetailServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("@@@@@@@@@@@@@@@@@@" + req.getParameter("hertiageNo"));
 		int hertiageNo = Integer.parseInt(req.getParameter("hertiageNo"));
+		System.out.println("@@@@@@@@@@@@@@@@@@" + hertiageNo);
 		System.out.println("!!!!");
 //		int hertiageNo = 1;
 
@@ -52,7 +52,9 @@ public class HeritageDetailServlet extends HttpServlet {
 //			resp.sendRedirect(req.getContextPath() + "/heritageDeatil.do");
 //			return;
 //		}
-
+		
+		
+		
 		req.setAttribute("hertiage", h);
 		req.setAttribute("heritageImage", hi);
 		req.setAttribute("heritageVideo", hv);
