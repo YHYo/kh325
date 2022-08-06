@@ -52,9 +52,21 @@
             <div class=" col-md-8 mx-auto mb-sm-5 px-0 text-center">
                 <div class="btn-toolbar" role="toolbar" aria-label="Pagination">
                     <div class="btn-group me-2 mb-2" role="group" aria-label="First group">
-                    <% for(int i = 1; i< 13; i++) { %>
-                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?<%=i%>');"><%=i%>월</button>
-                       <% } %>
+                     <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=1%>');">1월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=2%>');">2월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=3%>');">3월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=4%>');">4월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=5%>');">5월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=6%>');">6월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=7%>');">7월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=8%>');">8월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=20220%><%=9%>');">9월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=2022%><%=10%>');">10월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=2022%><%=11%>');">11월</button>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?eventMonth=<%=2022%><%=12%>');">12월</button>
+<%--                     <% for(int i = 1; i< 13; i++) { %> --%>
+<%--                         <button type="button" class="btn btn-translucent-dark" onclick="<%if(i<10){ %> movePage1('<%=path%>/event/main.do?<%=i%>'); <%}else{%> movePage1('<%=path%>/event/main.do?<%=i%>');" <% } %>><%=i%>월</button> --%>
+<%--                     <% } %> --%>
                     </div>
                 </div>
             </div>
@@ -73,7 +85,7 @@
                     </thead>
                     <tbody>
 					<%if(list == null || list.isEmpty()){ %>
-                        <div style="text-align:center;">조회된 행사가 없습니다.</div>
+                        <div style="text-align:center;"> 조회된 행사가 없습니다. </div>
         			<%} else { %>
  				<% for(Festival f :list){%>
  				   <input type= "hidden" id = "eventMonth" value ="<%=f.getsDate()%>">
@@ -130,60 +142,42 @@
                             class="fi-chevrons-right"></i></a>
                 </li>
                 	
-                <!-- <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
-                </li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-                <li class="page-item d-none d-sm-block">...</li>
-                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i
-                            class="fi-chevron-right"></i></a>
-                </li> -->
+             
             </ul>
         </nav>
     </div>
             <script type="text/javascript">
 											function movePage(pageUrl){
 												var eventMonth = document.getElementById("eventMonth"); // 문화재 이름
-					// 							var searchTypes = document.getElementsByName("searchType"); // title + content + writer
-					// 							var searchType = 'title';
 												if(eventMonth.value.length > 0){
 					// 								for(var i = 0; i <searchType.length; i++){
 					// 									if(searchTypes[i].checked == true){
 					// 										searchType = searchTypes[i].value;
 					// 									}
 					// 								}
-					
 													pageUrl = pageUrl +  '&eventMonth=' + eventMonth.value.substring(0, 6); 
 												}
-												alert(eventMonth.value);
+// 												alert(eventMonth.value);
 // 												alert(pageUrl);
 												location.href = encodeURI(pageUrl);	
 											}
 									</script>
-												
-            <script type="text/javascript">
+
+	<script type="text/javascript">
 											function movePage1(pageUrl){
 												var eventMonth = document.getElementById("eventMonth"); // 문화재 이름
-					// 							var searchTypes = document.getElementsByName("searchType"); // title + content + writer
-					// 							var searchType = 'title';
 												if(eventMonth.value.length > 0){
-					// 								for(var i = 0; i <searchType.length; i++){
-					// 									if(searchTypes[i].checked == true){
-					// 										searchType = searchTypes[i].value;
-					// 									}
-					// 								}
-					
-													pageUrl =  '&eventMonth=' + eventMonth.value.substring(0, 5) + pageUrl; 
-												}
-												alert(eventMonth.value);
+													pageUrl = pageUrl
+													}
 // 												alert(pageUrl);
 												location.href = encodeURI(pageUrl);	
 											}
-									</script>			
-            
-            
-        </section>
+												
+											
+									</script>
+
+
+</section>
         <selection> <br><br><br><br> </selection>
     </main>
     <br><br><br><br>
