@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="semi.heritage.event.vo.Festival"%>
 <%@page import="semi.heritage.common.util.PageInfo"%>
 <%@page import="semi.heritage.community.vo.CommunityBoard"%>
@@ -12,8 +13,8 @@
 
 <%
 	List<Festival> list = (List<Festival>)request.getAttribute("list"); 
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo"); 
-// 서블릿에서 선언한 걸 이걸로 내가 뿌릴거야
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	
 %>	
 
 
@@ -51,18 +52,9 @@
             <div class=" col-md-8 mx-auto mb-sm-5 px-0 text-center">
                 <div class="btn-toolbar" role="toolbar" aria-label="Pagination">
                     <div class="btn-group me-2 mb-2" role="group" aria-label="First group">
-                        <button type="button" class="btn btn-translucent-dark" href="#">1월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">2월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">3월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">4월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">5월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">6월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">7월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">8월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">9월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">10월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">11월</button>
-                        <button type="button" class="btn btn-translucent-dark" href="#">12월</button>
+                    <% for(int i = 1; i< 13; i++) { %>
+                        <button type="button" class="btn btn-translucent-dark" onclick="movePage1('<%=path%>/event/main.do?<%=i%>');"><%=i%>월</button>
+                       <% } %>
                     </div>
                 </div>
             </div>
@@ -80,8 +72,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+					<%if(list == null || list.isEmpty()){ %>
+                        <div style="text-align:center;">조회된 행사가 없습니다.</div>
+        			<%} else { %>
  				<% for(Festival f :list){%>
+ 				   <input type= "hidden" id = "eventMonth" value ="<%=f.getsDate()%>">
                         <tr>
                             <td> <%= f.getEventName() %></td>
                             <td style="text-align:left"> <%= f.getSubTitle() %></td>
@@ -94,7 +89,7 @@
                             <%} %>
                         </tr>
  				<% }%>
-                
+                <% }%>
                     </tbody>
                 </table>
             </div>
@@ -105,36 +100,36 @@
             <ul class="pagination">
                 <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
                 
-                <%-- 처음으로 가기 --%>
-                <li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getStartPage()%>" aria-label="Next"><i
+<!--                 처음으로 가기 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('<%=path%>/event/main.do?page=<%=pageInfo.getStartPage()%>');" aria-label="Next"><i
                             class="fi-chevrons-left"></i></a>
                 </li>
                 
-                <%-- 이전으로 가기 --%>
-                <li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getPrvePage()%>" aria-label="Next"><i
+<!--                 이전으로 가기 -->
+                <li class="page-item"><a class="page-link" onclick="movePage('<%=path%>/event/main.do?page=<%=pageInfo.getPrvePage()%>');" aria-label="Next"><i
                             class="fi-chevron-left"></i></a>
                 </li>
                 
                 <%-- 10개 목록 출력하기 --%>
                 <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++) {%>
-					<%if(i == pageInfo.getCurrentPage()) {%>		
-		                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><%=i %><span class="visually-hidden">(current)</span></span>
+             	
+					<%if(i == pageInfo.getCurrentPage()) {%>
+		                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link"><%=i%><span class="visually-hidden">(current)</span></span>
 		                </li>
 					<%} else {%>		
-						<li class="page-item d-none d-sm-block"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=i%>"><%=i %></a></li>
+						<li class="page-item d-none d-sm-block"><a class="page-link" onclick="movePage('<%=path%>/event/main.do?page=<%=i%>');"><%=i%></a></li>
 					<%} %>		
-				<%} %>		
-				
+				<%} %>	
 				<%-- 다음으로 가기 --%>
-				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getNextPage()%>" aria-label="Next"><i
+				<li class="page-item"><a class="page-link" onclick="movePage('<%=path%>/event/main.do?page=<%=pageInfo.getNextPage()%>');" aria-label="Next"><i
                             class="fi-chevron-right"></i></a>
                 </li>
                 
 				<%-- 마지막으로 가기 --%>
-				<li class="page-item"><a class="page-link" href="<%=path%>/community/list?type=F&page=<%=pageInfo.getEndPage()%>" aria-label="Next"><i
+				<li class="page-item"><a class="page-link"  onclick="movePage('<%=path%>/event/main.do?page=<%=pageInfo.getEndPage()%>');" aria-label="Next"><i
                             class="fi-chevrons-right"></i></a>
                 </li>
-                
+                	
                 <!-- <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
                 </li>
                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
@@ -147,7 +142,45 @@
             </ul>
         </nav>
     </div>
-            
+            <script type="text/javascript">
+											function movePage(pageUrl){
+												var eventMonth = document.getElementById("eventMonth"); // 문화재 이름
+					// 							var searchTypes = document.getElementsByName("searchType"); // title + content + writer
+					// 							var searchType = 'title';
+												if(eventMonth.value.length > 0){
+					// 								for(var i = 0; i <searchType.length; i++){
+					// 									if(searchTypes[i].checked == true){
+					// 										searchType = searchTypes[i].value;
+					// 									}
+					// 								}
+					
+													pageUrl = pageUrl +  '&eventMonth=' + eventMonth.value.substring(0, 6); 
+												}
+												alert(eventMonth.value);
+// 												alert(pageUrl);
+												location.href = encodeURI(pageUrl);	
+											}
+									</script>
+												
+            <script type="text/javascript">
+											function movePage1(pageUrl){
+												var eventMonth = document.getElementById("eventMonth"); // 문화재 이름
+					// 							var searchTypes = document.getElementsByName("searchType"); // title + content + writer
+					// 							var searchType = 'title';
+												if(eventMonth.value.length > 0){
+					// 								for(var i = 0; i <searchType.length; i++){
+					// 									if(searchTypes[i].checked == true){
+					// 										searchType = searchTypes[i].value;
+					// 									}
+					// 								}
+					
+													pageUrl =  '&eventMonth=' + eventMonth.value.substring(0, 5) + pageUrl; 
+												}
+												alert(eventMonth.value);
+// 												alert(pageUrl);
+												location.href = encodeURI(pageUrl);	
+											}
+									</script>			
             
             
         </section>

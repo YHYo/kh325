@@ -23,7 +23,7 @@ public class FestivalServlet extends HttpServlet {
 		int page = 1;
 		String eventMonth = req.getParameter("eventMonth");
 		if(eventMonth == null || eventMonth.length() < 1) {
-			eventMonth = "202208";
+			eventMonth = "202205";
 		}
 		
 		try {
@@ -32,10 +32,12 @@ public class FestivalServlet extends HttpServlet {
 		
 		int maxCount = service.getBoardCount(eventMonth);
 		System.out.println(maxCount);
+		
 		PageInfo pageInfo = new PageInfo(page, 10, maxCount, 10);
+//		List<Festival> list = service.selectByMonth(eventMonth);
 		List<Festival> list = service.findAll(pageInfo, eventMonth);
-
 		System.out.println(list);
+
 		req.setAttribute("list", list);
 		req.setAttribute("pageInfo", pageInfo);
 		req.getRequestDispatcher("/views/event/eventSchedule.jsp").forward(req, resp);
