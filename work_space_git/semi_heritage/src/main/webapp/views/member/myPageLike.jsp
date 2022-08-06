@@ -51,7 +51,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                                 <h2 class="fs-lg mb-0"><%=loginMember.getUname()%>님</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
                                 <ul class="list-unstyled fs-sm mt-3 mb-0">
-                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i><%=loginMember.getUpw()%></a></li>
+                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i><%=loginMember.getUpn()%></a></li>
                                     <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i><%=loginMember.getUemail()%></a></li>
                                 </ul>
                             </div>
@@ -61,7 +61,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                         <div class="collapse d-md-block mt-3" id="account-nav">
                              <div class="card-nav"><a class="card-nav-link" href="<%=path%>/myPageInfo.do"><i class="fi-user opacity-60 me-2"></i>회원정보 수정</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageCart.do" ><i class="fi-home opacity-60 me-2"></i>장바구니</a>
-                                <a class="card-nav-link" href="<%=path%>/favoriteMyPage.do"><i class="fi-heart opacity-60 me-2"></i>찜 목록</a>
+                                <a class="card-nav-link" href="<%=path%>/myPageLike.do"><i class="fi-heart opacity-60 me-2"></i>찜 목록</a>
                                 <a class="card-nav-link" href="<%=path%>/HertiageReviewList.do"><i class="fi-star opacity-60 me-2"></i>리뷰</a>
                                 <a class="card-nav-link" href="<%=path%>/myPageOrder.do"><i class="fi-star opacity-60 me-2"></i>구매이력</a>
                                 <!-- <a class="card-nav-link" href="real-estate-account-notifications.html"><i class="fi-bell opacity-60 me-2"></i>Notifications</a> -->
@@ -82,31 +82,32 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                     <!-- Item-->
                     <%for(int i = 0; i < fmlist.size(); i++ ) { %>
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
-                        <div class="card-img-top position-relative " style="background-image: url(<%=fmlist.get(i).getImageUrl()%>); ">
-                            <a class="stretched-link " href="real-estate-single-v1.html "></a>
-                            <!-- <div class="position-absolute start-0 top-0 pt-3 ps-3 "><span class="d-table badge bg-success mb-1 ">Verified</span><span class="d-table badge bg-info ">New</span></div> -->
+                        <div class="card-img-top position-relative " style="background-image: url(<%=fmlist.get(i).getImageUrl()%>);">
+                            <a class="" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>"></a>
                             <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5 ">
-                                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm " type="button " data-bs-toggle="tooltip " data-bs-placement="left " title="Remove from Wishlist ">
+                                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Remove from Wishlist ">
                                   <i class="fi-heart-filled " style="color: #C389FF;"></i></button>
                             </div>
                         </div>
                         <div class="card-body position-relative pb-3 ">
                             <h4 class="mb-1 fs-xs fw-normal text-uppercase" style="color: #B0C729;"><b><%=fmlist.get(i).getCcmaName()%></b></h4>
-                            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link " href="real-estate-single-v1.html "><b><%=fmlist.get(i).getCcbaMnm1()%></b></a>
+                            <h3 class="h6 mb-2 fs-base"><a class="nav-link"  href="<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>" "><b><%=fmlist.get(i).getCcbaMnm1()%></b></a>
                                 <br>
                                 <p style="color: #A08DB4; margin-top: -4%; margin-bottom: 1%; font-size: 15px;"><%=fmlist.get(i).getCcbaLcad()%></p>
                             </h3>
                             <label><p class="mb-2 fs-sm text-muted "><%=fmlist.get(i).getContent()%></p></label>
-                            <!-- <div class="fw-bold "><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70 "></i>$94,000</div> -->
                             <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
-                                <i class="fi-share text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm" onclick="changeForm(0)" id="shareTwitter()">공유하기</span>
-                                <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm" onclick="changeForm(1)" id="heritageDetail()">상세보기</span>
-                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><span class="d-inline-block fs-sm" onclick="changeForm(2)" id="favoriteDelete()">찜 해제</span>
+                                <i class="fi-share text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;" onclick="alert( 'URL이 복사 되었습니다.' );" ><span class="d-inline-block me-4 fs-sm">공유하기</a></span>
+                                <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;" onclick="location.href='<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>'"><span class="d-inline-block me-4 fs-sm"   id="heritageDetail()">상세보기</a></span>
+                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;"><span class="d-inline-block fs-sm" onclick="changeForm(2)" id="favoriteDelete()">찜 해제</a></span>
                             </div>
+                            
+                            
                         </div>
                     </div>
 					<% } %>
                 </div>
+                
             </div>
         </div>
        </form>
@@ -114,6 +115,11 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
     
   
     <script  type="text/javascript">
+//     function share() {
+//     	alert()
+		
+// 	}
+    
 	            
 function changeForm(val) {
 		if (val == "0") {

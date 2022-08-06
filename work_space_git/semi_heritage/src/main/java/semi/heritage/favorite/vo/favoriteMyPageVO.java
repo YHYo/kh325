@@ -3,6 +3,7 @@ package semi.heritage.favorite.vo;
 public class favoriteMyPageVO {
 
 	private int hfavNum;
+	private int hNo;
 	private String ccmaName;
 	private String ccbaMnm1;
 	private String ccbaLcad;
@@ -13,15 +14,24 @@ public class favoriteMyPageVO {
 		super();
 	}
 
-	public favoriteMyPageVO(int hfavNum, String ccmaName, String ccbaMnm1, String ccbaLcad, String imageUrl,
+	public favoriteMyPageVO(int hfavNum,int hNo, String ccmaName, String ccbaMnm1, String ccbaLcad, String imageUrl,
 			String content) {
 		super();
 		this.hfavNum = hfavNum;
+		this.hNo = hNo;
 		this.ccmaName = ccmaName;
 		this.ccbaMnm1 = ccbaMnm1;
 		this.ccbaLcad = ccbaLcad;
 		this.imageUrl = imageUrl;
 		this.content = content;
+	}
+
+	public int gethNo() {
+		return hNo;
+	}
+
+	public void sethNo(int hNo) {
+		this.hNo = hNo;
 	}
 
 	public int getHfavNum() {

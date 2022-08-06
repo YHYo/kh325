@@ -58,9 +58,9 @@ public class favoriteDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT " + "HFV.hfavNum, H.CCMANAME, H.CCBAMNM1, H.CCBALCAD, H.IMAGEURL, H.CONTENT " + "FROM "
-					+ "heritage H, hFavorite HFV " + "WHERE " + "H.no = HFV.no AND " + "HFV.uNO = ? "
-					+ "order by HFV.hfavNum desc";
+			String sql = " SELECT h.no, HFV.hfavNum, H.CCMANAME, H.CCBAMNM1, H.CCBALCAD, H.IMAGEURL, H.CONTENT " + " FROM "
+					+ " heritage H, hFavorite HFV " + " WHERE " + " H.no = HFV.no AND " + " HFV.uNO = ? "
+					+ " order by HFV.hfavNum desc";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, uNo);
@@ -68,12 +68,13 @@ public class favoriteDao {
 
 			while (rs.next() == true) {
 				int hfavNum = rs.getInt("hfavNum");
+				int hNo = rs.getInt("NO");
 				String ccmaName = rs.getString("ccmaName");
 				String ccbaMnm1 = rs.getString("ccbaMnm1");
 				String ccbaLcad = rs.getString("ccbaLcad");
 				String imageUrl = rs.getString("imageUrl");
 				String content = rs.getString("content");
-				favoriteMyPageVO mypage = new favoriteMyPageVO(hfavNum, ccmaName, ccbaMnm1, ccbaLcad, imageUrl,
+				favoriteMyPageVO mypage = new favoriteMyPageVO(hfavNum,hNo, ccmaName, ccbaMnm1, ccbaLcad, imageUrl,
 						content);
 				list.add(mypage);
 			}
