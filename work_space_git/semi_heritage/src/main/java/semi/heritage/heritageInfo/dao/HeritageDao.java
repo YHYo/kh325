@@ -141,7 +141,7 @@ public class HeritageDao {
 						content, imageUrl, rNo, countHreview);
 				list.add(mainByFv);
 			}
-			System.out.println(list.toString());
+//			System.out.println(list.toString());
 			return list;
 
 		} catch (Exception e) {

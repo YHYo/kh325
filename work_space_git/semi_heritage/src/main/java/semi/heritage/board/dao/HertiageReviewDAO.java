@@ -113,7 +113,7 @@ public class HertiageReviewDAO {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, review.getRevContents());
 			pstmt.setInt(2, review.getRev_uNo());
-			pstmt.setInt(3, review.getRev_no());
+			pstmt.setInt(3, review.getrevHNo());
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -135,7 +135,7 @@ public class HertiageReviewDAO {
 				pstmt.setInt(1, hreview.getRevNo());
 				pstmt.setString(2, hreview.getRevContents());
 				pstmt.setInt(3, hreview.getRev_uNo());
-				pstmt.setInt(4, hreview.getRev_no());
+				pstmt.setInt(4, hreview.getrevHNo());
 
 				result = pstmt.executeUpdate();
 			} catch (Exception e) {

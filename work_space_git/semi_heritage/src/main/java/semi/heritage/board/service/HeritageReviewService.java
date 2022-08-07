@@ -36,7 +36,7 @@ public class HeritageReviewService {
 		Connection conn = getConnection();
 		int result = 0;
 
-		if (hreview.getRev_no() != 0) {//-> 쓰여진 리뷰가 있을 경우
+		if (hreview.getRevNo() != 0) {//-> 쓰여진 리뷰가 있을 경우
 			result = dao.update_HertiageReview(conn, hreview);
 		} else {//-> 쓰여진 리뷰가 없을 경우
 			result = dao.insert_HertiageReview(conn, hreview);

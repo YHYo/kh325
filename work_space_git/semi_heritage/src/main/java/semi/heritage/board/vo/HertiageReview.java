@@ -9,14 +9,14 @@ public class HertiageReview {
 	private int rev_uNo; // 리뷰를 단 회원번호
 	private String rev_userEmail; // 리뷰를 단 회원이메일
 	private String rev_userPW; // 리뷰를 단 회원비밀번호
-	private int rev_no; // 리뷰를 단 문화재의 고유키값
+	private int rev_hno; // 리뷰를 단 문화재의 고유키값
 
 	public HertiageReview() {
 		super();
 	}
 
 	public HertiageReview(int revNo, String revContents, Date revDate, int rev_uNo, String rev_userEmail, String rev_userPW,
-			int rev_no) {
+			int revHNo) {
 		super();
 		this.revNo = revNo;
 		this.revContents = revContents;
@@ -24,18 +24,16 @@ public class HertiageReview {
 		this.rev_uNo = rev_uNo;
 		this.rev_userEmail = rev_userEmail;
 		this.rev_userPW = rev_userPW;
-		this.rev_no = rev_no;
+		this.rev_hno = revHNo;
 	}
 	
-	public HertiageReview(int rev_no, String rev_userEmail, String revContents, Date revDate) {
+	public HertiageReview(int revHNo, String rev_userEmail, String revContents, Date revDate) {
 		super();
-		this.rev_no = rev_no;
+		this.rev_hno = revHNo;
 		this.rev_userEmail = rev_userEmail;
 		this.revContents = revContents;
 		this.revDate = revDate;
 	
-	
-		
 	}
 	
 	public int getRevNo() {
@@ -86,18 +84,18 @@ public class HertiageReview {
 		this.rev_userPW = rev_userPW;
 	}
 
-	public int getRev_no() {
-		return rev_no;
+	public int getrevHNo() {
+		return rev_hno;
 	}
 
-	public void setRev_no(int rev_no) {
-		this.rev_no = rev_no;
+	public void setrevHNo(int revHNo) {
+		this.rev_hno = revHNo;
 	}
 
 	@Override
 	public String toString() {
 		return "HertiageReview [revNo=" + revNo + ", revContents=" + revContents + ", revDate=" + revDate + ", rev_uNo="
-				+ rev_uNo + ", rev_userId=" + rev_userEmail + ", rev_userPW=" + rev_userPW + ", rev_no=" + rev_no + "]";
+				+ rev_uNo + ", rev_userId=" + rev_userEmail + ", rev_userPW=" + rev_userPW + ", revHNo=" + rev_hno + "]";
 	}
 
 }

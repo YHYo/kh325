@@ -26,31 +26,33 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-sm-5 px-4">
-                        <form class="needs-validation" novalidate>
+<!--                         <form class="needs-validation" novalidate> -->
                             <div class="mb-3">
+        <form action="<%=path%>/hertiageReviewWrite.do" method="post">
+                            	<input type="hidden" name="hNo" value="<%=h.getNo()%>">
                                 <label class="form-label" for="review-name">Name <span
                                         class='text-danger'>*</span></label>
-                                <input class="form-control" type="text" id="review-name" placeholder="Your name" required>
+                                <input class="form-control" type="text"  id="review-name" value="<%=loginMember.getUname()%>" placeholder="<%=loginMember.getUemail()%>" disabled>
                                 <div class="invalid-feedback">Please let us know your name.</div>
                             </div>
                             <div class="mb-3">
                                  <label class="form-label" for="review-email">Email <span
                                         class='text-danger'>*</span></label>
-                                <input class="form-control" type="email" id="review-email" placeholder="Your email address" required>
+                                <input class="form-control" type="email" id="review-email" value="<%=loginMember.getUemail()%>" placeholder="<%=loginMember.getUemail()%>" disabled>
                                 <div class="invalid-feedback">Please provide a valid email address.</div>
                             </div>
                             <div class="mb-3">
-
                                 <div class="invalid-feedback">Please rate the property.</div>
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="review-text">Review <span
                                         class='text-danger'>*</span></label>
-                                <textarea class="form-control" id="review-text" rows="5" placeholder="Your review message" required></textarea>
+                                <textarea class="form-control" name="RevContents" id="review-text" rows="5" placeholder="Your review message" required></textarea>
                                 <div class="invalid-feedback">Please write your review.</div>
                             </div>
                             <button class="btn btn-primary d-block w-100 mb-4" type="submit">제출하기</button>
-                        </form>
+        </form>
+<!--                         </form> -->
                     </div>
                 </div>
             </div>
@@ -176,14 +178,6 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         </span>
                         <p class="mb-1"><%= h.getContent() %>
                         </p>
-<!--                         <div class="collapse" id="seeMoreOverview"> -->
-<!--                             <p class="mb-1"> -->
-<!--                                 있다. 정자의 평면은 정육각형으로 아래·위층이 똑같은 크기이며, 장대석으로 마무리한 낮은 기단 위에 육각형으로 된 초석을 놓고, 그 위에 일층과 이층을 관통하는 육모기둥을 세웠다. 공포는 이층 기둥 위에 짜여지는데, 기둥 윗몸을 창방(昌枋)으로 결구하고 기둥 위에 주두(柱枓:대접받침)를 놓고 끝이 둥글게 초각(草刻)된 헛첨차를 놓았다. 일출목(一出目)의 행공첨차를 받치고, 다시 소로를 두어 외목도리(外目道里)밑의 장혀를 받친 물익공이다. 일층 평면은 -->
-<!--                                 바닥 주위로 평난간을 두른 툇마루를 두었고, 이층 바닥 주위로는 계자난간을 두른 툇마루를 두었다. 천장은 우물천장이며 사방둘레의 모든 칸에는 완자살창틀을 달았다. 처마는 겹처마이며 육모지붕으로, 중앙의 추녀마루들이 모이는 중심점에 절병통(節甁桶)을 얹어 치장하였다. 향원정은 왕과 그 가족들이 휴식을 취하는 공간으로 경복궁 후원의 아름다운 풍광 속에 안겨있는 상징적 대표 건물이다. 육각형 초석, -->
-<!--                                 육각형 평면, 육모지붕 등 육각형의 공간을 구성하여 섬세하고 미려하게 다듬은 모든 구성요소들이 절묘한 조화를 이룬 비례감이 뛰어난 정자로 역사적, 예술적, 건축적으로 가치가 높다. -->
-<!--                             </p> -->
-<!--                         </div> -->
-<!--                         <a class="collapse-label collapsed" href="#seeMoreOverview" data-bs-toggle="collapse" data-bs-label-collapsed="더보기" data-bs-label-expanded="접기" role="button" aria-expanded="false" aria-controls="seeMoreOverview"></a> -->
                     </div>
                     <!--스크롤 </div> -->
                     <!-- Post meta-->
@@ -195,7 +189,12 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                         <h3 class="h3 pb-3">리뷰(<%=HertiageReview_Count%>개)
                         </h3>
                         <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between">
+                            
+                            <%if(loginMember != null){ %>
                             <a class="btn btn-outline-primary mb-sm-0 mb-3" id="review" href="#modal-review" data-bs-toggle="modal"><i class="fi-edit me-1"></i>Add review</a>
+                            <% }else{ %>
+                            <a class="btn btn-outline-primary mb-sm-0 mb-3" id="review" onclick="alert( '로그인하여야 리뷰작성이 가능합니다.' );" data-bs-toggle="modal"><i class="fi-edit me-1"></i>Add review</a>
+                            <%} %>
                             <div class="d-flex align-items-center ms-sm-4">
                                 <label class="me-2 pe-1 text-nowrap" for="reviews-sorting"><i
                                         class="fi-arrows-sort text-muted mt-n1 me-2"></i>Sort by:</label>
