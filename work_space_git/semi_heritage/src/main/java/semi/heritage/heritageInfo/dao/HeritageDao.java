@@ -321,8 +321,8 @@ public class HeritageDao {
 	}
 
 	// 문화재 검색페이지 리스트를 가져오는 메소드
-	public List<HeritageVO> findAll(Connection conn, PageInfo pageInfo, String ccbaMnm, String[] ccbaCtcdNm,
-			String[] gcodeName, String[] ccmaName, String[] ccceName, String startYear, String endYear) {
+	public List<HeritageVO> findAll(Connection conn, PageInfo pageInfo, String ccbaMnm, String[] ccbaCtcdNms,
+			String[] gcodeNames, String[] ccmaNames, String[] ccceNames, String startYear, String endYear) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<HeritageVO> findAllList = new ArrayList<>();
@@ -335,46 +335,46 @@ public class HeritageDao {
 		if (ccbaMnm != null) {
 			queryBefore += "AND H.ccbaMnm1 like ? ";
 		}
-		if (ccbaCtcdNm != null) {
-			for (int i = 0; i < ccbaCtcdNm.length; i++) {
+		if (ccbaCtcdNms != null) {
+			for (int i = 0; i < ccbaCtcdNms.length; i++) {
 				if (i == 0) {
 					queryBefore += "AND (H.ccbaCtcdNm = ? ";
-				} else if (i > 0 && i < (ccbaCtcdNm.length - 1)) {
+				} else if (i > 0 && i < (ccbaCtcdNms.length - 1)) {
 					queryBefore += "OR H.ccbaCtcdNm = ? ";
-				} else if (i == (ccbaCtcdNm.length - 1)) {
+				} else if (i == (ccbaCtcdNms.length - 1)) {
 					queryBefore += "OR H.ccbaCtcdNm = ? )";
 				}
 			}
 		}
-		if (gcodeName != null) {
-			for (int i = 0; i < gcodeName.length; i++) {
+		if (gcodeNames != null) {
+			for (int i = 0; i < gcodeNames.length; i++) {
 				if (i == 0) {
 					queryBefore += "AND (H.gcodeName = ? ";
-				} else if (i > 0 && i < (gcodeName.length - 1)) {
+				} else if (i > 0 && i < (gcodeNames.length - 1)) {
 					queryBefore += "OR H.gcodeName = ? ";
-				} else if (i == (gcodeName.length - 1)) {
+				} else if (i == (gcodeNames.length - 1)) {
 					queryBefore += "OR H.gcodeName = ? )";
 				}
 			}
 		}
-		if (ccmaName != null) {
-			for (int i = 0; i < ccmaName.length; i++) {
+		if (ccmaNames != null) {
+			for (int i = 0; i < ccmaNames.length; i++) {
 				if (i == 0) {
 					queryBefore += "AND (H.ccmaName = ? ";
-				} else if (i > 0 && i < (ccmaName.length - 1)) {
+				} else if (i > 0 && i < (ccmaNames.length - 1)) {
 					queryBefore += "OR H.ccmaName = ? ";
-				} else if (i == (ccmaName.length - 1)) {
+				} else if (i == (ccmaNames.length - 1)) {
 					queryBefore += "OR H.ccmaName = ? )";
 				}
 			}
 		}
-		if (ccceName != null) {
-			for (int i = 0; i < ccceName.length; i++) {
+		if (ccceNames != null) {
+			for (int i = 0; i < ccceNames.length; i++) {
 				if (i == 0) {
 					queryBefore += "AND (H.ccceName like ? ";
-				} else if (i > 0 && i < (ccceName.length - 1)) {
+				} else if (i > 0 && i < (ccceNames.length - 1)) {
 					queryBefore += "OR H.ccceName like ? ";
-				} else if (i == (ccceName.length - 1)) {
+				} else if (i == (ccceNames.length - 1)) {
 					queryBefore += "OR H.ccceName like ? )";
 				}
 			}
@@ -397,24 +397,24 @@ public class HeritageDao {
 			if (ccbaMnm != null) {
 				pstmt.setString(count++, "%" + ccbaMnm + "%");
 			}
-			if (ccbaCtcdNm != null) {
-				for (int i = 0; i < ccbaCtcdNm.length; i++) {
-					pstmt.setString(count++, ccbaCtcdNm[i]);
+			if (ccbaCtcdNms != null) {
+				for (int i = 0; i < ccbaCtcdNms.length; i++) {
+					pstmt.setString(count++, ccbaCtcdNms[i]);
 				}
 			}
-			if (gcodeName != null) {
-				for (int i = 0; i < gcodeName.length; i++) {
-					pstmt.setString(count++, gcodeName[i]);
+			if (gcodeNames != null) {
+				for (int i = 0; i < gcodeNames.length; i++) {
+					pstmt.setString(count++, gcodeNames[i]);
 				}
 			}
-			if (ccmaName != null) {
-				for (int i = 0; i < ccmaName.length; i++) {
-					pstmt.setString(count++, ccmaName[i]);
+			if (ccmaNames != null) {
+				for (int i = 0; i < ccmaNames.length; i++) {
+					pstmt.setString(count++, ccmaNames[i]);
 				}
 			}
-			if (ccceName != null) {
-				for (int i = 0; i < ccceName.length; i++) {
-					pstmt.setString(count++, "%" + ccceName[i] + "%");
+			if (ccceNames != null) {
+				for (int i = 0; i < ccceNames.length; i++) {
+					pstmt.setString(count++, "%" + ccceNames[i] + "%");
 				}
 			}
 			if (startYear != null) {
@@ -458,8 +458,8 @@ public class HeritageDao {
 	}
 
 	// 문화개 검색페이지 개수 구하기
-	public int getFindAllCount(Connection conn, String ccbaMnm, String[] ccbaCtcdNm, String[] gcodeName,
-			String[] ccmaName, String[] ccceName, String startYear, String endYear) {
+	public int getFindAllCount(Connection conn, String ccbaMnm, String[] ccbaCtcdNms, String[] gcodeNames,
+			String[] ccmaNames, String[] ccceNames, String startYear, String endYear) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -468,46 +468,46 @@ public class HeritageDao {
 		if (ccbaMnm != null) {
 			query += "AND ccbaMnm1 like ? ";
 		}
-		if (ccbaCtcdNm != null) {
-			for (int i = 0; i < ccbaCtcdNm.length; i++) {
+		if (ccbaCtcdNms != null) {
+			for (int i = 0; i < ccbaCtcdNms.length; i++) {
 				if (i == 0) {
 					query += "AND (ccbaCtcdNm = ? ";
-				} else if (i > 0 && i < (ccbaCtcdNm.length - 1)) {
+				} else if (i > 0 && i < (ccbaCtcdNms.length - 1)) {
 					query += "OR ccbaCtcdNm = ? ";
-				} else if (i == (ccbaCtcdNm.length - 1)) {
+				} else if (i == (ccbaCtcdNms.length - 1)) {
 					query += "OR ccbaCtcdNm = ? )";
 				}
 			}
 		}
-		if (gcodeName != null) {
-			for (int i = 0; i < gcodeName.length; i++) {
+		if (gcodeNames != null) {
+			for (int i = 0; i < gcodeNames.length; i++) {
 				if (i == 0) {
 					query += "AND (gcodeName = ? ";
-				} else if (i > 0 && i < (gcodeName.length - 1)) {
+				} else if (i > 0 && i < (gcodeNames.length - 1)) {
 					query += "OR gcodeName = ? ";
-				} else if (i == (gcodeName.length - 1)) {
+				} else if (i == (gcodeNames.length - 1)) {
 					query += "OR gcodeName = ? )";
 				}
 			}
 		}
-		if (ccmaName != null) {
-			for (int i = 0; i < ccmaName.length; i++) {
+		if (ccmaNames != null) {
+			for (int i = 0; i < ccmaNames.length; i++) {
 				if (i == 0) {
 					query += "AND (ccmaName = ? ";
-				} else if (i > 0 && i < (ccmaName.length - 1)) {
+				} else if (i > 0 && i < (ccmaNames.length - 1)) {
 					query += "OR ccmaName = ? ";
-				} else if (i == (ccmaName.length - 1)) {
+				} else if (i == (ccmaNames.length - 1)) {
 					query += "OR ccmaName = ? )";
 				}
 			}
 		}
-		if (ccceName != null) {
-			for (int i = 0; i < ccceName.length; i++) {
+		if (ccceNames != null) {
+			for (int i = 0; i < ccceNames.length; i++) {
 				if (i == 0) {
 					query += "AND (ccceName like ? ";
-				} else if (i > 0 && i < (ccceName.length - 1)) {
+				} else if (i > 0 && i < (ccceNames.length - 1)) {
 					query += "OR ccceName like ? ";
-				} else if (i == (ccceName.length - 1)) {
+				} else if (i == (ccceNames.length - 1)) {
 					query += "OR ccceName like ? )";
 				}
 			}
@@ -526,24 +526,24 @@ public class HeritageDao {
 			if (ccbaMnm != null) {
 				pstmt.setString(count++, "%" + ccbaMnm + "%");
 			}
-			if (ccbaCtcdNm != null) {
-				for (int i = 0; i < ccbaCtcdNm.length; i++) {
-					pstmt.setString(count++, ccbaCtcdNm[i]);
+			if (ccbaCtcdNms != null) {
+				for (int i = 0; i < ccbaCtcdNms.length; i++) {
+					pstmt.setString(count++, ccbaCtcdNms[i]);
 				}
 			}
-			if (gcodeName != null) {
-				for (int i = 0; i < gcodeName.length; i++) {
-					pstmt.setString(count++, gcodeName[i]);
+			if (gcodeNames != null) {
+				for (int i = 0; i < gcodeNames.length; i++) {
+					pstmt.setString(count++, gcodeNames[i]);
 				}
 			}
-			if (ccmaName != null) {
-				for (int i = 0; i < ccmaName.length; i++) {
-					pstmt.setString(count++, ccmaName[i]);
+			if (ccmaNames != null) {
+				for (int i = 0; i < ccmaNames.length; i++) {
+					pstmt.setString(count++, ccmaNames[i]);
 				}
 			}
-			if (ccceName != null) {
-				for (int i = 0; i < ccceName.length; i++) {
-					pstmt.setString(count++, "%" + ccceName[i] + "%");
+			if (ccceNames != null) {
+				for (int i = 0; i < ccceNames.length; i++) {
+					pstmt.setString(count++, "%" + ccceNames[i] + "%");
 				}
 			}
 			if (startYear != null) {

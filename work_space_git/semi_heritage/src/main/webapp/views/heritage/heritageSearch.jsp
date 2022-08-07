@@ -33,10 +33,10 @@ List<Integer> allFavlist = (List<Integer>)request.getAttribute("allFavlist"); //
 PageInfo pageInfo  = (PageInfo)request.getAttribute("pageInfo");
 
 String searchValue = "";
-String ccbaCtcdNm[] = null;
-String gcodeName[] = null;
-String ccmaName[] = null;
-String ccceName[] = null;
+String ccbaCtcdNms[] = null;
+String gcodeNames[] = null;
+String ccmaNames[] = null;
+String ccceNames[] = null;
 String startYear = "";
 String endYear = "";
 List<String> region = new ArrayList<String>();
@@ -47,30 +47,30 @@ List<String> age = new ArrayList<String>();
 
 searchValue = request.getParameter("searchValue");
 
-ccbaCtcdNm  = request.getParameterValues("region");
-if(ccbaCtcdNm != null){
-	region = new ArrayList<>(Arrays.asList(ccbaCtcdNm));
+ccbaCtcdNms  = request.getParameterValues("region");
+if(ccbaCtcdNms != null){
+	region = new ArrayList<>(Arrays.asList(ccbaCtcdNms));
 }else{
 	region = new ArrayList<>();
 }
 
-gcodeName  = request.getParameterValues("type");
-if(gcodeName != null){
-	type = new ArrayList<>(Arrays.asList(gcodeName));
+gcodeNames  = request.getParameterValues("type");
+if(gcodeNames != null){
+	type = new ArrayList<>(Arrays.asList(gcodeNames));
 }else{
 	type = new ArrayList<>();
 }
 
-ccmaName  = request.getParameterValues("designated");
-if(ccmaName != null){
-	designated = new ArrayList<>(Arrays.asList(ccmaName));
+ccmaNames  = request.getParameterValues("designated");
+if(ccmaNames != null){
+	designated = new ArrayList<>(Arrays.asList(ccmaNames));
 }else{
 	designated = new ArrayList<>();
 }
 
-ccceName  = request.getParameterValues("age");
-if(ccceName != null){
-	age = new ArrayList<>(Arrays.asList(ccceName));
+ccceNames  = request.getParameterValues("age");
+if(ccceNames != null){
+	age = new ArrayList<>(Arrays.asList(ccceNames));
 }else{
 	age = new ArrayList<>();
 }
@@ -648,26 +648,174 @@ int uNo = (Integer)request.getAttribute("uNo");
 									<script type="text/javascript">
 											function movePage(pageUrl){
 												var searchValue = document.getElementById("searchValue"); // 문화재 이름
-					// 							var searchTypes = document.getElementsByName("searchType"); // title + content + writer
-					// 							var searchType = 'title';
 												if(searchValue.value.length > 0){
-					// 								for(var i = 0; i <searchType.length; i++){
-					// 									if(searchTypes[i].checked == true){
-					// 										searchType = searchTypes[i].value;
-					// 									}
-					// 								}
+	
 													pageUrl = pageUrl +  '&searchValue=' + searchValue.value; 
 												}
-					// 							alert(searchValue.value);
-// 												alert(pageUrl);
+
+												var regions = document.getElementsByName("region");  // 지역
+										          if (regions.length != 0) {
+													for (var i = 0; i < regions.length; i++) {
+										                  if (regions[i].checked == true) {
+										                	  region = regions[i].value;
+										                      pageUrl += '&region=' + region;
+										                  }
+										              }
+												  }
+										          
+												var types = document.getElementsByName("type"); // 유형분류
+											      if (types.length != 0) {
+													for (var i = 0; i < types.length; i++) {
+											              if (types[i].checked == true) {
+											            	  type = types[i].value;
+											                  pageUrl += '&type=' + type;
+											              }
+											          }
+												}
+												
+												var designateds = document.getElementsByName("designated"); // 지정종목
+											      if (designateds.length != 0) {
+													for (var i = 0; i < designateds.length; i++) {
+											              if (designateds[i].checked == true) {
+											            	  designated = designateds[i].value;
+											                      pageUrl += '&designated=' + designated;
+											                  }
+											              }
+													  }
+												
+														var ages = document.getElementsByName("age");  //시대 
+												          if (ages.length != 0) {
+															for (var i = 0; i < ages.length; i++) {
+												                  if (ages[i].checked == true) {
+												                	  age = ages[i].value;
+												                      pageUrl += '&age=' + age;
+												                  }
+												              }
+														  }
+														
+												          var startYear = document.getElementById("startYear"); // 문화재 이름
+															if(startYear.value.length > 0){
+																pageUrl +=  '&startYear=' + startYear.value; 
+															}
+												          
+												         
+															var endYear = document.getElementById("endYear"); // 문화재 이름
+															if(endYear.value.length > 0){
+																pageUrl +=  '&endYear=' + endYear.value; 
+															}
+
+												
+												
 												location.href = encodeURI(pageUrl);	
 											}
+											
+											// 지역 체크박스 스크립트
+						                    function regionCheckSelectAll() {
+						                        // 전체 체크박스
+						                        const checkboxes = document.querySelectorAll('input[name="region"]');
+						                        // 선택된 체크박스
+						                        const checked = document.querySelectorAll('input[name="region"]:checked');
+						                        // select all 체크박스
+						                        const selectAll = document.querySelector('input[name="regionAll"]');
+
+						                        if (checkboxes.length === checked.length) {
+						                            selectAll.checked = true;
+						                        } else {
+						                            selectAll.checked = false;
+						                        }
+
+						                    };
+
+						                    function regionAll(selectAll) {
+						                        const region = document.getElementsByName('region');
+
+						                        region.forEach((checkbox) => {
+						                            checkbox.checked = selectAll.checked;
+						                        });
+						                    }
+
+
+						                    // 지정종목 체크박스 스크립트 
+						                    function designatedCheckSelectAll() {
+						                        // 전체 체크박스
+						                        const checkboxes = document.querySelectorAll('input[name="designated"]');
+						                        // 선택된 체크박스
+						                        const checked = document.querySelectorAll('input[name="designated"]:checked');
+						                        // select all 체크박스
+						                        const selectAll = document.querySelector('input[name="designatedAll"]');
+
+						                        if (checkboxes.length === checked.length) {
+						                            selectAll.checked = true;
+						                        } else {
+						                            selectAll.checked = false;
+						                        }
+
+						                    }
+
+						                    function designatedAll(selectAll) {
+						                        const designated = document.getElementsByName('designated');
+
+						                        designated.forEach((checkbox) => {
+						                            checkbox.checked = selectAll.checked;
+						                        });
+						                    }
+
+
+						                    // 시대 체크박스 스크립트
+
+						                    function ageCheckSelectAll() {
+						                        // 전체 체크박스
+						                        const checkboxes = document.querySelectorAll('input[name="age"]');
+						                        // 선택된 체크박스
+						                        const checked = document.querySelectorAll('input[name="age"]:checked');
+						                        // select all 체크박스
+						                        const selectAll = document.querySelector('input[name="ageAll"]');
+
+						                        if (checkboxes.length === checked.length) {
+						                            selectAll.checked = true;
+						                        } else {
+						                            selectAll.checked = false;
+						                        }
+
+						                    }
+
+						                    function ageAll(selectAll) {
+						                        const age = document.getElementsByName('age');
+
+						                        age.forEach((checkbox) => {
+						                            checkbox.checked = selectAll.checked;
+						                        });
+						                    }
+
+						                    // 유형분류 체크박스 스크립트
+
+						                    function typeCheckSelectAll() {
+						                        // 전체 체크박스
+						                        const checkboxes = document.querySelectorAll('input[name="type"]');
+						                        // 선택된 체크박스
+						                        const checked = document.querySelectorAll('input[name="type"]:checked');
+						                        // select all 체크박스
+						                        const selectAll = document.querySelector('input[name="typeAll"]');
+
+						                        if (checkboxes.length === checked.length) {
+						                            selectAll.checked = true;
+						                        } else {
+						                            selectAll.checked = false;
+						                        }
+
+						                    }
+
+						                    function typeAll(selectAll) {
+						                        const type = document.getElementsByName('type');
+
+						                        type.forEach((checkbox) => {
+						                            checkbox.checked = selectAll.checked;
+						                        });
+						                    }
 									</script>			
 					        </div>
 					    </main>
     
-    
-  
-
+   
 <%@include file="/views/common/footer.jsp"%>
  

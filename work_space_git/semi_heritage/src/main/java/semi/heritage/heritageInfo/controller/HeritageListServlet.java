@@ -40,50 +40,63 @@ public class HeritageListServlet extends MyHttpServlet {
 //		List<HeritageMainVO> list = null;
 		List<HeritageVO> findAllList = null;
 		
+		
 		String ccbaMnm = req.getParameter("searchValue");
 		
-		String ccbaCtcdNm[] = req.getParameterValues("region"); // 지역코드
-		if (ccbaCtcdNm == null) {
+		String ccbaCtcdNms[] = req.getParameterValues("region"); // 지역코드
+		if (ccbaCtcdNms == null) {
+			System.out.println("선택한 값이 없습니다.");
 		} else {
 			Map<String, String> region = new HashMap<>();
-			for (String regions : ccbaCtcdNm) {
-				if (regions == null) {
-					regions = null;
+			for (String ccbaCtcdNm : ccbaCtcdNms) {
+				if (ccbaCtcdNm == null) {
+					ccbaCtcdNm = null;
 				}
+				System.out.print(ccbaCtcdNm + " ");
 			}
+			System.out.println("\n");
 		}
 		
-		String gcodeName[] = req.getParameterValues("type"); // 문화재 분류
-		if (gcodeName == null) {
+		String gcodeNames[] = req.getParameterValues("type"); // 문화재 분류
+		if (gcodeNames == null) {
+			System.out.println("선택한 값이 없습니다.");
 		} else {
 			Map<String, String> type = new HashMap<>();
-			for (String types : gcodeName) {
-				if (types == null) {
-					types = null;
+			for (String gcodeName : gcodeNames) {
+				if (gcodeName == null) {
+					gcodeName = null;
 				}
+				System.out.print(gcodeName + " ");
 			}
+			System.out.println("\n");
 		}
 		
-		String ccmaName[] = req.getParameterValues("designated");// 지정종목
-		if (ccmaName == null) {
+		String ccmaNames[] = req.getParameterValues("designated");// 지정종목
+		if (ccmaNames == null) {
+			System.out.println("선택한 값이 없습니다.");
 		} else {
 			Map<String, String> designated = new HashMap<>();
-			for (String designateds : ccmaName) {
-				if (designateds == null) {
-					designateds = null;
+			for (String ccmaName : ccmaNames) {
+				if (ccmaName == null) {
+					ccmaName = null;
 				}
+				System.out.print(ccmaName + " ");
 			}
+			System.out.println("\n");
 		}
 		
-		String ccceName[] = req.getParameterValues("age");// 시대
-		if (ccceName == null) {
+		String ccceNames[] = req.getParameterValues("age");// 시대
+		if (ccceNames == null) {
+			System.out.println("선택한 값이 없습니다.");
 		} else {
 			Map<String, String> age = new HashMap<>();
-			for (String ages : ccceName) {
-				if (ages == null) {
-					ages = null;
+			for (String ccceName : ccceNames) {
+				if (ccceName == null) {
+					ccceName = null;
 				}
+				System.out.print(ccceName + " ");
 			}
+			System.out.println("\n");
 		}
 	
 		String startYear = req.getParameter("startYear");
@@ -98,10 +111,10 @@ public class HeritageListServlet extends MyHttpServlet {
 		}
 		
 //		boardCount = service.getHeritageMainVOCount(ccbaMnm); // 메인에서 이름입력해서 게시글 갯수 몇개인지 가져옴
-		getFindAllCount = service.getFindAllCount(ccbaMnm, ccbaCtcdNm, gcodeName, ccmaName, ccceName, startYear, endYear); // 검색 리스트 개수
+		getFindAllCount = service.getFindAllCount(ccbaMnm, ccbaCtcdNms, gcodeNames, ccmaNames, ccceNames, startYear, endYear); // 검색 리스트 개수
 		pageInfo = new PageInfo(page, 8, getFindAllCount, 9); // 하단버튼 8개 , 게시글 9개 보임
 //		list = service.selectByHeritageName(ccbaMnm, pageInfo);
-		findAllList = service.findAll(pageInfo, ccbaMnm, ccbaCtcdNm, gcodeName, ccmaName, ccceName, startYear, endYear);
+		findAllList = service.findAll(pageInfo, ccbaMnm, ccbaCtcdNms, gcodeNames, ccmaNames, ccceNames, startYear, endYear);
 
 		
 		
