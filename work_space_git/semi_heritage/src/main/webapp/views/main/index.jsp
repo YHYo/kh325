@@ -164,7 +164,7 @@
                             <tbody >
                              <% for (int j = 0; j < 7; j++){ %>
                                 <tr > 
-                                    <td style="width:450px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><a  href="<%=path%>/community/view?type=H&boardNo=<%=blist.get(j).getNo()%>"> <%=blist.get(j).getTitle()%></a></td>
+                                    <td style="width:450px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><a style="text-decoration: none; color: black;" href="<%=path%>/community/view?type=H&boardNo=<%=blist.get(j).getNo()%>"><%=blist.get(j).getTitle()%></a></td>
                                     
                                     <td style="width:100px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;"><%=blist.get(j).getuName()%></td>
                                 </tr>  
