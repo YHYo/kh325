@@ -202,16 +202,19 @@
 
                             <div class="mt-2" style="text-align: center;">
                            <form action="<%=path%>/souvenirInsert.do" method="post">
-									<input name="productNo" type="hidden" value="<%=productDetail.getSouv_pro_no()%>">
+								<input name="productNo" type="hidden" value="<%=productDetail.getSouv_pro_no()%>">
                                 <button class="btn btn-outline-light btn-lg mb-4 me-5" type="submit" style="padding-left: 25%; padding-right : 25%">
-                                  <i id="SouvenirCartInsertServlet" class="fi-cart me-2">&nbsp 장바구니</i></button>
+                                  <i id="SouvenirCartInsertServlet" class="fi-cart me-2 fw-bold">&nbsp 장바구니</i></button>
                                   </form>
                                 
                                 <form action="<%=path%>/souvenirPay.do" method="get" >
-                                <a class="btn btn-lg me-5" data-bs-toggle="collapse" style="background-color: #C389FF; color: #fff; padding-left: 25%; padding-right : 25%;">
-                                    <button type="submit" class="fi-credit-card me-2" style="text-align: center; color: #fff; background-color: #C389FF; border:none;">&nbsp 구매하기</button></a>
+                               <!-- <a class="btn btn-lg me-5" data-bs-toggle="collapse" style="background-color: #C389FF; color: #fff; padding-left: 25%; padding-right : 25%;"> --> 
+                                    <button type="submit" class="btn btn-outline-light btn-lg mb-4 me-5" 
+                                    style="text-align: center; color: #fff; padding-left: 25%; height:50px; width:310px;
+                                    padding-right : 25%; background-color: #C389FF; border:none;"><i class=" fi-credit-card me-2"></i>&nbsp 구매하기</button>
                                     </form>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
