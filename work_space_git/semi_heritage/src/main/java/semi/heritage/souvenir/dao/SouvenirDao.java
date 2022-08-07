@@ -151,7 +151,7 @@ public class SouvenirDao {
 		try {
 			// uNo번의 회원이 가진 장바구니의 제품명, 제품가격, 제품카테고리 출력 (구매 / 삭제한 품목 제외. 구매/삭제시 STATUS들이 Y로
 			// 변경)
-			String sql = "SELECT seqNo, SOUV_PRO_NO, SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
+			String sql = "SELECT seqNo, SOUV_CART_NO, SOUV_PRO_NO, SOUV_PRO_NAME, SOUV_PRO_PRICE, SOUV_PRO_CATEGORY, SOUV_PRO_URL "
 					+ "FROM SOUV_CART WHERE UNO=?  AND BUY_STATUS='N' AND DELETE_STATUS='N' ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, uNo);
@@ -159,13 +159,14 @@ public class SouvenirDao {
 			while (rs.next()) {
 				int count = 1;
 				int seqNo = rs.getInt(count++);
-				String souv_pro_no = rs.getString(count++);
+				String souv_cart_no = rs.getString(count++);
+				int souv_pro_no = rs.getInt(count++);
 				String souv_pro_name = rs.getString(count++);
 				int souv_pro_price = rs.getInt(count++);
 				String souv_pro_category = rs.getString(count++);
 				String souv_pro_url = rs.getString(count++);
 
-				SouvenirCartVO info = new SouvenirCartVO(seqNo, souv_pro_no, souv_pro_name, souv_pro_price, souv_pro_category,
+				SouvenirCartVO info = new SouvenirCartVO(seqNo, souv_cart_no, souv_pro_no, souv_pro_name, souv_pro_price, souv_pro_category,
 						souv_pro_url);
 				list.add(info);
 			}

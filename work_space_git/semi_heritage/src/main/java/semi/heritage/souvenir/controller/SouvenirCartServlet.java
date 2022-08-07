@@ -40,7 +40,7 @@ import semi.heritage.souvenir.vo.SouvenirProductVO;
 			
 //			SouvenirProductVO productDetail = service.findProductByNo(productNo);
 			cartList = service.getCartList(uNo);
-			System.out.println(cartList);
+//			System.out.println("장바구니 목록 : "+cartList);
 			
 //			req.setAttribute("productDetail", productDetail);
 			req.setAttribute("cartList", cartList);

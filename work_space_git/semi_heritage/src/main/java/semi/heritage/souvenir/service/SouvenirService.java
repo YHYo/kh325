@@ -71,12 +71,13 @@ public class SouvenirService {
 			rollback(conn);
 		}
 		close(conn);
+		
 		return result;
 	}
 
-	public int deleteCart(int no) {
+	public int deleteCart(int seqNo) {
 		Connection conn = getConnection();
-		int result = dao.deleteCart(conn, no, "Y");
+		int result = dao.deleteCart(conn, seqNo, "Y");
 
 		if (result > 0) {
 			commit(conn);

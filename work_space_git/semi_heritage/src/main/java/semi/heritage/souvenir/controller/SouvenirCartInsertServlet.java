@@ -39,6 +39,7 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SouvenirProductVO SVO = new SouvenirProductVO();
 		
+		
 	
 			
 			HttpSession session = req.getSession(); //HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 세션을 생성합니다
@@ -53,7 +54,7 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 				SVO = service.findProductByNo(productNo);
 				int userno = loginMember.getUno();
 				int result = service.insertCart(SVO, userno);
-				System.out.println("인서트 결과 " + result);
+//				System.out.println("인서트 결과 " + result);
 				
 				if(result > 0) {
 					sendCommonPage("장바구니 등록되었습니다.", "/myPageCart.do", req, resp);

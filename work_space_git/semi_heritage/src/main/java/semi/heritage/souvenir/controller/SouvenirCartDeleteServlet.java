@@ -13,11 +13,10 @@ import semi.heritage.member.vo.Member;
 import semi.heritage.souvenir.service.SouvenirService;
 import semi.heritage.souvenir.vo.SouvenirCartVO;
 
-@WebServlet("/cart/delete")
+@WebServlet("/cartDelete.do")
 public class SouvenirCartDeleteServlet extends MyHttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-//	private BoardService service = new BoardService();
 	private SouvenirService service = new SouvenirService();
 	
 	@Override
@@ -25,29 +24,32 @@ public class SouvenirCartDeleteServlet extends MyHttpServlet {
 		return "CartDelete";
 	}
 	
-	//http://localhost/06_HelloMVC2/cart/delete?boardNo=65
-	//http://localhost:8081/semi_heritage/cart/delete?uNo=2&cartNo=3
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			int seqNo = Integer.parseInt(req.getParameter("seqNo"));
-			SouvenirCartVO cart = service.findCartByNo(seqNo);
+			SouvenirCartVO deleteCart = service.findCartByNo(seqNo);
 			Member loginMember = getSessionMember(req);
 			
 			
 			int result = service.deleteCart(seqNo);
 			
 			if(result <= 0 ) {
-				sendCommonPage("게시물 삭제에 실패하였습니다. (301)", "/board/list", req, resp);
+				sendCommonPage("장바구니 삭제에 실패하였습니다. (301)", "/myPageCart.do", req, resp);
 				return;
 			}
 			
-			req.setAttribute("deleteCart", cart);
+			req.setAttribute("deleteCart", deleteCart);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			sendCommonPage("게시물 삭제에 실패하였습니다. (302)", "/board/list", req, resp);
+			sendCommonPage("장바구니 삭제에 실패하였습니다. (302)", "/myPageCart.do", req, resp);
 		}
 		
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
 	}
 }
