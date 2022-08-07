@@ -32,13 +32,13 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                             	<input type="hidden" name="hNo" value="<%=h.getNo()%>">
                                 <label class="form-label" for="review-name">Name <span
                                         class='text-danger'>*</span></label>
-                                <input class="form-control" type="text"  id="review-name" value="<%=loginMember.getUname()%>" placeholder="<%=loginMember.getUemail()%>" disabled>
+                                <input class="form-control" type="text"  id="review-name" value="<%if(loginMember != null){ %><%=loginMember.getUname()%><%} %>" placeholder="<%if(loginMember != null){ %><%=loginMember.getUemail()%><%} %>" disabled>
                                 <div class="invalid-feedback">Please let us know your name.</div>
                             </div>
                             <div class="mb-3">
                                  <label class="form-label" for="review-email">Email <span
                                         class='text-danger'>*</span></label>
-                                <input class="form-control" type="email" id="review-email" value="<%=loginMember.getUemail()%>" placeholder="<%=loginMember.getUemail()%>" disabled>
+                                <input class="form-control" type="email" id="review-email" value="<%if(loginMember != null){ %><%=loginMember.getUemail()%><%} %>" placeholder="<%if(loginMember != null){ %><%=loginMember.getUemail()%><%} %>" disabled>
                                 <div class="invalid-feedback">Please provide a valid email address.</div>
                             </div>
                             <div class="mb-3">
