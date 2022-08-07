@@ -29,7 +29,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
 </style>
  
  
- <form action="<%=path%>/myPageLike.do" method="get" >
+
  <div class="container pt-5 pb-lg-4 mt-5 mb-sm-2">
             <!-- Breadcrumb-->
             <nav class="mb-4 pt-md-3" aria-label="Breadcrumb">
@@ -83,7 +83,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                     <%for(int i = 0; i < fmlist.size(); i++ ) { %>
                     <div class="card card-hover card-horizontal border-0 shadow-sm mb-4 ">
                         <div class="card-img-top position-relative " style="background-image: url(<%=fmlist.get(i).getImageUrl()%>);">
-                            <a class="" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>"></a>
+                            <a class="stretched-link" href="<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>"></a>
                             <div class="position-absolute end-0 top-0 pt-3 pe-3 zindex-5 ">
                                 <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm " type="button" data-bs-toggle="tooltip " data-bs-placement="left " title="Remove from Wishlist ">
                                   <i class="fi-heart-filled " style="color: #C389FF;"></i></button>
@@ -99,7 +99,10 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                             <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
                                 <i class="fi-share text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;" onclick="alert( 'URL이 복사 되었습니다.' );" ><span class="d-inline-block me-4 fs-sm">공유하기</a></span>
                                 <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;" onclick="location.href='<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>'"><span class="d-inline-block me-4 fs-sm"   id="heritageDetail()">상세보기</a></span>
-                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;"><span class="d-inline-block fs-sm" onclick="changeForm(2)" id="favoriteDelete()">찜 해제</a></span>
+                                <form action="<%=path%>/favoriteDelete.do" method="post"> 
+                                <input type="hidden" name="no" value="<%=fmlist.get(i).gethNo()%>">
+                                <i class="fi-trash text-muted" style="padding-right: 2%;"></i><button class="text-muted" style="background: transparent; border: none;" type="submit"><a  style="text-decoration-line:none; cursor: pointer;"><span class="d-inline-block fs-sm">찜 해제</a></button></span>
+                           		</form>
                             </div>
                             
                             
@@ -110,15 +113,11 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                 
             </div>
         </div>
-       </form>
+     
     </main>
     
   
     <script  type="text/javascript">
-//     function share() {
-//     	alert()
-		
-// 	}
     
 	            
 function changeForm(val) {

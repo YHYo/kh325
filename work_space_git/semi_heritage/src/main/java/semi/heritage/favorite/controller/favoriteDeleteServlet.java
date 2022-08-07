@@ -26,6 +26,10 @@ public class favoriteDeleteServlet extends MyHttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int no = Integer.parseInt(req.getParameter("no")); // jsp에서 문화재 고유번호 받아오기
 
 		try {
@@ -43,9 +47,9 @@ public class favoriteDeleteServlet extends MyHttpServlet {
 			int result = fservice.delete(uNo, no);
 
 			if (result <= 0) {
-				sendCommonPage("찜 삭제에 실패하였습니다. (301)", "/member/myPageLike.jsp", req, resp); //마이페이지 찜페이지로 보내주기
+				sendCommonPage("찜 삭제에 실패하였습니다. (301)", "/myPageLike.do", req, resp); //마이페이지 찜페이지로 보내주기
 			} else {
-				sendCommonPage("찜 삭제에 성공하였습니다. (302)", "/member/myPageLike.jsp", req, resp); //마이페이지 찜페이지로 보내주기
+				sendCommonPage("찜 삭제에 성공하였습니다. (302)", "/myPageLike.do", req, resp); //마이페이지 찜페이지로 보내주기
 			}
 
 		} catch (Exception e) {
