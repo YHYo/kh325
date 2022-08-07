@@ -74,33 +74,51 @@ SouvenirCartVO deleteCart = (SouvenirCartVO)request.getAttribute("deleteCart");
 
                             </div>
                             <h4 class="mb-1 fs-xs fw-normal text-uppercase" style="color: #C389FF;"><b>판매중</b></h4>
-                            <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link" href="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>">
+                            <h3 class="h6 mb-2 fs-base"><a class="nav-link" href="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>">
                             <%=cartList.get(i).getSouv_pro_name()%></a></h3>
                             <p class="mb-2 fs-sm text-muted"><%=cartList.get(i).getSouv_pro_category()%></p>
                             <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i><%=df.format(cartList.get(i).getSouv_pro_price())%>원</div>
-                            <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
+                            <div class="text-muted d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
                                 
-                                <i class="fi-share text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">공유하기</span>
+<!--                            <i class="fi-share text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">공유하기</span>
                                 <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><span class="d-inline-block me-4 fs-sm">상세보기</span>
                                 <i class="fi-trash text-muted" style="padding-right: 2%;"></i><span class="d-inline-block fs-sm">장바구니 해제</span>
-<!--                                 <form action="" method="post"> -->
-<!--                                 <i class="fi-share text-muted" style="padding-right: 2%;"></i> -->
-<!-- 									<span class="d-inline-block me-4 fs-sm"> -->
-<!-- 									<button type="submit" style="border : none;">공유하기</button></span> -->
-<!-- 								</form> -->
+-->                               
+                             <form action="" method="post">
+                                 
+                			<!---------------- 메인페이지 링크복사기능 임시 시작 ---------------->
+								 <script>
+								    function fn_final() {
+									var url = document.getElementById('text');
+									url.style.display='block';	// 숨겨둔 input 태그 block처리
+									url.select();	// 복사할 text 블럭
+									document.execCommand('copy');	// 드레그된 text 클립보드에 복사
+									url.style.display='none';	// 다시 숨기기
+									alert("링크 복사되었습니다");
+								    }
+								</script>
+                                <input type="text" id="text" value="<%=path%>/souvenirMain.do" style="display: none;"/>
+ <!-- 							<input type="button" onclick="fn_final()" value="URL 복사"/> -->
+ 							
+ 							<!---------------- 메인페이지 링크복사기능 임시 끝 ---------------->
+
+                                 <i class="fi-share text-muted" style="padding-right: 2%;"></i>
+ 									<span class="text-muted d-inline-block me-3 fs-sm">
+ 									<input class="copy d-inline-block fs-sm" type="button" onclick="fn_final()" style="border : none; background-color: #fff; cursor: pointer;" value="공유하기"></></span>
+ 								</form>
                                 
-<%--                                 <form action="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>" method="post"> --%>
-<!--                                 <i  class="fi-eye-on text-muted" style="padding-right: 2%;"></i> -->
-<!--                                 	<span class="d-inline-block me-4 fs-sm">상세보기!!</span> -->
-<!-- 									<input type="hidden" name="productNo" value=""> -->
-<!-- 								<span class="d-inline-block me-4 fs-sm"> --> 
-<!-- 									<button class="d-inline-block me-4 fs-sm" type="submit" style="border : none;">상세보기</button></span> -->
-<!-- 								</form> -->
+                                 <form action="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>" method="post">
+                                 <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i>
+ 									<input type="hidden" name="productNo" value="">
+ 									<span class="text-muted d-inline-block me-3 fs-sm">
+									<button class="d-inline-block fs-sm" type="submit" style="border : none; background-color: #fff; cursor: pointer;">상세보기</button></span>
+ 								</form>
                                 
-<%--                                 <form action="<%=path%>/cartDelete.do" method="post"> --%>
-<!--                                 <i id="deleteCart" class="fi-trash text-muted" style="padding-right: 2%;"></i> -->
-<!--                                 	<span class="d-inline-block fs-sm">장바구니 해제</span> -->
-<!--                                 </form> -->
+                                 <form action="<%=path%>/cartDelete.do" method="post">
+                                 <i id="deleteCart" class="fi-trash text-muted" style="padding-right: 2%;"></i>
+                                 	<span class="text-muted d-inline-block me-3 fs-sm">
+                                 	<button class="d-inline-block fs-sm" type="submit"  style="border : none; background-color: #fff; cursor: pointer;">장바구니 해제</button></span>
+                                 </form>
                                 
                                 
                             </div>
