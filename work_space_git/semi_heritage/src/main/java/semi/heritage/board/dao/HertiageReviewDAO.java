@@ -11,11 +11,10 @@ import java.util.List;
 
 import semi.heritage.board.vo.HertiageReview;
 
-
 public class HertiageReviewDAO {
 
 	// 문화재 고유번호에 따라 달린 리뷰의 갯수를 가져오는 쿼리문 -> 문화재 고유번호, 리뷰갯수
-	public int getHertiageReview_Count(Connection conn , int heritageNo) {
+	public int getHertiageReview_Count(Connection conn, int heritageNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String query = "SELECT COUNT(revNo) FROM HertiageReview group by no having no = ? order by COUNT(revNo) desc";
@@ -42,41 +41,40 @@ public class HertiageReviewDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<HertiageReview> list = new ArrayList<>();
-		String query = "select HR.no, U.uEmail , HR.revContents, HR.revDate "
-				+ "FROM HertiageReview HR, USERINFO U "
-				+ "WHERE HR.uNo = U.uNo AND HR.STATUS = 'Y' AND HR.no= ? ORDER BY HR.revNo DESC";
+		String query = "select HR.no, U.uEmail , HR.revContents, HR.revDate " + " FROM HertiageReview HR, USERINFO U "
+				+ " WHERE HR.uNo = U.uNo AND HR.STATUS = 'Y' AND HR.no= ? ORDER BY HR.revNo DESC";
 
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, heritageNo);
 			rs = pstmt.executeQuery();
 
-			 while (rs.next()) {
-		            int count = 1;
-		            int rev_no = rs.getInt(count++);
-		            String rev_userEmail = rs.getString(count++);
-		            String revContents = rs.getString(count++);
-		            Date revDate = rs.getDate(count++);
-		            HertiageReview reviewInfo = new HertiageReview(rev_no, rev_userEmail, revContents, revDate);
-		            list.add(reviewInfo);
-		         }
-		      } catch (Exception e) {
-		         e.printStackTrace();
-		      } finally {
-		         close(pstmt);
-		         close(rs);
-		      }
-		      System.out.println(list.toString());
-		      return list;
+			while (rs.next()) {
+				int count = 1;
+				int rev_no = rs.getInt(count++);
+				String rev_userEmail = rs.getString(count++);
+				String revContents = rs.getString(count++);
+				Date revDate = rs.getDate(count++);
+				HertiageReview reviewInfo = new HertiageReview(rev_no, rev_userEmail, revContents, revDate);
+				list.add(reviewInfo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		System.out.println(list.toString());
+		return list;
 	}
-	
+
 	// 유저 넘버로 리플 조회
 	public List<HertiageReview> getHertiageReviewByUno(Connection conn, int uNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<HertiageReview> list = new ArrayList<>();
-		String query = "select HR.uNo, U.uEmail , HR.revContents, HR.revDate "
-				+ "FROM HertiageReview HR, USERINFO U "
+		String query = "select HR.REVNO, HR.uNo, U.uEmail , HR.revContents, HR.revDate "
+				+ " FROM HertiageReview HR, USERINFO U "
 				+ "WHERE HR.uNo = U.uNo AND HR.STATUS = 'Y' AND HR.uno= ? ORDER BY HR.revNo DESC";
 
 		try {
@@ -84,25 +82,26 @@ public class HertiageReviewDAO {
 			pstmt.setInt(1, uNo);
 			rs = pstmt.executeQuery();
 
-			 while (rs.next()) {
-		            int count = 1;
-		            int rev_uNo = rs.getInt(count++);
-		            String rev_userEmail = rs.getString(count++);
-		            String revContents = rs.getString(count++);
-		            Date revDate = rs.getDate(count++);
-		            HertiageReview reviewInfo = new HertiageReview(rev_uNo, rev_userEmail, revContents, revDate);
-		            list.add(reviewInfo);
-		         }
-		      } catch (Exception e) {
-		         e.printStackTrace();
-		      } finally {
-		         close(pstmt);
-		         close(rs);
-		      }
-		      System.out.println(list.toString());
-		      return list;
+			while (rs.next()) {
+				int count = 1;
+				int revNo = rs.getInt(count++);
+				int rev_uNo = rs.getInt(count++);
+				String rev_userEmail = rs.getString(count++);
+				String revContents = rs.getString(count++);
+				Date revDate = rs.getDate(count++);
+				HertiageReview reviewInfo = new HertiageReview(revNo, rev_uNo, rev_userEmail, revContents, revDate);
+				list.add(reviewInfo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		System.out.println(list.toString());
+		return list;
 	}
-		
+
 	// 리플 쓰기 기능
 	public int insert_HertiageReview(Connection conn, HertiageReview review) {
 		PreparedStatement pstmt = null;
@@ -123,28 +122,28 @@ public class HertiageReviewDAO {
 		}
 		return result;
 	}
-	
+
 	// 리뷰 수정
-		public int update_HertiageReview(Connection conn, HertiageReview hreview) {
-			PreparedStatement pstmt = null;
-			String query = "UPDATE HertiageReview SET revNo=?,revContents=?,uNo=?,MODIFY_DATE=SYSDATE WHERE NO=?";
-			int result = 0;
+	public int update_HertiageReview(Connection conn, HertiageReview hreview) {
+		PreparedStatement pstmt = null;
+		String query = "UPDATE HertiageReview SET revNo=?,revContents=?,uNo=?,MODIFY_DATE=SYSDATE WHERE NO=?";
+		int result = 0;
 
-			try {
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, hreview.getRevNo());
-				pstmt.setString(2, hreview.getRevContents());
-				pstmt.setInt(3, hreview.getRev_uNo());
-				pstmt.setInt(4, hreview.getrevHNo());
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, hreview.getRevNo());
+			pstmt.setString(2, hreview.getRevContents());
+			pstmt.setInt(3, hreview.getRev_uNo());
+			pstmt.setInt(4, hreview.getrevHNo());
 
-				result = pstmt.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-			return result;
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
+		return result;
+	}
 
 	// 리플 삭제 기능
 	public int delete_HertiageReview(Connection conn, int revNo) {
@@ -154,7 +153,7 @@ public class HertiageReviewDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, revNo);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,7 +166,7 @@ public class HertiageReviewDAO {
 	public static void main(String[] args) {
 		Connection conn = getConnection();
 		HertiageReviewDAO dao = new HertiageReviewDAO();
-		
+
 		dao.getHertiageReview_ByNo(conn, 1);
 	}
 //
@@ -176,14 +175,14 @@ public class HertiageReviewDAO {
 //		System.out.println("게시물 갯수 : " + count);
 //		System.out.println("--------------------------------------------");
 //
-		// 리뷰를 가지고 오는 쿼리
+	// 리뷰를 가지고 오는 쿼리
 //		List<HertiageReview> list = dao.getHertiageReview_ByNo(conn, 2);
 //		for (HertiageReview b : list) {
 //			System.out.println(b.toString());
 //		}
 //		System.out.println("--------------------------------------------\n");
 
-		// 리뷰 글쓰기
+	// 리뷰 글쓰기
 //		HertiageReview hv = new HertiageReview();
 //		hv.setRevContents("자바에서 작성한 글 입니다.");
 //		hv.setRev_uNo(1);
@@ -192,7 +191,7 @@ public class HertiageReviewDAO {
 //		System.out.println("리뷰쓰기 결과 : " + result);
 //		System.out.println("--------------------------------------------\n");
 
-		//		// 리뷰 글삭제
+	// // 리뷰 글삭제
 //		int result = dao.delete_HertiageReview(conn, 1); 
 //		System.out.println("리뷰삭제 결과 : " + result);
 //		System.out.println("--------------------------------------------\n");
