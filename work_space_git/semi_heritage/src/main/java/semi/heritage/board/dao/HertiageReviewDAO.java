@@ -69,6 +69,39 @@ public class HertiageReviewDAO {
 		      System.out.println(list.toString());
 		      return list;
 	}
+	
+	// 유저 넘버로 리플 조회
+	public List<HertiageReview> getHertiageReviewByUno(Connection conn, int uNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<HertiageReview> list = new ArrayList<>();
+		String query = "select HR.uNo, U.uEmail , HR.revContents, HR.revDate "
+				+ "FROM HertiageReview HR, USERINFO U "
+				+ "WHERE HR.uNo = U.uNo AND HR.STATUS = 'Y' AND HR.uno= ? ORDER BY HR.revNo DESC";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, uNo);
+			rs = pstmt.executeQuery();
+
+			 while (rs.next()) {
+		            int count = 1;
+		            int rev_uNo = rs.getInt(count++);
+		            String rev_userEmail = rs.getString(count++);
+		            String revContents = rs.getString(count++);
+		            Date revDate = rs.getDate(count++);
+		            HertiageReview reviewInfo = new HertiageReview(rev_uNo, rev_userEmail, revContents, revDate);
+		            list.add(reviewInfo);
+		         }
+		      } catch (Exception e) {
+		         e.printStackTrace();
+		      } finally {
+		         close(pstmt);
+		         close(rs);
+		      }
+		      System.out.println(list.toString());
+		      return list;
+	}
 		
 	// 리플 쓰기 기능
 	public int insert_HertiageReview(Connection conn, HertiageReview review) {

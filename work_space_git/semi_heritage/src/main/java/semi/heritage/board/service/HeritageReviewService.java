@@ -24,6 +24,13 @@ public class HeritageReviewService {
 		close(conn);
 		return list;
 	}
+	
+	public List<HertiageReview> getHertiageReviewByUno(int uNo) {
+		Connection conn = getConnection();
+		List<HertiageReview> list = dao.getHertiageReviewByUno(conn, uNo);
+		close(conn);
+		return list;
+	}
 
 	public int save(HertiageReview hreview) {
 		Connection conn = getConnection();
