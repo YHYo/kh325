@@ -34,7 +34,7 @@ int hreviewCount = (Integer)request.getAttribute("hreviewCount");
                                 <h2 class="fs-lg mb-0"><%=loginMember.getUname()%>님</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
                                 <ul class="list-unstyled fs-sm mt-3 mb-0">
-                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i><%=loginMember.getUpw()%></a></li>
+                                    <li><a class="nav-link fw-normal p-0" href="tel:3025550107"><i class="fi-phone opacity-60 me-2"></i><%=loginMember.getUpn()%></a></li>
                                     <li><a class="nav-link fw-normal p-0" href="mailto:annette_black@email.com"><i class="fi-mail opacity-60 me-2"></i><%=loginMember.getUemail()%></a></li>
                                 </ul>
                             </div>
@@ -92,22 +92,22 @@ int hreviewCount = (Integer)request.getAttribute("hreviewCount");
                                     <div class="d-flex align-items-center pe-2"><img class="rounded-circle me-1" src="<%=path %>/resources/img/semi-img/01.info.default.photo.png" width="48" alt="Avatar">
                                         <div class="ps-2">
                                             <h6 class="fs-base mb-0"><%=loginMember.getUname()%>님</h6>
-                                            <!-- <span class="star-rating">
-                                              <i class="star-rating-icon fi-star-filled active"></i>
-                                              <i class="star-rating-icon fi-star-filled active"></i>
-                                              <i class="star-rating-icon fi-star-filled active"></i>
-                                              <i class="star-rating-icon fi-star-filled active"></i>
-                                              <i class="star-rating-icon fi-star-filled active"></i>
-                                            </span> -->
+                                           
                                         </div>
+                                        
                                     </div><span class="text-muted fs-sm"><%=hlist.get(i).getRevDate()%></span>
                                 </div>
                                 <p><%=hlist.get(i).getRevContents()%></p>
-                                <!-- <div class="d-flex align-items-center">
-                                    <button class="btn-like" type="button"><i class="fi-like"></i><span>(3)</span></button>
+                                 <div class="d-flex align-items-center">
+                                 	<form action="">
+                                    <button class="btn-like" type="button"><i class="fi-rotate-left"></i><span>수정</span></button>
+                                    </form>
                                     <div class="border-end me-1">&nbsp;</div>
-                                    <button class="btn-dislike" type="button"><i class="fi-dislike"></i><span>(0)</span></button>
-                                </div> -->
+                                    <form action="<%=path%>/HertiageReviewDelete.do" method="post">
+                                    <input type="hidden" name="revNo" value="<%=hlist.get(i).getRevNo()%>">
+                                    <button class="btn-dislike" type="submit"><i class="fi-x"></i><span>삭제</span></button>
+                                    </form>
+                                </div> 
                             </div>
                             <% } %>
 
@@ -133,7 +133,7 @@ int hreviewCount = (Integer)request.getAttribute("hreviewCount");
                                 <h3 class="h4 mb-sm-0"><%=hreviewCount%> reviews</h3>
                                 <div class="d-flex align-items-center ms-sm-4">
                                     <label class="fs-sm me-2 pe-1 text-nowrap" for="review-sorting2"><i class="fi-arrows-sort text-muted mt-n1 me-2"></i>Sort by:</label>
-                                    <select class="form-select form-select-sm" id="review-sorting2">
+<!--                                     <select class="form-select form-select-sm" id="review-sorting2"> -->
                       <option>Newest</option>
                       <option>Oldest</option>
                       <option>Popular</option>

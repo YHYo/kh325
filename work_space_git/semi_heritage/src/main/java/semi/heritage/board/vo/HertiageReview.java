@@ -27,8 +27,20 @@ public class HertiageReview {
 		this.rev_hno = revHNo;
 	}
 	
+	public HertiageReview(int revNo,int revHNo, String rev_userEmail, String revContents, Date revDate) {
+		super();
+		
+		this.revNo = revNo;
+		this.rev_hno = revHNo;
+		this.rev_userEmail = rev_userEmail;
+		this.revContents = revContents;
+		this.revDate = revDate;
+	
+	}
+	
 	public HertiageReview(int revHNo, String rev_userEmail, String revContents, Date revDate) {
 		super();
+	
 		this.rev_hno = revHNo;
 		this.rev_userEmail = rev_userEmail;
 		this.revContents = revContents;
