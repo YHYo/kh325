@@ -568,6 +568,7 @@ public class HeritageDao {
 		return countResult;
 	}
 
+	
 	public static void main(String[] args) {
 		Connection conn = getConnection();
 		PageInfo pageinfo = new PageInfo(1, 8, 2, 8);

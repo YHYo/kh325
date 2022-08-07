@@ -102,7 +102,6 @@ public class HeritageListServlet extends MyHttpServlet {
 		String startYear = req.getParameter("startYear");
 		String endYear = req.getParameter("endYear");
 		
-		
 	
 
 		try {

@@ -76,9 +76,6 @@ if(ccceNames != null){
 }
 
 
-
-
-
 startYear = request.getParameter("startYear");
 endYear = request.getParameter("endYear");
 

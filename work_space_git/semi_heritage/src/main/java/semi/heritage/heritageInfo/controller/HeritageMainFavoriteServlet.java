@@ -27,6 +27,7 @@ public class HeritageMainFavoriteServlet extends MyHttpServlet {
 		return "heritageMainFavoriteServlet";
 	}
 
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("doget 호출 ");
