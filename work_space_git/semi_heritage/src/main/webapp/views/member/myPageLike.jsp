@@ -26,6 +26,14 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
           line-height: 20px;
             width: 450px;
         }
+        
+
+.rounded-circle2 {
+	width: 80px;
+	height: 80px;
+    border-radius: 100% !important;
+}
+        
 </style>
  
  
@@ -46,7 +54,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
 
                     <!-- 프로필 & 카테고리 시작 -->
                     <div class="card card-body border-0 shadow-sm pb-1 me-lg-1">
-                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle" src="<%=path%>/resources/img/semi-img/01.info.default.photo.png" width="48" alt=<%=loginMember.getUemail()%>>
+                        <div class="d-flex d-md-block d-lg-flex align-items-start pt-lg-2 mb-4"><img class="rounded-circle2" src="<%=path%>/resources/img/semi-img/01.info.default.photo.png" width="48" alt=<%=loginMember.getUemail()%>>
                             <div class="pt-md-2 pt-lg-0 ps-3 ps-md-0 ps-lg-3">
                                 <h2 class="fs-lg mb-0"><%=loginMember.getUname()%>님</h2>
                                 <!-- <span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span> -->
