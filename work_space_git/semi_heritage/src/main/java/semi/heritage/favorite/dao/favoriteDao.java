@@ -50,6 +50,23 @@ public class favoriteDao {
 		}
 		return -1;
 	}
+	
+	// 일반 문화재 찜 전체 삭제
+		public int Alldelete(Connection conn, int uNo) {// 즐겨찾기 정보 삽입시 회원번호랑 마번 입력받아서 정보 삭제
+			try {
+				String sql = "DELETE FROM hFavorite WHERE uNo = ?";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, uNo);
+
+				int result = pstmt.executeUpdate();
+				pstmt.close();
+				return result;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return -1;
+		}
 
 	// 마이페이지에서 찜목록 출력
 	public List<favoriteMyPageVO> selectAll(Connection conn, int uNo) {

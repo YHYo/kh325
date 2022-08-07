@@ -44,6 +44,17 @@ public class favoriteService {
 		return result;
 	}
 	
+	// 문화재 찜 Alldelete
+		public int Alldelete(int uNo) {
+			int result = dao.Alldelete(conn, uNo);
+			if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			return result;
+		}
+	
 	// 문화재 찜하기 DB 저장
 	public int save(favoriteVO fv) {
 		Connection conn = getConnection();

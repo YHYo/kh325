@@ -77,7 +77,7 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                 <div class="col-lg-8 col-md-7 mb-5">
                     <div class="d-flex align-items-center justify-content-between mb-4 pb-2">
                         <h1 class="h2 mb-0">찜 목록</h1>
-                        <a class="fw-bold text-decoration-none" href="#" style="color: #8957BD;"><i class=" fi-x fs-xs mt-n1 me-2 " style="color: #8957BD; "></i>전체 비우기</a>
+                        <a class="fw-bold text-decoration-none" onclick="location.href='<%=path%>/favoriteAllDelete.do'" style="color: #8957BD;"><i class=" fi-x fs-xs mt-n1 me-2 " style="color: #8957BD; "></i>전체 비우기</a>
                     </div>
                     <!-- Item-->
                     <%for(int i = 0; i < fmlist.size(); i++ ) { %>
