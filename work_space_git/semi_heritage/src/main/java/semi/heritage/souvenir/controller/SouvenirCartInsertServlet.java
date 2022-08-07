@@ -30,29 +30,13 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 	private SouvenirService service = new SouvenirService();
 	
 	
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		doPost(req, resp);
-//		try {
-//			Member loginMember = getSessionMember(req);
-//			
-//			if(loginMember != null) { //로그인이 되어있을 경우
-//				req.getRequestDispatcher("/member/myPageCart.do").forward(req, resp);
-//				
-//				//req.getRequestDispatcher("/views/board/write.jsp").forward(req, resp);
-//				return;
-//			}
-//		} catch (Exception e) {}
-//		sendCommonPage("로그인 이후 사용할수 있습니다.", "/", req, resp);		
-//		
-//		resp.sendRedirect(req.getContextPath() + "/views/souvenir/enroll.jsp");
-//		doGet(req, resp);
-//	}
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		SouvenirCartVO insert = new SouvenirCartVO();
-//		List<SouvenirCartVO> list = new ArrayList<SouvenirCartVO>();
 		SouvenirProductVO SVO = new SouvenirProductVO();
 		
 	
@@ -65,7 +49,6 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 				sendCommonPage("로그인후 이용해주세요.", "/views/member/signIn.jsp", req, resp);
 				return;
 			}
-//			try {
 				int productNo = Integer.parseInt(req.getParameter("productNo"));
 				SVO = service.findProductByNo(productNo);
 				int userno = loginMember.getUno();
@@ -73,15 +56,12 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 				System.out.println("인서트 결과 " + result);
 				
 				if(result > 0) {
-					sendCommonPage("장바구니 등록되었습니다.", "/souvenirProductsList.do", req, resp);
+					sendCommonPage("장바구니 등록되었습니다.", "/myPageCart.do", req, resp);
 					
 				}else {
-					sendCommonPage("장바구니 담기 실패하였습니다. (code=101)", "/souvenirProductsList.do", req, resp);
+					sendCommonPage("장바구니 담기 실패하였습니다. (code=101)", "/myPageCart.do", req, resp);
 				}
 				
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
 			
 			
 			
@@ -89,9 +69,7 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 			
 	}
 	
-//	req.getRequestDispatcher("/views/souvenir/souvenirMain.jsp").forward(req, resp);
-//	}
-//	
+
 	
 	@Override
 	public String getServletName() {
@@ -100,35 +78,3 @@ public class SouvenirCartInsertServlet extends MyHttpServlet{
 	
 }
 
-// 마이페이지 리스트 수정할때 한번 싸봐라			
-//			int userno = member.getUno();
-//			System.out.println(userno);
-//			
-//			list = service.getCartList(userno);
-//			System.out.println(list.toString());
-//			
-//			req.setCharacterEncoding("UTF-8");
-//			req.setAttribute("list", list);
-//			req.getRequestDispatcher("/views/member/myPageCart.jsp").forward(req, resp);
-//----------------------------------------		
-
-
-//			insert.setUno(Integer.parseInt(req.getParameter("uno")));
-//			insert.setSouv_pro_no(Integer.parseInt(req.getParameter("souv_pro_no")));
-//			insert.setSouv_pro_name(req.getParameter("souv_pro_name").trim());
-//			insert.setSouv_pro_price(Integer.parseInt(req.getParameter("souv_pro_price").strip()));
-//			insert.setSouv_pro_category(req.getParameter("souv_pro_category").strip());
-////			insert.setBuy_status(req.getParameter("buy_status"));
-////			insert.setDelete_status(req.getParameter("delete_status"));
-//			insert.setSouv_pro_url(req.getParameter("souv_pro_url").strip());
-//			
-//			int result = service.insertCart(insert);
-//			
-//			if(result > 0) {
-//				req.setAttribute("msg", "장바구니에 추가됐습니다");
-//				req.setAttribute("location", "/");
-//			}else {
-//				req.setAttribute("msg", "실패하였습니다 (code:101=DB이슈)");
-//				req.setAttribute("location", "/");
-//			}
-//			req.getRequestDispatcher("/views/common/msg.jsp").forward(req, resp);

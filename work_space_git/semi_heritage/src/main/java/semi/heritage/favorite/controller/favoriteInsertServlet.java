@@ -56,7 +56,7 @@ public class favoriteInsertServlet extends MyHttpServlet {
 //			if (result > 0) {
 //				sendCommonPage("찜 등록되었습니다.", "/myPageLike.jsp", req, resp);
 //			} else {
-//				sendCommonPage("찜 실패하였습니다. (code=101)", "/myPageLike.jsp", req, resp); // 문화재 상세 페이지로 보내주기
+//				sendCommonPage("찜 실패하였습니다. (code=101)", "/index.do", req, resp); // 문화재 상세 페이지로 보내주기
 //			}
 		
 //			if (result > 0) {

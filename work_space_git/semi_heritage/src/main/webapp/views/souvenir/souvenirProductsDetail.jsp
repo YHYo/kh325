@@ -201,8 +201,11 @@
                         <div style="align-content: center;">
 
                             <div class="mt-2" style="text-align: center;">
-                                <button class="btn btn-outline-light btn-lg mb-4 me-5" type="button" style="padding-left: 25%; padding-right : 25%">
+                           <form action="<%=path%>/souvenirInsert.do" method="post">
+									<input name="productNo" type="hidden" value="<%=productDetail.getSouv_pro_no()%>">
+                                <button class="btn btn-outline-light btn-lg mb-4 me-5" type="submit" style="padding-left: 25%; padding-right : 25%">
                                   <i id="SouvenirCartInsertServlet" class="fi-cart me-2">&nbsp 장바구니</i></button>
+                                  </form>
                                 <br>
                                 <a href="<%=path%>/souvenirPay.do" class="btn btn-lg me-5" data-bs-toggle="collapse" style="background-color: #C389FF; color: #fff; padding-left: 25%; padding-right : 25%;">
                                     <i class="fi-credit-card me-2" style="text-align: center;">&nbsp 구매하기</i></a>

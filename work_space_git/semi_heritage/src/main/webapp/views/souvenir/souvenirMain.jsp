@@ -16,7 +16,6 @@
    %>
    
 
-<form action="<%=path%>/souvenirInsert.do" method="post" >
 <!-- Body-->
 <!-- Page loading spinner-->
 <!-- Page content-->
@@ -140,7 +139,10 @@
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
 									<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
 									<span class="fs-xs text-light">
+									<form action="<%=path%>/souvenirInsert.do" method="post">
+									<input name="productNo" type="hidden" value="<%=listIngi.get(0).getSouv_pro_no()%>">
 									<button type="submit" class="nav-link-light bg-dark" style="border : none;">장바구니</button></span>
+								</form>
 								</div>
 							</div>
 							<div class="col me-sm-1">
@@ -196,8 +198,11 @@
 							<div class="col me-sm-1">
 								<div class="bg-dark rounded text-center w-100 h-100 p-2">
 									<i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-									<span class="fs-xs text-light"><button type="submit" class="nav-link-light bg-dark" style="border : none;">
-										장바구니</span></button>
+									<span class="fs-xs text-light">
+									<form action="<%=path%>/souvenirInsert.do" method="post">
+									<input name="productNo" type="hidden" value="<%=listIngi.get(i).getSouv_pro_no()%>">
+									<button type="submit" class="nav-link-light bg-dark" style="border : none;">장바구니</button></span>
+								</form>
 								</div>
 							</div>
 							<div class="col me-sm-1">
@@ -216,7 +221,6 @@
 			<%} %>
 			<!-- 기념품 제2호 끝 -->
 		</div>
-		</form>
 	</div>
 </section>
 <section class="container">
