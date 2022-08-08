@@ -293,7 +293,7 @@ String saveId = "";
                                 <b>사뿐<span style="color:#D97793;">몰</span></b><span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y " style="width: 1px; height: 30px;"></span></a>
                         </li>
                         <li class="nav-item dropdown me-lg-2 p05">
-                            <a class="nav-link dropdown-toggle align-items-center pe-sm-1" href="<%=path%>/community/main" data-bs-toggle="dropdown" role="button" aria-expanded="false" style="font-size: 22px; color: #ffffff;">
+                            <a class="nav-link dropdown-toggle align-items-center pe-sm-1" href="#" onclick="location.href='<%=path%>/community/main'" data-bs-toggle="dropdown" role="button" aria-expanded="false" style="font-size: 22px; color: #ffffff">
                                 <b>커뮤니티</b><span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y " style="width: 1px; height: 30px;"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="<%=path%>/community/list?type=T" style="font-size: 20px;"><i class="fs-base opacity-50 me-2" ></i><b>함께해요</b></a></li>

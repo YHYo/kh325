@@ -37,7 +37,7 @@
             <nav class="mb-2 pt-md-2" aria-label="breadcrumb">
                 <section class="d-sm-flex justify-content-between pt-2">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="real-estate-home-v1.html"><i class="fi-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="<%=path%>/index.do"><i class="fi-home"></i> Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">행사일정</li>
                     </ol>
                 </section>
@@ -92,12 +92,12 @@
                         <tr>
                             <td> <%= f.getEventName() %></td>
                             <td style="text-align:left"> <%= f.getSubTitle() %></td>
-                            <td><%= f.getSido() +" " %> <%= f.getGugun() %></td>
+                            <td><%= f.getSido() +" " %><%if(f.getGugun() != null){ %> <%= f.getGugun()%><%} %></td>
                             <td><%= f.getsDate() %> - <%= f.geteDate() %></td>
                             <%if( f.getSubPath()  == null) {%>
     	                        <td>-</td>
                             <%} else { %>
-	                            <td><a href="<%= f.getSubPath() %>" target="_blank"><%= f.getSubPath() %></a></td>
+	                            <td style="width:300px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block;><a href="<%= f.getSubPath() %>" target="_blank"><%= f.getSubPath() %></a></td>
                             <%} %>
                         </tr>
  				<% }%>

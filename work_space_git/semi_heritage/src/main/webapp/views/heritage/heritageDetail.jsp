@@ -117,11 +117,11 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                     <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share">
                         <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
                         <div class="dropdown-menu dropdown-menu-end my-1">
-                            <button class="dropdown-item" type="button"><i
+                            <button class="dropdown-item" type="button"onclick="alert( 'URL이 복사 되었습니다.' );" ><i
                                     class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>
-                            <button class="dropdown-item" type="button"><i
+                            <button class="dropdown-item" type="button"onclick="alert( 'URL이 복사 되었습니다.' );" ><i
                                     class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>
-                            <button class="dropdown-item" type="button"><i
+                            <button class="dropdown-item" type="button"onclick="alert( 'URL이 복사 되었습니다.' );" ><i
                                     class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>
                         </div>
                     </div>
@@ -136,26 +136,26 @@ int CountFavoriteByNo = (Integer)request.getAttribute("CountFavoriteByNo");
                    <a class="gallery-item rounded rounded-md-3" href="<%if(hi.size() < 1){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;&lt;/h6&gt;"><img src="<%if(hi.size() < 1){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain3"></a> 
                 </div>
                 <div class="col-4" >
-                    <a class="gallery-item rounded rounded-md-3 mb-2 mb-md-3" href="<%if(hi.size() < 2){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;&lt;/h6&gt;"><img src="<%if(hi.size() < 2){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(1).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
-                    <a class="gallery-item rounded rounded-md-3" href="<%if(hi.size() < 3){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 3){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(2).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
+                    <a class="gallery-item rounded rounded-md-3 mb-2 mb-md-3" href="<%if(hi.size() < 2){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(1).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;&lt;/h6&gt;"><img src="<%if(hi.size() < 2){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(1).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
+                    <a class="gallery-item rounded rounded-md-3" href="<%if(hi.size() < 3){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(2).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 3){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(2).getImageUrl()%><%} %>" alt="Gallery thumbnail" img class="img-contain2"></a>
                 </div>
                 <div class="col-12">
                     <div class="row g-2 g-md-3">
                     	
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.size() < 4){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 4){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(3).getImageUrl()%><%} %>" img class="img-contain"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.size() < 4){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(3).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 4){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(3).getImageUrl()%><%} %>" img class="img-contain"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.size() < 5){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 5){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(4).getImageUrl()%><%} %>" img class="img-contain"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.size() < 5){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(4).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 5){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(4).getImageUrl()%><%} %>" img class="img-contain"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.size() < 6){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 6){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(5).getImageUrl()%><%} %>" img class="img-contain"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" href="<%if(hi.size() < 6){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(5).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 6){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(5).getImageUrl()%><%} %>" img class="img-contain"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item rounded-1 rounded-md-2" style="object-fit: contain" href="<%if(hi.size() < 7){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 7){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(6).getImageUrl()%><%} %>" img class="img-contain"></a>
+                            <a class="gallery-item rounded-1 rounded-md-2" style="object-fit: contain" href="<%if(hi.size() < 7){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(6).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt; &lt;/h6&gt;"><img src="<%if(hi.size() < 7){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(6).getImageUrl()%><%} %>" img class="img-contain"></a>
                         </div>
                         <div class="col">
-                            <a class="gallery-item more-item rounded-1 rounded-md-2" href="<%if(hi.size() < 8){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(0).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Bath&lt;/h6&gt;"><img src="<%if(hi.size() < 8){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(7).getImageUrl()%><%} %>" class="img-contain">
+                            <a class="gallery-item more-item rounded-1 rounded-md-2" href="<%if(hi.size() < 8){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(7).getImageUrl()%><%} %>" data-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Bath&lt;/h6&gt;"><img src="<%if(hi.size() < 8){ %><%=path%>/resources/img/semi-img/noimage_spsp.png<%}else{%><%=hi.get(7).getImageUrl()%><%} %>" class="img-contain">
                             <span class="gallery-item-caption fs-base"><span class='d-none d-md-inline'>+ more
                                         photos</span></span>
                             </a>

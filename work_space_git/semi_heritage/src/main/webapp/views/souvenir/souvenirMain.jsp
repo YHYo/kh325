@@ -177,8 +177,7 @@
 					<div class="tns-carousel-inner position-absolute top-0 h-100">
 						<div class="bg-size-cover bg-position-center w-100 h-100"
 							style="background-image: url(<%=listIngi.get(i).getSouv_pro_url()%>);"></div>
-						<div class="bg-size-cover bg-position-center w-100 h-100"
-							style="background-image: url(<%=path%>/resources/img/semi-img/10.souvir.best22.png);"></div>
+						
 					</div>
 				</div>
 				<div class="card-body">

@@ -236,7 +236,7 @@
                                 <div class="card-img-top card-img-hover">
                                     <a class="img-overlay" href="<%=path+"/souvenirProductsDetail.do?productNo=" + pList.get(i).getSouv_pro_no()%>"></a>
                                     <div class="content-overlay end-0 top-0 pt-3 pe-3">
-                                        <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Wishlist"><i class="fi-heart"></i></button>
+                                       
                                     </div><img class="img-souvnir-dl" src="<%=pList.get(i).getSouv_pro_url()%>" alt="Image">
                                 </div>
                                 <div class="card-body">
@@ -259,7 +259,10 @@
                                             <div class="col me-sm-1">
                                                 <div class="bg-dark rounded text-center w-100 h-100 p-2">
                                                     <i class="fi-cart d-block h4 text-light mb-0 mx-center"></i>
-                                                    <span onclick="fnCart();" class="fs-xs text-light"><a href="<%=path+"/myPageCart.do"%>" class="nav-link-light">장바구니</a></span>
+                                                    <form action="<%=path%>/souvenirInsert.do" method="post">
+												<input name="productNo" type="hidden" value="<%=pList.get(i).getSouv_pro_no()%>">
+												<button type="submit" class="nav-link-light bg-dark" style="border : none; font-size: 13px;">장바구니</button></span>
+												</form>
                                                 </div>
                                             </div>
                                             <div class="col me-sm-1">
