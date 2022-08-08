@@ -107,15 +107,16 @@ SouvenirCartVO deleteCart = (SouvenirCartVO)request.getAttribute("deleteCart");
  									<input class="copy d-inline-block fs-sm" type="button" onclick="fn_final()" style="border : none; background-color: #fff; cursor: pointer;" value="공유하기"></></span>
  								</form>
                                 
-                                 <form action="<%=path+"/souvenirProductsDetail.do?productNo=" + cartList.get(i).getSouv_pro_no()%>" method="post">
+                                 <form action="<%=path%>/souvenirProductsDetail.do" method="get">
                                  <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i>
- 									<input type="hidden" name="productNo" value="">
+ 									<input type="hidden" name="productNo" value="<%=cartList.get(i).getSouv_pro_no()%>">
  									<span class="text-muted d-inline-block me-3 fs-sm">
 									<button class="d-inline-block fs-sm" type="submit" style="border : none; background-color: #fff; cursor: pointer;">상세보기</button></span>
  								</form>
                                 
                                  <form action="<%=path%>/cartDelete.do" method="post">
                                  <i id="deleteCart" class="fi-trash text-muted" style="padding-right: 2%;"></i>
+                                 	<input type="hidden" name="seqNo" value="<%=cartList.get(i).getSeqNo()%>">
                                  	<span class="text-muted d-inline-block me-3 fs-sm">
                                  	<button class="d-inline-block fs-sm" type="submit"  style="border : none; background-color: #fff; cursor: pointer;">장바구니 해제</button></span>
                                  </form>

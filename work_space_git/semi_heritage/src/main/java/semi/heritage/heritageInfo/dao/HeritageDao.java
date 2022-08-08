@@ -62,51 +62,53 @@ public class HeritageDao {
 	}
 
 	public int insertImage(Connection conn, HeritageImage heritageimage) {
-		try {
-			String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+	      try {
+	         String sql = "INSERT INTO heritageImage(imageNo, imageUrl, ccimDesc, sn, no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
 
-			int cnt = 1;
+	         int cnt = 1;
 
-			pstmt.setString(cnt++, heritageimage.getImageUrl());
-			pstmt.setString(cnt++, heritageimage.getCcimDesc());
-			pstmt.setInt(cnt++, heritageimage.getSn());
-			pstmt.setString(cnt++, heritageimage.getCcbaKdcd());
-			pstmt.setString(cnt++, heritageimage.getCcbaCtcd());
-			pstmt.setString(cnt++, heritageimage.getCcbaAsno());
+	         pstmt.setString(cnt++, heritageimage.getImageUrl());
+	         pstmt.setString(cnt++, heritageimage.getCcimDesc());
+	         pstmt.setInt(cnt++, heritageimage.getSn());
+	         pstmt.setInt(cnt++, heritageimage.getNo());
+	         pstmt.setString(cnt++, heritageimage.getCcbaKdcd());
+	         pstmt.setString(cnt++, heritageimage.getCcbaCtcd());
+	         pstmt.setString(cnt++, heritageimage.getCcbaAsno());
 
-			int result = pstmt.executeUpdate();
-			pstmt.close();
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
+	         int result = pstmt.executeUpdate();
+	         pstmt.close();
+	         return result;
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return -1;
+	   }
 
-	public int insertVideo(Connection conn, HeritageVideo heritagevideo) {
-		try {
-			String sql = "INSERT INTO heritageVideo(videoNo, videoUrl, sn, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?)";
+	   public int insertVideo(Connection conn, HeritageVideo heritagevideo) {
+	      try {
+	         String sql = "INSERT INTO heritageVideo(videoNo, videoUrl, sn, no, ccbaKdcd, ccbaCtcd, ccbaAsno) VALUES(SEQ_HERITAGE_Image.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
 
-			int cnt = 1;
+	         int cnt = 1;
 
-			pstmt.setString(cnt++, heritagevideo.getVideoUrl());
-			pstmt.setInt(cnt++, heritagevideo.getSn());
-			pstmt.setString(cnt++, heritagevideo.getCcbaKdcd());
-			pstmt.setString(cnt++, heritagevideo.getCcbaCtcd());
-			pstmt.setString(cnt++, heritagevideo.getCcbaAsno());
+	         pstmt.setString(cnt++, heritagevideo.getVideoUrl());
+	         pstmt.setInt(cnt++, heritagevideo.getSn());
+	         pstmt.setInt(cnt++, heritagevideo.getNo());
+	         pstmt.setString(cnt++, heritagevideo.getCcbaKdcd());
+	         pstmt.setString(cnt++, heritagevideo.getCcbaCtcd());
+	         pstmt.setString(cnt++, heritagevideo.getCcbaAsno());
 
-			int result = pstmt.executeUpdate();
-			pstmt.close();
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
+	         int result = pstmt.executeUpdate();
+	         pstmt.close();
+	         return result;
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return -1;
+	   }
 
 	// 메인 페이지 인기 문화재 명소 출력용 (이미지, 이름, 주소, 찜 개수, 리뷰 개수를 찜 개수가 많은 열개를 순서대로 정렬)
 	public List<HeritageMainVO> mainByFavorite(Connection conn) {
