@@ -93,10 +93,11 @@ List<favoriteMyPageVO> fmlist = (List<favoriteMyPageVO>)request.getAttribute("fm
                             <h4 class="mb-1 fs-xs fw-normal text-uppercase" style="color: #B0C729;"><b><%=fmlist.get(i).getCcmaName()%></b></h4>
                             <h3 class="h6 mb-2 fs-base"><a class="nav-link"  href="<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>" "><b><%=fmlist.get(i).getCcbaMnm1()%></b></a>
                                 <br>
-                                <p style="color: #A08DB4; margin-top: -4%; margin-bottom: 1%; font-size: 15px;"><%=fmlist.get(i).getCcbaLcad()%></p>
+                                <p style="color: #A08DB4; margin-top: -4%; margin-bottom: 1%; font-size: 15px; "><%=fmlist.get(i).getCcbaLcad()%></p>
                             </h3>
-                            <label><p class="mb-2 fs-sm text-muted "><%=fmlist.get(i).getContent()%></p></label>
-                            <div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
+							<label><p class="mb-2 fs-sm text-muted "
+								style="text-overflow: ellipsis; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; word-wrap: break-word; line-height: 20px; width: 450px;"><%=fmlist.get(i).getContent()%></p></label>
+								<div class="d-flex align-items-center justify-content-center justify-content-sm-start border-top pt-3 pb-2 mt-3 text-nowrap">
                                 <i class="fi-share text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;" onclick="alert( 'URL이 복사 되었습니다.' );" ><span class="d-inline-block me-4 fs-sm">공유하기</a></span>
                                 <i class="fi-eye-on text-muted" style="padding-right: 2%;"></i><a style="text-decoration-line:none; cursor: pointer;" onclick="location.href='<%=path%>/heritageDeatil.do?hertiageNo=<%=fmlist.get(i).gethNo()%>'"><span class="d-inline-block me-4 fs-sm"   id="heritageDetail()">상세보기</a></span>
                                 <form action="<%=path%>/favoriteDelete.do" method="post"> 
