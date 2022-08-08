@@ -88,6 +88,20 @@ public class SouvenirService {
 		close(conn);
 		return result;
 	}
+	
+	public int AlldeleteCart(int uNo) {
+		Connection conn = getConnection();
+		int result = dao.AlldeleteCart(conn, uNo, "Y");
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		close(conn);
+		return result;
+	}
 
 	//링크 복사 기능
 	public SouvenirProductVO copyLinkCart(int productNo) {

@@ -227,8 +227,27 @@ public class SouvenirDao {
 			close(pstmt);
 		}
 		return result;
-
 	}
+	
+	// 장바구니 전체 삭제
+		public int AlldeleteCart(Connection conn, int uNo, String status) {
+			PreparedStatement pstmt = null;
+			String query = "UPDATE SOUV_CART SET DELETE_STATUS = 'Y' WHERE UNo = ?";
+			int result = 0;
+
+			try {
+				pstmt = conn.prepareStatement(query);
+//				pstmt.setString(1, status);
+				pstmt.setInt(1, uNo);
+
+				result = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
 
 	// 결제정보 출력
 	public List<SouvenirPayVO> selectPayByUNO(Connection conn, int userNo) {

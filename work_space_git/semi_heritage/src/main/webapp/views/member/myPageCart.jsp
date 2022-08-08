@@ -54,10 +54,10 @@ SouvenirCartVO deleteCart = (SouvenirCartVO)request.getAttribute("deleteCart");
 <!--                         </div> -->
 <!--                     </div> -->
 <!--                 </aside> -->
-               
                 <div class="col-lg-8 col-md-7 mb-5">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h1 class="h2 mb-0">장바구니</h1><a class="fw-bold text-decoration-none" href="#"  style="color: #8957BD;">
+                        <h1 class="h2 mb-0">장바구니</h1>
+                        <a class="fw-bold text-decoration-none" onclick="location.href='<%=path%>/cartAllDelete.do'"  style="color: #8957BD;">
                         <i class="fi-trash mt-n1 me-2"></i>전체 비우기</a>
 <!--                         <input type="hidden" name="uNo"> -->
                     </div>
