@@ -184,7 +184,7 @@
                     <p class="subtitle text-primary " style="font-size: 15px; margin-bottom: 1%; "><b>L E T  ’ S &nbsp W A L K &nbsp T O G E T H E R</b></p>
                     <h1 style="font-size: 45px;"><span class="p01">사뿐코스</span><span class="text-muted p04" style="font-size: 21px; ">&nbsp 사뿐사뿐에서 추천하는 열개의 길 & 한국의 서원과 산사를 방문하여 스탬프를 흭득해보세요!</span></h1>
                 </div>
-                <div class="col-md-2 d-lg-flex align-items-center justify-content-end"><a class="btn btn-link fw-normal p-0 " href="city-guide-catalog.html " style="margin-left: -5%; ">
+                <div class="col-md-2 d-lg-flex align-items-center justify-content-end"><a class="btn btn-link fw-normal p-0 " href="<%=path%>/course/main" style="margin-left: -5%; ">
                 더보기<i class="fi-arrow-long-right ms-2 "></i></a></div>
             </div>
         </section>
@@ -192,7 +192,7 @@
             <div>
                 <div class=" position-relative  ">
                     <div class="position-relative mb-3" style="text-align : center; ">
-                        <a href="signin-dark.html ">
+                        <a href="<%=path%>/course/main" >
                             <img src="<%=path%>/resources/img/semi-img/spCourse2.png" alt="Image ">
                         </a>
                     </div>
