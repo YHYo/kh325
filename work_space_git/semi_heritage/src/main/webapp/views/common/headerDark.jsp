@@ -285,7 +285,7 @@ String saveId = "";
                                 <b>문화일정</b><span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y " style="width: 1px; height: 30px;"></span></a>
                         </li>
                         <li class="nav-item dropdown me-lg-2 p05">
-                            <a class="nav-link  align-items-center pe-sm-1" href="#"  role="button" aria-expanded="false" style="font-size: 22px; color: #ffffff;">
+                            <a class="nav-link  align-items-center pe-sm-1" href="#" onclick="location.href='<%=path%>/course/main'" role="button" aria-expanded="false" style="font-size: 22px; color: #ffffff;">
                                 <b>사뿐<span style="color: #D97793;">코스</span></b><span class="d-none d-lg-block position-absolute top-50 end-0 translate-middle-y " style="width: 1px; height: 30px;"></span></a>
                         </li>
                         <li class="nav-item dropdown me-lg-2 p05">
