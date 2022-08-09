@@ -105,7 +105,8 @@ int uNo = (Integer)request.getAttribute("uNo");
 // int k = 1;
 %>
 
-
+ <form action="<%=path%>/heritageSearch.do" method="get">
+                       
         <section class="jarallax bg-dark zindex-1 py-xxl-5" data-jarallax data-speed="0.5"><span class="img-overlay bg-transparent opacity-5 image-bg-cover"></span>
             <div class="jarallax-img container-fluid image-bg-cover" style="background-image: url(<%=path%>/resources/img/semi-img/mainPic2.jpg);"></div>
             <div class="content-overlay container ">
@@ -118,13 +119,13 @@ int uNo = (Integer)request.getAttribute("uNo");
                     </div>
                     <div class="mx-auto px-0" style="margin-bottom: -3%">
                         <!-- Search form-->
-                        <form class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01" action="<%=path%>/heritageSearch.do" method="get">
+                        <div class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
                                 <input class="form-control p03" type="text" id="searchValue" name="searchValue" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
                             <hr class="d-md-none my-2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-10" style="background-color: #D97793; font-size: 22px;" type="button">&nbsp;&nbsp;검&nbsp;&nbsp;색&nbsp;&nbsp;</button>&nbsp;
-                 
+                 		</div>
                     </div>
                     <br><br><br><br>
         </section>
@@ -425,55 +426,55 @@ int uNo = (Integer)request.getAttribute("uNo");
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="32" name="age" value="선사시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="32" name="age" value="선사" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="32">선사시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="33" name="age" value="석기시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="33" name="age" value="석기" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="33">석기시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="34" name="age" value="청동기시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="34" name="age" value="청동기" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="34">청동기시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="35" name="age" value="철기시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="35" name="age" value="철기" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="35">철기시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="36" name="age" value="삼한시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="36" name="age" value="삼한" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="36">삼한시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="37" name="age" value="삼국시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="37" name="age" value="삼국" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="37">삼국시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="38" name="age" value="삼국:고구려" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="38" name="age" value="고구려" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="38">삼국:고구려</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="39" name="age" value="삼국:백제" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="39" name="age" value="백제" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="39">삼국:백제</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="40" name="age" value="삼국:신라" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="40" name="age" value="신라" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="40">삼국:신라</label>
                                                     </div>
                                                 </li>
@@ -491,25 +492,25 @@ int uNo = (Integer)request.getAttribute("uNo");
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="43" name="age" value="고려시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="43" name="age" value="고려" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="43">고려시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="44" name="age" value="조선시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="44" name="age" value="조선" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="44">조선시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="45" name="age" value="대한제국시대" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="45" name="age" value="대한제국" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="45">대한제국시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="46" name="age" value="일제강점기" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="46" name="age" value="일제강점" onclick='ageCheckSelectAll()' checked>
                                                         <label class="form-check-label widget-filter-item-text" for="46">일제강점기</label>
                                                     </div>
                                                 </li>
@@ -581,10 +582,10 @@ int uNo = (Integer)request.getAttribute("uNo");
                             </div>
                         </div>
                     </div>
+<form>
                     <!-- 필터링기능 끝-->
                 </div>
                     <!-- 필터링기능 끝-->
-                      </form>
                 </div>
                 <!-- Sorting-->
                 <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
