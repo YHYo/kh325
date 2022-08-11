@@ -1,4 +1,3 @@
-<%@page import="semi.heritage.common.util.PageInfo"%>
 <%@page import="semi.heritage.community.vo.CommunityBoard"%>
 <%@page import="semi.heritage.community.vo.CommunityReply"%>
 <%@page import="java.util.List"%>
@@ -13,6 +12,7 @@
 	CommunityBoard b = (CommunityBoard)request.getAttribute("board");
 	String fileName = b.getOriginal_file();
 	String fileReName = b.getRenamed_file();
+	/* int boardNo = b.getNo(); */
 	
 	String type = request.getParameter("type");
 	String boardName = "";
@@ -25,13 +25,47 @@
 	if(type.equals("F")) {
 		boardName = "자유게시판";
 	}
+	
+	String replyWriter = "";
+	if(loginMember == null) {
+		replyWriter = "비회원";
+	} else {
+		replyWriter = loginMember.getUname();
+	}
+	
+	String replyContent = "";
+	if(loginMember == null) {
+		replyContent = "로그인 후 이용해주세요.";
+	} else {
+		replyContent = "댓글을 남겨주세요.";
+	}
 %>
+
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg>
+
 <style>
+	@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+	.fa {
+		font-size: 20px;
+	}
+	
 	.contentBox {
 		width: 100%;
 	}
 	.replyuNo {
 		display:none;
+	}
+	.replyName {
+		display: inline;
+	}
+	.board-btn {
+		display: inline-block;
+		text-align: right;
 	}
 </style>
 
@@ -94,8 +128,9 @@
 				<!-- 글쓴이 Author-->
 				<div class="mb-4 pb-md-3 left-box">
 					<a class="d-flex align-items-center text-body text-decoration-none"
-						href="#"><img class="rounded-circle"
-						src="img/avatars/sophie.jpg" width="38" alt="프사">
+						href="#">
+						<img class="rounded-circle"
+						src="<%=path%>/resources/img/semi-img/01.info.default.photo.png" width="45" alt="프사">
 						<div class="ps-3"><h2 class="h6 mb-1"><%=b.getuName() %></h2></div></a>
 				</div>
 				<div class="d-flex right-box">
@@ -106,14 +141,30 @@
 					<!-- <li class="me-3 border-end"></li> -->
 					<li class="me-3"><i class="fi-eye-on me-2 mt-n1 opacity-60"></i><%=b.getReadCount() %></li>
 					<!-- <li class="me-3 border-end"></li> -->
-					<li class="me-3"><a class="nav-link-muted" href="#comments"
-						data-scroll><i class="fi-chat-circle me-2 mt-n1 opacity-60"></i><%=b.getReply_count() %>
-							comments</a></li>
+					<%-- <li class="me-3"><a class="nav-link-muted" href="#comments"
+						data-scroll><i class="fi-chat-circle me-2 mt-n1 opacity-60"></i><%=b.getReply_count() %>comments</a></li> --%>
 				</div>
 			</ul>
 		</div>
 		<hr>
 		<br>
+		<%
+			if(loginMember != null) {
+				if(loginMember.getUno() == b.getuNo()) {
+		%>
+			<div class="board-btn">
+				<button class="btn btn-link btn-sm" type="button" 
+				onclick="location.href='<%=request.getContextPath()%>/community/update?type=<%=type%>&boardNo=<%=b.getNo()%>'">
+					<i class="fa fa-eraser" aria-hidden="true"></i><span class="fw-normal">게시글 수정</span>
+				</button>
+				<button class="btn btn-link btn-sm" type="button" id="btnDelete" onclick="boardDelete()">
+					<i class="fa fa-trash-o" aria-hidden="true"></i><span class="fw-normal">게시글 삭제</span>
+				</button>
+			</div>
+		<%
+				}
+			}		
+		%>
 		<div>
 			<!-- Post content-->
 			
@@ -123,19 +174,6 @@
 			
 			<br>
 			<div class="contentBox"><%=b.getContent() %></div>
-			<!-- <p>명대사가 두고두고 생각이 나네요. 리플로 명대사 놀이나 할까요?</p>
-            <p>앞으로 뭐해먹고 사나.. </p>
-            <p> 걱정 들때마다 타짜의 쓴 대사들이 생각이 나네요.</p>
-            <p>영화 타짜보고싶다. 지금 신화방송 보는중</p>
-            <blockquote class="blockquote">
-                <p> 먹고 살기 힘들다 고니야 </p>
-                <footer class="fs-base">— 타짜 명대사</footer>
-            </blockquote>
-            <p>나 이대나온 여자야</p>
-            <p>묻고 더블로 가!!</p>
-            <p>싸늘하다, 가슴에 비수가 날아와 꽃힌다. 하지만 걱정하지마라. </p>
-            <p> 손은 눈보다 빠르니까. </p>
-            <p> 아귀한테 밑에서 한장, 정마담한테 밑에서 한장, 나한테 한장, 아귀한테 밑에서 한장, 정마담한테 밑에서 한장...!</p> -->
 			<br>
 		</div>
 	</div>
@@ -144,26 +182,30 @@
 	<br>
 	<!-- Comments-->
 	<div class="mb-4 mb-md-5" id="comments">
-		<h3 class="mb-4 pb-2">
+		<%-- <h3 class="mb-4 pb-2">
 			전체 댓글
 			<%=b.getReply_count() %>개
-		</h3>
+		</h3> --%>
 
 		<!-- Comment-->
 		<%for(CommunityReply reply: b.getReplies()) { %>
 		<div class="border-bottom pb-4 mb-4">
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="d-flex align-items-center pe-2">
-					<img class="rounded-circle me-1" src="img/avatars/naIm.png"
-						width="48" alt="프사">
+					<img class="rounded-circle me-1" src="<%=path%>/resources/img/semi-img/01.info.default.photo.png"
+						width="38" alt="프사">
 					<div class="ps-2">
-						<h6 class="fs-base mb-0"><%=reply.getuName() %></h6>
+						<h6 class="fs-base mb-0 replyName"><%=reply.getuName() %></h6>&nbsp;
 						<span class="text-muted fs-sm"><%=reply.getCreate_date() %></span>
+						<%-- <input type="hidden" name="replyNo" value="<%=reply.getNo()%>"> --%>
 					</div>
 				</div>
-				<button class="btn btn-link btn-sm" type="button">
-					<i class="fi-reply fs-lg me-2"></i><span class="fw-normal">Reply</span>
-				</button>
+				
+				<%if(loginMember != null && loginMember.getUno() == reply.getuNo()) {%>
+					<button class="btn btn-link btn-sm" type="button" onclick="deleteReply(<%=reply.getNo()%>,<%=reply.getBoard_no()%>);">
+						<i class="fa fa-trash-o" aria-hidden="true"></i><span class="fw-normal"> 댓글 삭제</span>
+					</button>
+				<%} %>
 			</div>
 			<div class="replyBox"><%=reply.getContent() %></div>
 		</div>
@@ -173,16 +215,16 @@
 		<!-- Comment form  col-lg-8 col-md-10 px-md-0 px-4 mx-auto  -->
 		<div class="card py-md-4 py-3 shadow-sm">
 			<div class="card-body ">
-				<h3 class="mb-4 pb-sm-2">댓글남기기</h3>
+				<h3 class="mb-4 pb-sm-2">댓글 남기기</h3>
 				<form class="needs-validation row gy-md-4 gy-3"
-					action="<%=request.getContextPath()%>/community/reply?type=<%=type %>boardNo=<%=b.getNo() %>>"
+					action="<%=request.getContextPath()%>/community/reply?type=<%=type %>&boardNo=<%=b.getNo() %>"
 					method="post">
-					<!-- <div class="col-sm-6">
-                    <label class="form-label" for="comment-name">닉네임</label>
-                    <input class="form-control form-control-lg" type="text" id="comment-name" placeholder="전소피아" required>
-                    <div class="invalid-feedback">Please enter your name.</div>
-                </div>
-                <div class="col-sm-6">
+					<div class="col-sm-2">
+                    <!-- <label class="form-label" for="comment-name">작성자</label> -->
+                    <input class="form-control form-control-lg" type="text" id="comment-name" name="replyWriter" value="<%=replyWriter%>" placeholder="<%=replyWriter%>" readonly>
+                    <!-- <div class="invalid-feedback">Please enter your name.</div> -->
+                	</div>
+                <!-- <div class="col-sm-6">
                     <label class="form-label" for="comment-email">Email</label>
                     <input class="form-control form-control-lg" type="email" id="comment-email" placeholder="pinkychuchu@gmail.com" required>
                     <div class="invalid-feedback">Please provide a valid email address.</div>
@@ -195,8 +237,8 @@
 
 						<!-- <div class="replyuNo"><%-- <%=loginMember.getUno() %> --%>></div> -->
 						<textarea class="form-control form-control-lg" id="comment-text"
-							rows="4" placeholder="댓글을 남겨주세요" required></textarea>
-						<div class="invalid-feedback">댓글을 남겨주세요</div>
+							rows="4" name="content" placeholder="<%=replyContent %>" required></textarea>
+						<div class="invalid-feedback">--</div>
 					</div>
 					<div class="col-12 py-2 right-box">
 						<button class="btn btn-lg btn-primary right-box" type="submit">등록</button>
@@ -207,6 +249,21 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	function deleteReply(replyNo, boardNo){
+		var url = '<%=request.getContextPath()%>/community/replydel?type=<%=type%>&replyNo=';
+		var requestURL = url + replyNo + '&boardNo=' + boardNo;
+		location.replace(requestURL);
+	}
+	
+	function boardDelete() {
+		if(confirm("정말로 삭제하시겠습니까?")) {
+			location.replace("<%= request.getContextPath() %>/community/deleteboard?type=<%=type%>&boardNo=<%= b.getNo()%>");
+		}
+	}
+
+
+</script>
 
 
 	<!-- Footer-->

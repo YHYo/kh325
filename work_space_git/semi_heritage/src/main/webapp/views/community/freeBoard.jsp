@@ -31,7 +31,7 @@
     <!-- Breadcrumb-->
     <nav class="mb-2 pt-md-2" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="real-estate-home-v1.html"><i class="fi-home"></i> Home</a></li>
+            <li class="breadcrumb-item"><a href="<%=path%>/index.do"><i class="fi-home"></i> Home</a></li>
             <li class="breadcrumb-item"><a href="<%=path%>/community/main">커뮤니티</a></li>
             <li class="breadcrumb-item active" aria-current="page">자유게시판</li>
             
@@ -57,7 +57,6 @@
                     <th>작성자</th>
                     <th>작성일</th>
                     <th>조회</th>
-                    <th>리플</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +76,6 @@
            					<td><%=b.getuName() %></td>
            					<td><%=b.getCreate_date() %></td>
            					<td><%=b.getReadCount() %></td>
-           					<td><%=b.getReply_count() %></td>
            				</tr>
            			<%} %>
            			<%-- 게시글 리스트 끝 --%>

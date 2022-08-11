@@ -26,24 +26,28 @@ public class CommunityReplyWrite extends MyHttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			Member loginMember = getSessionMember(req);
-			int replyWriterNo = Integer.parseInt(req.getParameter("uNo"));
-			
-			if(loginMember.getUno() != replyWriterNo) {
-				sendCommonPage("리플 등록 권한이 없습니다.(401)", "/community/main", req, resp);
-				return;
-			}
+//			int replyWriterNo = Integer.parseInt(req.getParameter("uNo"));
 			
 			int boardNo = Integer.parseInt(req.getParameter("boardNo"));
-			String writer = req.getParameter("writer");
+			String writer = req.getParameter("replyWriter");
 			String content = req.getParameter("content");
 			String type = req.getParameter("type");
 			
+			if(writer.equals("비회원")) {
+				sendCommonPage("로그인 후 이용해주세요.", "/community/view?type="+type+"&boardNo="+boardNo, req, resp);
+			}
+									
+//			if(loginMember.getUname().equals(req.getParameter("replyWriter")) == false) {
+//				sendCommonPage("리플 등록 권한이 없습니다.(401)", "/community/view?type="+type+"&boardNo="+boardNo, req, resp);
+//				return;
+//			}
+						
 			CommunityReply reply = new CommunityReply();
 			reply.setBoard_no(boardNo);
 			reply.setuName(writer);
 			reply.setuNo(loginMember.getUno());
 			reply.setContent(content);
-			
+						
 			int result = service.saveReply(reply, type, boardNo);
 			
 			if(result > 0) {
@@ -56,7 +60,6 @@ public class CommunityReplyWrite extends MyHttpServlet {
 			sendCommonPage("리플을 정상적으로 등록할 수 없습니다.(403)", "/community/main", req, resp);
 			
 		}
-		
 		
 		
 	}

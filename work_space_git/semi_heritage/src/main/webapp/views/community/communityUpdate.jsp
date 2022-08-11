@@ -8,6 +8,19 @@
 <%
 	CommunityBoard board = (CommunityBoard)request.getAttribute("board");
 	String type = (String)request.getAttribute("type");
+	
+	String select1 = "";
+	String select2 = "";
+	String select3 = "";
+	if(type.equals("T")) {
+		select1 = "selected";
+	}
+	if(type.equals("H")) {
+		select2 = "selected";
+	}
+	if(type.equals("F")) {
+		select3 = "selected";
+	}
 
 %>
 
@@ -219,24 +232,31 @@
     <!-- Basic info-->
     <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
     <form id="write" action="<%=path%>/community/update" method="POST" enctype="multipart/form-data">
-    	<input type="hidden" name="boardNo type" value="<%=board.getNo() %>">
+    	<input type="hidden" name="boardNo" value="<%=board.getNo() %>">
+    	
+    	<%-- 기존 파일 여부 --%>
+		<%if(board.getOriginal_file() != null && board.getOriginal_file().length() > 0) {%>
+			<input type="hidden" name="original_filename" value="<%=board.getOriginal_file()%>"/>
+			<input type="hidden" name="renamed_filename" value="<%=board.getRenamed_file()%>"/>
+		<%} %>
     	
         <div>
             <h2 class="h4 mb-4"><i class="fi-pencil text-primary fs-5 mt-n1 me-2"></i>Write</h2>
             <label class="form-label" for="ap-title">제목<span class="text-danger">*</span></label>
-            <input class="form-control" type="text" id="ap-title" name="ap-title" value="<%=board.getTitle() %>>" required>
+            <input class="form-control" type="text" id="ap-title" name="ap-title" value="<%=board.getTitle() %>" required>
         </div>
         <br>
         <div>
             <label class="form-label" for="ap-category">게시판선택 <span class="text-danger">*</span></label>
             <select class="form-select" id="ap-category" name="ap-category" required>
-                <option value="T">함께해요</option>
-                <option value="H">역사연구소</option>
-                <option value="F">자유게시판</option>
+                <option value="T" <%=select1 %>>함께해요</option>
+                <option value="H" <%=select2 %>>역사연구소</option>
+                <option value="F" <%=select3 %>>자유게시판</option>
             </select>
         </div>
         <br>
         <div>
+        	<input type="hidden" name="writer" value="<%=loginMember.getUno()%>">
             <label class="form-label" for="ap-category">내용<span class="text-danger">*</span></label>
             <textarea class="form-control" id="ap-description" name="ap-description" rows="12" ><%=board.getContent()%></textarea><span class="form-text"></span>
 
@@ -262,8 +282,8 @@
         <div class="mar2">
             <!-- <section class="mar d-sm-flex justify-content-between pt-4 writebtn"> -->
             	<!-- javascript:history.back(); -->
-                <a class="btn btn-primary btn-lg d-block mb-1 writeBtn" href="#" onclick="return post_form()">수정</a>
-                <a class="btn btn-primary btn-lg d-block mb-1 writeBtn" href="#" onclick="return post_form()">목록으로</a>
+                <a class="btn btn-primary btn-lg d-block mb-1 writeBtn" href="#" onclick="return post_form()">등록</a>
+                <a class="btn btn-primary btn-lg d-block mb-1 writeBtn" href="#" onclick="location.replace('<%=request.getContextPath()%>/community/list?type=<%=type %>')">목록으로</a>
                 <!-- <button type="submit">글쓰기</button> -->
             <!-- </section> -->
         </div>

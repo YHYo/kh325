@@ -126,7 +126,7 @@
 	<nav class="mb-2 pt-md-2" aria-label="breadcrumb">
 		<section class="d-sm-flex justify-content-between pt-2">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="real-estate-home-v1.html"><i
+				<li class="breadcrumb-item"><a href="<%=path%>/index.do"><i
 						class="fi-home"></i> Home</a></li>
 				<li class="breadcrumb-item active" aria-current="page">커뮤니티</li>
 			</ol>
@@ -167,7 +167,7 @@
 					<td><%=b.getuName() %></td>
 					<%-- 게시판 추천은 없는 것이라서 임의로 작성일 넣음 --%>
 					<td><%=b.getCreate_date() %></td>
-					<td><%=b.getReply_count() %></td>
+					<td><%=b.getReadCount() %></td>
 				</tr>
 				<%} %>
 				<%} %>
@@ -206,7 +206,7 @@
 					<td><%=b.getuName() %></td>
 					<%-- 게시판 추천은 없는 것이라서 임의로 작성일 넣음 --%>
 					<td><%=b.getCreate_date() %></td>
-					<td><%=b.getReply_count() %></td>
+					<td><%=b.getReadCount() %></td>
 				</tr>
 				<%} %>
 				<%} %>
@@ -244,7 +244,7 @@
 					<td><%=b3.getuName() %></td>
 					<%-- 게시판 추천은 없는 것이라서 임의로 작성일 넣음 --%>
 					<td><%=b3.getCreate_date() %></td>
-					<td><%=b3.getReply_count() %></td>
+					<td><%=b3.getReadCount() %></td>
 				</tr>
 				<%} %>
 				<%} %>

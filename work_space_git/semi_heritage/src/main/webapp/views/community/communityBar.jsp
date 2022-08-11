@@ -18,10 +18,10 @@
             <h1 class="display-5 text-light mt-sm-5 my-4">사뿐사뿐<span class="dropdown d-inline-block ms-2"><a
                         class="dropdown-toggle text-decoration-none" href="#" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="1boardMain.html">커뮤니티</a><span
-                        class="dropdown-menu dropdown-menu-end my-1"><a
-                            class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=T">함께해요</a><a
-                        class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=H">역사연구소</a><a
-                        class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=F">자유게시판</a></span></span>
+                        class="dropdown-menu dropdown-menu-end my-1">
+                        <a class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=T">함께해요</a>
+                        <a class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=H">역사연구소</a>
+                        <a class="dropdown-item fs-base fw-bold" href="<%=path%>/community/list?type=F">자유게시판</a></span></span>
         </h1>
         <!-- <p class="fs-lg text-white">문화재 관람 및 행사를 함께하고, 우리의 역사를 함께 연구하고,
             <br>함께 자유로이 소통하는 공간</p> -->

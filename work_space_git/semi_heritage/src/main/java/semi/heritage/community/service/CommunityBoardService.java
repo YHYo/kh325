@@ -71,11 +71,13 @@ public class CommunityBoardService {
 		}
 		
 		int result = 0;
-		
+		System.out.println("service boardNo : " + board.getNo());
 		if(board.getNo() != 0 ) {
 			result = dao.updateBoard(conn, board, boardType);
+			System.out.println("service : update로 이동" );
 		} else {
 			result = dao.insertBoard(conn, board, boardType, boardSeqType);
+			System.out.println("service : insert로 이동" );
 		}
 		
 		if(result > 0) {
@@ -89,19 +91,23 @@ public class CommunityBoardService {
 	
 	public CommunityBoard findBoardByNo(int no, boolean hasRead, String type) {
 		Connection conn = getConnection();
-		
 		String boardType = "";
+		String replyType = "";
+		
 		if(type.equals("F")) {
 			boardType = "FREE_BOARD";
+			replyType = "FREE_REPLY";
 		}
 		if(type.equals("T")) {
 			boardType = "TO_BOARD";
+			replyType = "TO_REPLY";
 		}
 		if(type.equals("H")) {
 			boardType = "HIS_BOARD";
+			replyType = "HIS_REPLY";
 		}
 		
-		CommunityBoard board = dao.findBoardByNo(conn, no, boardType);
+		CommunityBoard board = dao.findBoardByNo(conn, no, boardType, replyType);
 		
 		if(hasRead == true && board != null) {
 			int result = dao.updateReadCount(conn, board, boardType);
@@ -145,31 +151,31 @@ public class CommunityBoardService {
 		Connection conn = getConnection();
 		String boardType = "";
 		String replyType = "";
+		String boardSeqType = "";
 		
 		if(type.equals("F")) {
 			boardType = "FREE_BOARD";
 			replyType = "FREE_REPLY";
+			boardSeqType = "FREE";
 		}
 		if(type.equals("T")) {
 			boardType = "TO_BOARD";
 			replyType = "TO_REPLY";
+			boardSeqType = "TO";
 		}
 		if(type.equals("H")) {
 			boardType = "HIS_BOARD";
 			replyType = "HIS_REPLY";
+			boardSeqType = "HIS";
 		}
 		
-		int result = dao.insertReply(conn, reply, replyType);
-		
-		if(result > 0 ) {
-			int replyResult = dao.replyCount(conn, boardType, replyType, boardNo);
-			if(replyResult > 0) {
+		int result = dao.insertReply(conn, reply, replyType, boardSeqType);
+		if(result > 0) {
 				commit(conn);
-			}
-			System.out.println("리플 갯수 오류");
-		}else {
+		} else {
 			rollback(conn);
 		}
+		
 		
 		close(conn);
 		return result;

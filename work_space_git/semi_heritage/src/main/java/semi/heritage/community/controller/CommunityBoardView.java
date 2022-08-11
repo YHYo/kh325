@@ -31,7 +31,7 @@ public class CommunityBoardView extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/views/community/communityMain.jsp");
 			return;
 		}
-		
+		System.out.println("view : " + board.toString());
 		req.setAttribute("board", board);
 		req.getRequestDispatcher("/views/community/communityBoardView.jsp").forward(req, resp);
 	}
