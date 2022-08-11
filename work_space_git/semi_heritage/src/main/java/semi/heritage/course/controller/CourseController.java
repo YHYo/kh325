@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.heritage.common.util.MyHttpServlet;
-import semi.heritage.course.service.CourseService;
-import semi.heritage.course.vo.Course;
 import semi.heritage.member.vo.Member;
 
 @WebServlet("/course/main")

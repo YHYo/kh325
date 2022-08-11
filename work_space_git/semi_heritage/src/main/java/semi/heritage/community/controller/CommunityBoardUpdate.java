@@ -72,18 +72,21 @@ public class CommunityBoardUpdate extends MyHttpServlet {
 			board.setTitle(mr.getParameter("ap-title"));
 			board.setContent(mr.getParameter("ap-description").trim());
 			board.setType(type);
-			board.setOriginal_file(mr.getOriginalFileName("upfile"));
-			board.setRenamed_file(mr.getFilesystemName("upfile"));
 			
 			System.out.println("update : " + board.toString());
 
 			// 기존 파일이름
-			String original_file = mr.getParameter("original_filename");
-			String rename_file = mr.getParameter("rename_filename");
-			
+			String original_file = mr.getParameter("original_file");
+			String rename_file = mr.getParameter("rename_file");
+
+			System.out.println("update test1 : " + original_file);
+			System.out.println("update test2 : " + rename_file);
 			// 재업로드
-			String originalReloadFile = mr.getParameter("upfile");
-			String renameReloadFile = mr.getParameter("upfile");
+			String originalReloadFile = mr.getParameter("uploadfile");
+			String renameReloadFile = mr.getParameter("uploadfile");
+			
+			System.out.println("update test3 : " + originalReloadFile);
+			System.out.println("update test4 : " + renameReloadFile);
 			
 			if(originalReloadFile != null && originalReloadFile.length() > 0) {
 				// 파일 수정이 있을 때
@@ -106,7 +109,7 @@ public class CommunityBoardUpdate extends MyHttpServlet {
 				}
 			}
 			
-			int result = service.save(board, type); 
+			int result = service.save(board, type); // DB에 update
 			
 			if(result > 0) {
 				sendCommonPage("게시글이 정상적으로 업데이트되었습니다.", "/community/list?type=" + type, req, resp);

@@ -1,5 +1,6 @@
 package semi.heritage.community.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import semi.heritage.common.util.MyFileRenamePolicy;
 import semi.heritage.common.util.MyHttpServlet;
@@ -30,18 +32,15 @@ public class CommunityBoardWrite extends MyHttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			Member loginMember = getSessionMember(req);
-			
-			System.out.println(loginMember.toString());
+//			System.out.println(loginMember.toString());
 			
 			if(loginMember != null) {
 				// 정상흐름
 				req.getRequestDispatcher("/views/community/communityWrite.jsp").forward(req, resp);
 				return;
 			} 
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		sendCommonPage("로그인 이후 사용할 수 있습니다.", "/views/community/communityMain.jsp", req, resp);
-		
 	}
 	
 	@Override
@@ -71,19 +70,17 @@ public class CommunityBoardWrite extends MyHttpServlet {
 //			}
 			String type = mr.getParameter("ap-category");
 			
-			System.out.println("파일 첨부 테스트1 : " + mr.getOriginalFileName("upfile"));
-			System.out.println("파일 첨부 테스트2 : " + mr.getFilesystemName("upfile"));
+			System.out.println("파일 첨부 테스트1 : " + mr.getOriginalFileName("uploadfile"));
+			System.out.println("파일 첨부 테스트2 : " + mr.getFilesystemName("uploadfile"));
 			
 			CommunityBoard board = new CommunityBoard();
 			board.setuNo(loginMember.getUno());
 			board.setTitle(mr.getParameter("ap-title").strip());
 			board.setContent(mr.getParameter("ap-description").trim());
 			board.setType(type);
-			board.setOriginal_file(mr.getOriginalFileName("upfile"));
-			board.setRenamed_file(mr.getFilesystemName("upfile"));
-			
+			board.setOriginal_file(mr.getOriginalFileName("uploadfile"));
+			board.setRenamed_file(mr.getFilesystemName("uploadfile"));
 			System.out.println(board.toString());
-			
 			
 			int result = service.save(board, type);
 			

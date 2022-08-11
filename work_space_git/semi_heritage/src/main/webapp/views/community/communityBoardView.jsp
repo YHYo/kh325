@@ -53,7 +53,11 @@
 	.fa {
 		font-size: 20px;
 	}
-	
+	.fileBox {
+		/* background-color: #DBD9D9; */
+		color: #DBD9D9;
+		
+	}
 	.contentBox {
 		width: 100%;
 	}
@@ -175,6 +179,14 @@
 			<br>
 			<div class="contentBox"><%=b.getContent() %></div>
 			<br>
+			<br>
+			<%if(fileName != null && fileName.length() > 0) {%>
+				<div class="fileBox">
+					<a href="javascript:fileDownload('<%=fileName%>','<%=fileReName%>');">
+						<i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;<%=fileName %>
+					</a>
+				</div>
+			<%} %>
 		</div>
 	</div>
 	<br>
@@ -250,6 +262,15 @@
 </div>
 
 <script type="text/javascript">
+	function fileDownload(originName, reName) {
+		var url = "<%=request.getContextPath()%>/community/fileDown";
+		var oName = encodeURIComponent(originName);
+		var rName = encodeURIComponent(reName);
+		var resquestURL = url + "?originName=" + oName + "&reName=" + rName;
+		location.assign(resquestURL);
+		alert("파일을 요청하였습니다.");
+	}
+	
 	function deleteReply(replyNo, boardNo){
 		var url = '<%=request.getContextPath()%>/community/replydel?type=<%=type%>&replyNo=';
 		var requestURL = url + replyNo + '&boardNo=' + boardNo;
