@@ -46,6 +46,9 @@ List<String> age = new ArrayList<String>();
 
 
 searchValue = request.getParameter("searchValue");
+if(searchValue == null){
+	searchValue = "";
+}
 
 ccbaCtcdNms  = request.getParameterValues("region");
 if(ccbaCtcdNms != null){
@@ -76,8 +79,14 @@ if(ccceNames != null){
 }
 
 
-startYear = request.getParameter("startYear");
-endYear = request.getParameter("endYear");
+	startYear = request.getParameter("startYear");
+	if(startYear == null){
+		startYear = "";
+	}
+	endYear = request.getParameter("endYear");
+	if(endYear == null){
+		endYear = "";
+	}
 
 //=================================================================================================================================
 //int boardCount = (Integer)request.getAttribute("boardCount");
@@ -121,7 +130,7 @@ int uNo = (Integer)request.getAttribute("uNo");
                         <!-- Search form-->
                         <div class="form-group d-block d-md-flex position-relative rounded-md-pill mb-2 mb-sm-4 mb-lg-5 p01">
                             <div class="input-group input-group-lg"><span class="input-group-text text-muted rounded-pill ps-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-search" style="font-size: 21px;"></i></span>
-                                <input class="form-control p03" type="text" id="searchValue" name="searchValue" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
+                                <input class="form-control p03" type="text" id="searchValue" name="searchValue" value = "<%=searchValue%>" style="font-size: 25px;" placeholder="&nbsp;&nbsp;우리의 문화유산, 어디까지 가봤니 ?">
                             </div>
                             <hr class="d-md-none my-2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill w-100 w-md-auto ms-sm-10" style="background-color: #D97793; font-size: 22px;" type="button">&nbsp;&nbsp;검&nbsp;&nbsp;색&nbsp;&nbsp;</button>&nbsp;
@@ -163,109 +172,109 @@ int uNo = (Integer)request.getAttribute("uNo");
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="1" name="region" value="서울" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="1" name="region" value="서울" onclick='regionCheckSelectAll()' <%=region.contains( "서울") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="1">서울</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="2" name="region" value="부산" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="2" name="region" value="부산" onclick='regionCheckSelectAll()' <%=region.contains( "부산") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="2">부산</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="3" name="region" value="대구" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="3" name="region" value="대구" onclick='regionCheckSelectAll()' <%=region.contains( "대구") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="3">대구</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="4" name="region" value="인천" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="4" name="region" value="인천" onclick='regionCheckSelectAll()' <%=region.contains( "인천") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="4">인천</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="5" name="region" value="광주" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="5" name="region" value="광주" onclick='regionCheckSelectAll()' <%=region.contains( "광주") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="5">광주</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="6" name="region" value="대전" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="6" name="region" value="대전" onclick='regionCheckSelectAll()' <%=region.contains( "대전") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="6">대전</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="7" name="region" value="울산" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="7" name="region" value="울산" onclick='regionCheckSelectAll()' <%=region.contains( "울산") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="7">울산</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="8" name="region" value="세종" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="8" name="region" value="세종" onclick='regionCheckSelectAll()' <%=region.contains( "세종") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="8">세종</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="9" name="region" value="경기" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="9" name="region" value="경기" onclick='regionCheckSelectAll()' <%=region.contains( "경기") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="9">경기</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="10" name="region" value="강원" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="10" name="region" value="강원" onclick='regionCheckSelectAll()' <%=region.contains( "강원") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="10">강원</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="11" name="region" value="충북" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="11" name="region" value="충북" onclick='regionCheckSelectAll()' <%=region.contains( "충북") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="11">충북</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="12" name="region" value="충남" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="12" name="region" value="충남" onclick='regionCheckSelectAll()' <%=region.contains( "충남") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="12">충남</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="13" name="region" value="전북" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="13" name="region" value="전북" onclick='regionCheckSelectAll()' <%=region.contains( "전북") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="13">전북</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="14" name="region" value="전남" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="14" name="region" value="전남" onclick='regionCheckSelectAll()' <%=region.contains( "전남") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="14">전남</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="15" name="region" value="경북" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="15" name="region" value="경북" onclick='regionCheckSelectAll()' <%=region.contains( "경북") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="15">경북</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="16" name="region" value="경남" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="16" name="region" value="경남" onclick='regionCheckSelectAll()' <%=region.contains( "경남") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="16">경남</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="17" name="region" value="제주" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="17" name="region" value="제주" onclick='regionCheckSelectAll()' <%=region.contains( "제주") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="17">제주</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="18" name="region" value="전국일원" onclick='regionCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="18" name="region" value="전국일원" onclick='regionCheckSelectAll()' <%=region.contains( "전국일원") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="18">전국일원</label>
                                                                         </div>
                                                                     </li>
@@ -284,97 +293,97 @@ int uNo = (Integer)request.getAttribute("uNo");
                                                                 <ul class="widget-list widget-filter-list list-unstyled pt-1" style="max-height: 11.5rem;" data-simplebar data-simplebar-auto-hide="false">
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="designatedAll" name="designatedAll" value="전체" onclick="designatedAll(this)" checked>
+                                                                            <input class="form-check-input" type="checkbox" id="designatedAll" name="designatedAll" value="전체" onclick="designatedAll(this)" <%=designated.contains( "전체") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="designatedAll">전체</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="19" name="designated" value="국보" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="19" name="designated" value="국보" onclick='designatedCheckSelectAll()' <%=designated.contains( "국보") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="19">국보</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="20" name="designated" value="보물" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="20" name="designated" value="보물" onclick='designatedCheckSelectAll()' <%=designated.contains( "보물") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="20">보물</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="21" name="designated" value="사적" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="21" name="designated" value="사적" onclick='designatedCheckSelectAll()' <%=designated.contains( "사적") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="21">사적</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="22" name="designated" value="사적및명승" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="22" name="designated" value="사적및명승" onclick='designatedCheckSelectAll()' <%=designated.contains( "사적및명승") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="22">사적및명승</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="23" name="designated" value="명승" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="23" name="designated" value="명승" onclick='designatedCheckSelectAll()' <%=designated.contains( "명승") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="23">명승</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="24" name="designated" value="천연기념물" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="24" name="designated" value="천연기념물" onclick='designatedCheckSelectAll()' <%=designated.contains( "천연기념물") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="24">천연기념물</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="25" name="designated" value="국가무형문화재" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="25" name="designated" value="국가무형문화재" onclick='designatedCheckSelectAll()' <%=designated.contains( "국가무형문화재") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="25">국가무형문화재</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="26" name="designated" value="국가민속문화재" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="26" name="designated" value="국가민속문화재" onclick='designatedCheckSelectAll()' <%=designated.contains( "국가민속문화재") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="26">국가민속문화재</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="27" name="designated" value="시도유형문화재" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="27" name="designated" value="시도유형문화재" onclick='designatedCheckSelectAll()' <%=designated.contains( "시도유형문화재") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="27">시도유형문화재</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="28" name="designated" value="시도기념물" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="28" name="designated" value="시도기념물" onclick='designatedCheckSelectAll()' <%=designated.contains( "시도기념물") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="28">시도기념물</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="29" name="designated" value="시도민속문화재" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="29" name="designated" value="시도민속문화재" onclick='designatedCheckSelectAll()' <%=designated.contains( "시도민속문화재") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="29">시도민속문화재</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="30" name="designated" value="시도등록문화재" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="30" name="designated" value="시도등록문화재" onclick='designatedCheckSelectAll()' <%=designated.contains( "시도등록문화재") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="30">시도등록문화재</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="30" name="designated" value="문화재자료" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="30" name="designated" value="문화재자료" onclick='designatedCheckSelectAll()' <%=designated.contains( "문화재자료") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="30">문화재자료</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="30" name="designated" value="국가등록문화재" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="30" name="designated" value="국가등록문화재" onclick='designatedCheckSelectAll()' <%=designated.contains( "국가등록문화재") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="30">국가등록문화재</label>
                                                                         </div>
                                                                     </li>
                                                                     <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                                         <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" id="31" name="designated" value="이북5도 무형문화재" onclick='designatedCheckSelectAll()' checked>
+                                                                            <input class="form-check-input" type="checkbox" id="31" name="designated" value="이북5도 무형문화재" onclick='designatedCheckSelectAll()' <%=designated.contains( "이북5도 무형문화재") ? "checked" : "" %>>
                                                                             <label class="form-check-label widget-filter-item-text" for="31">이북5도 무형문화재</label>
                                                                         </div>
                                                                     </li>
@@ -399,12 +408,12 @@ int uNo = (Integer)request.getAttribute("uNo");
                                                 <div class="d-flex pb-1">
                                                     <div class="w-50 pe-2 me-2">
                                                         <div class="input-group input-group-sm">
-                                                            <input class="form-control range-slider-value-min" type="text" name="startYear" value="startYear"><span class="input-group-text">년</span>
+                                                            <input class="form-control range-slider-value-min" type="text" id="startYear" name="startYear" value="<%=startYear%>"><span class="input-group-text">년</span>
                                                         </div>
                                                     </div>
                                                     <div class="w-50 ps-2">
                                                         <div class="input-group input-group-sm">
-                                                            <input class="form-control range-slider-value-max" type="text" name="endYear" value="endYear"><span class="input-group-text">년</span>
+                                                            <input class="form-control range-slider-value-max" type="text" id="endYear"  name="endYear" value="<%=endYear%>"><span class="input-group-text">년</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -420,103 +429,103 @@ int uNo = (Integer)request.getAttribute("uNo");
                                             <ul class="widget-list widget-filter-list list-unstyled pt-1" style="max-height: 11rem;" data-simplebar data-simplebar-auto-hide="false">
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="ageAll" name="ageAll" value="전체" onclick='ageAll(this)' checked>
+                                                        <input class="form-check-input" type="checkbox" id="ageAll" name="ageAll" value="전체" onclick='ageAll(this)' <%=age.contains( "전체") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="ageAll">전체</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="32" name="age" value="선사" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="32" name="age" value="선사" onclick='ageCheckSelectAll()' <%=age.contains( "선사") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="32">선사시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="33" name="age" value="석기" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="33" name="age" value="석기" onclick='ageCheckSelectAll()' <%=age.contains( "석기") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="33">석기시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="34" name="age" value="청동기" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="34" name="age" value="청동기" onclick='ageCheckSelectAll()' <%=age.contains( "청동기") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="34">청동기시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="35" name="age" value="철기" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="35" name="age" value="철기" onclick='ageCheckSelectAll()' <%=age.contains( "철기") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="35">철기시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="36" name="age" value="삼한" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="36" name="age" value="삼한" onclick='ageCheckSelectAll()' <%=age.contains( "삼한") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="36">삼한시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="37" name="age" value="삼국" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="37" name="age" value="삼국" onclick='ageCheckSelectAll()' <%=age.contains( "삼국") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="37">삼국시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="38" name="age" value="고구려" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="38" name="age" value="고구려" onclick='ageCheckSelectAll()' <%=age.contains( "고구려") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="38">삼국:고구려</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="39" name="age" value="백제" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="39" name="age" value="백제" onclick='ageCheckSelectAll()' <%=age.contains( "백제") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="39">삼국:백제</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="40" name="age" value="신라" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="40" name="age" value="신라" onclick='ageCheckSelectAll()' <%=age.contains( "신라") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="40">삼국:신라</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="41" name="age" value="발해" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="41" name="age" value="발해" onclick='ageCheckSelectAll()' <%=age.contains( "발해") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="41">발해</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="42" name="age" value="통일신라" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="42" name="age" value="통일신라" onclick='ageCheckSelectAll()' <%=age.contains( "통일신라") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="42">통일신라</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="43" name="age" value="고려" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="43" name="age" value="고려" onclick='ageCheckSelectAll()' <%=age.contains( "고려") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="43">고려시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="44" name="age" value="조선" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="44" name="age" value="조선" onclick='ageCheckSelectAll()' <%=age.contains( "조선") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="44">조선시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="45" name="age" value="대한제국" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="45" name="age" value="대한제국" onclick='ageCheckSelectAll()' <%=age.contains( "대한제국") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="45">대한제국시대</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="46" name="age" value="일제강점" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="46" name="age" value="일제강점" onclick='ageCheckSelectAll()' <%=age.contains( "일제강점") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="46">일제강점기</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="47" name="age" value="시대미상" onclick='ageCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="47" name="age" value="시대미상" onclick='ageCheckSelectAll()' <%=age.contains( "시대미상") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="47">시대미상</label>
                                                     </div>
                                                 </li>
@@ -535,43 +544,43 @@ int uNo = (Integer)request.getAttribute("uNo");
                                             <ul class="widget-list widget-filter-list list-unstyled pt-1" style="max-height: 11.5rem;" data-simplebar data-simplebar-auto-hide="false">
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="48" name="typeAll" onclick='typeAll(this)' checked>
+                                                        <input class="form-check-input" type="checkbox" id="48" name="typeAll" onclick='typeAll(this)' <%=type.contains( "전체") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="48">전체</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="49" name="type" value="유적건조물" onclick='typeCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="49" name="type" value="유적건조물" onclick='typeCheckSelectAll()' <%=type.contains( "유적건조물") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="49">유적건조물</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="50" name="type" value="기록유산" onclick='typeCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="50" name="type" value="기록유산" onclick='typeCheckSelectAll()' <%=type.contains( "기록유산") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="50">기록유산</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="51" name="type" value="유물" onclick='typeCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="51" name="type" value="유물" onclick='typeCheckSelectAll()' <%=type.contains( "유물") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="51">유물</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="52" name="type" value="무형문화재" onclick='typeCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="52" name="type" value="무형문화재" onclick='typeCheckSelectAll()' <%=type.contains( "무형문화재") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="52">무형문화재</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="53" name="type" value="자연유산" onclick='typeCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="53" name="type" value="자연유산" onclick='typeCheckSelectAll()' <%=type.contains( "자연유산") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="53">자연유산</label>
                                                     </div>
                                                 </li>
                                                 <li class="widget-filter-item d-flex justify-content-between align-items-center mb-1">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="54" name="type" value="등록문화재" onclick='typeCheckSelectAll()' checked>
+                                                        <input class="form-check-input" type="checkbox" id="54" name="type" value="등록문화재" onclick='typeCheckSelectAll()' <%=type.contains( "등록문화재") ? "checked" : "" %>>
                                                         <label class="form-check-label widget-filter-item-text" for="55">등록문화재</label>
                                                     </div>
                                                 </li>
