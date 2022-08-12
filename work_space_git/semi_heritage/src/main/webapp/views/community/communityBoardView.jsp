@@ -170,12 +170,11 @@
 			}		
 		%>
 		<div>
-			<!-- Post content-->
-			
-			<!-- <div class="mb-4 pb-md-3"> -->
-			<!-- <img class="rounded-3" src="img/spsp/tazza.JPG" alt="Post image"> -->
-			<!-- </div> -->
-			
+			<%-- 이미지 --%>
+			<%if(fileName != null && fileName.length() > 0 && (fileName.contains(".jpg") || fileName.contains(".jpeg") || fileName.contains(".png"))) {%>
+				<img src="<%=path%>/resources/community/boardUpload/<%=fileReName %>" width="100%" />
+			<%} %>
+			<%-- 이미지 --%>
 			<br>
 			<div class="contentBox"><%=b.getContent() %></div>
 			<br>
@@ -243,9 +242,6 @@
                 </div> -->
 					<div class="col-12">
 						<!-- <label class="form-label" for="comment-text">댓글</label> -->
-
-
-						<!-- 로그인한 회원 정보 받아서 리플 작성자로 넣어야 함 -->
 
 						<!-- <div class="replyuNo"><%-- <%=loginMember.getUno() %> --%>></div> -->
 						<textarea class="form-control form-control-lg" id="comment-text"
