@@ -1,32 +1,81 @@
-# [사뿐사뿐]
-<b>프로젝트 '사뿐사뿐 - 문화재 통합정보포털'</b>
+<br />
+<br />
 
-### :bulb:  다양한 문화유산 및 문화 일정에 관한 정보를 한곳에서 확인하세요!
-![SEMI_PROJECT_사뿐사뿐 pdf_1](https://user-images.githubusercontent.com/110010716/221620228-998682fa-87b6-4325-ace4-9254d18121b0.png)
+<div align="center">
+   <img width="100%" alt="logo" src="https://github.com/miyyaa24/KH-semi-project/assets/94007890/f07961a5-75b2-449c-bd26-7217343df9b0" />
+<h3>다양한 문화유산 및 문화 일정에 관한 정보를 한곳에서 확인할 수 있어요</h3>
+<hr />
 
+<div align="right">
+   <b><a href="http://codestates.s3-website.ap-northeast-2.amazonaws.com/](https://drive.google.com/drive/folders/1RdLfbwmSQiJUSqqcsab5JzN1wkyX2W7k?usp=sharing">🎬 구현 영상 바로 가기</a></b></div>
+</div>
+<br />
+<br />
 
+# MAIN FEATURES 
+- 문화재 <b>검색</b>
 
-## :running_woman: 사뿐사뿐 | About Us
+   - 키워드, 지역, 지정연도, 시대, 문화재 유형분류별 필터링 기능
+   
+- 문화재 <b>상세 조회</b>
+   
+   - 요약 정보, 사진, 동영상 조회 / 찜하기 및 리뷰 작성
+   
+- <b>인기 문화재 추천</b>
+  
+  - 찜 갯수 높은 순으로 추천 기능
+
+- 문화재 <b>지도 좌표 조회</b>
+
+  - 카카오 지도 API 사용
+ 
+- 월별 <b>문화일정 검색</b>
+  
+  - 월별 상세 검색 기능 / 상세 URL 제공 및 연결
+ 
+- <b>기념품 샵</b>
+  
+  - 카테고리별 기념품 조회, 장바구니 담기 및 구매 기능
+
+- <b>커뮤니티</b>
+
+   - 게시판에서 게시글 작성, 수정, 삭제 / 사진 및 파일 업로드 기능
+
+<br />
+<br />
+
+## ⛏ 개발환경 | Development Environment 
+- 운영체제 : Window OS<br>
+- 개발 툴 : Eclipse, Apache Tomcat 8.5, Oracle SQL Developer, Visual Studio code<br>
+- 개발 언어 : Java , HTML5, CSS3, JavaScript, jQuery, SQL, JSP, Servlet, Ajax, Json, Gson<br>
+- 소스 제어 관리 : GitHub<br>
+- 협업 툴 : Slack, Discode, Zira<br>
+- 프로토타이핑 툴 : ERD Cloud<br>
+- Open API : Kakao API, 문화재청 API<br>
+  <br>
+  <br>
+![image](https://user-images.githubusercontent.com/110010716/221635450-09d8d5d0-2c44-4e70-a215-85c744c7cdfc.png)
+  <br>
+  <br>
+  
+<!--   ## :running_woman: 사뿐사뿐 | About Us
 👉각 지역별 특색있는 문화유산이 대중의 관심에서 멀어진 시대!<br>
 👉전국에 산재하고 있는 <b>문화재 및 문화일정에 대한 정보를 종합적으로 열람</b>할 수 있게하고<br>
 👉<b>사용자 간 커뮤니티를 활성화</b>하여 <b>문화유산을 쉽게 배우고 즐길수 있는 여건을 조성</b>합니다.<br>
 <br>
 ![image](https://user-images.githubusercontent.com/110010716/221626536-82c4d5d7-6f03-493d-89b7-cbf0b36d034b.png)
 
-### :movie_camera:구현 동영상 및 PPT | Google Drive [바로가기](https://drive.google.com/drive/folders/1RdLfbwmSQiJUSqqcsab5JzN1wkyX2W7k?usp=sharing)
+### :movie_camera:구현 동영상 및 PPT | Google Drive [바로가기](https://drive.google.com/drive/folders/1RdLfbwmSQiJUSqqcsab5JzN1wkyX2W7k?usp=sharing) -->
 
-<br>
-
-## 🔭목차 | Contents
+<!-- ## 🔭목차 | Contents
 1. [개발일정](#-개발일정--project-period)
 2. [아키텍쳐](#-아키텍쳐--architecture)
 3. [UI 흐름도](#-UI-흐름도--UI-Flow)
 4. [주요 기능](#-주요-기능--Main-Function)
 5. [개발환경](#-개발환경--development-environment)
 6. [ERD](#-erd--ERD)
-7. [기능 구현](#-기능-구현)
+7. [기능 구현](#-기능-구현) -->
 
-<br>
 
 
 ## ⌚ 개발일정 | Project Period
@@ -53,33 +102,6 @@
   <br>
   <br>
 
-## ⚔ 주요 기능 | Main Function
-### 
-- 문화재 <b>검색</b> (키워드, 지역, 지정연도, 시대, 문화재 유형분류별 필터링 기능)<br>
-- 문화재 <b>상세 조회</b> (요약 정보, 사진, 동영상 조회 / 찜하기 및 리뷰 작성)<br>
-- <b>인기 문화재 추천</b> (찜 갯수 높은 순으로 추천 기능)<br>
-- 문화재 <b>지도 좌표 조회</b> (카카오 지도 API 사용)<br>
-- 월별 <b>문화일정 검색</b> (월별 상세 검색 기능 / 상세 URL 제공 및 연결)<br>
-- <b>기념품 샵</b> (카테고리별 기념품 조회, 장바구니 담기 및 구매 기능)<br>
-- <b>커뮤니티</b> (게시판에서 게시글 작성, 수정, 삭제 / 사진 및 파일 업로드 기능)<br>
-- <b>로그인 </b> (로그인, 회원가입)<br>
-- <b>마이페이지</b> (회원 정보 수정 및 탈퇴 / 찜, 리뷰, 장바구니, 구매이력 조회)<br>
-  <br>
-  <br>
-
-## ⛏ 개발환경 | Development Environment 
-- 운영체제 : Window OS<br>
-- 개발 툴 : Eclipse, Apache Tomcat 8.5, Oracle SQL Developer, Visual Studio code<br>
-- 개발 언어 : Java , HTML5, CSS3, JavaScript, jQuery, SQL, JSP, Servlet, Ajax, Json, Gson<br>
-- 소스 제어 관리 : GitHub<br>
-- 협업 툴 : Slack, Discode, Zira<br>
-- 프로토타이핑 툴 : ERD Cloud<br>
-- Open API : Kakao API, 문화재청 API<br>
-  <br>
-  <br>
-![image](https://user-images.githubusercontent.com/110010716/221635450-09d8d5d0-2c44-4e70-a215-85c744c7cdfc.png)
-  <br>
-  <br>
 
 
 
